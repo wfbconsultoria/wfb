@@ -1,0 +1,8 @@
+CSS
+---------------------------------------------------------------------------
+NOME                 DESCRIÇÃO
+---------------------------------------------------------------------------
+Font-awesome         Pacote para usar ícones
+Data-Tables          Pacote para configurações de tabelas responsvas
+footable             Pacote para configurações de tabelas responsvas
+Loader				 Estilização para criar loader com css

@@ -1,0 +1,25 @@
+﻿html {
+    font-family:'Roboto'
+}
+body {
+    font-family:'Roboto'
+}
+thead{
+    background-color:whitesmoke
+}
+
+._COR_MENU {
+    background-color:white;
+     border-bottom:outset;
+  
+}
+._FONTE_GRANDE {
+    font-size:x-large
+}
+._LIMITA_CELULA {
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: initial;
+    display: block
+}

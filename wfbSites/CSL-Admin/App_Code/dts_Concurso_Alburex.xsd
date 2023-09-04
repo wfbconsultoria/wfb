@@ -1,0 +1,89 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="dts_Concurso_Alburex" targetNamespace="http://tempuri.org/dts_Concurso_Alburex.xsd" xmlns:mstns="http://tempuri.org/dts_Concurso_Alburex.xsd" xmlns="http://tempuri.org/dts_Concurso_Alburex.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="Web.config" AppSettingsPropertyName="cnnStr" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="cnnStr (Web.config)" ParameterPrefix="@" PropertyReference="AppConfig.System.Configuration.ConfigurationManager.0.ConnectionStrings.cnnStr.ConnectionString" Provider="System.Data.SqlClient" />
+        </Connections>
+        <Tables>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="VIEW_CONCURSO_ALBUREXTableAdapter" GeneratorDataComponentClassName="VIEW_CONCURSO_ALBUREXTableAdapter" Name="VIEW_CONCURSO_ALBUREX" UserDataComponentName="VIEW_CONCURSO_ALBUREXTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="cnnStr (Web.config)" DbObjectName="CSL_NOVO.dbo.VIEW_CONCURSO_ALBUREX" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT        EMAIL, COTA, ASP, TOTAL, STATUS_MES, USUARIO, MES, MES_SIGLA, ANO
+FROM            VIEW_CONCURSO_ALBUREX</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="EMAIL" DataSetColumn="EMAIL" />
+              <Mapping SourceColumn="COTA" DataSetColumn="COTA" />
+              <Mapping SourceColumn="ASP" DataSetColumn="ASP" />
+              <Mapping SourceColumn="TOTAL" DataSetColumn="TOTAL" />
+              <Mapping SourceColumn="STATUS_MES" DataSetColumn="STATUS_MES" />
+              <Mapping SourceColumn="USUARIO" DataSetColumn="USUARIO" />
+              <Mapping SourceColumn="MES" DataSetColumn="MES" />
+              <Mapping SourceColumn="MES_SIGLA" DataSetColumn="MES_SIGLA" />
+              <Mapping SourceColumn="ANO" DataSetColumn="ANO" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+        </Tables>
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="dts_Concurso_Alburex" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="False" msprop:Generator_DataSetName="dts_Concurso_Alburex" msprop:Generator_UserDSName="dts_Concurso_Alburex">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="VIEW_CONCURSO_ALBUREX" msprop:Generator_TableClassName="VIEW_CONCURSO_ALBUREXDataTable" msprop:Generator_TableVarName="tableVIEW_CONCURSO_ALBUREX" msprop:Generator_TablePropName="VIEW_CONCURSO_ALBUREX" msprop:Generator_RowDeletingName="VIEW_CONCURSO_ALBUREXRowDeleting" msprop:Generator_RowChangingName="VIEW_CONCURSO_ALBUREXRowChanging" msprop:Generator_RowEvHandlerName="VIEW_CONCURSO_ALBUREXRowChangeEventHandler" msprop:Generator_RowDeletedName="VIEW_CONCURSO_ALBUREXRowDeleted" msprop:Generator_UserTableName="VIEW_CONCURSO_ALBUREX" msprop:Generator_RowChangedName="VIEW_CONCURSO_ALBUREXRowChanged" msprop:Generator_RowEvArgName="VIEW_CONCURSO_ALBUREXRowChangeEvent" msprop:Generator_RowClassName="VIEW_CONCURSO_ALBUREXRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="EMAIL" msprop:Generator_ColumnVarNameInTable="columnEMAIL" msprop:Generator_ColumnPropNameInRow="EMAIL" msprop:Generator_ColumnPropNameInTable="EMAILColumn" msprop:Generator_UserColumnName="EMAIL" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="COTA" msprop:Generator_ColumnVarNameInTable="columnCOTA" msprop:Generator_ColumnPropNameInRow="COTA" msprop:Generator_ColumnPropNameInTable="COTAColumn" msprop:Generator_UserColumnName="COTA" type="xs:decimal" minOccurs="0" />
+              <xs:element name="ASP" msprop:Generator_ColumnVarNameInTable="columnASP" msprop:Generator_ColumnPropNameInRow="ASP" msprop:Generator_ColumnPropNameInTable="ASPColumn" msprop:Generator_UserColumnName="ASP" type="xs:decimal" minOccurs="0" />
+              <xs:element name="TOTAL" msprop:Generator_ColumnVarNameInTable="columnTOTAL" msprop:Generator_ColumnPropNameInRow="TOTAL" msprop:Generator_ColumnPropNameInTable="TOTALColumn" msprop:Generator_UserColumnName="TOTAL" type="xs:decimal" minOccurs="0" />
+              <xs:element name="STATUS_MES" msprop:Generator_ColumnVarNameInTable="columnSTATUS_MES" msprop:Generator_ColumnPropNameInRow="STATUS_MES" msprop:Generator_ColumnPropNameInTable="STATUS_MESColumn" msprop:Generator_UserColumnName="STATUS_MES" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="USUARIO" msprop:Generator_ColumnVarNameInTable="columnUSUARIO" msprop:Generator_ColumnPropNameInRow="USUARIO" msprop:Generator_ColumnPropNameInTable="USUARIOColumn" msprop:Generator_UserColumnName="USUARIO" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="200" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="MES" msprop:Generator_ColumnVarNameInTable="columnMES" msprop:Generator_ColumnPropNameInRow="MES" msprop:Generator_ColumnPropNameInTable="MESColumn" msprop:Generator_UserColumnName="MES" type="xs:decimal" minOccurs="0" />
+              <xs:element name="MES_SIGLA" msprop:Generator_ColumnVarNameInTable="columnMES_SIGLA" msprop:Generator_ColumnPropNameInRow="MES_SIGLA" msprop:Generator_ColumnPropNameInTable="MES_SIGLAColumn" msprop:Generator_UserColumnName="MES_SIGLA" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="3" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="ANO" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnANO" msprop:Generator_ColumnPropNameInRow="ANO" msprop:Generator_ColumnPropNameInTable="ANOColumn" msprop:Generator_UserColumnName="ANO" type="xs:int" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+    <xs:unique name="Constraint1">
+      <xs:selector xpath=".//mstns:VIEW_CONCURSO_ALBUREX" />
+      <xs:field xpath="mstns:EMAIL" />
+    </xs:unique>
+  </xs:element>
+</xs:schema>

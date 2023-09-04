@@ -1,0 +1,764 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>
+    </SchemaVersion>
+    <ProjectGuid>{C7525D93-D7AF-49D0-8055-47200BE7419C}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{F184B08F-C81C-45F6-A57F-5ABD9991F28F}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <RootNamespace>EPlanner</RootNamespace>
+    <AssemblyName>EPlanner</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <MyType>Custom</MyType>
+    <UseIISExpress>true</UseIISExpress>
+    <Use64BitIISExpress />
+    <IISExpressSSLPort>44361</IISExpressSSLPort>
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <OutputPath>bin\</OutputPath>
+    <DocumentationFile>EPlanner.xml</DocumentationFile>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>pdbonly</DebugType>
+    <DefineDebug>false</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DocumentationFile>EPlanner.xml</DocumentationFile>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=3.6.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.3.6.0\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+  </ItemGroup>
+  <ItemGroup>
+    <Import Include="Microsoft.VisualBasic" />
+    <Import Include="System" />
+    <Import Include="System.Collections" />
+    <Import Include="System.Collections.Generic" />
+    <Import Include="System.Data" />
+    <Import Include="System.Linq" />
+    <Import Include="System.Xml.Linq" />
+    <Import Include="System.Diagnostics" />
+    <Import Include="System.Collections.Specialized" />
+    <Import Include="System.Configuration" />
+    <Import Include="System.Text" />
+    <Import Include="System.Text.RegularExpressions" />
+    <Import Include="System.Web" />
+    <Import Include="System.Web.Caching" />
+    <Import Include="System.Web.SessionState" />
+    <Import Include="System.Web.Security" />
+    <Import Include="System.Web.Profile" />
+    <Import Include="System.Web.UI" />
+    <Import Include="System.Web.UI.WebControls" />
+    <Import Include="System.Web.UI.WebControls.WebParts" />
+    <Import Include="System.Web.UI.HtmlControls" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_Controls\Access_Control.ascx" />
+    <Content Include="App_Controls\Meta.ascx" />
+    <Content Include="App_Controls\Navigation_Header.ascx" />
+    <Content Include="App_Controls\Page_Footer.ascx" />
+    <Content Include="App_Controls\Page_Header.ascx" />
+    <Content Include="App_Controls\Scripts_Footer.ascx" />
+    <Content Include="App_Controls\Scripts_Header.ascx" />
+    <Content Include="assets\css\app-dark.css" />
+    <Content Include="assets\css\app-dark.min.css" />
+    <Content Include="assets\css\app-rtl.css" />
+    <Content Include="assets\css\app-rtl.min.css" />
+    <Content Include="assets\css\app.css" />
+    <Content Include="assets\css\app.min.css" />
+    <Content Include="assets\css\bootstrap-dark.css" />
+    <Content Include="assets\css\bootstrap-dark.min.css" />
+    <Content Include="assets\css\bootstrap.css" />
+    <Content Include="assets\css\bootstrap.min.css" />
+    <Content Include="assets\css\icons.css" />
+    <Content Include="assets\css\icons.min.css" />
+    <Content Include="assets\css\_Planner_Table_Scroll.css" />
+    <Content Include="assets\fonts\dropify.svg" />
+    <Content Include="assets\fonts\fa-brands-400.svg" />
+    <Content Include="assets\fonts\fa-regular-400.svg" />
+    <Content Include="assets\fonts\fa-solid-900.svg" />
+    <Content Include="assets\fonts\ionicons.svg" />
+    <Content Include="assets\fonts\materialdesignicons-webfont.svg" />
+    <Content Include="assets\fonts\Pe-icon-7-stroke.svg" />
+    <Content Include="assets\fonts\Simple-Line-Icons.svg" />
+    <Content Include="assets\fonts\themify.svg" />
+    <Content Include="assets\fonts\typicons.svg" />
+    <Content Include="assets\fonts\weathericons-regular-webfont.svg" />
+    <Content Include="assets\images\DECATHLON.png" />
+    <Content Include="assets\images\favicon.ico" />
+    <Content Include="assets\images\flags\french.jpg" />
+    <Content Include="assets\images\flags\germany.jpg" />
+    <Content Include="assets\images\flags\italy.jpg" />
+    <Content Include="assets\images\flags\russia.jpg" />
+    <Content Include="assets\images\flags\spain.jpg" />
+    <Content Include="assets\images\flags\us.jpg" />
+    <Content Include="assets\images\layouts\dark.png" />
+    <Content Include="assets\images\layouts\light.png" />
+    <Content Include="assets\images\layouts\rtl.png" />
+    <Content Include="assets\images\logo-bandeira-brasil.png" />
+    <Content Include="assets\images\logo-sm.png" />
+    <Content Include="assets\images\logoFlacto.png" />
+    <Content Include="assets\images\logo-light.png" />
+    <Content Include="assets\images\logo-smFlacto.png" />
+    <Content Include="assets\images\logo.png" />
+    <Content Include="assets\images\plugins\clear.png" />
+    <Content Include="assets\images\plugins\jstree.png" />
+    <Content Include="assets\images\plugins\loading.gif" />
+    <Content Include="assets\images\plugins\multiple-arrow.png" />
+    <Content Include="assets\images\Rede_Neural.jpeg" />
+    <Content Include="assets\images\small\img-1.jpg" />
+    <Content Include="assets\images\small\img-2.jpg" />
+    <Content Include="assets\images\small\img-3.jpg" />
+    <Content Include="assets\images\small\img-4.jpg" />
+    <Content Include="assets\images\small\img-5.jpg" />
+    <Content Include="assets\images\small\img-6.jpg" />
+    <Content Include="assets\images\user.png" />
+    <Content Include="assets\images\users\avatar-1.jpg" />
+    <Content Include="assets\images\users\avatar-10.jpg" />
+    <Content Include="assets\images\users\avatar-2.jpg" />
+    <Content Include="assets\images\users\avatar-3.jpg" />
+    <Content Include="assets\images\users\avatar-4.jpg" />
+    <Content Include="assets\images\users\avatar-5.jpg" />
+    <Content Include="assets\images\users\avatar-6.jpg" />
+    <Content Include="assets\images\users\avatar-7.jpg" />
+    <Content Include="assets\images\users\avatar-8.jpg" />
+    <Content Include="assets\images\users\avatar-9.jpg" />
+    <Content Include="assets\js\app.js" />
+    <Content Include="assets\js\app.min.js" />
+    <Content Include="assets\js\pages\chartist.init.js" />
+    <Content Include="assets\js\pages\dashboard.init.js" />
+    <Content Include="assets\js\pages\datatables.init.js" />
+    <Content Include="assets\js\pages\flot.init.js" />
+    <Content Include="assets\js\pages\form-advanced.init.js" />
+    <Content Include="assets\js\pages\form-fileuploads.init.js" />
+    <Content Include="assets\js\pages\form-summernote.init.js" />
+    <Content Include="assets\js\pages\form-validation.init.js" />
+    <Content Include="assets\js\pages\form-wizard.init.js" />
+    <Content Include="assets\js\pages\google-maps.init.js" />
+    <Content Include="assets\js\pages\morris.init.js" />
+    <Content Include="assets\js\pages\range-sliders.init.js" />
+    <Content Include="assets\js\pages\sweet-alerts.init.js" />
+    <Content Include="assets\js\pages\tabledit.init.js" />
+    <Content Include="assets\js\pages\toastr.init.js" />
+    <Content Include="assets\js\pages\vector-maps.init.js" />
+    <Content Include="assets\js\pages\widgets.init.js" />
+    <Content Include="assets\js\vendor.js" />
+    <Content Include="assets\js\vendor.min.js" />
+    <Content Include="assets\libs\bootstrap-colorpicker\bootstrap-colorpicker.min.css" />
+    <Content Include="assets\libs\bootstrap-colorpicker\bootstrap-colorpicker.min.js" />
+    <Content Include="assets\libs\bootstrap-datepicker\bootstrap-datepicker.css" />
+    <Content Include="assets\libs\bootstrap-datepicker\bootstrap-datepicker.min.js" />
+    <Content Include="assets\libs\bootstrap-daterangepicker\daterangepicker.css" />
+    <Content Include="assets\libs\bootstrap-daterangepicker\daterangepicker.js" />
+    <Content Include="assets\libs\bootstrap-maxlength\bootstrap-maxlength.min.js" />
+    <Content Include="assets\libs\bootstrap-tagsinput\bootstrap-tagsinput.css" />
+    <Content Include="assets\libs\bootstrap-tagsinput\bootstrap-tagsinput.min.js" />
+    <Content Include="assets\libs\bootstrap-timepicker\bootstrap-timepicker.min.css" />
+    <Content Include="assets\libs\bootstrap-timepicker\bootstrap-timepicker.min.js" />
+    <Content Include="assets\libs\bootstrap-touchspin\jquery.bootstrap-touchspin.min.css" />
+    <Content Include="assets\libs\bootstrap-touchspin\jquery.bootstrap-touchspin.min.js" />
+    <Content Include="assets\libs\chartist\chartist-plugin-tooltip.min.js" />
+    <Content Include="assets\libs\chartist\chartist.min.css" />
+    <Content Include="assets\libs\chartist\chartist.min.js" />
+    <Content Include="assets\libs\custombox\custombox.min.css" />
+    <Content Include="assets\libs\custombox\custombox.min.js" />
+    <Content Include="assets\libs\datatables\buttons.bootstrap4.min.css" />
+    <Content Include="assets\libs\datatables\buttons.bootstrap4.min.js" />
+    <Content Include="assets\libs\datatables\buttons.html5.min.js" />
+    <Content Include="assets\libs\datatables\buttons.print.min.js" />
+    <Content Include="assets\libs\datatables\dataTables.bootstrap4.min.css" />
+    <Content Include="assets\libs\datatables\dataTables.bootstrap4.min.js" />
+    <Content Include="assets\libs\datatables\dataTables.buttons.min.js" />
+    <Content Include="assets\libs\datatables\dataTables.fixedheader.min.js" />
+    <Content Include="assets\libs\datatables\dataTables.keyTable.min.js" />
+    <Content Include="assets\libs\datatables\dataTables.responsive.min.js" />
+    <Content Include="assets\libs\datatables\dataTables.scroller.min.js" />
+    <Content Include="assets\libs\datatables\fixedheader.bootstrap4.min.css" />
+    <Content Include="assets\libs\datatables\jquery.dataTables.min.js" />
+    <Content Include="assets\libs\datatables\responsive.bootstrap4.min.css" />
+    <Content Include="assets\libs\datatables\responsive.bootstrap4.min.js" />
+    <Content Include="assets\libs\datatables\scroller.bootstrap4.min.css" />
+    <Content Include="assets\libs\dropify\dropify.min.css" />
+    <Content Include="assets\libs\dropify\dropify.min.js" />
+    <Content Include="assets\libs\flot-charts\jquery.flot.crosshair.js" />
+    <Content Include="assets\libs\flot-charts\jquery.flot.js" />
+    <Content Include="assets\libs\flot-charts\jquery.flot.pie.js" />
+    <Content Include="assets\libs\flot-charts\jquery.flot.resize.js" />
+    <Content Include="assets\libs\flot-charts\jquery.flot.selection.js" />
+    <Content Include="assets\libs\flot-charts\jquery.flot.stack.js" />
+    <Content Include="assets\libs\flot-charts\jquery.flot.time.js" />
+    <Content Include="assets\libs\flot-charts\jquery.flot.tooltip.min.js" />
+    <Content Include="assets\libs\gmaps\gmaps.min.js" />
+    <Content Include="assets\libs\ion-rangeslider\ion.rangeSlider.css" />
+    <Content Include="assets\libs\ion-rangeslider\ion.rangeSlider.min.js" />
+    <Content Include="assets\libs\jquery-knob\jquery.knob.min.js" />
+    <Content Include="assets\libs\jquery-mask-plugin\jquery.mask.min.js" />
+    <Content Include="assets\libs\jquery-quicksearch\jquery.quicksearch.min.js" />
+    <Content Include="assets\libs\jquery-sparkline\jquery.sparkline.min.js" />
+    <Content Include="assets\libs\jquery-tabledit\jquery.tabledit.min.js" />
+    <Content Include="assets\libs\jquery-vectormap\jquery-jvectormap-1.2.2.css" />
+    <Content Include="assets\libs\jquery-vectormap\jquery-jvectormap-1.2.2.min.js" />
+    <Content Include="assets\libs\jquery-vectormap\jquery-jvectormap-au-mill-en.js" />
+    <Content Include="assets\libs\jquery-vectormap\jquery-jvectormap-ca-lcc-en.js" />
+    <Content Include="assets\libs\jquery-vectormap\jquery-jvectormap-in-mill-en.js" />
+    <Content Include="assets\libs\jquery-vectormap\jquery-jvectormap-uk-mill-en.js" />
+    <Content Include="assets\libs\jquery-vectormap\jquery-jvectormap-us-il-chicago-mill-en.js" />
+    <Content Include="assets\libs\jquery-vectormap\jquery-jvectormap-us-merc-en.js" />
+    <Content Include="assets\libs\jquery-vectormap\jquery-jvectormap-world-mill-en.js" />
+    <Content Include="assets\libs\jszip\jszip.min.js" />
+    <Content Include="assets\libs\moment\moment.min.js" />
+    <Content Include="assets\libs\morris-js\morris.min.js" />
+    <Content Include="assets\libs\multiselect\jquery.multi-select.js" />
+    <Content Include="assets\libs\multiselect\multi-select.css" />
+    <Content Include="assets\libs\parsleyjs\parsley.min.js" />
+    <Content Include="assets\libs\pdfmake\pdfmake.min.js" />
+    <Content Include="assets\libs\pdfmake\vfs_fonts.js" />
+    <Content Include="assets\libs\raphael\raphael.min.js" />
+    <Content Include="assets\libs\select2\select2.min.css" />
+    <Content Include="assets\libs\select2\select2.min.js" />
+    <Content Include="assets\libs\summernote\summernote-bs4.css" />
+    <Content Include="assets\libs\summernote\summernote-bs4.min.js" />
+    <Content Include="assets\libs\sweetalert2\sweetalert2.min.css" />
+    <Content Include="assets\libs\sweetalert2\sweetalert2.min.js" />
+    <Content Include="assets\libs\switchery\switchery.min.css" />
+    <Content Include="assets\libs\switchery\switchery.min.js" />
+    <Content Include="assets\libs\toastr\toastr.min.css" />
+    <Content Include="assets\libs\toastr\toastr.min.js" />
+    <Content Include="assets\libs\twitter-bootstrap-wizard\jquery.bootstrap.wizard.min.js" />
+    <Content Include="Calendario_Mes.aspx" />
+    <Content Include="Colaboradores_Lista.aspx" />
+    <Content Include="DashBoard_Sample.aspx" />
+    <Content Include="Datas_Selecao.aspx" />
+    <Content Include="Default.aspx" />
+    <Content Include="Error.aspx" />
+    <Content Include="Gislaine.aspx" />
+    <Content Include="Global.asax" />
+    <Content Include="Login.aspx" />
+    <Content Include="LoginMessage.aspx" />
+    <Content Include="Menu_DashBoards.aspx" />
+    <Content Include="Menu_Reports.aspx" />
+    <Content Include="Miro.aspx" />
+    <Content Include="Modal.aspx" />
+    <Content Include="Modelo.aspx" />
+    <Content Include="PageError.aspx" />
+    <Content Include="PageMessage.aspx" />
+    <Content Include="Planificar.aspx" />
+    <Content Include="Planificar_Atividades.aspx" />
+    <Content Include="Planificar_Escala.aspx" />
+    <Content Include="PLanificar_Escala_2.aspx" />
+    <Content Include="Planificar_Horarios.aspx" />
+    <Content Include="Report_Planner.aspx" />
+    <Content Include="Report_Table_Sample.aspx" />
+    <Content Include="Templates_aspx\template_Empty_Page.aspx" />
+    <Content Include="Templates_html\admin-masonry.html" />
+    <Content Include="Templates_html\admin-notification.html" />
+    <Content Include="Templates_html\admin-range-slider.html" />
+    <Content Include="Templates_html\admin-sweetalert.html" />
+    <Content Include="Templates_html\charts-chartist.html" />
+    <Content Include="Templates_html\charts-flot.html" />
+    <Content Include="Templates_html\charts-morris.html" />
+    <Content Include="Templates_html\charts-other.html" />
+    <Content Include="Templates_html\form-advanced.html" />
+    <Content Include="Templates_html\form-elements.html" />
+    <Content Include="Templates_html\form-summernote.html" />
+    <Content Include="Templates_html\form-uploads.html" />
+    <Content Include="Templates_html\form-validation.html" />
+    <Content Include="Templates_html\form-wizard.html" />
+    <Content Include="Templates_html\icons-fontawesome.html" />
+    <Content Include="Templates_html\icons-materialdesign.html" />
+    <Content Include="Templates_html\icons-themify.html" />
+    <Content Include="Templates_html\index.html" />
+    <Content Include="Templates_html\layouts-boxed.html" />
+    <Content Include="Templates_html\layouts-center-menu.html" />
+    <Content Include="Templates_html\layouts-normal-header.html" />
+    <Content Include="Templates_html\layouts-topbar-light.html" />
+    <Content Include="Templates_html\layouts-vertical.html" />
+    <Content Include="Templates_html\maps-google.html" />
+    <Content Include="Templates_html\maps-vector.html" />
+    <Content Include="Templates_html\pages-404.html" />
+    <Content Include="Templates_html\pages-confirm-mail.html" />
+    <Content Include="Templates_html\pages-lock-screen.html" />
+    <Content Include="Templates_html\pages-login.html" />
+    <Content Include="Templates_html\pages-recoverpw.html" />
+    <Content Include="Templates_html\pages-register.html" />
+    <Content Include="Templates_html\pages-starter.html" />
+    <Content Include="Templates_html\pages-timeline.html" />
+    <Content Include="Templates_html\tables-basic.html" />
+    <Content Include="Templates_html\tables-datatable.html" />
+    <Content Include="Templates_html\tables-editable.html" />
+    <Content Include="Templates_html\ui-buttons.html" />
+    <Content Include="Templates_html\ui-cards.html" />
+    <Content Include="Templates_html\ui-checkbox-radio.html" />
+    <Content Include="Templates_html\ui-components.html" />
+    <Content Include="Templates_html\ui-images.html" />
+    <Content Include="Templates_html\ui-modals.html" />
+    <Content Include="Templates_html\ui-typography.html" />
+    <Content Include="Templates_html\widgets.html" />
+    <Content Include="Web.config" />
+    <Content Include="WebForm1.aspx" />
+    <Content Include="_LIsta.aspx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Code\clsColaboradores.vb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="App_Code\clsLojas.vb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="App_Code\clsMaster.vb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="_LIsta.aspx.designer.vb">
+      <DependentUpon>_LIsta.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="_LIsta.aspx.vb">
+      <DependentUpon>_LIsta.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Content Include="App_Code\clsReports.vb" />
+    <Content Include="App_Code\clsTerceiros.vb" />
+    <Content Include="App_Code\clsUniversos.vb" />
+    <Compile Include="App_Code\clsValidate.vb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="App_Code\cls_Login.vb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="Colaboradores_Lista.aspx.designer.vb">
+      <DependentUpon>Colaboradores_Lista.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Colaboradores_Lista.aspx.vb">
+      <DependentUpon>Colaboradores_Lista.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="LoginMessage.aspx.designer.vb">
+      <DependentUpon>LoginMessage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="LoginMessage.aspx.vb">
+      <DependentUpon>LoginMessage.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="PageError.aspx.designer.vb">
+      <DependentUpon>PageError.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PageError.aspx.vb">
+      <DependentUpon>PageError.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="PageMessage.aspx.designer.vb">
+      <DependentUpon>PageMessage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PageMessage.aspx.vb">
+      <DependentUpon>PageMessage.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="WebForm1.aspx.designer.vb">
+      <DependentUpon>WebForm1.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WebForm1.aspx.vb">
+      <DependentUpon>WebForm1.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Content Include="App_Code\clsCustom.vb" />
+    <Compile Include="App_Code\clsPlanner.vb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="App_Controls\Access_Control.ascx.designer.vb">
+      <DependentUpon>Access_Control.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="App_Controls\Access_Control.ascx.vb">
+      <DependentUpon>Access_Control.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="App_Controls\Meta.ascx.designer.vb">
+      <DependentUpon>Meta.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="App_Controls\Meta.ascx.vb">
+      <DependentUpon>Meta.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="App_Controls\Navigation_Header.ascx.designer.vb">
+      <DependentUpon>Navigation_Header.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="App_Controls\Navigation_Header.ascx.vb">
+      <DependentUpon>Navigation_Header.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="App_Controls\Page_Footer.ascx.designer.vb">
+      <DependentUpon>Page_Footer.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="App_Controls\Page_Footer.ascx.vb">
+      <DependentUpon>Page_Footer.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="App_Controls\Page_Header.ascx.designer.vb">
+      <DependentUpon>Page_Header.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="App_Controls\Page_Header.ascx.vb">
+      <DependentUpon>Page_Header.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="App_Controls\Scripts_Footer.ascx.designer.vb">
+      <DependentUpon>Scripts_Footer.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="App_Controls\Scripts_Footer.ascx.vb">
+      <DependentUpon>Scripts_Footer.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="App_Controls\Scripts_Header.ascx.designer.vb">
+      <DependentUpon>Scripts_Header.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="App_Controls\Scripts_Header.ascx.vb">
+      <DependentUpon>Scripts_Header.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Calendario_Mes.aspx.designer.vb">
+      <DependentUpon>Calendario_Mes.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Calendario_Mes.aspx.vb">
+      <DependentUpon>Calendario_Mes.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="DashBoard_Sample.aspx.designer.vb">
+      <DependentUpon>DashBoard_Sample.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="DashBoard_Sample.aspx.vb">
+      <DependentUpon>DashBoard_Sample.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="Datas_Selecao.aspx.designer.vb">
+      <DependentUpon>Datas_Selecao.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Datas_Selecao.aspx.vb">
+      <DependentUpon>Datas_Selecao.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="Default.aspx.designer.vb">
+      <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Default.aspx.vb">
+      <DependentUpon>Default.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="Error.aspx.designer.vb">
+      <DependentUpon>Error.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Error.aspx.vb">
+      <DependentUpon>Error.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="Gislaine.aspx.designer.vb">
+      <DependentUpon>Gislaine.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Gislaine.aspx.vb">
+      <DependentUpon>Gislaine.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="Global.asax.vb">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Login.aspx.designer.vb">
+      <DependentUpon>Login.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Login.aspx.vb">
+      <DependentUpon>Login.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="Master.Master.designer.vb">
+      <DependentUpon>Master.Master</DependentUpon>
+    </Compile>
+    <Compile Include="Master.Master.vb">
+      <DependentUpon>Master.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Menu_DashBoards.aspx.designer.vb">
+      <DependentUpon>Menu_DashBoards.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Menu_DashBoards.aspx.vb">
+      <DependentUpon>Menu_DashBoards.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="Menu_Reports.aspx.designer.vb">
+      <DependentUpon>Menu_Reports.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Menu_Reports.aspx.vb">
+      <DependentUpon>Menu_Reports.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="Miro.aspx.designer.vb">
+      <DependentUpon>Miro.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Miro.aspx.vb">
+      <DependentUpon>Miro.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="Modal.aspx.designer.vb">
+      <DependentUpon>Modal.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Modal.aspx.vb">
+      <DependentUpon>Modal.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="Modelo.aspx.designer.vb">
+      <DependentUpon>Modelo.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo.aspx.vb">
+      <DependentUpon>Modelo.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="My Project\AssemblyInfo.vb" />
+    <Compile Include="My Project\Application.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Application.myapp</DependentUpon>
+    </Compile>
+    <Compile Include="My Project\MyExtensions\MyWebExtension.vb">
+      <VBMyExtensionTemplateID>Microsoft.VisualBasic.Web.MyExtension</VBMyExtensionTemplateID>
+      <VBMyExtensionTemplateVersion>1.0.0.0</VBMyExtensionTemplateVersion>
+    </Compile>
+    <Compile Include="My Project\Resources.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="My Project\Settings.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="Planificar.aspx.designer.vb">
+      <DependentUpon>Planificar.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Planificar.aspx.vb">
+      <DependentUpon>Planificar.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="Planificar_Atividades.aspx.designer.vb">
+      <DependentUpon>Planificar_Atividades.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Planificar_Atividades.aspx.vb">
+      <DependentUpon>Planificar_Atividades.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="Planificar_Escala.aspx.designer.vb">
+      <DependentUpon>Planificar_Escala.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Planificar_Escala.aspx.vb">
+      <DependentUpon>Planificar_Escala.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="PLanificar_Escala_2.aspx.designer.vb">
+      <DependentUpon>PLanificar_Escala_2.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PLanificar_Escala_2.aspx.vb">
+      <DependentUpon>PLanificar_Escala_2.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="Planificar_Horarios.aspx.designer.vb">
+      <DependentUpon>Planificar_Horarios.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Planificar_Horarios.aspx.vb">
+      <DependentUpon>Planificar_Horarios.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="Report_Planner.aspx.designer.vb">
+      <DependentUpon>Report_Planner.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Report_Planner.aspx.vb">
+      <DependentUpon>Report_Planner.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="Report_Table_Sample.aspx.designer.vb">
+      <DependentUpon>Report_Table_Sample.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Report_Table_Sample.aspx.vb">
+      <DependentUpon>Report_Table_Sample.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="Templates_aspx\template_Empty_Page.aspx.designer.vb">
+      <DependentUpon>template_Empty_Page.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Templates_aspx\template_Empty_Page.aspx.vb">
+      <DependentUpon>template_Empty_Page.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="My Project\Resources.resx">
+      <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.vb</LastGenOutput>
+      <CustomToolNamespace>My.Resources</CustomToolNamespace>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="assets\css\app-dark.min.css.map" />
+    <Content Include="assets\css\app-rtl.min.css.map" />
+    <Content Include="assets\css\app.min.css.map" />
+    <Content Include="assets\css\bootstrap-dark.min.css.map" />
+    <Content Include="assets\css\bootstrap.min.css.map" />
+    <Content Include="assets\css\icons.min.css.map" />
+    <Content Include="assets\data\scroller-demo.json" />
+    <Content Include="assets\fonts\dropify.eot" />
+    <Content Include="assets\fonts\dropify.ttf" />
+    <Content Include="assets\fonts\dropify.woff" />
+    <Content Include="assets\fonts\fa-brands-400.eot" />
+    <Content Include="assets\fonts\fa-brands-400.ttf" />
+    <Content Include="assets\fonts\fa-brands-400.woff" />
+    <Content Include="assets\fonts\fa-brands-400.woff2" />
+    <Content Include="assets\fonts\fa-regular-400.eot" />
+    <Content Include="assets\fonts\fa-regular-400.ttf" />
+    <Content Include="assets\fonts\fa-regular-400.woff" />
+    <Content Include="assets\fonts\fa-regular-400.woff2" />
+    <Content Include="assets\fonts\fa-solid-900.eot" />
+    <Content Include="assets\fonts\fa-solid-900.ttf" />
+    <Content Include="assets\fonts\fa-solid-900.woff" />
+    <Content Include="assets\fonts\fa-solid-900.woff2" />
+    <Content Include="assets\fonts\ionicons.eot" />
+    <Content Include="assets\fonts\ionicons.ttf" />
+    <Content Include="assets\fonts\ionicons.woff" />
+    <Content Include="assets\fonts\ionicons.woff2" />
+    <Content Include="assets\fonts\materialdesignicons-webfont.eot" />
+    <Content Include="assets\fonts\materialdesignicons-webfont.ttf" />
+    <Content Include="assets\fonts\materialdesignicons-webfont.woff" />
+    <Content Include="assets\fonts\materialdesignicons-webfont.woff2" />
+    <Content Include="assets\fonts\Pe-icon-7-stroke.eot" />
+    <Content Include="assets\fonts\Pe-icon-7-stroke.ttf" />
+    <Content Include="assets\fonts\Pe-icon-7-stroke.woff" />
+    <Content Include="assets\fonts\Simple-Line-Icons.eot" />
+    <Content Include="assets\fonts\Simple-Line-Icons.ttf" />
+    <Content Include="assets\fonts\Simple-Line-Icons.woff" />
+    <Content Include="assets\fonts\Simple-Line-Icons.woff2" />
+    <Content Include="assets\fonts\summernote.eot" />
+    <Content Include="assets\fonts\summernote.ttf" />
+    <Content Include="assets\fonts\summernote.woff" />
+    <Content Include="assets\fonts\themify.eot" />
+    <Content Include="assets\fonts\themify.ttf" />
+    <Content Include="assets\fonts\themify.woff" />
+    <Content Include="assets\fonts\typicons.eot" />
+    <Content Include="assets\fonts\typicons.ttf" />
+    <Content Include="assets\fonts\typicons.woff" />
+    <Content Include="assets\fonts\weathericons-regular-webfont.eot" />
+    <Content Include="assets\fonts\weathericons-regular-webfont.ttf" />
+    <Content Include="assets\fonts\weathericons-regular-webfont.woff" />
+    <Content Include="assets\fonts\weathericons-regular-webfont.woff2" />
+    <Content Include="assets\js\app.min.js.map" />
+    <Content Include="assets\js\vendor.min.js.map" />
+    <Content Include="Master.Master" />
+    <None Include="My Project\Application.myapp">
+      <Generator>MyApplicationCodeGenerator</Generator>
+      <LastGenOutput>Application.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="My Project\PublishProfiles\e-planner-brasil - Web Deploy.pubxml" />
+    <None Include="My Project\PublishProfiles\FolderProfile.pubxml" />
+    <None Include="My Project\PublishProfiles\Localhost.pubxml" />
+    <None Include="My Project\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <CustomToolNamespace>My</CustomToolNamespace>
+      <LastGenOutput>Settings.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="packages.config" />
+    <None Include="Templates_html\packages.config" />
+    <None Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+    <Folder Include="Files\" />
+    <Folder Include="Images\" />
+    <Folder Include="Models\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WebReferences Include="Web References\" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionExplicit>On</OptionExplicit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionCompare>Binary</OptionCompare>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionStrict>Off</OptionStrict>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionInfer>On</OptionInfer>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.VisualBasic.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>51772</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>https://localhost:44361/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.3.6.0\build\net472\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.targets" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.3.6.0\build\net472\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>Este projeto faz referência a pacotes do NuGet que não estão presentes neste computador. Use a Restauração de Pacotes do NuGet para baixá-los.  Para obter mais informações, consulte http://go.microsoft.com/fwlink/?LinkID=322105. O arquivo ausente é {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.3.6.0\build\net472\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.3.6.0\build\net472\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.targets'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

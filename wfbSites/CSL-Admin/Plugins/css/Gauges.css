@@ -1,0 +1,17 @@
+﻿.GaugeStyle1 {
+    position: relative;
+    width: 20vw;
+    height: 20vw;
+    box-sizing: border-box;
+    float: left;
+    margin: 20px;
+}
+
+.GaugeStyle2 {
+    position: relative;
+    width: 20vw;
+    height: 20vw;
+    box-sizing: border-box;
+    float: right;
+    margin: 20px;
+}

@@ -1,0 +1,130 @@
+﻿body {
+    margin:0;
+    padding:0;
+    font-family: "HelveticaNeue-Light","Helvetica Neue Light","Helvetica Neue",Helvetica,'fabricaregular',Arial,sans-serif;
+}
+
+form {
+    margin:0;
+    padding:0;
+}
+
+#label_p {
+    margin-top:10px;
+    margin-bottom: 38px;
+}
+
+#imgLogin{
+    display:block;
+    margin:0;
+    padding:0;
+    height: 100%;
+    width: auto;
+}
+
+#login_form {
+    width:350px;
+    height:498px;
+    margin-top:50px;
+    padding-left: 30px;
+    background-color:white;
+    box-shadow:2px 2px 1px #888888;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 0;
+}
+
+#login_box{
+    display:block;
+    margin:0;
+    padding:10px;
+}
+
+.login_logo {
+    padding-top:20px;
+    margin-bottom:18px;
+    display:block;
+    height:70px;
+    width:80%;
+}
+
+.login_label {
+    margin-bottom:10px;
+}
+
+label {
+    width:100%;
+    width:100%;
+    border-collapse: separate;
+    border-spacing: 2px;
+    border-color: gray;
+    }
+
+.buton_login {
+    width: auto;
+    vertical-align:central;
+    padding: 6px 12px 6px 12px;
+    border: 1px solid #FFFFFF;
+    background: #0071b8;
+    cursor: default;
+    color:#FFFFFF;
+    font-size:medium;
+    }
+
+.buton_login:hover {
+    color:#000;
+    }
+
+.label_login
+{
+   
+    margin:0;
+    width: 90%;
+    height:28px;
+    border: 1px solid #BABABA;
+    font-size: 0.9em;
+}
+
+#suporte {
+     height:4em;
+    margin:0;
+    padding:0;
+    display:block;
+clear: both;   
+background: #FF9;
+}
+
+#imgsuporte {
+    display:block;
+    padding-left:1px;
+    margin-top:20px;
+    height: 90px;
+    width: 287px;
+    margin-left: 0;
+    margin-right: 0;
+    margin-bottom: 0;
+}
+
+.suport {
+    padding: 1em 0px;
+}
+
+.suportinfo {
+    width: 90%;
+max-width: 1008px;
+margin-left: auto;
+margin-right: auto;
+}
+
+#suportinfo {
+margin:0;
+text-align: center;
+}
+
+.esquecisenha_buton {
+   float:right;
+    font-size:small;
+    margin:0;
+    padding:0;
+    padding-right:33px;
+}

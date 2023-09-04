@@ -1,0 +1,100 @@
+﻿<%@ Master Language="VB" CodeFile="_Logged.master.vb" Inherits="_Logged" %>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="Content/navbar.css" rel="stylesheet" />
+    <link href="Content/Site.css" rel="stylesheet" />
+    <link rel="shortcut icon" href="Images/BBraun_Ico.png" />
+    <title>B|BRaun - Caça Bombas</title>
+    <asp:ContentPlaceHolder ID="HeadContent" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="frm_Master" runat="server">
+        <%--Menu e barra de navegacao--%>
+        <nav class="navbar navbar-expand-lg navbar-light fixed-top" style="background-color: #00B482">
+            <div class="container">
+                <strong><a class="navbar-brand" style="color:white;"href="../"><%:ConfigurationManager.AppSettings("App.Initials")%></a></strong>
+                <button class="navbar-toggler" style="color:white;" type="button" data-toggle="collapse" data-target="#navbarsMain" aria-controls="navbarsMain" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarsMain">
+
+                    <%--Menus COLOCAR OS MENUS PERSONALIZADOS--%>
+                    <ul class="navbar-nav mr-auto">
+
+                        <%--<%--Menus publicos - Anônimo, sem login--%>
+                        <%--<li class="nav-item">
+                            <a class="nav-link" href="../_PageModel_Public">Página Publica</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" style="color:white;" href="#" id="dropdownPublic01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Menus publicos</a>
+                            <div class="dropdown-menu" aria-labelledby="dropdownPublic01">
+                                <a class="dropdown-item" style="color:#00B482;" href="../_PageModel_Public">Menu publico 01</a>
+                                <a class="dropdown-item" style="color:#00B482;" href="../_PageModel_Public">Menu publico 02</a>
+                                <a class="dropdown-item" style="color:#00B482;" href="../_PageModel_Public">Menu publico 03</a>
+                            </div>
+                        </li>--%>
+                        <%--END Menus publicos - Anônimo, sem login--%>
+
+                        <%--Menus RESTRITOS - exigem login--%>
+                        <%If Context.User.Identity.IsAuthenticated = True%>
+                        <li class="nav-item">
+                            <a class="nav-link" style="color:white;" href="../Customers">Meus Estabelecimentos</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" style="color:white;"  href="#" id="dropdownLogged01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Menus</a>
+                            <div class="dropdown-menu" aria-labelledby="dropdownLogged01">
+                                <a class="dropdown-item" style="color:#00B482;" href="../Customer">Estabelecimento</a>
+                                <a class="dropdown-item" style="color:#00B482;" href="../Pump_Register">Registrar Bomba</a>
+                                <a class="dropdown-item" style="color:#00B482;" href="../_PageModel_Logged">Menu Restrito 03</a>
+                            </div>
+                        </li>
+                        <%End If%>
+                        <%--Menus RESTRITOS - exigem login--%>
+                    </ul>
+                    <%--END Menus--%>
+
+                    <%--Login Menu--%>
+                    <ul class="navbar-nav px-3">
+                        <li class="nav-item text-nowrap">
+                            <%If Context.User.Identity.IsAuthenticated = True%>
+                            <a runat="server" href="~/Account/Manage" title="Manage your account" style="color:white"><%: Context.User.Identity.GetUserName()%></a>&nbsp
+                            <asp:LoginStatus runat="server" LogoutAction="Redirect" LogoutText="Log off" LogoutPageUrl="~/" OnLoggingOut="Unnamed_LoggingOut" CssClass="text-danger" />
+                            <%Else %>
+                            <strong><a class="nav-link" style="color:white" href="../Account/Login">Login</a></strong>
+                            <%End If%>
+                        </li>
+                    </ul>
+                    <%--END Login Menu--%>
+                </div>
+            </div>
+        </nav>
+        <%--END Menu e barra de navegacao--%>
+
+        <%--Corpo da Página Filho--%>
+        <div class="container body-content">
+            <br />
+            <asp:ContentPlaceHolder ID="BodyContent" runat="server">
+            </asp:ContentPlaceHolder>
+            <hr />
+            <footer>
+                <p>&copy; <%: DateTime.Now.Year %> - <%:ConfigurationManager.AppSettings("App.Owner")%></p>
+            </footer>
+        </div>
+        <%--END Corpo da Página Filho--%>
+
+        <%--Scripts--%>
+        <script src="Scripts/jquery-3.4.1.min.js"></script>
+        <script>window.jQuery || document.write('<script src="Scripts/jquery-3.4.1.min.js"><\/script>')</script>
+        <script src="Scripts/popper.min.js"></script>
+        <script src="Scripts/bootstrap.min.js"></script>
+        <%--END Scripts--%>
+    </form>
+</body>
+</html>

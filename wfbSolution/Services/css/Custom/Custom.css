@@ -1,0 +1,74 @@
+﻿/* Classe para deixar o menu a direita */
+.navbar-right{
+    position: absolute;
+    right: 20px;
+}
+
+/*Login*/
+.login {
+    width: 300px;
+}
+/*Classe deixar o conteúdo totalmente visivel*/
+.conteudo{
+    margin-top:60px;
+    margin-bottom: 50px;
+}
+/*margin para classe de linha*/
+.row{
+    margin-bottom: 10px;
+}
+
+/* Alinhamento vertical */
+.vertical-center{
+    margin-top: 20vh;
+}
+
+/* Classe para simular um link */
+.link:hover{
+    cursor: pointer;
+}
+
+/* Classes para tamanho de texto */
+.font-25 {
+    font-size: 25px;
+}
+.font-20 {
+    font-size: 20px;
+}
+.font-15 {
+    font-size: 15px;
+}
+
+.font-10 {
+    font-size: 10px;
+}
+
+/* text area */
+textarea{
+    resize: none;
+}
+
+/* Alterando classes com media */
+
+@media screen and (max-width: 992px) { /* Resolução de tablet */
+    /*Alinhamento do menu a direita*/
+    .navbar-right {
+        position: relative;
+        left: 0px;
+    }
+
+    /*Sub menu fundo invisivel*/
+    .sub-menu{
+        background-color: rgba(0,0,0,0);
+        border: none;
+    }
+
+    .sub-menu .dropdown-item {
+        color: rgba(255,255,255,.5);
+    }
+
+    .sub-menu .dropdown-item:hover{
+        color: rgb(255,255,255);
+        background-color: rgba(0,0,0,0);       
+    }
+}

@@ -1,0 +1,24 @@
+﻿body {
+    padding-bottom: 20px;
+}
+
+chart {
+    width: 100%;
+    min-height: 450px;
+}
+
+.row {
+    margin: 0 !important;
+}
+.navbar {
+    margin-bottom: 20px;
+}
+.img80x80{
+    width:80px;
+    height:80px;
+}
+
+.margem{
+    padding:10px;
+    margin:10px;
+}

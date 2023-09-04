@@ -1,0 +1,75 @@
+﻿<%@ Master Language="VB" CodeFile="Site.Public.master.vb" Inherits="Site_Public" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" type="text/css" href="Content/bootstrap.min.css" />
+    <link rel="icon" href="Images/icon.png" />
+
+    <title><%:ConfigurationManager.AppSettings("CLIENTE") %></title>
+</head>
+<body>
+    <form runat="server">
+        <div class="row">
+            <div class="navbar navbar-default navbar-fixed-top" style="border-bottom: solid; border-bottom-color: #99c3c1;position:relative;">
+                <div class="container">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <!-- Logo -->
+                        <a class="navbar-brand" style="padding-bottom: 9px; padding-top: 3px" href="#">
+                            <img class="img-responsive img-rounded" src="Images/CSLBehringRGBhighres.png" style="width: 130px; height: 45px;" />
+                        </a>
+                        <!--/Logo -->
+                    </div>
+                    <div class="navbar-collapse collapse">
+                        <div class="navbar-form navbar-right">
+                            <div class=" form-inline">
+                                <div class="form-group">
+                                    <asp:Label ID="lbl_usuarios" runat="server" Text="Usuário: " style="font-size:16px;"></asp:Label>
+                                    <asp:DropDownList ID="cmb_Email" runat="server" DataSourceID="dts_usuario" DataTextField="NOME" DataValueField="EMAIL" CssClass="form-control" Enabled="true" ></asp:DropDownList>
+                                </div>
+                                <div class="form-group">
+                                    <asp:TextBox ID="txt_SENHA" TextMode="Password" runat="server" CssClass="form-control" Enabled="true" placeholder="Senha"></asp:TextBox>
+                                </div>
+                                <div class="form-group">
+                                    <asp:Button ID="cmd_Login" runat="server" CssClass="btn btn-sm btn-danger col-xs-12" Text="Login" Enabled="true" style="margin-bottom:1%;" />
+                                </div>
+                                <div class="form-group">
+                                    <asp:LinkButton ID="cmd_Forgot" runat="server" CssClass="btn btn-sm btn-default col-xs-12">Recuperar Senha</asp:LinkButton>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <asp:SqlDataSource ID="dts_usuario" runat="server" ConnectionString="<%$ ConnectionStrings:cnnStr %>" SelectCommand="SELECT '#' as EMAIL, '# Selecione' as NOME UNION ALL SELECT [EMAIL], [NOME] FROM [VIEW_USUARIOS] WHERE ([LOGIN] = @LOGIN) ORDER BY [NOME]">
+                <SelectParameters>
+                    <asp:Parameter DefaultValue="True" Name="LOGIN" Type="Boolean" />
+                </SelectParameters>
+            </asp:SqlDataSource>
+        </div>
+
+       <div class="container body-content">
+            <asp:ContentPlaceHolder ID="MainContent" runat="server">
+            </asp:ContentPlaceHolder>
+            <hr />
+           
+            <!--Page Content-->
+            <footer>
+                <p>&copy; <%: DateTime.Now.Year %> - <%:ConfigurationManager.AppSettings("Nome") %></p>
+            </footer>
+        </div>
+        
+    </form>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="Scripts/bootstrap.min.js"></script>
+</body>
+</html>

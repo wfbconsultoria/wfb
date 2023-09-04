@@ -1,0 +1,8 @@
+Plugins JS 
+
+---------------------------------------------------------------------------
+NOME                  DESCRIÇÂO
+---------------------------------------------------------------------------
+Pace                  Plugin para efeito ao carregar a página
+Data-tables           Plugin para tabelas responsivas com paginação e pesquisa
+footable              Plugin para tabelas responsivas com paginação e pesquisa

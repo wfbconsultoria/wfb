@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="SOAWebServices" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:s1="http://microsoft.com/wsdl/types/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="SOAWebServices" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">&lt;h3&gt;SOA WebServices - CEP&lt;/h3&gt;</wsdl:documentation>
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="SOAWebServices">
+      <s:import namespace="http://microsoft.com/wsdl/types/" />
+      <s:element name="ConsultaCEP">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Credenciais" type="tns:Credenciais" />
+            <s:element minOccurs="0" maxOccurs="1" name="CEP" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="Credenciais">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Email" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Senha" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="ConsultaCEPResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ConsultaCEPResult" type="tns:CEP" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="CEP">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:Serialization">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="CEP" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="TipoLogradouro" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Logradouro" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Bairro" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="GeoLocalizacaoLogradouro" type="tns:GeoLocalizacao" />
+              <s:element minOccurs="0" maxOccurs="1" name="UF" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Estado" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Cidade" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="CodigoIBGE" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="GeoLocalizacaoCidade" type="tns:GeoLocalizacao" />
+              <s:element minOccurs="0" maxOccurs="1" name="Mensagem" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="Status" type="s:boolean" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="Serialization" />
+      <s:complexType name="GeoLocalizacao">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:Serialization">
+            <s:sequence>
+              <s:element minOccurs="1" maxOccurs="1" name="Latitude" type="s:decimal" />
+              <s:element minOccurs="1" maxOccurs="1" name="Longitude" type="s:decimal" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:element name="AtivaRastreamento">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Credenciais" type="tns:Credenciais" />
+            <s:element minOccurs="0" maxOccurs="1" name="Rastreador" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="Formato" type="tns:TipoResposta" />
+            <s:element minOccurs="0" maxOccurs="1" name="URLRetorno" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:simpleType name="TipoResposta">
+        <s:restriction base="s:string">
+          <s:enumeration value="XML" />
+          <s:enumeration value="JSON" />
+        </s:restriction>
+      </s:simpleType>
+      <s:element name="AtivaRastreamentoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="AtivaRastreamentoResult" type="tns:Rastreamento" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="Rastreamento">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:Serialization">
+            <s:sequence>
+              <s:element minOccurs="1" maxOccurs="1" name="Token" type="s1:guid" />
+              <s:element minOccurs="0" maxOccurs="1" name="Rastreador" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="Formato" type="tns:TipoResposta" />
+              <s:element minOccurs="0" maxOccurs="1" name="URLRetorno" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="UltimaVerificacao" type="s:dateTime" />
+              <s:element minOccurs="0" maxOccurs="1" name="RecebidoPor" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Rastreamento">
+                <s:complexType mixed="true">
+                  <s:sequence>
+                    <s:any />
+                  </s:sequence>
+                </s:complexType>
+              </s:element>
+              <s:element minOccurs="1" maxOccurs="1" name="Ativo" type="s:boolean" />
+              <s:element minOccurs="0" maxOccurs="1" name="Mensagem" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="Status" type="s:boolean" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:element name="ConsultaRastreamento">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Credenciais" type="tns:Credenciais" />
+            <s:element minOccurs="0" maxOccurs="1" name="Token" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ConsultaRastreamentoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ConsultaRastreamentoResult" type="tns:Rastreamento" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://microsoft.com/wsdl/types/">
+      <s:simpleType name="guid">
+        <s:restriction base="s:string">
+          <s:pattern value="[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}" />
+        </s:restriction>
+      </s:simpleType>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="ConsultaCEPSoapIn">
+    <wsdl:part name="parameters" element="tns:ConsultaCEP" />
+  </wsdl:message>
+  <wsdl:message name="ConsultaCEPSoapOut">
+    <wsdl:part name="parameters" element="tns:ConsultaCEPResponse" />
+  </wsdl:message>
+  <wsdl:message name="AtivaRastreamentoSoapIn">
+    <wsdl:part name="parameters" element="tns:AtivaRastreamento" />
+  </wsdl:message>
+  <wsdl:message name="AtivaRastreamentoSoapOut">
+    <wsdl:part name="parameters" element="tns:AtivaRastreamentoResponse" />
+  </wsdl:message>
+  <wsdl:message name="ConsultaRastreamentoSoapIn">
+    <wsdl:part name="parameters" element="tns:ConsultaRastreamento" />
+  </wsdl:message>
+  <wsdl:message name="ConsultaRastreamentoSoapOut">
+    <wsdl:part name="parameters" element="tns:ConsultaRastreamentoResponse" />
+  </wsdl:message>
+  <wsdl:portType name="CEPSoap">
+    <wsdl:operation name="ConsultaCEP">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">CEP&lt;br /&gt;&lt;br /&gt;</wsdl:documentation>
+      <wsdl:input message="tns:ConsultaCEPSoapIn" />
+      <wsdl:output message="tns:ConsultaCEPSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AtivaRastreamento">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Ativa Rastreamento de um Codigo&lt;br /&gt;&lt;br /&gt;</wsdl:documentation>
+      <wsdl:input message="tns:AtivaRastreamentoSoapIn" />
+      <wsdl:output message="tns:AtivaRastreamentoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ConsultaRastreamento">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Consulta Rastreamento de um Código&lt;br /&gt;&lt;br /&gt;</wsdl:documentation>
+      <wsdl:input message="tns:ConsultaRastreamentoSoapIn" />
+      <wsdl:output message="tns:ConsultaRastreamentoSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="CEPHttpGet" />
+  <wsdl:portType name="CEPHttpPost" />
+  <wsdl:binding name="CEPSoap" type="tns:CEPSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="ConsultaCEP">
+      <soap:operation soapAction="SOAWebServices/ConsultaCEP" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AtivaRastreamento">
+      <soap:operation soapAction="SOAWebServices/AtivaRastreamento" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ConsultaRastreamento">
+      <soap:operation soapAction="SOAWebServices/ConsultaRastreamento" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="CEPSoap12" type="tns:CEPSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="ConsultaCEP">
+      <soap12:operation soapAction="SOAWebServices/ConsultaCEP" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AtivaRastreamento">
+      <soap12:operation soapAction="SOAWebServices/AtivaRastreamento" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ConsultaRastreamento">
+      <soap12:operation soapAction="SOAWebServices/ConsultaRastreamento" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="CEPHttpGet" type="tns:CEPHttpGet">
+    <http:binding verb="GET" />
+  </wsdl:binding>
+  <wsdl:binding name="CEPHttpPost" type="tns:CEPHttpPost">
+    <http:binding verb="POST" />
+  </wsdl:binding>
+  <wsdl:service name="CEP">
+    <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">&lt;h3&gt;SOA WebServices - CEP&lt;/h3&gt;</wsdl:documentation>
+    <wsdl:port name="CEPSoap" binding="tns:CEPSoap">
+      <soap:address location="http://www.soawebservices.com.br/webservices/producao/cep/cep.asmx" />
+    </wsdl:port>
+    <wsdl:port name="CEPSoap12" binding="tns:CEPSoap12">
+      <soap12:address location="http://www.soawebservices.com.br/webservices/producao/cep/cep.asmx" />
+    </wsdl:port>
+    <wsdl:port name="CEPHttpGet" binding="tns:CEPHttpGet">
+      <http:address location="http://www.soawebservices.com.br/webservices/producao/cep/cep.asmx" />
+    </wsdl:port>
+    <wsdl:port name="CEPHttpPost" binding="tns:CEPHttpPost">
+      <http:address location="http://www.soawebservices.com.br/webservices/producao/cep/cep.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

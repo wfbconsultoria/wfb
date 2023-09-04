@@ -1,0 +1,41 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29102.190
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "CSL-Reports-2020", ".", "{F8668E21-55A4-48E4-83CF-D678C3B56A1D}"
+	ProjectSection(WebsiteProperties) = preProject
+		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.5.2"
+		Debug.AspNetCompiler.VirtualPath = "/localhost_63938"
+		Debug.AspNetCompiler.PhysicalPath = "..\CSL-Reports-2020\"
+		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_63938\"
+		Debug.AspNetCompiler.Updateable = "true"
+		Debug.AspNetCompiler.ForceOverwrite = "true"
+		Debug.AspNetCompiler.FixedNames = "false"
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.VirtualPath = "/localhost_63938"
+		Release.AspNetCompiler.PhysicalPath = "..\CSL-Reports-2020\"
+		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_63938\"
+		Release.AspNetCompiler.Updateable = "true"
+		Release.AspNetCompiler.ForceOverwrite = "true"
+		Release.AspNetCompiler.FixedNames = "false"
+		Release.AspNetCompiler.Debug = "False"
+		VWDPort = "63938"
+		SlnRelativePath = "..\CSL-Reports-2020\"
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F8668E21-55A4-48E4-83CF-D678C3B56A1D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F8668E21-55A4-48E4-83CF-D678C3B56A1D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {055BF016-606C-4DA1-A0ED-302260C5B21C}
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,102 @@
+﻿<%@ Master Language="VB" AutoEventWireup="false" CodeBehind="Master.master.vb" Inherits="BiPh.Master" %>
+
+<%@ Register Src="~/Master_Header.ascx" TagPrefix="uc1" TagName="Master_Header" %>
+<%@ Register Src="~/Master_Footer.ascx" TagPrefix="uc1" TagName="Master_Footer" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pt-br">
+<head runat="server">
+    <uc1:Master_Header runat="server" ID="Master_Header" />
+    <title>Cannameds</title>
+    <asp:ContentPlaceHolder ID="Head_Content" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="frm_Master" runat="server">
+        <!-- Menu -->
+        <nav class="navbar navbar-light _COR_MENU">
+            <!-- Logo -->
+            <a href="Default.aspx">
+                <img src="/Images/_Logo.svg" class="img-fluid" width="200" /></a>
+            <!-- End Logo -->
+
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#nav_Main" aria-controls="nav_Main" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="nav_Main" style="background-color:whitesmoke; padding-left:10px">
+                <ul class="navbar-nav mr-auto">
+                    <!-- Home -->
+                    <li class="nav-item active">
+                        <a class="_FONTE_GRANDE" href="Default.aspx">Home</a>
+                    </li>
+
+                    <!-- Menus Publicos, dinâmicos carregados do banco de dados -->
+                    <asp:Repeater ID="dtrMenu_Public" runat="server" DataSourceID="dtsMenu_Public">
+                        <ItemTemplate>
+                            <li class="nav-item active">
+                                <a class="_FONTE_GRANDE" href='<%# DataBinder.Eval(Container.DataItem, "Page").ToString  %>'><%# DataBinder.Eval(Container.DataItem, "Menu").ToString%></a>
+                            </li>
+                        </ItemTemplate>
+                    </asp:Repeater>
+
+                    <% If HttpContext.Current.Session("Email") Is Nothing Or HttpContext.Current.Session("Email") = "" Then%>
+                    <li class="nav-item active">
+                        <a class="text-success _FONTE_GRANDE" href="Login.aspx">Login</a>
+                    </li>
+                    <% Else%>
+
+                    <!-- Menus Privados, dinâmicos, carregados do banco de dados conforme perfil do usuário -->
+                    <asp:Repeater ID="dtrMenu_Private" runat="server" DataSourceID="dtsMenu_Private">
+                        <ItemTemplate>
+                            <li class="nav-item active">
+                                <a class=" _FONTE_GRANDE" href='<%# DataBinder.Eval(Container.DataItem, "Page").ToString  %>'><%# DataBinder.Eval(Container.DataItem, "Menu").ToString%></a>
+                            </li>
+                        </ItemTemplate>
+                    </asp:Repeater>
+
+                    <!-- Informações do usuário/LogOut -->
+                    <li class="nav-item active">
+                        <a class="text-danger _FONTE_GRANDE" href="Login.aspx">LogOut</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="mnu_UserInfo" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><%:Session("Username").ToString %></a>
+                        <div class="dropdown-menu" aria-labelledby="mnu_UserInfo">
+                            <label class="dropdown-item"><span class="text-info">Email&nbsp</span><%:Session("Email").ToString %></label>
+                            <label class="dropdown-item"><span class="text-info">Nome&nbsp</span><%:Session("UserName").ToString %></label>
+                            <label class="dropdown-item"><span class="text-info">Perfil&nbsp</span><%:Session("UserProfile").ToString %></label>
+                            <label class="dropdown-item"><span class="text-info">Data&nbsp</span><%:Session("LoginDate").ToString %></label>
+                            <label class="dropdown-item"><span class="text-info">Ip&nbsp</span><%:Session("IP").ToString %></label>
+                            <label class="dropdown-item"><span class="text-info">Id&nbsp</span><%:Session("ID").ToString %></label>
+                            <a class="dropdown-item text-primary" href="User_Change_Password.aspx">Alterar minha senha</a>
+                        </div>
+                    </li>
+                    
+                    <% End If%>
+                </ul>
+            </div>
+        </nav>
+
+        <!-- Final Menu -->
+        <div class="container">
+            <asp:ContentPlaceHolder ID="Body_Content" runat="server">
+            </asp:ContentPlaceHolder>
+        </div>
+        <uc1:Master_Footer runat="server" ID="Master_Footer" />
+        <!-- Data Sources -->
+        <!-- Menus publicos -->
+        <asp:SqlDataSource ID="dtsMenu_Public" runat="server" ConnectionString="<%$ ConnectionStrings:DefaultConnection %>" SelectCommand="SELECT * FROM [tb_Menus] WHERE ([Public] = @Public) ORDER BY [Sort]">
+            <SelectParameters>
+                <asp:Parameter DefaultValue="True" Name="Public" Type="Boolean" />
+            </SelectParameters>
+        </asp:SqlDataSource>
+        <!-- Menus Privados -->
+        <asp:SqlDataSource ID="dtsMenu_Private" runat="server" ConnectionString="<%$ ConnectionStrings:DefaultConnection %>" SelectCommand="SELECT * FROM [vw_Users_Menus] WHERE ([Email] = @Email) ORDER BY [Sort]">
+            <SelectParameters>
+                <asp:SessionParameter Name="Email" SessionField="Email" Type="String" />
+            </SelectParameters>
+        </asp:SqlDataSource>
+    </form>
+</body>
+</html>

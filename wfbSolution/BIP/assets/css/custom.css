@@ -1,0 +1,5 @@
+/* Add here all your css styles (customizations) */
+
+.LimitaCelula {
+   max-width:100%;overflow:hidden;text-overflow:ellipsis; white-space:initial;display:block
+}

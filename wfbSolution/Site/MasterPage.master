@@ -1,0 +1,91 @@
+﻿<%@ Master Language="VB" CodeFile="MasterPage.master.vb" Inherits="MasterPage" %>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+    <!-- Meta tags Obrigatórias -->
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="Content/offCanvas.css" />
+    <link rel="stylesheet" href="Content/Site.css" />
+    
+    <!-- Titulo da pagina -->
+    <title><%:ConfigurationManager.AppSettings("App.Name")%></title>
+    <!-- Head para paginas filho -->
+    <asp:ContentPlaceHolder ID="headContent" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="frmMaster" runat="server">
+        <div>
+             <!-- Menu e Navegacao -->
+            <nav class="navbar navbar-expand-lg fixed-top navbar-dark bg-primary">
+            <a class="navbar-brand mr-auto mr-lg-0" href="Default.aspx">
+                <img class="d-none d-md-inline" src="Images/Logo_Retangulo.png" />&nbsp;<span class="text-uppercase font-weight-bolder"><%:ConfigurationManager.AppSettings("App.Name")%></span></a>
+            <button class="navbar-toggler p-0 border-0" type="button" data-toggle="offcanvas">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="navbar-collapse offcanvas-collapse" id="navbarsExampleDefault">
+                <ul class="navbar-nav mr-auto">
+
+                    <li runat="server" id="menu_Configuracoes" class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="https://example.com" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Configurações</a>
+                        <div class="dropdown-menu" aria-labelledby="dropdown01">
+                            <a class="dropdown-item text-alert" href="Default.aspx">Início</a>
+                            <a class="dropdown-item" href="Loja.aspx">Loja</a>
+                            <a class="dropdown-item" href="Universos.aspx">Universos</a>
+                            <a class="dropdown-item" href="Colaboradores.aspx">Colaboradores</a>
+                            <a class="dropdown-item" href="Colaboradores_Terceiros.aspx">Serviços</a>
+                            <a class="dropdown-item" href="Colaboradores_Visitantes.aspx">Visitantes</a>
+                            <a class="dropdown-item" href="Contatos_Emergencia_Lista.aspx">Contatos Emergência</a>
+                            <a class="dropdown-item" href="Plantas_Config.aspx">Plantas da loja</a>
+                            <a class="dropdown-item" href="Mobis.aspx">Mobis</a>
+                        </div>
+                    </li>
+
+                </ul>
+                <div class="my-2 my-lg-0">
+                    <ul class="navbar-nav mr-auto">
+                        <li runat="server" id="menu_LogIn" class="nav-item text-muted"><a class="nav-link" href="Login.aspx">LogIn</a></li>
+                        <li runat="server" id="menu_User" class="nav-item"><a class="nav-link" href="#">
+                            <asp:Literal ID="ltrLoggedUser" runat="server"></asp:Literal></a></li>
+                        <li runat="server" id="menu_ChangePassword" class="nav-item "><a class="nav-link" href="Password_Change.aspx">Alterar Senha</a></li>
+                        <li runat="server" id="menu_LogOut" class="nav-item "><a class="nav-link text-danger" href="Logout.aspx">LogOut</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <div class="nav-scroller bg-white shadow-sm">
+            <nav class="nav nav-underline">
+                <a class="nav-link" href="#"><span runat="server" id="Loja" class="text-primary font-weight-bold text-uppercase">#</span></a>
+                <a class="nav-link" href="Colaboradores_Lista_Mensagem.aspx?rptId=1">Colaboradores Presentes&nbsp;<span runat="server" id="Qtd_Colaboradores_Presentes" class="badge badge-pill badge-primary align-text-bottom">#</span></a>
+                <a class="nav-link" href="#">Brigadistas Presentes&nbsp;<span runat="server" id="Qtd_Brigadistas_Presentes" class="badge badge-pill badge-danger align-text-bottom">#</span></a>
+                <a class="nav-link" href="#">Não Brigadistas Presentes&nbsp;<span runat="server" id="Qtd_NaoBrigadistas_Presentes" class="badge badge-pill badge-warning align-text-bottom">#</span></a>
+                <a class="nav-link" href="#">Serviços Presentes&nbsp;<span runat="server" id="Qtd_Terceiros_Presentes" class="badge badge-pill badge-info align-text-bottom">#</span></a>
+                <a class="nav-link" href="#">Visitantes Presentes&nbsp;<span runat="server" id="Qtd_Visitantes_Presentes" class="badge badge-pill badge-dark align-text-bottom">#</span></a>
+            </nav>
+        </div>
+            
+            
+            
+            
+            
+            <!-- Conteudo da pagina -->
+            <asp:ContentPlaceHolder ID="bodyContent" runat="server">
+            </asp:ContentPlaceHolder>
+        </div>
+        <asp:ContentPlaceHolder ID="footerContent" runat="server">
+        </asp:ContentPlaceHolder>
+        <!-- JavaScript (Opcional) -->
+        <!-- jQuery primeiro, depois Popper.js, depois Bootstrap JS -->
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+    </form>
+</body>
+</html>

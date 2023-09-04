@@ -1,0 +1,12 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="My" GeneratedClassName="MySettings" UseMySettingsClassName="true">
+  <Profiles />
+  <Settings>
+    <Setting Name="BiPh_svcCDC_CDC" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">https://www.soawebservices.com.br/webservices/producao/cdc/cdc.asmx</Value>
+    </Setting>
+    <Setting Name="BiPh_svcCEP_CEP" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">http://www.soawebservices.com.br/webservices/producao/cep/cep.asmx</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

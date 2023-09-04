@@ -1,0 +1,145 @@
+﻿<%@ Master Language="VB" AutoEventWireup="true" CodeFile="Site.master.vb" Inherits="SiteMaster" %>
+
+<!DOCTYPE html>
+
+<html lang="en">
+<head runat="server">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%:ConfigurationManager.AppSettings("application.Name").ToString%></title>
+    <asp:PlaceHolder runat="server">
+        <%: Scripts.Render("~/bundles/modernizr") %>
+    </asp:PlaceHolder>
+    <webopt:BundleReference runat="server" Path="~/Content/css" />
+    <link href="Images/CSL.png" rel="icon" type="image/x-icon" />
+    <% Session.Timeout = 120%>
+    <style>
+        .navbar-fixed-top {
+            border-bottom: solid;
+            border-bottom-color:black;
+        }
+
+        #redefinir-senha {
+            margin-top: 50px;
+        }
+
+        .btn-danger {
+            margin-top: 3px;
+        }
+
+        .carousel-control.left, .carousel-control.right {
+            background-image: none !important;
+            filter: none !important;
+            color: rgb(0,0,0);
+        }
+
+        .carousel-indicators li {
+            background-color: rgba(0,0,0,.8);
+            border: none;
+        }
+
+        .carousel-indicators .active {
+            background-color: rgba(255,0,0,.8);
+        }
+
+        .notes {
+            background-color: rgba(128, 128, 128,.05);
+            border: 1px solid rgba(128, 128, 128,.1);
+            border-left: 7px solid rgba(255,0,0,.7);
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body style="background-color: rgb(255,255,255);">
+    <form runat="server">
+        <asp:ScriptManager runat="server">
+            <Scripts>
+                <%--To learn more about bundling scripts in ScriptManager see http://go.microsoft.com/fwlink/?LinkID=301884 --%>
+                <%--Framework Scripts--%>
+                <asp:ScriptReference Name="MsAjaxBundle" />
+                <asp:ScriptReference Name="jquery" />
+                <asp:ScriptReference Name="bootstrap" />
+                <asp:ScriptReference Name="respond" />
+                <asp:ScriptReference Name="WebForms.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebForms.js" />
+                <asp:ScriptReference Name="WebUIValidation.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebUIValidation.js" />
+                <asp:ScriptReference Name="MenuStandards.js" Assembly="System.Web" Path="~/Scripts/WebForms/MenuStandards.js" />
+                <asp:ScriptReference Name="GridView.js" Assembly="System.Web" Path="~/Scripts/WebForms/GridView.js" />
+                <asp:ScriptReference Name="DetailsView.js" Assembly="System.Web" Path="~/Scripts/WebForms/DetailsView.js" />
+                <asp:ScriptReference Name="TreeView.js" Assembly="System.Web" Path="~/Scripts/WebForms/TreeView.js" />
+                <asp:ScriptReference Name="WebParts.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebParts.js" />
+                <asp:ScriptReference Name="Focus.js" Assembly="System.Web" Path="~/Scripts/WebForms/Focus.js" />
+                <asp:ScriptReference Name="WebFormsBundle" />
+                <%--Site Scripts--%>
+            </Scripts>
+        </asp:ScriptManager>
+
+        <nav class="navbar navbar-default navbar-fixed-top" style="background-color: rgb(255,255,255)">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <!-- Logo -->
+                    <a class="navbar-brand" style="padding-bottom: 9px; padding-top: 3px" href="default.aspx">
+                        <h2 style="font-family: Calibri; color: rgb(254,11,21); font-size: 30px; margin-top: 1px"><strong>CSL</strong></h2>
+                    </a>
+                    <!--/Logo -->
+                </div>
+                <div class="navbar-collapse collapse">
+                    <!-- Menus -->
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a runat="server" href="Default.aspx"><%:ConfigurationManager.AppSettings("menu.Default").ToString%></a></li>
+                        <%If Session("USER_PROFILE_CODE") = 1 Then %>
+                        <li><a href="Report.aspx">Administrar</a></li>
+                        <li><a href="UsersList.aspx"><%:ConfigurationManager.AppSettings("menu.UsersList").ToString%></a></li>
+                        <%ElseIf Session("USER_PROFILE_CODE") = 100 %>
+                        <li><a href="Report.aspx">Administrar</a></li>
+                        <li><a href="UsersList.aspx"><%:ConfigurationManager.AppSettings("menu.UsersList").ToString%></a></li>
+                        <%Else %>
+
+                        <%End If %>
+                        <li><a href="Download.aspx">Downloads</a></li>
+                        <!-- User Info -->
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-user"></span>&nbsp&nbsp<span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li class="dropdown-header">Nome:<%:Session("USER_NAME").ToString%></li>
+                                <li class="dropdown-header">E-mail: <%:Session("USER_EMAIL").ToString%></li>
+                                <li class="dropdown-header text-info">Login:<%:Session("UserLoginDate").ToString%></li>
+                                <li class="dropdown-header">IP:<%:Session("UserIP").ToString%></li>
+                                <li role="separator" class="divider"></li>
+                                <li><a href="ChangePassword.aspx"><%:ConfigurationManager.AppSettings("menu.Change").ToString%></a></li>
+                            </ul>
+                        </li>
+                        <!--/ Menus -->
+
+                        <!-- LogOff -->
+                        <li class="nav navbar-form navbar-right">
+                            <div class="form-group">
+                                <asp:LinkButton ID="cmdLogOff" runat="server" CssClass="btn btn-sm btn-danger" Style="margin-left: 10px;"><span class="glyphicon glyphicon-off"></span></asp:LinkButton>
+
+                            </div>
+                        </li>
+                    </ul>
+                    <!--/ LogOff -->
+                </div>
+            </div>
+        </nav>
+               <!--Page Content-->
+        <asp:ContentPlaceHolder ID="MainContent" runat="server">
+            <div class="container"></div>
+        </asp:ContentPlaceHolder>
+        <div class="container">
+            <hr />
+            <!--Page Content-->
+            <div class="container">
+                <footer>
+                    <p>&copy; <%: DateTime.Now.Year %> - <%:ConfigurationManager.AppSettings("Application.Owner") %> &nbsp<img class="img-responsive img-rounded" src="Images/csl_certificado.gif" /></p>
+                </footer>
+            </div>
+        </div>
+    </form>
+</body>
+</html>

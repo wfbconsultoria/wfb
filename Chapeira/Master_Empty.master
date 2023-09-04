@@ -1,0 +1,30 @@
+﻿<%@ Master Language="VB" CodeFile="Master_Empty.master.vb" Inherits="Master_Empty" %>
+
+<%@ Register Src="~/_Footer_Scripts.ascx" TagPrefix="uc1" TagName="_Footer_Scripts" %>
+<%@ Register Src="~/_Header_Scripts.ascx" TagPrefix="uc1" TagName="_Header_Scripts" %>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <link href="Content/bootstrap.min.css" rel="stylesheet" />
+    <title><%:ConfigurationManager.AppSettings("App.Name")%></title>
+    <asp:ContentPlaceHolder ID="HeaderContent" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="frmMain" runat="server" method="post" enctype="multipart/form-data">
+        <uc1:_Header_Scripts runat="server" ID="_Header_Scripts" />
+  
+        <div class="container" style="padding-top: 10px">
+            <asp:ContentPlaceHolder ID="BodyContent" runat="server">
+            </asp:ContentPlaceHolder>
+        </div>
+        <uc1:_Footer_Scripts runat="server" ID="_Footer_Scripts" />
+        <asp:ContentPlaceHolder ID="FooterContent" runat="server">
+        </asp:ContentPlaceHolder>
+    </form>
+</body>
+</html>

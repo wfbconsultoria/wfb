@@ -1,0 +1,112 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="MasterPage.master.cs" Inherits="MasterPage" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <!-- tags para padronizar a página -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title><%:ConfigurationManager.AppSettings["ApplicationTitle"]%></title>
+    <link rel="shortcut icon" href="<%:ConfigurationManager.AppSettings["ApplicationIcon"]%>" />
+
+    <!-- tags para auxiliar na busca -->
+    <meta name="author" content="<%:ConfigurationManager.AppSettings["MetaDeveloper"]%>" />
+    <meta name="description" content="<%:ConfigurationManager.AppSettings["MetaDescription"]%>" />
+    <meta name="keywords" content="<%:ConfigurationManager.AppSettings["MetaKeywords"]%>" />
+
+
+    <!-- CSS (css comum para todas as págians) -->
+    <link href="css/Default/bootstrap.min.css" rel="stylesheet" />
+    <link href="css/Custom/font-awesome/css/fontawesome-all.min.css" rel="stylesheet" />
+    <link href="css/Custom/Custom.css" rel="stylesheet" />
+
+    <!-- Caso a página requer algum arquivo css especifico -->
+    <asp:ContentPlaceHolder ID="Head_Content" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body class="bg-light">
+    <!-- Corpo da aplicação -->
+    <div>
+        <form id="form1" runat="server">
+            <!-- Menu -->
+            <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+                <!-- Sigla -->
+                <a class="navbar-brand" href="#"><%: ConfigurationManager.AppSettings["ApplicationInitials"] + " - " %> <span class="font-15"><%:Page.Title%></span></a>
+                <!-- Botão para celular -->
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarWFB" aria-controls="navbarWFB" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <!-- Conteúdo do menu -->
+                <div class="collapse navbar-collapse" id="navbarWFB">
+                    <ul class="navbar-nav navbar-right">
+                        <!-- Home -->
+                        <li class="nav-item mr-2">
+                            <a class="nav-link" href="index.aspx?session=<%: Request.Params["session"].ToString()%>">Home</a>
+                        </li>
+                        <!-- Serviços -->
+                        <li class="nav-item mr-2">
+                            <div class="dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" role="button" id="menuServicos" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Serviços</a>
+
+                                <div class="dropdown-menu sub-menu" aria-labelledby="menuServicos">
+                                    <a class="dropdown-item" href="BackupDatabase.aspx?session=<%: Request.Params["session"].ToString()%>">Backups de banco de dados</a>
+                                </div>
+                            </div>
+                        </li>
+                        <!-- Configurações -->
+                        <li class="nav-item mr-2">
+                            <div class="dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" role="button" id="menuConfiguracoes" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Configurações</a>
+
+                                <div class="dropdown-menu sub-menu" aria-labelledby="menuConfiguracoes">
+                                    <a class="dropdown-item" href="ListPing.aspx?session=<%: Request.Params["session"].ToString()%>">Monitoramento de Servidores</a>
+                                    <a class="dropdown-item" href="ListBackupDatabase.aspx?session=<%: Request.Params["session"].ToString()%>">Backups de banco de dados</a>
+<%--                                    <a class="dropdown-item" href="ListProcedureDatabase.aspx?session=<%: Request.Params["session"].ToString()%>">Procedure de banco de dados</a>--%>
+                                    <a class="dropdown-item" href="Profile.aspx?session=<%: Request.Params["session"].ToString()%>">Perfil</a>
+                                </div>
+                            </div>
+                        </li>
+                        <!-- Estabelecimentos -->
+                        <li class="nav-item mr-2">
+                            <a class="nav-link" href="Establishment.aspx?session=<%: Request.Params["session"].ToString()%>">Estabelecimentos</a>
+                        </li>
+                        <!-- Sair -->
+                        <li class="nav-item">
+                            <a class="nav-link" href="Default.aspx"><i class="fas fa-sign-out-alt text-white" title="sair"></i></a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+            <!-- Conteúdo da página -->
+            <div class="conteudo">
+                <asp:ContentPlaceHolder ID="Body_Content" runat="server">
+                </asp:ContentPlaceHolder>
+            </div>
+            <!-- Rodapé da página -->
+
+            <div class="footer fixed-bottom border-top p-2 bg-white">
+                <!-- Desenvolvedor da aplicação e ano de desenvolvimento -->
+                <div class="float-right">
+                    <small class="text-muted">&copy <%: ConfigurationManager.AppSettings["Developer"] + " - " + ConfigurationManager.AppSettings["Year"] %>
+                    </small>
+                </div>
+                <!-- Nome do usuário -->
+                <a href="profile.aspx?session=<%: Request.Params["session"].ToString() %>" title="Clique aqui para alterar seu perfil">
+                    <label id="lblUser" runat="server" class="text-secondary link"></label>
+                </a>
+            </div>
+        </form>
+    </div>
+
+    <!-- JS (Java script comum a todas as páginas) -->
+    <script src="js/Default/jquery-3.3.1.min.js"></script>
+    <script src="js/Default/popper.min.js"></script>
+    <script src="js/Default/bootstrap.min.js"></script>
+
+    <!-- Caso a página requer algum arquivo js especifico -->
+    <asp:ContentPlaceHolder ID="Footer_Content" runat="server">
+    </asp:ContentPlaceHolder>
+</body>
+</html>

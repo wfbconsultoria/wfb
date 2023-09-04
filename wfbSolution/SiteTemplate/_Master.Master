@@ -1,0 +1,124 @@
+﻿<%@ Master Language="VB" AutoEventWireup="false" CodeBehind="_Master.master.vb" Inherits="SiteTemplate._Master" %>
+
+<%@ Import Namespace="SiteTemplate" %>
+<%@ Import Namespace="Microsoft.AspNet.Identity" %>
+<%@Import Namespace="Microsoft.AspNet.Identity.Owin"%>
+<!DOCTYPE html>
+
+<html lang="pt">
+<head runat="server">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <%--Boostratp e CSS--%>
+    <link href="Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="Content/Site.css" rel="stylesheet" />
+    <link href="Images/_Logo.png" rel="shortcut icon" type="image/x-icon" />
+    <%--Font Awsome--%>
+     <script src="https://kit.fontawesome.com/3e867150af.js" crossorigin="anonymous"></script>
+
+    <title><%: Page.Title %></title>
+    <asp:PlaceHolder runat="server">
+        <%: Scripts.Render("~/bundles/modernizr") %>
+    </asp:PlaceHolder>
+    <webopt:BundleReference runat="server" Path="~/Content/css" />
+    <asp:ContentPlaceHolder ID="HeadContent" runat="server"></asp:ContentPlaceHolder>
+</head>
+
+<body>
+    <form runat="server" id="frm_Main">
+
+        <asp:ScriptManager runat="server">
+            <Scripts>
+                <%--To learn more about bundling scripts in ScriptManager see https://go.microsoft.com/fwlink/?LinkID=301884 --%>
+                <%--Framework Scripts--%>
+                <asp:ScriptReference Name="MsAjaxBundle" />
+                <asp:ScriptReference Name="jquery" />
+                <asp:ScriptReference Name="bootstrap" />
+                <asp:ScriptReference Name="WebForms.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebForms.js" />
+                <asp:ScriptReference Name="WebUIValidation.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebUIValidation.js" />
+                <asp:ScriptReference Name="MenuStandards.js" Assembly="System.Web" Path="~/Scripts/WebForms/MenuStandards.js" />
+                <asp:ScriptReference Name="GridView.js" Assembly="System.Web" Path="~/Scripts/WebForms/GridView.js" />
+                <asp:ScriptReference Name="DetailsView.js" Assembly="System.Web" Path="~/Scripts/WebForms/DetailsView.js" />
+                <asp:ScriptReference Name="TreeView.js" Assembly="System.Web" Path="~/Scripts/WebForms/TreeView.js" />
+                <asp:ScriptReference Name="WebParts.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebParts.js" />
+                <asp:ScriptReference Name="Focus.js" Assembly="System.Web" Path="~/Scripts/WebForms/Focus.js" />
+                <asp:ScriptReference Name="WebFormsBundle" />
+                <%--Site Scripts--%>
+            </Scripts>
+        </asp:ScriptManager>
+
+        <%--Barra de Navegação--%>
+        <nav class="navbar navbar-expand-lg navbar-light bg-white rounded fixed-top">
+            <div class="container">
+
+                <a class="navbar-brand" href="#">
+                    <img src="/Images/_Logo.png" class="img-thumbnail rounded " style="width: 68px; height: 56px" /></a>
+                <%--<a class="navbar-brand" href="#"><%:ConfigurationManager.AppSettings("App.Initials") %></a>--%>
+                <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarsExample01" aria-controls="navbarsExample01" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <%--Barra Esquerda--%>
+                <div class="navbar-collapse collapse" id="navbarsExample01" style="">
+                    <asp:LoginView ID="LoginView_Left" runat="server" ViewStateMode="Disabled">
+                        <%--Links Publicos--%>
+                        <AnonymousTemplate>
+                            <ul class="navbar-nav mr-auto">
+                                <li class="nav-item"><a class="nav-link" runat="server" href="~/">Home</a></li>
+                                <li class="nav-item"><a class="nav-link" runat="server" href="~/About">Sobre</a></li>
+                                <li class="nav-item"><a class="nav-link" runat="server" href="~/Contact">Contato</a></li>
+                            </ul>
+                        </AnonymousTemplate>
+                        <%--Links Privados (exigem login e autenticalção--%>
+                        <LoggedInTemplate>
+                            <ul class="navbar-nav mr-auto">
+                                <li class="nav-item"><a class="nav-link" runat="server" href="~/">Home</a></li>
+                                <li class="nav-item"><a class="nav-link" runat="server" href="~/Contact">Contato</a></li>
+                            </ul>
+                        </LoggedInTemplate>
+                    </asp:LoginView>
+
+                    <%--Barra Direita--%>
+                    <div class="form-inline my-2 my-md-0">
+                        <asp:LoginView ID="LoginView_Right" runat="server">
+                            <%--Links Publicos--%>
+                            <AnonymousTemplate>
+                                <ul class="navbar-nav mr-auto">
+                                    <li><a class="nav-link" runat="server" href="~/Account/Register">Registrar</a></li>
+                                    <li><a class="nav-link" runat="server" href="~/Account/Login">Logon</a></li>
+                                </ul>
+                            </AnonymousTemplate>
+                            <%--Linkis Privados (exigem login e autenticalção--%>
+                            <LoggedInTemplate>
+                                <ul class="navbar-nav mr-auto">
+                                    <li>
+                                        <asp:HyperLink ID="lnk_Confirm" runat="server" CssClass="nav-link alert-warning" NavigateUrl="~/Account/AccountMessages?MessaType=Confirm">Confirmar E-mail &nbsp</asp:HyperLink>
+                                        <asp:HyperLink ID="lnk_Logged" runat="server" NavigateUrl="~/Account/Manage.aspx"><%: Context.User.Identity.GetUserName()%> &nbsp</asp:HyperLink>
+                                    <li>
+                                    <li><asp:LoginStatus CssClass="nav-link" runat="server" LogoutAction="Redirect" LogoutText="Log off" LogoutPageUrl="~/" OnLoggingOut="Unnamed_LoggingOut" ID="cmd_Logout" /><li>
+                                </ul>
+                            </LoggedInTemplate>
+                        </asp:LoginView>
+                    </div>
+                </div>
+            </div>
+        </nav>
+        <
+        <div class="container body-content">
+            <hr />
+            <asp:ContentPlaceHolder ID="MainContent" runat="server">
+            </asp:ContentPlaceHolder>
+            <hr />
+            <footer>
+                <p>&copy; <%: DateTime.Now.Year %> - <%:ConfigurationManager.AppSettings("App.Name") %></p>
+            </footer>
+        </div>
+
+        <%--Scripts--%>
+        <script src="Scripts/jquery-3.4.1.min.js"></script>
+        <asp:ContentPlaceHolder ID="FooterContent" runat="server"></asp:ContentPlaceHolder>
+    </form>
+</body>
+</html>
+

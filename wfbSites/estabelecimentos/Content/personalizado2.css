@@ -1,0 +1,65 @@
+	    /* Configurações do corpo do site */	
+		.jumbotron {
+		margin: 100px auto 0 auto;
+		padding: 10px;
+		background-color: rgba(53,129,196,.1);
+		}
+        /* Configurações da tabela usada*/
+        table {
+            margin-top: 20px;
+            margin-bottom: 30px;
+            width: 100%;
+        }
+
+        /* Hierarquia de Titulos*/
+		h1 {
+			font-family: Calibri;
+            font-size: 15px;
+            text-align: center;
+            font-weight: bolder;
+            margin-bottom: 30px;
+			color: rgb(0,0,0);
+		}
+        h2 {
+            font-family: Calibri;
+            font-size: 15px;
+            text-align: center;
+            font-weight: bolder;
+            margin-bottom: 30px;
+			color: rgb(0,0,0);
+        }
+		
+		strong {
+		color: rgb(255,0,0);
+		font-weight: bolder;
+		}
+
+        /* Configurações de campos de nome*/
+        .nomes {
+            width: 15%;
+        }
+
+        /* Configurações de campos como textbox*/
+        .campos {
+            width: 80%;
+            height: 30px;
+            border: 1px solid rgba(0,0,0,.5);
+            border-radius: 3px;
+			color: rgb(0,0,0);
+			margin-bottom: 1%;
+        }
+        /* Configurações do botões*/
+        .botoes {
+            margin-left: 19%;
+            margin-bottom: 50px;
+            width: 100px;
+            height: 30px;
+        }
+
+        /*Configurações de texto após os campos*/
+        .txtbox {
+            width: 100%;
+            font-family: Calibri;
+            font-size: 15px;
+            color: rgba(255, 0, 0,.7);
+        }

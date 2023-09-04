@@ -1,0 +1,248 @@
+﻿
+body {
+    line-height: 1.5;
+    color: #000000;
+    font-family: Calibri, Arial, sans-serif;
+    font-weight: normal;
+    margin: 0;
+    padding: 0;
+    }
+
+body #Corpo form div nav ul header img #header-logo #header-menu #Titulo_Pagina #Titulo_Pagina_Cabecalho #Titulo_Pagina_Links #inf_login
+    {
+	display:block;
+	margin: 0;
+	padding: 0;
+	border: 0;
+	}
+
+h3 {
+    margin-bottom:0;
+    margin-top:10px;
+    color:#1a1a1a;
+    height: 32px;
+}
+
+h4 {
+    margin:0;
+    padding:0;
+    color:#01284c;
+    }
+
+a {
+    text-decoration: none;
+    border: 0;
+    border: 0;
+    border-color: 0;
+    color: #0066CC;
+}
+
+    a:visited {
+        border:0;
+        text-decoration:none;
+        
+    }
+
+    a:active {
+        text-decoration:none;
+        border:0;
+    }
+    a:hover {
+    text-decoration: none;
+    border: 0;
+    color: #0000CC;
+    font-weight: bold;
+}
+/*----------------Titulo página-----------------*/
+#Titulo_Pagina {
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    display: block;
+}
+
+#Titulo_Pagina_Cabecalho {
+    float: left;
+    text-align: left;
+    font-size: 20px;
+    color: #000000;
+    font-weight: normal;
+}
+
+#Titulo_Pagina_Links {
+    float:right;
+    text-align:right;
+    font-size:medium;
+    margin-left:20px;
+    
+}
+
+
+
+/*----------------Titulo página  end-----------------*/
+
+/*-----Header-Menu-----------------*/
+.main {
+    padding:0;
+    margin:0;
+    border-top: solid 8px black;
+    border-bottom: solid 5px #0066cb; 
+    width:100%;
+    height:80px;
+    display:block;
+   
+   
+}
+
+.main-menu{
+    width:90%;
+    height:100%;
+    margin:0 auto;
+    padding:0;
+}
+
+.logo-box {
+    width:15%;
+    height:100%;
+    display:block;
+    float:left;
+   
+}
+    .logo-img {
+       height:90%;
+       width:auto;
+       margin-top:8px;
+       margin-left:10px;
+       border:0px;
+    }
+
+.menu-box {
+    display:block;
+    height:100%;
+    float:left;
+    width:85%;
+    
+}
+
+.info-login {
+    display:block;
+    height:30%;
+    text-align:right;
+}
+
+.nav-menu {
+    width:100%;
+    display:block;
+    height:70%;
+
+}
+    .nav-menu-ul {
+    list-style-type:none;
+    margin:0;
+    padding:0;
+    margin-top:25px;
+    margin-right:10px;
+    float:right;
+    font-size:1.5em;
+    }
+
+    .nav-menu-ul li {
+        display:inline;
+        margin-left:5px;
+        font-family:'Hammersmith+One', sans-serif;
+        
+    }
+
+        .nav-menu-ul li:hover {
+            background:#0066cb;
+            color:white;
+        }
+
+        .nav-menu-ul a {
+            width:auto;
+            padding:10px 10px 0px 10px;
+            color:black;
+            font-size:0.9em;
+        }
+
+            .nav-menu-ul a:hover {
+                background-color:#0066cb;
+                color:white;
+            }
+
+    .nav-menu-ul a:active {
+        background-color:#0066cb;
+        color:white;
+        }
+
+/*-----------------Header-Menu End------------------*/
+
+/*Corpo*/
+
+#Corpo {
+    width:90%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top:0px;
+}
+
+/*-----------------*/
+
+
+
+
+
+
+.subtitulo {
+    margin-top:0;
+    padding:0;
+}
+
+.esquecisenha_buton {
+    color:#5a3988;
+    font-size:smaller;
+}
+
+.buton_gravar
+{
+     width: auto;
+    vertical-align:central;
+    padding: 6px 12px 6px 12px;
+    border: 1px solid #808080;
+    
+    
+   
+}
+
+/*-------------incluir-usuario----------------------------------------------------*/
+#incluir_usuario {
+    list-style:none;
+    position:relative;
+    margin:0;
+}
+
+    #incluir_usuario li {
+        margin:10px;
+    }
+
+p {
+    margin:0;
+}
+/*-------------incluir-usuario-END------------------------------------------------*/
+
+#menulista{
+   
+    display: block;
+list-style-type:none;
+padding:0;
+
+
+}
+
+  #menulista   li {
+  padding:0;
+
+    }
+

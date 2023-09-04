@@ -1,0 +1,98 @@
+﻿<%@ Master Language="VB" CodeFile="Site.master.vb" Inherits="Site" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" type="text/css" href="Content/bootstrap.min.css" />
+    <title><%:ConfigurationManager.AppSettings("CLIENTE") %></title>
+</head>
+<body>
+    <form runat="server">
+        <div class="row">
+            <div class="navbar navbar-default navbar-fixed-top" style="border-bottom: solid; border-bottom-color: #99c3c1;position:relative;">
+                <div class="container-fluid">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <!-- Logo -->
+                        <a class="navbar-brand" style="padding-bottom: 9px; padding-top: 3px" href="#">
+                            <img class="img-responsive img-rounded" src="Images/CSLBehringRGBhighres.png" style="width: 130px; height: 45px;" />
+                        </a>
+                        <!--/Logo -->
+                    </div>
+                    <!--barra de navegação-->
+                    <div class="navbar-collapse collapse navbar-right">
+                                <!--inicio-->
+                                <ul class="nav navbar-nav">
+                                    <!--inicio-->
+                                    <li><a href="Default.aspx"><span class="glyphicon glyphicon-home"></span></a></li>
+                                    <!--Meus Estabelecimentos-->
+                                    <li><a href="Estabelecimentos_Localizar.aspx">Meus Estabelecimentos</a></li>
+                                    <!--dashboards-->
+                                    <li class="dropdown">
+                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dashboards<span class="caret"></span></a>
+                                        <ul class="dropdown-menu">
+                                            <li class="dropdown-header">Demandas</li>
+                                            <li><a href="https://app.powerbi.com/view?r=eyJrIjoiZjQ0MzAyOGUtNTkyYy00ZGM3LWJjNDEtODdiNjg5ZDk1MmM5IiwidCI6Ijc2YjM2MTMwLTMzZjUtNGY2MC05NWVmLTg0MzlmOTQ4NmNmZiJ9">Dashboard 2016/2017 Fiscal</a></li>
+                                            <li role="separator" class="divider"></li>
+                                            <li class="dropdown-header">Vendas</li>
+                                        </ul>
+                                    </li>
+                                    <!--listas-->
+                                    <li class="dropdown">
+                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Listas<span class="caret"></span></a>
+                                        <ul class="dropdown-menu">
+                                            <li class="dropdown-header">Listas</li>
+                                            <li><a href="Estabelecimentos_Localizar_Nao_Setorizado.aspx">Clientes Órfãos</a></li>
+                                            <li><a href="Distribuidores_Localizar.aspx">Distribuidores</a></li>
+                                            <li><a href="Log_Site.aspx">Log De Acesso</a></li>
+                                        </ul>
+                                    </li>
+                                    <!--relatorios-->
+                                    <li class="dropdown">
+                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">relatorios<span class="caret"></span></a>
+                                        <ul class="dropdown-menu">
+                                            <li class="dropdown-header">Listas</li>
+                                            <li><a href="Estabelecimentos_Localizar_Nao_Setorizado.aspx">Clientes Órfãos</a></li>
+                                            <li><a href="Distribuidores_Localizar.aspx">Distribuidores</a></li>
+                                            <li><a href="Log_Site.aspx">Log De Acesso</a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                                
+                                 
+        </div>
+        </div>
+                </div>
+            </div>
+            <asp:SqlDataSource ID="dts_usuario" runat="server" ConnectionString="<%$ ConnectionStrings:cnnStr %>" SelectCommand="SELECT '#' as EMAIL, '# Selecione' as NOME UNION ALL SELECT [EMAIL], [NOME] FROM [VIEW_USUARIOS] WHERE ([LOGIN] = @LOGIN) ORDER BY [NOME]">
+                <SelectParameters>
+                    <asp:Parameter DefaultValue="True" Name="LOGIN" Type="Boolean" />
+                </SelectParameters>
+            </asp:SqlDataSource>
+        </div>
+
+       <div class="container body-content">
+           <asp:ContentPlaceHolder ID="MainContent" runat="server">
+           </asp:ContentPlaceHolder>
+           <hr />
+
+           <!--Page Content-->
+           <footer>
+               <p>&copy; <%: DateTime.Now.Year %> - <%:ConfigurationManager.AppSettings("nome") %></p>
+           </footer>
+       </div>
+
+    </form>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="Scripts/bootstrap.min.js"></script>
+</body>
+</html>
+

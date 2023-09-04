@@ -1,0 +1,231 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="dts_Reports_Estoque" targetNamespace="http://tempuri.org/dts_Reports_Estoque.xsd" xmlns:mstns="http://tempuri.org/dts_Reports_Estoque.xsd" xmlns="http://tempuri.org/dts_Reports_Estoque.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="Web.config" AppSettingsPropertyName="cnnStr" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="cnnStr (Web.config)" ParameterPrefix="@" PropertyReference="AppConfig.System.Configuration.ConfigurationManager.0.ConnectionStrings.cnnStr.ConnectionString" Provider="System.Data.SqlClient" />
+        </Connections>
+        <Tables>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="TMP_VIEW_ESTOQUE_12MESES_PRODUTO_DISTRIBUIDORTableAdapter" GeneratorDataComponentClassName="TMP_VIEW_ESTOQUE_12MESES_PRODUTO_DISTRIBUIDORTableAdapter" Name="TMP_VIEW_ESTOQUE_12MESES_PRODUTO_DISTRIBUIDOR" UserDataComponentName="TMP_VIEW_ESTOQUE_12MESES_PRODUTO_DISTRIBUIDORTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="cnnStr (Web.config)" DbObjectName="CSL_NOVO.dbo.TMP_VIEW_ESTOQUE_12MESES_PRODUTO_DISTRIBUIDOR" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>SELECT SessionId, Pagina, EXECUCAO, EMAIL, USUARIO, PERIODO_NUMERO, ANO, MES, PERIODO, MES_SIGLA, ANO_FISCAL, MES_FISCAL, PERIODO_FISCAL, ORDEM_MOVIMENTO, TIPO_MOVIMENTO, DISTRIBUIDOR, PRODUTO, QTD FROM dbo.TMP_VIEW_ESTOQUE_12MESES_PRODUTO_DISTRIBUIDOR</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="SessionId" DataSetColumn="SessionId" />
+              <Mapping SourceColumn="Pagina" DataSetColumn="Pagina" />
+              <Mapping SourceColumn="EXECUCAO" DataSetColumn="EXECUCAO" />
+              <Mapping SourceColumn="EMAIL" DataSetColumn="EMAIL" />
+              <Mapping SourceColumn="USUARIO" DataSetColumn="USUARIO" />
+              <Mapping SourceColumn="PERIODO_NUMERO" DataSetColumn="PERIODO_NUMERO" />
+              <Mapping SourceColumn="ANO" DataSetColumn="ANO" />
+              <Mapping SourceColumn="MES" DataSetColumn="MES" />
+              <Mapping SourceColumn="PERIODO" DataSetColumn="PERIODO" />
+              <Mapping SourceColumn="MES_SIGLA" DataSetColumn="MES_SIGLA" />
+              <Mapping SourceColumn="ANO_FISCAL" DataSetColumn="ANO_FISCAL" />
+              <Mapping SourceColumn="MES_FISCAL" DataSetColumn="MES_FISCAL" />
+              <Mapping SourceColumn="PERIODO_FISCAL" DataSetColumn="PERIODO_FISCAL" />
+              <Mapping SourceColumn="ORDEM_MOVIMENTO" DataSetColumn="ORDEM_MOVIMENTO" />
+              <Mapping SourceColumn="TIPO_MOVIMENTO" DataSetColumn="TIPO_MOVIMENTO" />
+              <Mapping SourceColumn="DISTRIBUIDOR" DataSetColumn="DISTRIBUIDOR" />
+              <Mapping SourceColumn="PRODUTO" DataSetColumn="PRODUTO" />
+              <Mapping SourceColumn="QTD" DataSetColumn="QTD" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="VIEW_DISTRIBUIDORES_GRUPOS_MOVIMENTO_ESTOQUE_CALCULADOTableAdapter" GeneratorDataComponentClassName="VIEW_DISTRIBUIDORES_GRUPOS_MOVIMENTO_ESTOQUE_CALCULADOTableAdapter" Name="VIEW_DISTRIBUIDORES_GRUPOS_MOVIMENTO_ESTOQUE_CALCULADO" UserDataComponentName="VIEW_DISTRIBUIDORES_GRUPOS_MOVIMENTO_ESTOQUE_CALCULADOTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="cnnStr (Web.config)" DbObjectName="CSL_NOVO.dbo.VIEW_DISTRIBUIDORES_GRUPOS_MOVIMENTO_ESTOQUE_CALCULADO" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT TIPO, TIPO_ORDEM,ANO_MES, PERIODO, ANO, MES, ID_GRUPO_DISTRIBUIDOR, GRUPO_DISTRIBUIDOR, COD_PRODUTO, PRODUTO, PRODUTO_LINHA, QTD, QTD_EQUIVALENTE, VALOR_ASP FROM dbo.VIEW_DISTRIBUIDORES_GRUPOS_MOVIMENTO_ESTOQUE_CALCULADO</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="TIPO" DataSetColumn="TIPO" />
+              <Mapping SourceColumn="ANO_MES" DataSetColumn="ANO_MES" />
+              <Mapping SourceColumn="PERIODO" DataSetColumn="PERIODO" />
+              <Mapping SourceColumn="ANO" DataSetColumn="ANO" />
+              <Mapping SourceColumn="MES" DataSetColumn="MES" />
+              <Mapping SourceColumn="ID_GRUPO_DISTRIBUIDOR" DataSetColumn="ID_GRUPO_DISTRIBUIDOR" />
+              <Mapping SourceColumn="GRUPO_DISTRIBUIDOR" DataSetColumn="GRUPO_DISTRIBUIDOR" />
+              <Mapping SourceColumn="COD_PRODUTO" DataSetColumn="COD_PRODUTO" />
+              <Mapping SourceColumn="PRODUTO" DataSetColumn="PRODUTO" />
+              <Mapping SourceColumn="PRODUTO_LINHA" DataSetColumn="PRODUTO_LINHA" />
+              <Mapping SourceColumn="QTD" DataSetColumn="QTD" />
+              <Mapping SourceColumn="QTD_EQUIVALENTE" DataSetColumn="QTD_EQUIVALENTE" />
+              <Mapping SourceColumn="VALOR_ASP" DataSetColumn="VALOR_ASP" />
+              <Mapping SourceColumn="TIPO_ORDEM" DataSetColumn="TIPO_ORDEM" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+        </Tables>
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="dts_Reports_Estoque" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:Generator_DataSetName="dts_Reports_Estoque" msprop:Generator_UserDSName="dts_Reports_Estoque">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="TMP_VIEW_ESTOQUE_12MESES_PRODUTO_DISTRIBUIDOR" msprop:Generator_TableClassName="TMP_VIEW_ESTOQUE_12MESES_PRODUTO_DISTRIBUIDORDataTable" msprop:Generator_TableVarName="tableTMP_VIEW_ESTOQUE_12MESES_PRODUTO_DISTRIBUIDOR" msprop:Generator_TablePropName="TMP_VIEW_ESTOQUE_12MESES_PRODUTO_DISTRIBUIDOR" msprop:Generator_RowDeletingName="TMP_VIEW_ESTOQUE_12MESES_PRODUTO_DISTRIBUIDORRowDeleting" msprop:Generator_RowChangingName="TMP_VIEW_ESTOQUE_12MESES_PRODUTO_DISTRIBUIDORRowChanging" msprop:Generator_RowEvHandlerName="TMP_VIEW_ESTOQUE_12MESES_PRODUTO_DISTRIBUIDORRowChangeEventHandler" msprop:Generator_RowDeletedName="TMP_VIEW_ESTOQUE_12MESES_PRODUTO_DISTRIBUIDORRowDeleted" msprop:Generator_UserTableName="TMP_VIEW_ESTOQUE_12MESES_PRODUTO_DISTRIBUIDOR" msprop:Generator_RowChangedName="TMP_VIEW_ESTOQUE_12MESES_PRODUTO_DISTRIBUIDORRowChanged" msprop:Generator_RowEvArgName="TMP_VIEW_ESTOQUE_12MESES_PRODUTO_DISTRIBUIDORRowChangeEvent" msprop:Generator_RowClassName="TMP_VIEW_ESTOQUE_12MESES_PRODUTO_DISTRIBUIDORRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="SessionId" msprop:Generator_ColumnVarNameInTable="columnSessionId" msprop:Generator_ColumnPropNameInRow="SessionId" msprop:Generator_ColumnPropNameInTable="SessionIdColumn" msprop:Generator_UserColumnName="SessionId" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="2147483647" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Pagina" msprop:Generator_ColumnVarNameInTable="columnPagina" msprop:Generator_ColumnPropNameInRow="Pagina" msprop:Generator_ColumnPropNameInTable="PaginaColumn" msprop:Generator_UserColumnName="Pagina" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="EXECUCAO" msprop:Generator_ColumnVarNameInTable="columnEXECUCAO" msprop:Generator_ColumnPropNameInRow="EXECUCAO" msprop:Generator_ColumnPropNameInTable="EXECUCAOColumn" msprop:Generator_UserColumnName="EXECUCAO" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="EMAIL" msprop:Generator_ColumnVarNameInTable="columnEMAIL" msprop:Generator_ColumnPropNameInRow="EMAIL" msprop:Generator_ColumnPropNameInTable="EMAILColumn" msprop:Generator_UserColumnName="EMAIL" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="USUARIO" msprop:Generator_ColumnVarNameInTable="columnUSUARIO" msprop:Generator_ColumnPropNameInRow="USUARIO" msprop:Generator_ColumnPropNameInTable="USUARIOColumn" msprop:Generator_UserColumnName="USUARIO">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="200" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="PERIODO_NUMERO" msprop:Generator_ColumnVarNameInTable="columnPERIODO_NUMERO" msprop:Generator_ColumnPropNameInRow="PERIODO_NUMERO" msprop:Generator_ColumnPropNameInTable="PERIODO_NUMEROColumn" msprop:Generator_UserColumnName="PERIODO_NUMERO" type="xs:decimal" minOccurs="0" />
+              <xs:element name="ANO" msprop:Generator_ColumnVarNameInTable="columnANO" msprop:Generator_ColumnPropNameInRow="ANO" msprop:Generator_ColumnPropNameInTable="ANOColumn" msprop:Generator_UserColumnName="ANO" type="xs:decimal" minOccurs="0" />
+              <xs:element name="MES" msprop:Generator_ColumnVarNameInTable="columnMES" msprop:Generator_ColumnPropNameInRow="MES" msprop:Generator_ColumnPropNameInTable="MESColumn" msprop:Generator_UserColumnName="MES" type="xs:decimal" minOccurs="0" />
+              <xs:element name="PERIODO" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnPERIODO" msprop:Generator_ColumnPropNameInRow="PERIODO" msprop:Generator_ColumnPropNameInTable="PERIODOColumn" msprop:Generator_UserColumnName="PERIODO" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="20" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="MES_SIGLA" msprop:Generator_ColumnVarNameInTable="columnMES_SIGLA" msprop:Generator_ColumnPropNameInRow="MES_SIGLA" msprop:Generator_ColumnPropNameInTable="MES_SIGLAColumn" msprop:Generator_UserColumnName="MES_SIGLA">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="3" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="ANO_FISCAL" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnANO_FISCAL" msprop:Generator_ColumnPropNameInRow="ANO_FISCAL" msprop:Generator_ColumnPropNameInTable="ANO_FISCALColumn" msprop:Generator_UserColumnName="ANO_FISCAL" type="xs:decimal" minOccurs="0" />
+              <xs:element name="MES_FISCAL" msprop:Generator_ColumnVarNameInTable="columnMES_FISCAL" msprop:Generator_ColumnPropNameInRow="MES_FISCAL" msprop:Generator_ColumnPropNameInTable="MES_FISCALColumn" msprop:Generator_UserColumnName="MES_FISCAL" type="xs:decimal" />
+              <xs:element name="PERIODO_FISCAL" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnPERIODO_FISCAL" msprop:Generator_ColumnPropNameInRow="PERIODO_FISCAL" msprop:Generator_ColumnPropNameInTable="PERIODO_FISCALColumn" msprop:Generator_UserColumnName="PERIODO_FISCAL" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="20" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="ORDEM_MOVIMENTO" msprop:Generator_ColumnVarNameInTable="columnORDEM_MOVIMENTO" msprop:Generator_ColumnPropNameInRow="ORDEM_MOVIMENTO" msprop:Generator_ColumnPropNameInTable="ORDEM_MOVIMENTOColumn" msprop:Generator_UserColumnName="ORDEM_MOVIMENTO" type="xs:decimal" minOccurs="0" />
+              <xs:element name="TIPO_MOVIMENTO" msprop:Generator_ColumnVarNameInTable="columnTIPO_MOVIMENTO" msprop:Generator_ColumnPropNameInRow="TIPO_MOVIMENTO" msprop:Generator_ColumnPropNameInTable="TIPO_MOVIMENTOColumn" msprop:Generator_UserColumnName="TIPO_MOVIMENTO" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="DISTRIBUIDOR" msprop:Generator_ColumnVarNameInTable="columnDISTRIBUIDOR" msprop:Generator_ColumnPropNameInRow="DISTRIBUIDOR" msprop:Generator_ColumnPropNameInTable="DISTRIBUIDORColumn" msprop:Generator_UserColumnName="DISTRIBUIDOR" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="2147483647" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="PRODUTO" msprop:Generator_ColumnVarNameInTable="columnPRODUTO" msprop:Generator_ColumnPropNameInRow="PRODUTO" msprop:Generator_ColumnPropNameInTable="PRODUTOColumn" msprop:Generator_UserColumnName="PRODUTO">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="QTD" msprop:Generator_ColumnVarNameInTable="columnQTD" msprop:Generator_ColumnPropNameInRow="QTD" msprop:Generator_ColumnPropNameInTable="QTDColumn" msprop:Generator_UserColumnName="QTD" type="xs:decimal" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="VIEW_DISTRIBUIDORES_GRUPOS_MOVIMENTO_ESTOQUE_CALCULADO" msprop:Generator_TableClassName="VIEW_DISTRIBUIDORES_GRUPOS_MOVIMENTO_ESTOQUE_CALCULADODataTable" msprop:Generator_TableVarName="tableVIEW_DISTRIBUIDORES_GRUPOS_MOVIMENTO_ESTOQUE_CALCULADO" msprop:Generator_RowChangedName="VIEW_DISTRIBUIDORES_GRUPOS_MOVIMENTO_ESTOQUE_CALCULADORowChanged" msprop:Generator_TablePropName="VIEW_DISTRIBUIDORES_GRUPOS_MOVIMENTO_ESTOQUE_CALCULADO" msprop:Generator_RowDeletingName="VIEW_DISTRIBUIDORES_GRUPOS_MOVIMENTO_ESTOQUE_CALCULADORowDeleting" msprop:Generator_RowChangingName="VIEW_DISTRIBUIDORES_GRUPOS_MOVIMENTO_ESTOQUE_CALCULADORowChanging" msprop:Generator_RowEvHandlerName="VIEW_DISTRIBUIDORES_GRUPOS_MOVIMENTO_ESTOQUE_CALCULADORowChangeEventHandler" msprop:Generator_RowDeletedName="VIEW_DISTRIBUIDORES_GRUPOS_MOVIMENTO_ESTOQUE_CALCULADORowDeleted" msprop:Generator_RowClassName="VIEW_DISTRIBUIDORES_GRUPOS_MOVIMENTO_ESTOQUE_CALCULADORow" msprop:Generator_UserTableName="VIEW_DISTRIBUIDORES_GRUPOS_MOVIMENTO_ESTOQUE_CALCULADO" msprop:Generator_RowEvArgName="VIEW_DISTRIBUIDORES_GRUPOS_MOVIMENTO_ESTOQUE_CALCULADORowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="TIPO" msprop:Generator_ColumnVarNameInTable="columnTIPO" msprop:Generator_ColumnPropNameInRow="TIPO" msprop:Generator_ColumnPropNameInTable="TIPOColumn" msprop:Generator_UserColumnName="TIPO">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="ANO_MES" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnANO_MES" msprop:Generator_ColumnPropNameInRow="ANO_MES" msprop:Generator_ColumnPropNameInTable="ANO_MESColumn" msprop:Generator_UserColumnName="ANO_MES" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="8" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="PERIODO" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnPERIODO" msprop:Generator_ColumnPropNameInRow="PERIODO" msprop:Generator_ColumnPropNameInTable="PERIODOColumn" msprop:Generator_UserColumnName="PERIODO" type="xs:decimal" minOccurs="0" />
+              <xs:element name="ANO" msprop:Generator_ColumnVarNameInTable="columnANO" msprop:Generator_ColumnPropNameInRow="ANO" msprop:Generator_ColumnPropNameInTable="ANOColumn" msprop:Generator_UserColumnName="ANO" type="xs:decimal" />
+              <xs:element name="MES" msprop:Generator_ColumnVarNameInTable="columnMES" msprop:Generator_ColumnPropNameInRow="MES" msprop:Generator_ColumnPropNameInTable="MESColumn" msprop:Generator_UserColumnName="MES" type="xs:decimal" />
+              <xs:element name="ID_GRUPO_DISTRIBUIDOR" msprop:Generator_ColumnVarNameInTable="columnID_GRUPO_DISTRIBUIDOR" msprop:Generator_ColumnPropNameInRow="ID_GRUPO_DISTRIBUIDOR" msprop:Generator_ColumnPropNameInTable="ID_GRUPO_DISTRIBUIDORColumn" msprop:Generator_UserColumnName="ID_GRUPO_DISTRIBUIDOR" type="xs:decimal" />
+              <xs:element name="GRUPO_DISTRIBUIDOR" msprop:Generator_ColumnVarNameInTable="columnGRUPO_DISTRIBUIDOR" msprop:Generator_ColumnPropNameInRow="GRUPO_DISTRIBUIDOR" msprop:Generator_ColumnPropNameInTable="GRUPO_DISTRIBUIDORColumn" msprop:Generator_UserColumnName="GRUPO_DISTRIBUIDOR">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="COD_PRODUTO" msprop:Generator_ColumnVarNameInTable="columnCOD_PRODUTO" msprop:Generator_ColumnPropNameInRow="COD_PRODUTO" msprop:Generator_ColumnPropNameInTable="COD_PRODUTOColumn" msprop:Generator_UserColumnName="COD_PRODUTO">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="PRODUTO" msprop:Generator_ColumnVarNameInTable="columnPRODUTO" msprop:Generator_ColumnPropNameInRow="PRODUTO" msprop:Generator_ColumnPropNameInTable="PRODUTOColumn" msprop:Generator_UserColumnName="PRODUTO">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="PRODUTO_LINHA" msprop:Generator_ColumnVarNameInTable="columnPRODUTO_LINHA" msprop:Generator_ColumnPropNameInRow="PRODUTO_LINHA" msprop:Generator_ColumnPropNameInTable="PRODUTO_LINHAColumn" msprop:Generator_UserColumnName="PRODUTO_LINHA">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="QTD" msprop:Generator_ColumnVarNameInTable="columnQTD" msprop:Generator_ColumnPropNameInRow="QTD" msprop:Generator_ColumnPropNameInTable="QTDColumn" msprop:Generator_UserColumnName="QTD" type="xs:decimal" />
+              <xs:element name="QTD_EQUIVALENTE" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnQTD_EQUIVALENTE" msprop:Generator_ColumnPropNameInRow="QTD_EQUIVALENTE" msprop:Generator_ColumnPropNameInTable="QTD_EQUIVALENTEColumn" msprop:Generator_UserColumnName="QTD_EQUIVALENTE" type="xs:decimal" minOccurs="0" />
+              <xs:element name="VALOR_ASP" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnVALOR_ASP" msprop:Generator_ColumnPropNameInRow="VALOR_ASP" msprop:Generator_ColumnPropNameInTable="VALOR_ASPColumn" msprop:Generator_UserColumnName="VALOR_ASP" type="xs:decimal" minOccurs="0" />
+              <xs:element name="TIPO_ORDEM" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnTIPO_ORDEM" msprop:Generator_ColumnPropNameInRow="TIPO_ORDEM" msprop:Generator_ColumnPropNameInTable="TIPO_ORDEMColumn" msprop:Generator_UserColumnName="TIPO_ORDEM" type="xs:int" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+    <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:VIEW_DISTRIBUIDORES_GRUPOS_MOVIMENTO_ESTOQUE_CALCULADO" />
+      <xs:field xpath="mstns:TIPO" />
+      <xs:field xpath="mstns:ANO" />
+      <xs:field xpath="mstns:MES" />
+      <xs:field xpath="mstns:ID_GRUPO_DISTRIBUIDOR" />
+      <xs:field xpath="mstns:COD_PRODUTO" />
+    </xs:unique>
+  </xs:element>
+</xs:schema>

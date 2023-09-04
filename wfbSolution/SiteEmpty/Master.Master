@@ -1,0 +1,47 @@
+﻿<%@ Master Language="VB" AutoEventWireup="false" CodeBehind="Master.master.vb" Inherits="SiteEmpty.Master" %>
+
+<%@ Register Src="~/_Footer_Scripts.ascx" TagPrefix="uc1" TagName="_Footer_Scripts" %>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <link href="Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="Content/Site.css" rel="stylesheet" />
+    
+    <title>Chapeira WEB</title>
+    <asp:ContentPlaceHolder ID="Head_Content" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body><div class="container">
+    <form id="frm_Main" runat="server">
+        
+           <nav class="navbar navbar-dark" style="background-color: #0082C3;">
+     <div class="container">
+        <div class="navbar-brand text-uppercase"><span class="d-none d-md-block"><strong>Chapeira Digital&nbsp</strong></span><%:ConfigurationManager.AppSettings("Loja") %></div>
+
+        <div class="navbar">
+            
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link text-uppercase" href="Default.aspx"><i class="fas fa-home fa-5x" style="color:#FFC107;"></i></a>
+                </li>
+            </ul>
+            <br />
+            <!--<uc1:_Header_Buttons runat="server" id="_Header_Buttons" />-->
+        </div>
+        </div>
+    </nav>
+            <asp:ContentPlaceHolder ID="Body_Content" runat="server">
+            </asp:ContentPlaceHolder>
+       
+
+
+        <uc1:_Footer_Scripts runat="server" ID="_Footer_Scripts" />
+        <asp:ContentPlaceHolder ID="FooterContent" runat="server">
+        </asp:ContentPlaceHolder>
+    </form> </div>
+</body>
+</html>

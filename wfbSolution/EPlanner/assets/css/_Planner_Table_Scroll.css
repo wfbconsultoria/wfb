@@ -1,0 +1,14 @@
+﻿div.table {
+    overflow-x: scroll;
+    overflow-y:scroll;
+}
+
+th, td {
+    min-width: 20px; /* width/largura das células à escolha */
+}
+
+.table-overflow {
+    max-height: 400px;
+    overflow-y: auto;
+    overflow-y: auto;
+}

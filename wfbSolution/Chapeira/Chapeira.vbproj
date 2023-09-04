@@ -1,0 +1,965 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props')" />
+  <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>
+    </SchemaVersion>
+    <ProjectGuid>{AF8F2D67-A89F-4281-BC26-9A8F6E627BF8}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{F184B08F-C81C-45F6-A57F-5ABD9991F28F}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <RootNamespace>Chapeira</RootNamespace>
+    <AssemblyName>Chapeira</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <MyType>Custom</MyType>
+    <UseIISExpress>true</UseIISExpress>
+    <Use64BitIISExpress />
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+    <TypeScriptToolsVersion>3.9</TypeScriptToolsVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <OutputPath>bin\</OutputPath>
+    <DocumentationFile>Chapeira.xml</DocumentationFile>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>pdbonly</DebugType>
+    <DefineDebug>false</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DocumentationFile>Chapeira.xml</DocumentationFile>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
+    <IncludeIisSettings>false</IncludeIisSettings>
+    <LegacyPublishPropertiesPageEnabled>true</LegacyPublishPropertiesPageEnabled>
+    <PublishDatabaseSettings>
+      <Objects>
+        <ObjectGroup Name="DefaultConnection-Implantação" Order="1" Enabled="False">
+          <Destination Path="" />
+          <Object Type="DbFullSql" Enabled="False">
+            <PreSource Path="Data Source=chapeira.com.br%3bInitial Catalog=Decathlon_Chapeira%3bPersist Security Info=True%3bUser ID=sa%3bPassword=%40Mepm2412" ScriptSchema="True" ScriptData="False" CopyAllFullTextCatalogs="False" DriDefaults="True" />
+            <Source Path="obj\Release\AutoScripts\DefaultConnection-Implantação_SchemaOnly.sql" Transacted="True" />
+          </Object>
+        </ObjectGroup>
+      </Objects>
+    </PublishDatabaseSettings>
+    <TypeScriptTarget>ES5</TypeScriptTarget>
+    <TypeScriptJSXEmit>React</TypeScriptJSXEmit>
+    <TypeScriptModuleKind />
+    <TypeScriptCompileOnSaveEnabled>True</TypeScriptCompileOnSaveEnabled>
+    <TypeScriptNoImplicitAny>False</TypeScriptNoImplicitAny>
+    <TypeScriptRemoveComments>False</TypeScriptRemoveComments>
+    <TypeScriptOutFile />
+    <TypeScriptOutDir />
+    <TypeScriptGeneratesDeclarations>False</TypeScriptGeneratesDeclarations>
+    <TypeScriptNoEmitOnError>True</TypeScriptNoEmitOnError>
+    <TypeScriptSourceMap>True</TypeScriptSourceMap>
+    <TypeScriptMapRoot />
+    <TypeScriptSourceRoot />
+    <FilesToIncludeForPublish>AllFilesInTheProject</FilesToIncludeForPublish>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=2.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="SendGrid, Version=9.12.0.0, Culture=neutral, PublicKeyToken=4f047e93159395ca, processorArchitecture=MSIL">
+      <HintPath>..\packages\Sendgrid.9.12.0\lib\net452\SendGrid.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Composition" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.IO, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.IO.4.3.0\lib\net462\System.IO.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Net.Http, Version=4.1.1.3, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Net.Http.4.3.4\lib\net46\System.Net.Http.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Runtime, Version=4.1.1.1, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.4.3.1\lib\net462\System.Runtime.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.Algorithms, Version=4.2.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.Cryptography.Algorithms.4.3.1\lib\net463\System.Security.Cryptography.Algorithms.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.Encoding, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.Cryptography.Encoding.4.3.0\lib\net46\System.Security.Cryptography.Encoding.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.Primitives, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.Cryptography.Primitives.4.3.0\lib\net46\System.Security.Cryptography.Primitives.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.X509Certificates, Version=4.1.1.2, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.Cryptography.X509Certificates.4.3.2\lib\net461\System.Security.Cryptography.X509Certificates.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.DataVisualization">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+  </ItemGroup>
+  <ItemGroup>
+    <Import Include="Microsoft.VisualBasic" />
+    <Import Include="System" />
+    <Import Include="System.Collections" />
+    <Import Include="System.Collections.Generic" />
+    <Import Include="System.Data" />
+    <Import Include="System.Linq" />
+    <Import Include="System.Xml.Linq" />
+    <Import Include="System.Diagnostics" />
+    <Import Include="System.Collections.Specialized" />
+    <Import Include="System.Configuration" />
+    <Import Include="System.Text" />
+    <Import Include="System.Text.RegularExpressions" />
+    <Import Include="System.Web" />
+    <Import Include="System.Web.Caching" />
+    <Import Include="System.Web.SessionState" />
+    <Import Include="System.Web.Security" />
+    <Import Include="System.Web.Profile" />
+    <Import Include="System.Web.UI" />
+    <Import Include="System.Web.UI.WebControls" />
+    <Import Include="System.Web.UI.WebControls.WebParts" />
+    <Import Include="System.Web.UI.HtmlControls" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Avisos.aspx" />
+    <Content Include="Avisos_Sonoros.aspx" />
+    <Content Include="CheckIn_Form.aspx" />
+    <Content Include="CheckIn_Form_Terceiros.aspx" />
+    <Content Include="CheckIn_List.aspx" />
+    <Content Include="CheckIn_List_Servicos.aspx" />
+    <Content Include="CheckIn_List_Terceiros.aspx" />
+    <Content Include="CheckIn_List_Visitantes.aspx" />
+    <Content Include="CheckIn_Mobis.aspx" />
+    <Content Include="CheckIn_Universos.aspx" />
+    <Content Include="Colaborador.aspx" />
+    <Content Include="Colaboradores.aspx" />
+    <Content Include="Colaboradores_Ativos.aspx" />
+    <Content Include="Colaboradores_Inativos.aspx" />
+    <Content Include="Colaboradores_Lista.aspx" />
+    <Content Include="Colaboradores_Lista_Mensagem.aspx" />
+    <Content Include="Colaboradores_Terceiros.aspx" />
+    <Content Include="Colaboradores_Visitantes.aspx" />
+    <Content Include="Colaborador_Terceiro.aspx" />
+    <Content Include="Colaborador_Visitante.aspx" />
+    <Content Include="Contatos_Emergencia.aspx" />
+    <Content Include="Contatos_Emergencia_Form.aspx" />
+    <Content Include="Contatos_Emergencia_Lista.aspx" />
+    <Content Include="Content\bootstrap-grid.css" />
+    <Content Include="Content\bootstrap-grid.min.css" />
+    <Content Include="Content\bootstrap-reboot.css" />
+    <Content Include="Content\bootstrap-reboot.min.css" />
+    <Content Include="Content\bootstrap-theme.css" />
+    <Content Include="Content\bootstrap-theme.min.css" />
+    <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\bootstrap.min - Cópia .css" />
+    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\menuLojas.css" />
+    <Content Include="Content\offCanvas.css" />
+    <Content Include="Content\sigIn.css" />
+    <Content Include="Content\Site.css" />
+    <Content Include="DashBoard.aspx" />
+    <Content Include="DashBoard2.aspx" />
+    <Content Include="DashBoard_Detail.aspx" />
+    <Content Include="DashBoard_Detail_Brigadistas.aspx" />
+    <Content Include="DashBoard_Detail_Colaboradores.aspx" />
+    <Content Include="DashBoard_Detail_Colaboradores_Data.aspx" />
+    <Content Include="DashBoard_Detail_Formados.aspx" />
+    <Content Include="DashBoard_Detail_Servicos.aspx" />
+    <Content Include="Default.aspx" />
+    <Content Include="Default_New.aspx" />
+    <Content Include="Images\Administrador_Icone.png" />
+    <Content Include="Images\Colaborador_Icone.png" />
+    <Content Include="Images\DashBoard.png" />
+    <Content Include="Images\Decathlon_Brigadista.png" />
+    <Content Include="Images\Brigadista_Icone.png" />
+    <Content Include="Images\Decathlon_Brigadista_Small.png" />
+    <Content Include="Images\Decathlon_Colaboradores.png" />
+    <Content Include="Images\Decathlon_Logo_Quadrado_Pequeno.png" />
+    <Content Include="Images\Decathlon_Visitante.png" />
+    <Content Include="Images\Decatlhon_Servicos.png" />
+    <Content Include="Images\Decatlhon_Servicos_Icone.png" />
+    <Content Include="Images\LOgo_Quadrado.jpg" />
+    <Content Include="Images\Logo_Retangulo.png" />
+    <Content Include="Images\Mobi_Disponivel.png" />
+    <Content Include="Images\Mobi_Indisponivel.png" />
+    <Content Include="Images\Planta_Combate_Incendio.png" />
+    <Content Include="Images\Planta_Combate_Incendio_Small.png" />
+    <Content Include="Images\Planta_Detectores_Fumaca.png" />
+    <Content Include="Images\Report.png" />
+    <Content Include="Images\SuporteWFB.png" />
+    <Content Include="Images\Telefone.jpg" />
+    <Content Include="Images\Visitantes.png" />
+    <Content Include="Login.aspx" />
+    <Content Include="Logout.aspx" />
+    <Content Include="Loja.aspx" />
+    <Content Include="Main.aspx" />
+    <Content Include="Mobi.aspx" />
+    <Content Include="Mobis.aspx" />
+    <Content Include="PageError.aspx" />
+    <Content Include="Password_Change.aspx" />
+    <Content Include="Plantas_Config.aspx" />
+    <Content Include="Planta_Loja.aspx" />
+    <Content Include="Plugins\css\arbitrary_toggle_markup.css" />
+    <Content Include="Plugins\css\fonts\footable.svg" />
+    <Content Include="Plugins\css\footable-demos.css" />
+    <Content Include="Plugins\css\footable.core.css" />
+    <Content Include="Plugins\css\footable.core.min.css" />
+    <Content Include="Plugins\css\footable.metro.css" />
+    <Content Include="Plugins\css\footable.metro.min.css" />
+    <Content Include="Plugins\css\footable.standalone.css" />
+    <Content Include="Plugins\css\footable.standalone.min.css" />
+    <Content Include="Plugins\css\Gauges.css" />
+    <Content Include="Plugins\css\jquery-gauge.css" />
+    <Content Include="Plugins\css\multi-select.css" />
+    <Content Include="Plugins\css\select2-bootstrap.css" />
+    <Content Include="Plugins\css\select2-spinner.gif" />
+    <Content Include="Plugins\css\select2.css" />
+    <Content Include="Plugins\css\select2.min.css" />
+    <Content Include="Plugins\css\select2.png" />
+    <Content Include="Plugins\css\select2x2.png" />
+    <Content Include="Plugins\img\footable.png" />
+    <Content Include="Plugins\img\minus.png" />
+    <Content Include="Plugins\img\plus.png" />
+    <Content Include="Plugins\img\switch.png" />
+    <Content Include="Plugins\js\Chart.min.js" />
+    <Content Include="Plugins\js\data-generator.js" />
+    <Content Include="Plugins\js\demos.js" />
+    <Content Include="Plugins\js\footable.bookmarkable.js" />
+    <Content Include="Plugins\js\footable.filter.js" />
+    <Content Include="Plugins\js\footable.grid.js" />
+    <Content Include="Plugins\js\footable.js" />
+    <Content Include="Plugins\js\footable.memory.js" />
+    <Content Include="Plugins\js\footable.paginate.js" />
+    <Content Include="Plugins\js\footable.plugin.template.js" />
+    <Content Include="Plugins\js\footable.sort.js" />
+    <Content Include="Plugins\js\footable.striping.js" />
+    <Content Include="Plugins\js\i18n\ar.js" />
+    <Content Include="Plugins\js\i18n\az.js" />
+    <Content Include="Plugins\js\i18n\bg.js" />
+    <Content Include="Plugins\js\i18n\ca.js" />
+    <Content Include="Plugins\js\i18n\cs.js" />
+    <Content Include="Plugins\js\i18n\da.js" />
+    <Content Include="Plugins\js\i18n\de.js" />
+    <Content Include="Plugins\js\i18n\en.js" />
+    <Content Include="Plugins\js\i18n\es.js" />
+    <Content Include="Plugins\js\i18n\et.js" />
+    <Content Include="Plugins\js\i18n\eu.js" />
+    <Content Include="Plugins\js\i18n\fa.js" />
+    <Content Include="Plugins\js\i18n\fi.js" />
+    <Content Include="Plugins\js\i18n\fr.js" />
+    <Content Include="Plugins\js\i18n\gl.js" />
+    <Content Include="Plugins\js\i18n\he.js" />
+    <Content Include="Plugins\js\i18n\hi.js" />
+    <Content Include="Plugins\js\i18n\hr.js" />
+    <Content Include="Plugins\js\i18n\hu.js" />
+    <Content Include="Plugins\js\i18n\id.js" />
+    <Content Include="Plugins\js\i18n\is.js" />
+    <Content Include="Plugins\js\i18n\it.js" />
+    <Content Include="Plugins\js\i18n\ja.js" />
+    <Content Include="Plugins\js\i18n\ko.js" />
+    <Content Include="Plugins\js\i18n\lt.js" />
+    <Content Include="Plugins\js\i18n\lv.js" />
+    <Content Include="Plugins\js\i18n\mk.js" />
+    <Content Include="Plugins\js\i18n\ms.js" />
+    <Content Include="Plugins\js\i18n\nb.js" />
+    <Content Include="Plugins\js\i18n\nl.js" />
+    <Content Include="Plugins\js\i18n\pl.js" />
+    <Content Include="Plugins\js\i18n\pt-BR.js" />
+    <Content Include="Plugins\js\i18n\pt.js" />
+    <Content Include="Plugins\js\i18n\ro.js" />
+    <Content Include="Plugins\js\i18n\ru.js" />
+    <Content Include="Plugins\js\i18n\sk.js" />
+    <Content Include="Plugins\js\i18n\sr-Cyrl.js" />
+    <Content Include="Plugins\js\i18n\sr.js" />
+    <Content Include="Plugins\js\i18n\sv.js" />
+    <Content Include="Plugins\js\i18n\th.js" />
+    <Content Include="Plugins\js\i18n\tr.js" />
+    <Content Include="Plugins\js\i18n\uk.js" />
+    <Content Include="Plugins\js\i18n\vi.js" />
+    <Content Include="Plugins\js\i18n\zh-CN.js" />
+    <Content Include="Plugins\js\i18n\zh-TW.js" />
+    <Content Include="Plugins\js\jquery-gauge.js" />
+    <Content Include="Plugins\js\jquery-gauge.min.js" />
+    <Content Include="Plugins\js\jquery.aCollapTable.js" />
+    <Content Include="Plugins\js\jquery.aCollapTable.min.js" />
+    <Content Include="Plugins\js\jquery.mockjax.js" />
+    <Content Include="Plugins\js\jquery.multi-select.js" />
+    <Content Include="Plugins\js\jquery.quicksearch.js" />
+    <Content Include="Plugins\js\mustache.js" />
+    <Content Include="Plugins\js\select2.full.js" />
+    <Content Include="Plugins\js\select2.full.min.js" />
+    <Content Include="Plugins\js\select2.js" />
+    <Content Include="Plugins\js\select2.min.js" />
+    <Content Include="Plugins\nested\grid.css" />
+    <Content Include="Plugins\nested\nestedGrid.js" />
+    <Content Include="Plugins\tabelizer\jquery-ui-1.10.4.custom.min.js" />
+    <Content Include="Plugins\tabelizer\jquery.tabelizer.js" />
+    <Content Include="Plugins\tabelizer\jquery.tabelizer.min.js" />
+    <Content Include="Plugins\tabelizer\tabelizer.css" />
+    <Content Include="Plugins\tabelizer\tabelizer.min.css" />
+    <Content Include="Relatorio_Colaboradores.aspx" />
+    <Content Include="Scripts\bootstrap.bundle.js" />
+    <Content Include="Scripts\bootstrap.bundle.min.js" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\esm\popper-utils.js" />
+    <Content Include="Scripts\esm\popper-utils.min.js" />
+    <Content Include="Scripts\esm\popper.js" />
+    <Content Include="Scripts\esm\popper.min.js" />
+    <Content Include="Scripts\index.js.flow" />
+    <Content Include="Scripts\esm\popper.min.js.map" />
+    <Content Include="Scripts\esm\popper.js.map" />
+    <Content Include="Scripts\esm\popper-utils.min.js.map" />
+    <Content Include="Scripts\esm\popper-utils.js.map" />
+    <Content Include="Scripts\bootstrap.min.js.map" />
+    <Content Include="Scripts\bootstrap.js.map" />
+    <Content Include="Scripts\bootstrap.bundle.min.js.map" />
+    <Content Include="Scripts\bootstrap.bundle.js.map" />
+    <Content Include="Content\bootstrap.min.css.map" />
+    <Content Include="Content\bootstrap.css.map" />
+    <Content Include="Content\bootstrap-reboot.min.css.map" />
+    <Content Include="Content\bootstrap-reboot.css.map" />
+    <Content Include="Content\bootstrap-grid.min.css.map" />
+    <Content Include="Content\bootstrap-grid.css.map" />
+    <Content Include="Plugins\css\fonts\footable.eot" />
+    <Content Include="Plugins\css\fonts\footable.ttf" />
+    <Content Include="Plugins\css\fonts\footable.woff" />
+    <Content Include="Content\bootstrap-theme.css.map" />
+    <Content Include="Content\bootstrap-theme.min.css.map" />
+    <Content Include="Scripts\offCanvas.js" />
+    <Content Include="Universo.aspx" />
+    <Content Include="Universos.aspx" />
+    <Content Include="WebForm1.aspx" />
+    <Content Include="_Header_CheckIn.ascx" />
+    <Content Include="_Header_Scripts.ascx" />
+    <Content Include="Master.Master" />
+    <Content Include="_Model.aspx" />
+    <None Include="My Project\PublishProfiles\chapeira - Web Deploy.pubxml" />
+    <None Include="My Project\PublishProfiles\FolderProfile.pubxml" />
+    <None Include="My Project\PublishProfiles\FTPchapeirabkp.pubxml" />
+    <None Include="My Project\PublishProfiles\FTPProfile.pubxml" />
+    <None Include="My Project\PublishProfiles\SRVDC1.pubxml" />
+    <None Include="Scripts\jquery-3.0.0-vsdoc.js" />
+    <Content Include="Scripts\jquery-3.0.0.js" />
+    <Content Include="Scripts\jquery-3.0.0.min.js" />
+    <Content Include="Scripts\jquery-3.0.0.slim.js" />
+    <Content Include="Scripts\jquery-3.0.0.slim.min.js" />
+    <Content Include="_Footer_Scripts.ascx" />
+    <Content Include="_Header_Buttons.ascx" />
+    <Content Include="_Header.ascx" />
+    <Content Include="Scripts\popper-utils.js" />
+    <Content Include="Scripts\popper-utils.min.js" />
+    <Content Include="Scripts\popper.js" />
+    <Content Include="Scripts\popper.min.js" />
+    <Content Include="Scripts\src\index.js" />
+    <Content Include="Scripts\src\methods\defaults.js" />
+    <Content Include="Scripts\src\methods\destroy.js" />
+    <Content Include="Scripts\src\methods\disableEventListeners.js" />
+    <Content Include="Scripts\src\methods\enableEventListeners.js" />
+    <Content Include="Scripts\src\methods\placements.js" />
+    <Content Include="Scripts\src\methods\update.js" />
+    <Content Include="Scripts\src\modifiers\applyStyle.js" />
+    <Content Include="Scripts\src\modifiers\arrow.js" />
+    <Content Include="Scripts\src\modifiers\computeStyle.js" />
+    <Content Include="Scripts\src\modifiers\flip.js" />
+    <Content Include="Scripts\src\modifiers\hide.js" />
+    <Content Include="Scripts\src\modifiers\index.js" />
+    <Content Include="Scripts\src\modifiers\inner.js" />
+    <Content Include="Scripts\src\modifiers\keepTogether.js" />
+    <Content Include="Scripts\src\modifiers\offset.js" />
+    <Content Include="Scripts\src\modifiers\preventOverflow.js" />
+    <Content Include="Scripts\src\modifiers\shift.js" />
+    <Content Include="Scripts\src\utils\clockwise.js" />
+    <Content Include="Scripts\src\utils\computeAutoPlacement.js" />
+    <Content Include="Scripts\src\utils\debounce.js" />
+    <Content Include="Scripts\src\utils\find.js" />
+    <Content Include="Scripts\src\utils\findCommonOffsetParent.js" />
+    <Content Include="Scripts\src\utils\findIndex.js" />
+    <Content Include="Scripts\src\utils\getBordersSize.js" />
+    <Content Include="Scripts\src\utils\getBoundaries.js" />
+    <Content Include="Scripts\src\utils\getBoundingClientRect.js" />
+    <Content Include="Scripts\src\utils\getClientRect.js" />
+    <Content Include="Scripts\src\utils\getFixedPositionOffsetParent.js" />
+    <Content Include="Scripts\src\utils\getOffsetParent.js" />
+    <Content Include="Scripts\src\utils\getOffsetRect.js" />
+    <Content Include="Scripts\src\utils\getOffsetRectRelativeToArbitraryNode.js" />
+    <Content Include="Scripts\src\utils\getOppositePlacement.js" />
+    <Content Include="Scripts\src\utils\getOppositeVariation.js" />
+    <Content Include="Scripts\src\utils\getOuterSizes.js" />
+    <Content Include="Scripts\src\utils\getParentNode.js" />
+    <Content Include="Scripts\src\utils\getPopperOffsets.js" />
+    <Content Include="Scripts\src\utils\getReferenceNode.js" />
+    <Content Include="Scripts\src\utils\getReferenceOffsets.js" />
+    <Content Include="Scripts\src\utils\getRoot.js" />
+    <Content Include="Scripts\src\utils\getRoundedOffsets.js" />
+    <Content Include="Scripts\src\utils\getScroll.js" />
+    <Content Include="Scripts\src\utils\getScrollParent.js" />
+    <Content Include="Scripts\src\utils\getStyleComputedProperty.js" />
+    <Content Include="Scripts\src\utils\getSupportedPropertyName.js" />
+    <Content Include="Scripts\src\utils\getViewportOffsetRectRelativeToArtbitraryNode.js" />
+    <Content Include="Scripts\src\utils\getWindow.js" />
+    <Content Include="Scripts\src\utils\getWindowSizes.js" />
+    <Content Include="Scripts\src\utils\includeScroll.js" />
+    <Content Include="Scripts\src\utils\index.js" />
+    <Content Include="Scripts\src\utils\isBrowser.js" />
+    <Content Include="Scripts\src\utils\isFixed.js" />
+    <Content Include="Scripts\src\utils\isFunction.js" />
+    <Content Include="Scripts\src\utils\isIE.js" />
+    <Content Include="Scripts\src\utils\isModifierEnabled.js" />
+    <Content Include="Scripts\src\utils\isModifierRequired.js" />
+    <Content Include="Scripts\src\utils\isNumeric.js" />
+    <Content Include="Scripts\src\utils\isOffsetContainer.js" />
+    <Content Include="Scripts\src\utils\removeEventListeners.js" />
+    <Content Include="Scripts\src\utils\runModifiers.js" />
+    <Content Include="Scripts\src\utils\setAttributes.js" />
+    <Content Include="Scripts\src\utils\setStyles.js" />
+    <Content Include="Scripts\src\utils\setupEventListeners.js" />
+    <Content Include="Scripts\umd\popper-utils.js" />
+    <Content Include="Scripts\umd\popper-utils.min.js" />
+    <Content Include="Scripts\umd\popper.js" />
+    <Content Include="Scripts\umd\popper.min.js" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Avisos.aspx.designer.vb">
+      <DependentUpon>Avisos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Avisos.aspx.vb">
+      <DependentUpon>Avisos.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="Avisos_Sonoros.aspx.designer.vb">
+      <DependentUpon>Avisos_Sonoros.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Avisos_Sonoros.aspx.vb">
+      <DependentUpon>Avisos_Sonoros.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CheckIn_Form.aspx.designer.vb">
+      <DependentUpon>CheckIn_Form.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CheckIn_Form.aspx.vb">
+      <DependentUpon>CheckIn_Form.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="CheckIn_Form_Terceiros.aspx.designer.vb">
+      <DependentUpon>CheckIn_Form_Terceiros.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CheckIn_Form_Terceiros.aspx.vb">
+      <DependentUpon>CheckIn_Form_Terceiros.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="CheckIn_List.aspx.designer.vb">
+      <DependentUpon>CheckIn_List.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CheckIn_List.aspx.vb">
+      <DependentUpon>CheckIn_List.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="CheckIn_List_Servicos.aspx.designer.vb">
+      <DependentUpon>CheckIn_List_Servicos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CheckIn_List_Servicos.aspx.vb">
+      <DependentUpon>CheckIn_List_Servicos.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="CheckIn_List_Terceiros.aspx.designer.vb">
+      <DependentUpon>CheckIn_List_Terceiros.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CheckIn_List_Terceiros.aspx.vb">
+      <DependentUpon>CheckIn_List_Terceiros.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CheckIn_List_Visitantes.aspx.designer.vb">
+      <DependentUpon>CheckIn_List_Visitantes.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CheckIn_List_Visitantes.aspx.vb">
+      <DependentUpon>CheckIn_List_Visitantes.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="CheckIn_Mobis.aspx.designer.vb">
+      <DependentUpon>CheckIn_Mobis.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CheckIn_Mobis.aspx.vb">
+      <DependentUpon>CheckIn_Mobis.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="CheckIn_Universos.aspx.designer.vb">
+      <DependentUpon>CheckIn_Universos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CheckIn_Universos.aspx.vb">
+      <DependentUpon>CheckIn_Universos.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="clsColaboradores.vb" />
+    <Compile Include="clsLojas.vb" />
+    <Compile Include="clsMaster.vb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="clsReports.vb" />
+    <Compile Include="clsTerceiros.vb" />
+    <Compile Include="clsUniversos.vb" />
+    <Compile Include="clsValidate.vb" />
+    <Compile Include="Colaborador.aspx.designer.vb">
+      <DependentUpon>Colaborador.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Colaborador.aspx.vb">
+      <DependentUpon>Colaborador.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="Colaboradores.aspx.designer.vb">
+      <DependentUpon>Colaboradores.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Colaboradores.aspx.vb">
+      <DependentUpon>Colaboradores.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="Colaboradores_Ativos.aspx.designer.vb">
+      <DependentUpon>Colaboradores_Ativos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Colaboradores_Ativos.aspx.vb">
+      <DependentUpon>Colaboradores_Ativos.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="Colaboradores_Inativos.aspx.designer.vb">
+      <DependentUpon>Colaboradores_Inativos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Colaboradores_Inativos.aspx.vb">
+      <DependentUpon>Colaboradores_Inativos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Colaboradores_Lista.aspx.designer.vb">
+      <DependentUpon>Colaboradores_Lista.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Colaboradores_Lista.aspx.vb">
+      <DependentUpon>Colaboradores_Lista.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="Colaboradores_Lista_Mensagem.aspx.designer.vb">
+      <DependentUpon>Colaboradores_Lista_Mensagem.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Colaboradores_Lista_Mensagem.aspx.vb">
+      <DependentUpon>Colaboradores_Lista_Mensagem.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="Colaboradores_Terceiros.aspx.designer.vb">
+      <DependentUpon>Colaboradores_Terceiros.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Colaboradores_Terceiros.aspx.vb">
+      <DependentUpon>Colaboradores_Terceiros.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="Colaboradores_Visitantes.aspx.designer.vb">
+      <DependentUpon>Colaboradores_Visitantes.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Colaboradores_Visitantes.aspx.vb">
+      <DependentUpon>Colaboradores_Visitantes.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="Colaborador_Terceiro.aspx.designer.vb">
+      <DependentUpon>Colaborador_Terceiro.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Colaborador_Terceiro.aspx.vb">
+      <DependentUpon>Colaborador_Terceiro.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="Colaborador_Visitante.aspx.designer.vb">
+      <DependentUpon>Colaborador_Visitante.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Colaborador_Visitante.aspx.vb">
+      <DependentUpon>Colaborador_Visitante.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="Contatos_Emergencia.aspx.designer.vb">
+      <DependentUpon>Contatos_Emergencia.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Contatos_Emergencia.aspx.vb">
+      <DependentUpon>Contatos_Emergencia.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="Contatos_Emergencia_Form.aspx.designer.vb">
+      <DependentUpon>Contatos_Emergencia_Form.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Contatos_Emergencia_Form.aspx.vb">
+      <DependentUpon>Contatos_Emergencia_Form.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="Contatos_Emergencia_Lista.aspx.designer.vb">
+      <DependentUpon>Contatos_Emergencia_Lista.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Contatos_Emergencia_Lista.aspx.vb">
+      <DependentUpon>Contatos_Emergencia_Lista.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="DashBoard.aspx.designer.vb">
+      <DependentUpon>DashBoard.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="DashBoard.aspx.vb">
+      <DependentUpon>DashBoard.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="DashBoard2.aspx.designer.vb">
+      <DependentUpon>DashBoard2.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="DashBoard2.aspx.vb">
+      <DependentUpon>DashBoard2.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="DashBoard_Detail.aspx.designer.vb">
+      <DependentUpon>DashBoard_Detail.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="DashBoard_Detail.aspx.vb">
+      <DependentUpon>DashBoard_Detail.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="DashBoard_Detail_Brigadistas.aspx.designer.vb">
+      <DependentUpon>DashBoard_Detail_Brigadistas.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="DashBoard_Detail_Brigadistas.aspx.vb">
+      <DependentUpon>DashBoard_Detail_Brigadistas.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="DashBoard_Detail_Colaboradores.aspx.designer.vb">
+      <DependentUpon>DashBoard_Detail_Colaboradores.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="DashBoard_Detail_Colaboradores.aspx.vb">
+      <DependentUpon>DashBoard_Detail_Colaboradores.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="DashBoard_Detail_Colaboradores_Data.aspx.designer.vb">
+      <DependentUpon>DashBoard_Detail_Colaboradores_Data.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="DashBoard_Detail_Colaboradores_Data.aspx.vb">
+      <DependentUpon>DashBoard_Detail_Colaboradores_Data.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="DashBoard_Detail_Formados.aspx.designer.vb">
+      <DependentUpon>DashBoard_Detail_Formados.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="DashBoard_Detail_Formados.aspx.vb">
+      <DependentUpon>DashBoard_Detail_Formados.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="DashBoard_Detail_Servicos.aspx.designer.vb">
+      <DependentUpon>DashBoard_Detail_Servicos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="DashBoard_Detail_Servicos.aspx.vb">
+      <DependentUpon>DashBoard_Detail_Servicos.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="Default.aspx.designer.vb">
+      <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Default.aspx.vb">
+      <DependentUpon>Default.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="Default_New.aspx.designer.vb">
+      <DependentUpon>Default_New.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Default_New.aspx.vb">
+      <DependentUpon>Default_New.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="Login.aspx.designer.vb">
+      <DependentUpon>Login.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Login.aspx.vb">
+      <DependentUpon>Login.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="Logout.aspx.designer.vb">
+      <DependentUpon>Logout.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Logout.aspx.vb">
+      <DependentUpon>Logout.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="Loja.aspx.designer.vb">
+      <DependentUpon>Loja.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Loja.aspx.vb">
+      <DependentUpon>Loja.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="Main.aspx.designer.vb">
+      <DependentUpon>Main.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Main.aspx.vb">
+      <DependentUpon>Main.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="Master.Master.designer.vb">
+      <DependentUpon>Master.Master</DependentUpon>
+    </Compile>
+    <Compile Include="Master.Master.vb">
+      <DependentUpon>Master.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Mobi.aspx.designer.vb">
+      <DependentUpon>Mobi.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Mobi.aspx.vb">
+      <DependentUpon>Mobi.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="Mobis.aspx.designer.vb">
+      <DependentUpon>Mobis.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Mobis.aspx.vb">
+      <DependentUpon>Mobis.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="My Project\AssemblyInfo.vb" />
+    <Compile Include="My Project\Application.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Application.myapp</DependentUpon>
+    </Compile>
+    <Compile Include="My Project\MyExtensions\MyWebExtension.vb">
+      <VBMyExtensionTemplateID>Microsoft.VisualBasic.Web.MyExtension</VBMyExtensionTemplateID>
+      <VBMyExtensionTemplateVersion>1.0.0.0</VBMyExtensionTemplateVersion>
+    </Compile>
+    <Compile Include="My Project\Resources.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="My Project\Settings.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="PageError.aspx.designer.vb">
+      <DependentUpon>PageError.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PageError.aspx.vb">
+      <DependentUpon>PageError.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="Password_Change.aspx.designer.vb">
+      <DependentUpon>Password_Change.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Password_Change.aspx.vb">
+      <DependentUpon>Password_Change.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="Plantas_Config.aspx.designer.vb">
+      <DependentUpon>Plantas_Config.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Plantas_Config.aspx.vb">
+      <DependentUpon>Plantas_Config.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="Planta_Loja.aspx.designer.vb">
+      <DependentUpon>Planta_Loja.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Planta_Loja.aspx.vb">
+      <DependentUpon>Planta_Loja.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="Relatorio_Colaboradores.aspx.designer.vb">
+      <DependentUpon>Relatorio_Colaboradores.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Relatorio_Colaboradores.aspx.vb">
+      <DependentUpon>Relatorio_Colaboradores.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="Universo.aspx.designer.vb">
+      <DependentUpon>Universo.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Universo.aspx.vb">
+      <DependentUpon>Universo.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="Universos.aspx.designer.vb">
+      <DependentUpon>Universos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Universos.aspx.vb">
+      <DependentUpon>Universos.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="WebForm1.aspx.designer.vb">
+      <DependentUpon>WebForm1.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WebForm1.aspx.vb">
+      <DependentUpon>WebForm1.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="_Footer_Scripts.ascx.designer.vb">
+      <DependentUpon>_Footer_Scripts.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="_Footer_Scripts.ascx.vb">
+      <DependentUpon>_Footer_Scripts.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="_Header.ascx.designer.vb">
+      <DependentUpon>_Header.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="_Header.ascx.vb">
+      <DependentUpon>_Header.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="_Header_Buttons.ascx.designer.vb">
+      <DependentUpon>_Header_Buttons.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="_Header_Buttons.ascx.vb">
+      <DependentUpon>_Header_Buttons.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="_Header_CheckIn.ascx.designer.vb">
+      <DependentUpon>_Header_CheckIn.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="_Header_CheckIn.ascx.vb">
+      <DependentUpon>_Header_CheckIn.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="_Header_Scripts.ascx.designer.vb">
+      <DependentUpon>_Header_Scripts.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="_Header_Scripts.ascx.vb">
+      <DependentUpon>_Header_Scripts.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="_Model.aspx.designer.vb">
+      <DependentUpon>_Model.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="_Model.aspx.vb">
+      <DependentUpon>_Model.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="My Project\Resources.resx">
+      <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.vb</LastGenOutput>
+      <CustomToolNamespace>My.Resources</CustomToolNamespace>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="My Project\Application.myapp">
+      <Generator>MyApplicationCodeGenerator</Generator>
+      <LastGenOutput>Application.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="My Project\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <CustomToolNamespace>My</CustomToolNamespace>
+      <LastGenOutput>Settings.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="packages.config" />
+    <Content Include="Scripts\umd\popper.min.js.map" />
+    <Content Include="Scripts\umd\popper.js.map" />
+    <Content Include="Scripts\umd\popper.js.flow" />
+    <Content Include="Scripts\umd\popper-utils.min.js.map" />
+    <Content Include="Scripts\umd\popper-utils.js.map" />
+    <Content Include="Scripts\README.md" />
+    <Content Include="Scripts\popper.min.js.map" />
+    <Content Include="Scripts\popper.js.map" />
+    <Content Include="Scripts\popper-utils.min.js.map" />
+    <Content Include="Scripts\popper-utils.js.map" />
+    <Content Include="Scripts\jquery-3.0.0.slim.min.map" />
+    <Content Include="Scripts\jquery-3.0.0.min.map" />
+    <None Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <TypeScriptCompile Include="Scripts\index.d.ts" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Images_Plantas\" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionExplicit>On</OptionExplicit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionCompare>Binary</OptionCompare>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionStrict>Off</OptionStrict>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionInfer>On</OptionInfer>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.VisualBasic.targets" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets')" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <SaveServerSettingsInUserFile>True</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>Este projeto faz referência a pacotes do NuGet que não estão presentes neste computador. Use a Restauração de Pacotes do NuGet para baixá-los.  Para obter mais informações, consulte http://go.microsoft.com/fwlink/?LinkID=322105. O arquivo ausente é {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

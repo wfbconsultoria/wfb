@@ -1,0 +1,37 @@
+﻿<%@ Master Language="VB" CodeFile="MasterPage.master.vb" Inherits="MasterPage" %>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title><%:ConfigurationManager.AppSettings("App.Name").ToString %></title>
+    <!-- Conteudo de scripts de cabeçalho na página filha -->
+    <asp:ContentPlaceHolder ID="HeadContent" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="frmMaster" runat="server">
+        <div>
+            <!-- Conteudo da pagina mestre -->
+            <h1><%:Page.Title %></h1>
+            <p>
+                <a href="../Default.aspx">Home</a>&nbsp 
+                <a href="../Pages/Support.aspx">Suporte</a>
+            </p>
+            <hr />
+
+            <!-- Conteudo da pagina filha -->
+            <asp:ContentPlaceHolder ID="BodyContent" runat="server">
+            </asp:ContentPlaceHolder>
+            <footer>
+                <hr />
+                <%:ConfigurationManager.AppSettings("App.Owner").ToString %></footer>
+        </div>
+
+        <!-- Conteudo de scripts de rodapé na página filha -->
+        <asp:ContentPlaceHolder ID="FooterContent" runat="server">
+        </asp:ContentPlaceHolder>
+    </form>
+</body>
+</html>
