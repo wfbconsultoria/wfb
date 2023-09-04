@@ -1,9 +1,0 @@
-﻿body {
-}
-._LIMITA_CELULA {
-    max-width: 100%;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: initial;
-    display: block
-}
