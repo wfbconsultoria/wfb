@@ -1,6 +1,6 @@
 ﻿'------------------------------------------------------------------------------
 ' <gerado automaticamente>
-'     Este código foi gerado por uma ferramenta.
+'     Esse código foi gerado por uma ferramenta.
 '
 '     As alterações ao arquivo poderão causar comportamento incorreto e serão perdidas se
 '     o código for recriado
@@ -18,7 +18,7 @@ Partial Public Class Register
     '''</summary>
     '''<remarks>
     '''Campo gerado automaticamente.
-    '''Modificar a declaração do campo de movimento do arquivo de designer para o arquivo code-behind.
+    '''Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
     '''</remarks>
     Protected WithEvents _Page_Header_Public As Global.BiHospitalar2020._Page_Header_Public
 
@@ -27,7 +27,7 @@ Partial Public Class Register
     '''</summary>
     '''<remarks>
     '''Campo gerado automaticamente.
-    '''Modificar a declaração do campo de movimento do arquivo de designer para o arquivo code-behind.
+    '''Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
     '''</remarks>
     Protected WithEvents PageMessage As Global.System.Web.UI.WebControls.Label
 
@@ -36,7 +36,7 @@ Partial Public Class Register
     '''</summary>
     '''<remarks>
     '''Campo gerado automaticamente.
-    '''Modificar a declaração do campo de movimento do arquivo de designer para o arquivo code-behind.
+    '''Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
     '''</remarks>
     Protected WithEvents Email As Global.System.Web.UI.WebControls.TextBox
 
@@ -45,7 +45,7 @@ Partial Public Class Register
     '''</summary>
     '''<remarks>
     '''Campo gerado automaticamente.
-    '''Modificar a declaração do campo de movimento do arquivo de designer para o arquivo code-behind.
+    '''Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
     '''</remarks>
     Protected WithEvents Document As Global.System.Web.UI.WebControls.TextBox
 
@@ -54,7 +54,7 @@ Partial Public Class Register
     '''</summary>
     '''<remarks>
     '''Campo gerado automaticamente.
-    '''Modificar a declaração do campo de movimento do arquivo de designer para o arquivo code-behind.
+    '''Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
     '''</remarks>
     Protected WithEvents Birth_Date As Global.System.Web.UI.WebControls.TextBox
 
@@ -63,7 +63,7 @@ Partial Public Class Register
     '''</summary>
     '''<remarks>
     '''Campo gerado automaticamente.
-    '''Modificar a declaração do campo de movimento do arquivo de designer para o arquivo code-behind.
+    '''Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
     '''</remarks>
     Protected WithEvents Name As Global.System.Web.UI.WebControls.TextBox
 
@@ -72,7 +72,7 @@ Partial Public Class Register
     '''</summary>
     '''<remarks>
     '''Campo gerado automaticamente.
-    '''Modificar a declaração do campo de movimento do arquivo de designer para o arquivo code-behind.
+    '''Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
     '''</remarks>
     Protected WithEvents Password As Global.System.Web.UI.WebControls.TextBox
 
@@ -81,7 +81,7 @@ Partial Public Class Register
     '''</summary>
     '''<remarks>
     '''Campo gerado automaticamente.
-    '''Modificar a declaração do campo de movimento do arquivo de designer para o arquivo code-behind.
+    '''Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
     '''</remarks>
     Protected WithEvents ConfirmPassword As Global.System.Web.UI.WebControls.TextBox
 
@@ -90,7 +90,7 @@ Partial Public Class Register
     '''</summary>
     '''<remarks>
     '''Campo gerado automaticamente.
-    '''Modificar a declaração do campo de movimento do arquivo de designer para o arquivo code-behind.
+    '''Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
     '''</remarks>
     Protected WithEvents cmdRegister As Global.System.Web.UI.WebControls.Button
 
@@ -99,7 +99,7 @@ Partial Public Class Register
     '''</summary>
     '''<remarks>
     '''Campo gerado automaticamente.
-    '''Modificar a declaração do campo de movimento do arquivo de designer para o arquivo code-behind.
+    '''Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
     '''</remarks>
     Protected WithEvents cmdValidate As Global.System.Web.UI.WebControls.Button
 
@@ -108,7 +108,7 @@ Partial Public Class Register
     '''</summary>
     '''<remarks>
     '''Campo gerado automaticamente.
-    '''Modificar a declaração do campo de movimento do arquivo de designer para o arquivo code-behind.
+    '''Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
     '''</remarks>
     Protected WithEvents cmdClear As Global.System.Web.UI.HtmlControls.HtmlInputReset
 End Class

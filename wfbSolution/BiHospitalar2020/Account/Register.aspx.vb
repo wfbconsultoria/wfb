@@ -4,8 +4,8 @@ Imports Microsoft.AspNet.Identity.Owin
 
 Partial Public Class Register
     Inherits Page
-    Dim m As New clsMaster
-    Dim u As New clsUsers
+    ReadOnly m As New clsMaster
+    ReadOnly u As New clsUsers
     Dim Status As String = "!"
     Private Sub Register_Load(sender As Object, e As EventArgs) Handles Me.Load
         If u.Authenticated Then u.Logout(True, "/Account/Register")
@@ -14,7 +14,6 @@ Partial Public Class Register
     End Sub
 
     Sub CreateUser_Click(sender As Object, e As EventArgs)
-
         Dim manager = Context.GetOwinContext().GetUserManager(Of ApplicationUserManager)()
         Dim signInManager = Context.GetOwinContext().Get(Of ApplicationSignInManager)()
         Dim user = New ApplicationUser() With {.UserName = Email.Text, .Email = Email.Text}
@@ -22,9 +21,9 @@ Partial Public Class Register
         If result.Succeeded Then
 
             'Customizado WFB verifica se o usuario esta registrado tb_Users e caso nao esteja inclui
-            If m.CheckExists("tb_Users", "Email", Email.Text) = False Then
-                m.ExecuteSQL("Delete From tb_Users  Where Email ='" & Email.Text & "'")
-                m.ExecuteSQL("Insert Into tb_Users (Email, Name, Birth_Date, Document, User_Status) Values ('" & Email.Text & "', '" & Name.Text & "', '" & Birth_Date.Text & "', '" & Document.Text & "', 'UnConfirmed')")
+            If m.CheckExists("sys_Users", "Email", Email.Text) = False Then
+                m.ExecuteSQL("Delete From sys_Users  Where Email ='" & Email.Text & "'")
+                m.ExecuteSQL("Insert Into sys_Users (Email, Name, Birth_Date, Document, User_Status) Values ('" & Email.Text & "', '" & Name.Text & "', '" & m.FormatDate(Birth_Date.Text) & "', '" & Document.Text & "', 'UnConfirmed')")
             End If
 
             ' Para obter mais informações sobre como habilitar a confirmação da conta e redefinição de senha, visite https://go.microsoft.com/fwlink/?LinkID=320771
@@ -33,15 +32,15 @@ Partial Public Class Register
 
             Dim confirmMessage As String
             confirmMessage = ""
-            confirmMessage = confirmMessage & "<h3>LEIA COM ATENÇÃO</h3>" & vbCrLf
-            confirmMessage = confirmMessage & " Declaro ser propriétário do e-mail " & user.UserName & " que será utilizado para registro e acesso ao site " & ConfigurationManager.AppSettings("App.Name").ToString & ".<br/>"
-            confirmMessage = confirmMessage & " Estou ciente de que minha senha é pessoal e intransferivel e só poderá ser recuperada ou alterada por mim através do email " & user.UserName & ".<br/>"
-            confirmMessage = confirmMessage & " Estou ciente de que todas as ações realizadas no site " & ConfigurationManager.AppSettings("App.Name").ToString & " serão registradas em log sob o email " & user.UserName & ".<br/>"
-            confirmMessage = confirmMessage & " Estou ciente de que todas as informações registradas neste site são de propriedade da " & ConfigurationManager.AppSettings("App.Customer").ToString & ".<br/>"
-            confirmMessage = confirmMessage & "<br/>"
-            confirmMessage = confirmMessage & " A sua senha definida durante registro é criptografada e nem os administradores e/ou usuários do " & ConfigurationManager.AppSettings("App.Name").ToString & " posssuem acesso.<br/>"
-            confirmMessage = confirmMessage & " Portanto todas as informações incluidas são de sua total responsabilidade quanto a veracidade.<br/>"
-            confirmMessage = confirmMessage & "<br/><br/>"
+            confirmMessage &= "<h3>LEIA COM ATENÇÃO</h3>" & vbCrLf
+            confirmMessage &= " Declaro ser propriétário do e-mail " & user.UserName & " que será utilizado para registro e acesso ao site " & ConfigurationManager.AppSettings("App.Name").ToString & ".<br/>"
+            confirmMessage &= " Estou ciente de que minha senha é pessoal e intransferivel e só poderá ser recuperada ou alterada por mim através do email " & user.UserName & ".<br/>"
+            confirmMessage &= " Estou ciente de que todas as ações realizadas no site " & ConfigurationManager.AppSettings("App.Name").ToString & " serão registradas em log sob o email " & user.UserName & ".<br/>"
+            confirmMessage &= " Estou ciente de que todas as informações registradas neste site são de propriedade da " & ConfigurationManager.AppSettings("App.Customer").ToString & ".<br/>"
+            confirmMessage &= "<br/>"
+            confirmMessage &= " A sua senha definida durante registro é criptografada e nem os administradores e/ou usuários do " & ConfigurationManager.AppSettings("App.Name").ToString & " posssuem acesso.<br/>"
+            confirmMessage &= " Portanto todas as informações incluidas são de sua total responsabilidade quanto a veracidade.<br/>"
+            confirmMessage &= "<br/><br/>"
 
             manager.SendEmail(user.Id, "Confirmar registro sua conta e propriedade do e-mail", confirmMessage & " Confirme se realmente é proprietário do e-mail " & user.UserName & " e está ciente <br/><br/><a href=""" & callbackUrl & """>Confirmo a propriedade do referido e-mail e estou ciente </a>.")
             'Faz login automatico desabiltiado por WFB

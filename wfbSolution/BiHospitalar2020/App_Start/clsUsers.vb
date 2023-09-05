@@ -28,39 +28,39 @@ Public Class clsUsers
 
 
     'Propriedades de Perfil (view_Users)
-    Public Property UserId() As String = "" 'view_Users.Id
-    Public Property UserName() As String = "" 'view_Users.Name
-    Public Property UserEmail() As String = "" 'view_Users.Email
-    Public Property UserEmailConfirmed() As Boolean = False 'view_Users.[AspNetUsers.EmailConfirmed]
-    Public Property UserCountry_Code() As String = "" 'view_Users.Country_Code
-    Public Property UserProfile_Code() As String = "" 'view_Users.User_Profile_Code
-    Public Property UserProfile() As String = "" 'view_Users.User_Profile
-    Public Property UserStatus() As String = "" 'view_Users.User_Status
-    Public Property UserStatusDescription() As String = "" 'view_Users.Status_Description
-    Public Property UserDocument() As String = "" 'view_Users.[Document]
-    Public Property UserBirth_Date() As String = "" 'view_Users.Birth_Date
-    Public Property UserPhone() As String = "" 'view_Users.Phone
-    Public Property UserMobile() As String = "" 'view_Users.Mobile
-    Public Property UserWhatsApp() As String = "" 'view_Users.WhatsApp
-    Public Property UserAddress_ZIP() As String = "" 'view_Users.Address_ZIP
-    Public Property UserAddress() As String = "" 'view_Users.Address
-    Public Property UserAddress_Number() As String = "" 'view_Users.Address_Number
-    Public Property UserAddress_Complement() As String = "" 'view_Users.Address_Complement
-    Public Property UserAddress_District() As String = "" 'view_Users.Address_District
-    Public Property UserAddress_City() As String = "" 'view_Users.Address_City
-    Public Property UserAddress_City_Code() As String = "" 'view_Users.Address_City_Code
-    Public Property UserAddress_State() As String = "" 'view_Users.Address_State
-    Public Property UserAddress_State_Code() As String = "" 'view_Users.Address_State_Code
-    Public Property UserAddress_Country() As String = "" 'view_Users.Address_Country
-    Public Property UserNotes() As String = "" 'view_Users.Notes
-    Public Property UserLogged() As Boolean = False 'view_Users.Login
-    Public Property UserLogged_Date() As String = "" 'view_Users.Login_Date
-    Public Property UserActive() As Boolean = False 'view_Users.Active
-    Public Property UserShow() As Boolean = False 'view_Users.Show
-    Public Property UserLocked() As Boolean = True 'view_Users.Locked
-    Public Property UserDeleted() As Boolean = False 'view_Users.Deleted
-    Public Property Profile_Updated() As Boolean = False 'view_Users.Profile_Updated
-    Public Property Profile_Registered() As Boolean = False 'verifica se o usuário está cadastrado na tabela tb_Users 
+    Public Property UserId() As String = "" 'sys_vw_Users.User_Id
+    Public Property UserName() As String = "" 'sys_vw_Users.Name
+    Public Property UserEmail() As String = "" 'sys_vw_Users.Email
+    Public Property UserEmailConfirmed() As Boolean = False 'sys_vw_Users.[AspNetUsers.EmailConfirmed]
+    Public Property UserCountry_Code() As String = "" 'sys_vw_Users.Country_Code
+    Public Property UserProfile_Code() As String = "" 'sys_vw_Users.User_Profile_Code
+    Public Property UserProfile() As String = "" 'sys_vw_Users.User_Profile
+    Public Property UserStatus() As String = "" 'sys_vw_Users.User_Status
+    Public Property UserStatusDescription() As String = "" 'sys_vw_Users.Status_Description
+    Public Property UserDocument() As String = "" 'sys_vw_Users.[Document]
+    Public Property UserBirth_Date() As String = "" 'sys_vw_Users.Birth_Date
+    Public Property UserPhone() As String = "" 'sys_vw_Users.Phone
+    Public Property UserMobile() As String = "" 'sys_vw_Users.Mobile
+    Public Property UserWhatsApp() As String = "" 'sys_vw_Users.WhatsApp
+    Public Property UserAddress_ZIP() As String = "" 'sys_vw_Users.Address_ZIP
+    Public Property UserAddress() As String = "" 'sys_vw_Users.Address
+    Public Property UserAddress_Number() As String = "" 'sys_vw_Users.Address_Number
+    Public Property UserAddress_Complement() As String = "" 'sys_vw_Users.Address_Complement
+    Public Property UserAddress_District() As String = "" 'sys_vw_Users.Address_District
+    Public Property UserAddress_City() As String = "" 'sys_vw_Users.Address_City
+    Public Property UserAddress_City_Code() As String = "" 'sys_vw_Users.Address_City_Code
+    Public Property UserAddress_State() As String = "" 'sys_vw_Users.Address_State
+    Public Property UserAddress_State_Code() As String = "" 'sys_vw_Users.Address_State_Code
+    Public Property UserAddress_Country() As String = "" 'sys_vw_Users.Address_Country
+    Public Property UserNotes() As String = "" 'sys_vw_Users.Notes
+    Public Property UserLogged() As Boolean = False 'sys_vw_Users.Login
+    Public Property UserLogged_Date() As String = "" 'sys_vw_Users.Login_Date
+    Public Property UserActive() As Boolean = False 'sys_vw_Users.Active
+    Public Property UserShow() As Boolean = False 'sys_vw_Users.Show
+    Public Property UserLocked() As Boolean = True 'sys_vw_Users.Locked
+    Public Property UserDeleted() As Boolean = False 'sys_vw_Users.Deleted
+    Public Property Profile_Updated() As Boolean = False 'sys_vw_Users.Profile_Updated
+    Public Property Profile_Registered() As Boolean = False 'verifica se o usuário está cadastrado na tabela sys_Users 
     Public Function CheckAccess() As String
         CheckAccess = ""
         If Authenticated = False Then
@@ -116,9 +116,9 @@ Public Class clsUsers
                 If dtr_Logged.HasRows Then
                     dtr_Logged.Read()
                     LoggedName = dtr_Logged("Name")
-                    'LoggedRegistered = True
-                    'LoggedActive = dtr_Logged("Active")
-                    'LoggedLocked = dtr_Logged("Locked")
+                    LoggedRegistered = True
+                    LoggedActive = dtr_Logged("Active")
+                    LoggedLocked = dtr_Logged("Locked")
                     LoggedStatus = dtr_Logged("User_Status")
                     LoggedStatusDescription = dtr_Logged("Status_Description")
                     LoggedProfile = dtr_Logged("User_Profile")
@@ -134,14 +134,12 @@ Public Class clsUsers
                             SQL_DOCTORS = "Select * From vw_Doctors Where Doctor_Code = 0"
                         Case = "001" 'Administrador
                             SQL_DOCTORS = "Select * From vw_Doctors Order By Doctor_Name"
-                        Case = "002" ' Gerente
+                        Case = "002" ' Diretor
                             SQL_DOCTORS = "Select * From vw_Doctors Order By Doctor_Name"
-                        Case = "003" 'Representante
+                        Case = "003" ' Gerente
+                            SQL_DOCTORS = "Select * From vw_Doctors Order By Doctor_Name"
+                        Case = "004" 'Representante
                             SQL_DOCTORS = "Select * From vw_Doctors Where Account_Executive_Email = '" & LoggedEmail & "' Order By Doctor_Name"
-                        Case = "010" 'Medico
-                            SQL_DOCTORS = "Select * From vw_Doctors Where Doctor_Code = 0"
-                        Case = "100" 'Paciente
-                            SQL_DOCTORS = "Select * From vw_Doctors Where Doctor_Code = 0"
                     End Select
                 End If
             End If
@@ -164,9 +162,9 @@ Public Class clsUsers
             Dim cmd_User As System.Data.SqlClient.SqlCommand = cnn_User.CreateCommand
 
             'Recupera Informações da tabela ApsNetUsers
-            Dim sql_User As String = "Select * From vw_Users Where Email ='" & LoggedEmail & "'" ' recupera do usuário logado
-            If GetByEmail <> "" Then sql_User = "Select * From vw_Users Where Email ='" & GetByEmail & "'"
-            If GetByDocument <> "" Then sql_User = "Select * From vw_Users Where Document ='" & GetByDocument & "'"
+            Dim sql_User As String = "Select * From sys_vw_Users Where Email ='" & LoggedEmail & "'" ' recupera do usuário logado
+            If GetByEmail <> "" Then sql_User = "Select * From sys_vw_Users Where Email ='" & GetByEmail & "'"
+            If GetByDocument <> "" Then sql_User = "Select * From sys_vw_Users Where Document ='" & GetByDocument & "'"
 
             Dim dtr_User As System.Data.SqlClient.SqlDataReader
             cmd_User.CommandText = sql_User
@@ -175,7 +173,7 @@ Public Class clsUsers
                 GetUserInfos = True
                 dtr_User.Read()
                 'Propriedades de Perfil (view_Users)
-                UserId = IIf(IsDBNull(dtr_User("Id")), "", dtr_User("Id").ToString)
+                UserId = IIf(IsDBNull(dtr_User("User_Id")), "", dtr_User("User_Id").ToString)
                 UserName = IIf(IsDBNull(dtr_User("Name")), "", dtr_User("Name").ToString)
                 UserEmail = IIf(IsDBNull(dtr_User("Email")), "", dtr_User("Email").ToString)
                 UserEmailConfirmed = IIf(IsDBNull(dtr_User("AspNetUsers.EmailConfirmed")), False, dtr_User("AspNetUsers.EmailConfirmed"))
@@ -200,14 +198,14 @@ Public Class clsUsers
                 UserAddress_State_Code = IIf(IsDBNull(dtr_User("Address_State_Code")), "", dtr_User("Address_State_Code").ToString)
                 UserAddress_Country = IIf(IsDBNull(dtr_User("Address_Country")), "", dtr_User("Address_Country").ToString)
                 UserNotes = IIf(IsDBNull(dtr_User("Notes")), "", dtr_User("Notes").ToString)
-                UserLogged = IIf(IsDBNull(dtr_User("Login")), False, dtr_User("Login"))
-                UserLogged_Date = IIf(IsDBNull(dtr_User("Login_Date")), "", dtr_User("Login_Date"))
-                'UserActive = dtr_User("Active")
-                'UserShow = dtr_User("Show")
-                'UserLocked = dtr_User("Locked")
-                'UserDeleted = dtr_User("Deleted")
-                'Profile_Updated = dtr_User("Profile_Updated")
-                'Profile_Registered = True
+                UserLogged = IIf(IsDBNull(dtr_User("Logged")), False, dtr_User("Logged"))
+                UserLogged_Date = IIf(IsDBNull(dtr_User("Logged_Date")), "", dtr_User("Logged_Date"))
+                UserActive = dtr_User("Active")
+                UserShow = dtr_User("Show")
+                UserLocked = dtr_User("Locked")
+                UserDeleted = dtr_User("Deleted")
+                Profile_Updated = dtr_User("Profile_Updated")
+                Profile_Registered = dtr_User("Profile_Registered")
                 GetUserInfos = True
             Else
                 GetUserInfos = False
@@ -224,7 +222,7 @@ Public Class clsUsers
         CheckUserDocument = "UnRegistered"
         Try
             Dim dtr_Document As System.Data.SqlClient.SqlDataReader
-            dtr_Document = m.ExecuteSelect("Select Document From tb_Users Where Document = '" & StrDocument & "'")
+            dtr_Document = m.ExecuteSelect("Select Document From sys_Users Where Document = '" & StrDocument & "'")
             If dtr_Document.HasRows Then CheckUserDocument = "Registered"
         Catch ex As Exception
             CheckUserDocument = "Failed"

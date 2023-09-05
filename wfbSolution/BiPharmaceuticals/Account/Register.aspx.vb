@@ -57,6 +57,7 @@ Partial Public Class Register
     End Sub
 
     Sub Validate_User(sender As Object, e As EventArgs)
+        m.DatabaseConnect()
         If ValidateEmail() = False Then Exit Sub
         If ValidateDocument() = False Then Exit Sub
         FormManager("ValidateOK")

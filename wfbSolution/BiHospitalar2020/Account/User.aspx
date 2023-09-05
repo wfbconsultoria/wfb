@@ -201,7 +201,7 @@
     </div>
 
     <div class="form-row">
-        <%-- Atendido por--%>
+        <%-- liberado por--%>
         <div class="form-group col-sm-6">
             <label>Liberado por</label>
              <asp:DropDownList ID="cmb_User_Administrator" runat="server" CssClass="form-control" DataSourceID="dts_Users_Administrators" DataTextField="Name" DataValueField="Email"></asp:DropDownList>

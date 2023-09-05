@@ -1,6 +1,6 @@
 ﻿'------------------------------------------------------------------------------
 ' <gerado automaticamente>
-'     Este código foi gerado por uma ferramenta.
+'     Esse código foi gerado por uma ferramenta.
 '
 '     As alterações ao arquivo poderão causar comportamento incorreto e serão perdidas se
 '     o código for recriado
@@ -18,7 +18,7 @@ Partial Public Class User
     '''</summary>
     '''<remarks>
     '''Campo gerado automaticamente.
-    '''Modificar a declaração do campo de movimento do arquivo de designer para o arquivo code-behind.
+    '''Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
     '''</remarks>
     Protected WithEvents dts_Users_Status As Global.System.Web.UI.WebControls.SqlDataSource
 
@@ -27,7 +27,7 @@ Partial Public Class User
     '''</summary>
     '''<remarks>
     '''Campo gerado automaticamente.
-    '''Modificar a declaração do campo de movimento do arquivo de designer para o arquivo code-behind.
+    '''Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
     '''</remarks>
     Protected WithEvents dts_Users_Profiles As Global.System.Web.UI.WebControls.SqlDataSource
 
@@ -36,7 +36,7 @@ Partial Public Class User
     '''</summary>
     '''<remarks>
     '''Campo gerado automaticamente.
-    '''Modificar a declaração do campo de movimento do arquivo de designer para o arquivo code-behind.
+    '''Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
     '''</remarks>
     Protected WithEvents dts_Users_Administrators As Global.System.Web.UI.WebControls.SqlDataSource
 
@@ -45,7 +45,7 @@ Partial Public Class User
     '''</summary>
     '''<remarks>
     '''Campo gerado automaticamente.
-    '''Modificar a declaração do campo de movimento do arquivo de designer para o arquivo code-behind.
+    '''Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
     '''</remarks>
     Protected WithEvents cmb_User_Status As Global.System.Web.UI.WebControls.DropDownList
 
@@ -54,7 +54,7 @@ Partial Public Class User
     '''</summary>
     '''<remarks>
     '''Campo gerado automaticamente.
-    '''Modificar a declaração do campo de movimento do arquivo de designer para o arquivo code-behind.
+    '''Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
     '''</remarks>
     Protected WithEvents cmb_User_Profile_Code As Global.System.Web.UI.WebControls.DropDownList
 
@@ -63,7 +63,7 @@ Partial Public Class User
     '''</summary>
     '''<remarks>
     '''Campo gerado automaticamente.
-    '''Modificar a declaração do campo de movimento do arquivo de designer para o arquivo code-behind.
+    '''Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
     '''</remarks>
     Protected WithEvents txt_Name As Global.System.Web.UI.HtmlControls.HtmlInputText
 
@@ -72,7 +72,7 @@ Partial Public Class User
     '''</summary>
     '''<remarks>
     '''Campo gerado automaticamente.
-    '''Modificar a declaração do campo de movimento do arquivo de designer para o arquivo code-behind.
+    '''Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
     '''</remarks>
     Protected WithEvents txt_Email As Global.System.Web.UI.HtmlControls.HtmlInputGenericControl
 
@@ -81,7 +81,7 @@ Partial Public Class User
     '''</summary>
     '''<remarks>
     '''Campo gerado automaticamente.
-    '''Modificar a declaração do campo de movimento do arquivo de designer para o arquivo code-behind.
+    '''Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
     '''</remarks>
     Protected WithEvents txt_Birth_Date As Global.System.Web.UI.HtmlControls.HtmlInputText
 
@@ -90,7 +90,7 @@ Partial Public Class User
     '''</summary>
     '''<remarks>
     '''Campo gerado automaticamente.
-    '''Modificar a declaração do campo de movimento do arquivo de designer para o arquivo code-behind.
+    '''Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
     '''</remarks>
     Protected WithEvents txt_Document As Global.System.Web.UI.HtmlControls.HtmlInputText
 
@@ -99,7 +99,7 @@ Partial Public Class User
     '''</summary>
     '''<remarks>
     '''Campo gerado automaticamente.
-    '''Modificar a declaração do campo de movimento do arquivo de designer para o arquivo code-behind.
+    '''Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
     '''</remarks>
     Protected WithEvents txt_Phone As Global.System.Web.UI.HtmlControls.HtmlInputText
 
@@ -108,7 +108,7 @@ Partial Public Class User
     '''</summary>
     '''<remarks>
     '''Campo gerado automaticamente.
-    '''Modificar a declaração do campo de movimento do arquivo de designer para o arquivo code-behind.
+    '''Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
     '''</remarks>
     Protected WithEvents txt_Mobile As Global.System.Web.UI.HtmlControls.HtmlInputText
 
@@ -117,7 +117,7 @@ Partial Public Class User
     '''</summary>
     '''<remarks>
     '''Campo gerado automaticamente.
-    '''Modificar a declaração do campo de movimento do arquivo de designer para o arquivo code-behind.
+    '''Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
     '''</remarks>
     Protected WithEvents txt_WhatsApp As Global.System.Web.UI.HtmlControls.HtmlInputText
 
@@ -126,7 +126,7 @@ Partial Public Class User
     '''</summary>
     '''<remarks>
     '''Campo gerado automaticamente.
-    '''Modificar a declaração do campo de movimento do arquivo de designer para o arquivo code-behind.
+    '''Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
     '''</remarks>
     Protected WithEvents txt_Address_ZIP As Global.System.Web.UI.HtmlControls.HtmlInputText
 
@@ -135,7 +135,7 @@ Partial Public Class User
     '''</summary>
     '''<remarks>
     '''Campo gerado automaticamente.
-    '''Modificar a declaração do campo de movimento do arquivo de designer para o arquivo code-behind.
+    '''Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
     '''</remarks>
     Protected WithEvents cmd_ConsultaCEP As Global.System.Web.UI.HtmlControls.HtmlInputButton
 
@@ -144,7 +144,7 @@ Partial Public Class User
     '''</summary>
     '''<remarks>
     '''Campo gerado automaticamente.
-    '''Modificar a declaração do campo de movimento do arquivo de designer para o arquivo code-behind.
+    '''Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
     '''</remarks>
     Protected WithEvents txt_Address As Global.System.Web.UI.HtmlControls.HtmlInputText
 
@@ -153,7 +153,7 @@ Partial Public Class User
     '''</summary>
     '''<remarks>
     '''Campo gerado automaticamente.
-    '''Modificar a declaração do campo de movimento do arquivo de designer para o arquivo code-behind.
+    '''Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
     '''</remarks>
     Protected WithEvents txt_Address_Number As Global.System.Web.UI.HtmlControls.HtmlInputText
 
@@ -162,7 +162,7 @@ Partial Public Class User
     '''</summary>
     '''<remarks>
     '''Campo gerado automaticamente.
-    '''Modificar a declaração do campo de movimento do arquivo de designer para o arquivo code-behind.
+    '''Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
     '''</remarks>
     Protected WithEvents txt_Address_Complement As Global.System.Web.UI.HtmlControls.HtmlInputText
 
@@ -171,7 +171,7 @@ Partial Public Class User
     '''</summary>
     '''<remarks>
     '''Campo gerado automaticamente.
-    '''Modificar a declaração do campo de movimento do arquivo de designer para o arquivo code-behind.
+    '''Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
     '''</remarks>
     Protected WithEvents txt_Address_District As Global.System.Web.UI.HtmlControls.HtmlInputText
 
@@ -180,7 +180,7 @@ Partial Public Class User
     '''</summary>
     '''<remarks>
     '''Campo gerado automaticamente.
-    '''Modificar a declaração do campo de movimento do arquivo de designer para o arquivo code-behind.
+    '''Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
     '''</remarks>
     Protected WithEvents txt_Address_City As Global.System.Web.UI.HtmlControls.HtmlInputText
 
@@ -189,7 +189,7 @@ Partial Public Class User
     '''</summary>
     '''<remarks>
     '''Campo gerado automaticamente.
-    '''Modificar a declaração do campo de movimento do arquivo de designer para o arquivo code-behind.
+    '''Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
     '''</remarks>
     Protected WithEvents txt_Address_State As Global.System.Web.UI.HtmlControls.HtmlInputText
 
@@ -198,7 +198,7 @@ Partial Public Class User
     '''</summary>
     '''<remarks>
     '''Campo gerado automaticamente.
-    '''Modificar a declaração do campo de movimento do arquivo de designer para o arquivo code-behind.
+    '''Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
     '''</remarks>
     Protected WithEvents txt_Address_Country As Global.System.Web.UI.HtmlControls.HtmlInputText
 
@@ -207,7 +207,7 @@ Partial Public Class User
     '''</summary>
     '''<remarks>
     '''Campo gerado automaticamente.
-    '''Modificar a declaração do campo de movimento do arquivo de designer para o arquivo code-behind.
+    '''Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
     '''</remarks>
     Protected WithEvents txt_Notes As Global.System.Web.UI.HtmlControls.HtmlTextArea
 
@@ -216,7 +216,7 @@ Partial Public Class User
     '''</summary>
     '''<remarks>
     '''Campo gerado automaticamente.
-    '''Modificar a declaração do campo de movimento do arquivo de designer para o arquivo code-behind.
+    '''Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
     '''</remarks>
     Protected WithEvents cmb_User_Administrator As Global.System.Web.UI.WebControls.DropDownList
 
@@ -225,7 +225,7 @@ Partial Public Class User
     '''</summary>
     '''<remarks>
     '''Campo gerado automaticamente.
-    '''Modificar a declaração do campo de movimento do arquivo de designer para o arquivo code-behind.
+    '''Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
     '''</remarks>
     Protected WithEvents txt_Insert_Date As Global.System.Web.UI.HtmlControls.HtmlInputText
 
@@ -234,7 +234,7 @@ Partial Public Class User
     '''</summary>
     '''<remarks>
     '''Campo gerado automaticamente.
-    '''Modificar a declaração do campo de movimento do arquivo de designer para o arquivo code-behind.
+    '''Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
     '''</remarks>
     Protected WithEvents txt_Last_Login_Date As Global.System.Web.UI.HtmlControls.HtmlInputText
 
@@ -243,7 +243,7 @@ Partial Public Class User
     '''</summary>
     '''<remarks>
     '''Campo gerado automaticamente.
-    '''Modificar a declaração do campo de movimento do arquivo de designer para o arquivo code-behind.
+    '''Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
     '''</remarks>
     Protected WithEvents cmd_Save As Global.System.Web.UI.HtmlControls.HtmlInputSubmit
 End Class

@@ -6,6 +6,7 @@ Partial Public Class Login
     ReadOnly m As New clsMaster
     ReadOnly u As New clsUsers
     Protected Sub Page_Load(sender As Object, e As EventArgs) Handles Me.Load
+
         RegisterHyperLink.NavigateUrl = "Register"
         ' Ativar quando tiver a confirmação da conta habilitada para a funcionalidade de redefinição de senha
         ForgotPasswordHyperLink.NavigateUrl = "Forgot"

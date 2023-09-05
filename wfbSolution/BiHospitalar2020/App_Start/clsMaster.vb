@@ -186,6 +186,20 @@ Err_CheckExists:
         End If
         ConvertText = Trim(Text)
     End Function
+    Public Function FormatDate(ByVal TextDate As String) As String
+        'passar sempre a data no formato dd/mm/aaaa para converter para yyyy-mm-dd (sql server)
+        Try
+            FormatDate = ""
+            If IsDBNull(TextDate) Then
+                FormatDate = "1900-01-01"
+            Else
+                FormatDate = Right(TextDate, 4) & "-" & Mid(TextDate, 4, 2) & "-" & Left(TextDate, 2)
+            End If
+        Catch ex As Exception
+            FormatDate = "1900-01-01"
+        End Try
+    End Function
+
     Public Enum TextCaseOptions
         UpperCase
         LowerCase
@@ -193,27 +207,57 @@ Err_CheckExists:
     End Enum
     Public Function SendMail(MailToAddress As String, MailToName As String, MailSubject As String, MailMessage As String) As Boolean
         On Error GoTo Err_SendMail
-        SendMail = False
 
-        Dim credentials = New NetworkCredential(ConfigurationManager.AppSettings("App.SMTP.user").ToString, ConfigurationManager.AppSettings("App.SMTP.password").ToString)
-        Dim smtp = New SmtpClient
-        Dim msgFrom As New MailAddress(ConfigurationManager.AppSettings("App.Support.Email").ToString, ConfigurationManager.AppSettings("App.Support.Name").ToString)
+        'Assunto
+        MailSubject = ConvertText(MailSubject, TextCaseOptions.UpperCase)
+
+        'Assinatura'
+        Dim MailKey As String = GenerateKey().ToString()
+        Dim MailSignature As String
+        MailSignature = ""
+        MailSignature &= "<hr/>"
+        MailSignature &= "<h3>" & ConfigurationManager.AppSettings("App.Support.Name").ToString & " (" & ConfigurationManager.AppSettings("App.Support.Email").ToString & ")</h3>"
+        MailSignature &= "<p> Chave de identificação: " & MailKey & "</p>"
+        MailSignature &= "<p> Mensagem automática, por favor, não responda</p>"
+
+        'Mensagem
+        MailMessage = ConvertText(MailMessage, TextCaseOptions.TextCase)
+        Dim MailFromAddress As String = ConfigurationManager.AppSettings("App.Support.Email").ToString
+        Dim MailFromName As String = ConfigurationManager.AppSettings("App.Support.Name").ToString
+        Dim msgFrom As New MailAddress(MailFromAddress, MailFromName)
         Dim msgTo As New MailAddress(MailToAddress, MailToName)
         Dim msg As New MailMessage(msgFrom, msgTo)
+        msg.Subject = MailSubject
+        msg.IsBodyHtml = True
+        msg.Body = "<h3>" & MailSubject & "</h3> <p>" & MailMessage & "</p>" & MailSignature
 
+        'SMTP
+        Dim smtp = New SmtpClient
+        Dim credentials = New NetworkCredential(ConfigurationManager.AppSettings("App.SMTP.user").ToString, ConfigurationManager.AppSettings("App.SMTP.password").ToString)
         smtp.Host = ConfigurationManager.AppSettings("App.SMTP.host").ToString
         smtp.DeliveryMethod = SmtpDeliveryMethod.Network
         smtp.UseDefaultCredentials = False
         smtp.Port = ConfigurationManager.AppSettings("App.SMTP.port")
         smtp.Credentials = credentials
-
-        msg.Subject = MailSubject
-        msg.IsBodyHtml = True
-        msg.Body = "<h2>" & MailSubject & "</h2> <br/> <h3>" & MailMessage & "</h3>"
-
+        smtp.EnableSsl = True
         smtp.Send(msg)
 
         SendMail = True
+
+        'Grava na tb_Log_Email
+        'Dim sql_Email = ""
+        'sql_Email &= " INSERT INTO [tb_Log_Email] "
+        'sql_Email &= " ([EmailFrom], [NameFrom], [EmailTo], [NameTo], [Subject], [Message],[EmailKey]) "
+        'sql_Email &= "VALUES ( "
+        'sql_Email &= " '" & MailFromAddress & "', "
+        'sql_Email &= " '" & MailFromName & "', "
+        'sql_Email &= " '" & MailToAddress & "', "
+        'sql_Email &= " '" & MailToName & "', "
+        'sql_Email &= " '" & MailSubject & "', "
+        'sql_Email &= " '" & MailMessage & "', "
+        'sql_Email &= " '" & MailKey & "') "
+        'ExecuteSQL(sql_Email)
+
         Exit Function
 Err_SendMail:
         SendMail = False
@@ -245,7 +289,7 @@ Err_Alert:
     End Function
     Public Function ConsultaPessoaFisicaSimplificada(ByVal Documento As String, ByVal DataNascimento As String) As svcCDC.PessoaFisicaSimplificada
         Dim pf As New svcCDC.PessoaFisicaSimplificada
-        Dim credenciais As New svcCDC.Credenciais With {.Email = "miro@wfbconsultoria.com.br", .Senha = "mepm2412!"}
+        Dim credenciais As New svcCDC.Credenciais With {.Email = "miro@wfbconsultoria.com.br", .Senha = "@Mepm2412"}
         Dim wsPessoaFisicaSimplificada As New svcCDC.CDC
 
         Try

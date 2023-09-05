@@ -82,7 +82,7 @@
         <br />
         <footer>
             <hr />
-            <div class="container text-center"><span class="text-muted">&copy; <%: DateTime.Now.Year %> WFB Tecnologia - Bi Pharmaceuticals (public)</span></div>
+            <div class="container text-center"><span class="text-muted">&copy; <%: DateTime.Now.Year %> WFB Tecnologia</span></div>
             <br />
         </footer>
 
