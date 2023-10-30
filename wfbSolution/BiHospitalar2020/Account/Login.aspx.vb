@@ -46,8 +46,8 @@ Partial Public Class Login
                     sql = sql & "'" & LogBrowser & "', "
                     sql = sql & "'LogIn', "
                     sql = sql & "'" & u.UserStatus & "') "
-                    m.ExecuteSQL(sql)
-                    m.ExecuteSQL("Update tb_Users Set Login = 1, LogOut = 0, Login_Date = '" & LogDate & "', Login_Ip = '" & LogIP & "', Login_Session = '" & LogSession & "', Login_Browser = '" & LogBrowser & "', Login_Location = '" & LogLocation & "' Where Email = '" & Email.Text & "'")
+                    'm.ExecuteSQL(sql)
+                    'm.ExecuteSQL("Update tb_Users Set Login = 1, LogOut = 0, Login_Date = '" & LogDate & "', Login_Ip = '" & LogIP & "', Login_Session = '" & LogSession & "', Login_Browser = '" & LogBrowser & "', Login_Location = '" & LogLocation & "' Where Email = '" & Email.Text & "'")
                     m.Alert(Me, u.UserName & " Login efetuado com sucesso em " & m.GetDateTimeToString, True, "../Default")
                     Exit Select
                 Case SignInStatus.LockedOut

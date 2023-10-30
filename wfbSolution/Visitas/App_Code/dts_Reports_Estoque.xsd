@@ -1,0 +1,113 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="dts_Reports_Estoque" targetNamespace="http://tempuri.org/dts_Reports_Estoque.xsd" xmlns:mstns="http://tempuri.org/dts_Reports_Estoque.xsd" xmlns="http://tempuri.org/dts_Reports_Estoque.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="Web.config" AppSettingsPropertyName="cnnStr" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="cnnStr (Web.config)" ParameterPrefix="@" PropertyReference="AppConfig.System.Configuration.ConfigurationManager.0.ConnectionStrings.cnnStr.ConnectionString" Provider="System.Data.SqlClient" />
+        </Connections>
+        <Tables>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="VIEW_DISTRIBUIDORES_GRUPOS_MOVIMENTO_CALCULADOTableAdapter" GeneratorDataComponentClassName="VIEW_DISTRIBUIDORES_GRUPOS_MOVIMENTO_CALCULADOTableAdapter" Name="VIEW_DISTRIBUIDORES_GRUPOS_MOVIMENTO_CALCULADO" UserDataComponentName="VIEW_DISTRIBUIDORES_GRUPOS_MOVIMENTO_CALCULADOTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="cnnStr (Web.config)" DbObjectName="HSP_MMS.dbo.VIEW_DISTRIBUIDORES_GRUPOS_MOVIMENTO_CALCULADO" DbObjectType="View" GenerateMethods="Get" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="GetData">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT        TIPO, PERIODO, ANO_MES, MES_36, ANO, MES, GRUPO_DISTRIBUIDOR, COD_PRODUTO_REDUZIDO, LINHA_PRODUTO, COD_LINHA_PRODUTO, PRODUTO, QTD, ATUALIZACAO
+FROM            VIEW_DISTRIBUIDORES_GRUPOS_MOVIMENTO_CALCULADO</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="TIPO" DataSetColumn="TIPO" />
+              <Mapping SourceColumn="PERIODO" DataSetColumn="PERIODO" />
+              <Mapping SourceColumn="ANO_MES" DataSetColumn="ANO_MES" />
+              <Mapping SourceColumn="MES_36" DataSetColumn="MES_36" />
+              <Mapping SourceColumn="ANO" DataSetColumn="ANO" />
+              <Mapping SourceColumn="MES" DataSetColumn="MES" />
+              <Mapping SourceColumn="GRUPO_DISTRIBUIDOR" DataSetColumn="GRUPO_DISTRIBUIDOR" />
+              <Mapping SourceColumn="COD_PRODUTO_REDUZIDO" DataSetColumn="COD_PRODUTO_REDUZIDO" />
+              <Mapping SourceColumn="LINHA_PRODUTO" DataSetColumn="LINHA_PRODUTO" />
+              <Mapping SourceColumn="COD_LINHA_PRODUTO" DataSetColumn="COD_LINHA_PRODUTO" />
+              <Mapping SourceColumn="PRODUTO" DataSetColumn="PRODUTO" />
+              <Mapping SourceColumn="QTD" DataSetColumn="QTD" />
+              <Mapping SourceColumn="ATUALIZACAO" DataSetColumn="ATUALIZACAO" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+        </Tables>
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="dts_Reports_Estoque" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:Generator_UserDSName="dts_Reports_Estoque" msprop:Generator_DataSetName="dts_Reports_Estoque">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="VIEW_DISTRIBUIDORES_GRUPOS_MOVIMENTO_CALCULADO" msprop:Generator_TableClassName="VIEW_DISTRIBUIDORES_GRUPOS_MOVIMENTO_CALCULADODataTable" msprop:Generator_TableVarName="tableVIEW_DISTRIBUIDORES_GRUPOS_MOVIMENTO_CALCULADO" msprop:Generator_TablePropName="VIEW_DISTRIBUIDORES_GRUPOS_MOVIMENTO_CALCULADO" msprop:Generator_RowDeletingName="VIEW_DISTRIBUIDORES_GRUPOS_MOVIMENTO_CALCULADORowDeleting" msprop:Generator_RowChangingName="VIEW_DISTRIBUIDORES_GRUPOS_MOVIMENTO_CALCULADORowChanging" msprop:Generator_RowEvHandlerName="VIEW_DISTRIBUIDORES_GRUPOS_MOVIMENTO_CALCULADORowChangeEventHandler" msprop:Generator_RowDeletedName="VIEW_DISTRIBUIDORES_GRUPOS_MOVIMENTO_CALCULADORowDeleted" msprop:Generator_UserTableName="VIEW_DISTRIBUIDORES_GRUPOS_MOVIMENTO_CALCULADO" msprop:Generator_RowChangedName="VIEW_DISTRIBUIDORES_GRUPOS_MOVIMENTO_CALCULADORowChanged" msprop:Generator_RowEvArgName="VIEW_DISTRIBUIDORES_GRUPOS_MOVIMENTO_CALCULADORowChangeEvent" msprop:Generator_RowClassName="VIEW_DISTRIBUIDORES_GRUPOS_MOVIMENTO_CALCULADORow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="TIPO" msprop:Generator_ColumnVarNameInTable="columnTIPO" msprop:Generator_ColumnPropNameInRow="TIPO" msprop:Generator_ColumnPropNameInTable="TIPOColumn" msprop:Generator_UserColumnName="TIPO">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="PERIODO" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnPERIODO" msprop:Generator_ColumnPropNameInRow="PERIODO" msprop:Generator_ColumnPropNameInTable="PERIODOColumn" msprop:Generator_UserColumnName="PERIODO" type="xs:decimal" minOccurs="0" />
+              <xs:element name="ANO_MES" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnANO_MES" msprop:Generator_ColumnPropNameInRow="ANO_MES" msprop:Generator_ColumnPropNameInTable="ANO_MESColumn" msprop:Generator_UserColumnName="ANO_MES" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="20" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="MES_36" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnMES_36" msprop:Generator_ColumnPropNameInRow="MES_36" msprop:Generator_ColumnPropNameInTable="MES_36Column" msprop:Generator_UserColumnName="MES_36" type="xs:decimal" minOccurs="0" />
+              <xs:element name="ANO" msprop:Generator_ColumnVarNameInTable="columnANO" msprop:Generator_ColumnPropNameInRow="ANO" msprop:Generator_ColumnPropNameInTable="ANOColumn" msprop:Generator_UserColumnName="ANO" type="xs:decimal" />
+              <xs:element name="MES" msprop:Generator_ColumnVarNameInTable="columnMES" msprop:Generator_ColumnPropNameInRow="MES" msprop:Generator_ColumnPropNameInTable="MESColumn" msprop:Generator_UserColumnName="MES" type="xs:decimal" />
+              <xs:element name="GRUPO_DISTRIBUIDOR" msprop:Generator_ColumnVarNameInTable="columnGRUPO_DISTRIBUIDOR" msprop:Generator_ColumnPropNameInRow="GRUPO_DISTRIBUIDOR" msprop:Generator_ColumnPropNameInTable="GRUPO_DISTRIBUIDORColumn" msprop:Generator_UserColumnName="GRUPO_DISTRIBUIDOR">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="COD_PRODUTO_REDUZIDO" msprop:Generator_ColumnVarNameInTable="columnCOD_PRODUTO_REDUZIDO" msprop:Generator_ColumnPropNameInRow="COD_PRODUTO_REDUZIDO" msprop:Generator_ColumnPropNameInTable="COD_PRODUTO_REDUZIDOColumn" msprop:Generator_UserColumnName="COD_PRODUTO_REDUZIDO">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="LINHA_PRODUTO" msprop:Generator_ColumnVarNameInTable="columnLINHA_PRODUTO" msprop:Generator_ColumnPropNameInRow="LINHA_PRODUTO" msprop:Generator_ColumnPropNameInTable="LINHA_PRODUTOColumn" msprop:Generator_UserColumnName="LINHA_PRODUTO">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="COD_LINHA_PRODUTO" msprop:Generator_ColumnVarNameInTable="columnCOD_LINHA_PRODUTO" msprop:Generator_ColumnPropNameInRow="COD_LINHA_PRODUTO" msprop:Generator_ColumnPropNameInTable="COD_LINHA_PRODUTOColumn" msprop:Generator_UserColumnName="COD_LINHA_PRODUTO" type="xs:decimal" />
+              <xs:element name="PRODUTO" msprop:Generator_ColumnVarNameInTable="columnPRODUTO" msprop:Generator_ColumnPropNameInRow="PRODUTO" msprop:Generator_ColumnPropNameInTable="PRODUTOColumn" msprop:Generator_UserColumnName="PRODUTO">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="QTD" msprop:Generator_ColumnVarNameInTable="columnQTD" msprop:Generator_ColumnPropNameInRow="QTD" msprop:Generator_ColumnPropNameInTable="QTDColumn" msprop:Generator_UserColumnName="QTD" type="xs:decimal" />
+              <xs:element name="ATUALIZACAO" msprop:Generator_ColumnVarNameInTable="columnATUALIZACAO" msprop:Generator_ColumnPropNameInRow="ATUALIZACAO" msprop:Generator_ColumnPropNameInTable="ATUALIZACAOColumn" msprop:Generator_UserColumnName="ATUALIZACAO" type="xs:dateTime" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+    <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:VIEW_DISTRIBUIDORES_GRUPOS_MOVIMENTO_CALCULADO" />
+      <xs:field xpath="mstns:TIPO" />
+      <xs:field xpath="mstns:ANO" />
+      <xs:field xpath="mstns:MES" />
+      <xs:field xpath="mstns:GRUPO_DISTRIBUIDOR" />
+      <xs:field xpath="mstns:COD_PRODUTO_REDUZIDO" />
+    </xs:unique>
+  </xs:element>
+</xs:schema>

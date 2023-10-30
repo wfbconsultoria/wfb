@@ -1,0 +1,7 @@
+﻿ 
+
+<asp:GridView  runat="server"  Width="100%"  HorizontalAlign="Center" VerticalAlign="Middle" GridLines="None">
+    <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle"  BackColor="#5a3988" ForeColor="White" />
+    <AlternatingRowStyle HorizontalAlign="Left" VerticalAlign="Middle" Font-Size="Small" BackColor="#dcdada" />
+    <RowStyle HorizontalAlign="Left" VerticalAlign="Middle" Font-Size="Small"  BackColor="#FFFFFFF"/>
+</asp:GridView>
