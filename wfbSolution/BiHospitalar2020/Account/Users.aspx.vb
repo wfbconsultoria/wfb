@@ -6,7 +6,7 @@
         u.CheckAccess()
         'Se usuário não for administrador redireciona para página do usuário
         If u.LoggedProfileCode <> "001" Then Response.Redirect("User.aspx?UserEmail=LoggedUser")
-        dtsUsers.SelectCommand = "Select * From vw_Users Order By Name"
+        dtsUsers.SelectCommand = "Select * From sys_vw_Users Order By Name"
         dtsUsers.DataBind()
     End Sub
 

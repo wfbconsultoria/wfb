@@ -6,22 +6,22 @@
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         u.CheckAccess()
         Dim UserEmail = m.CheckQueryStringParameter(Request.QueryString("UserEmail"), "~/Account/Users.aspx")
-        Manage_Controls(u.LoggedProfile)
+        'Manage_Controls(u.LoggedProfile)
         If UserEmail = "LoggedUser" Then UserEmail = u.LoggedEmail
         cmb_User_Status.Enabled = True
         If IsPostBack() = False Then RecoverRecord(UserEmail)
         If IsPostBack() = True Then SaveRecord(UserEmail)
 
     End Sub
-    Protected Sub Manage_Controls(LoggedProfile As String)
+    'Protected Sub Manage_Controls(LoggedProfile As String)
 
-        Select Case LoggedProfile
-            Case <> "001"
-                cmb_User_Status.Enabled = False
-                cmb_User_Profile_Code.Enabled = False
-        End Select
+    '    Select Case LoggedProfile
+    '        Case <> "001"
+    '            cmb_User_Status.Enabled = False
+    '            cmb_User_Profile_Code.Enabled = False
+    '    End Select
 
-    End Sub
+    'End Sub
     Sub RecoverRecord(Email As String)
         u.GetUserInfos(Email)
         cmb_User_Profile_Code.SelectedValue = u.UserProfile_Code
@@ -50,7 +50,7 @@
 
     Sub SaveRecord(Email As String)
         Dim sql As String = ""
-        sql &= " Update tb_Users Set "
+        sql &= " Update sys_Users Set "
         sql &= " User_Status = '" & cmb_User_Status.SelectedValue & "', "
         sql &= " User_Profile_Code = '" & cmb_User_Profile_Code.SelectedValue & "', "
         sql &= " Phone = '" & m.ConvertText(txt_Phone.Value, clsMaster.TextCaseOptions.UpperCase) & "', "
@@ -68,23 +68,23 @@
         m.Alert(Me, u.UserName & " atualizado com sucesso", False, "")
     End Sub
     Sub ConsultaCEP()
-        Dim cCEP As New svcCEP.CEP1
-        cCEP = m.ConsultaCEP(txt_Address_ZIP.Value)
-        Try
-            txt_Address.Value = cCEP.TipoLogradouro & " " & cCEP.Logradouro.ToUpper
-            txt_Address_District.Value = cCEP.Bairro.ToUpper
-            txt_Address_City.Value = cCEP.CodigoIBGE.ToUpper & " - " & cCEP.Cidade.ToUpper
-            txt_Address_State.Value = cCEP.UF & " - " & cCEP.Estado
+        'Dim cCEP As New svcCEP.CEP1
+        'cCEP = m.ConsultaCEP(txt_Address_ZIP.Value)
+        'Try
+        '    txt_Address.Value = cCEP.TipoLogradouro & " " & cCEP.Logradouro.ToUpper
+        '    txt_Address_District.Value = cCEP.Bairro.ToUpper
+        '    txt_Address_City.Value = cCEP.CodigoIBGE.ToUpper & " - " & cCEP.Cidade.ToUpper
+        '    txt_Address_State.Value = cCEP.UF & " - " & cCEP.Estado
 
-        Catch ex As Exception
-            txt_Address.Value = "INVALIDO"
-            txt_Address.Value = "INVALIDO"
-            txt_Address_District.Value = "INVALIDO"
-            txt_Address_City.Value = "INVALIDO"
-            txt_Address_State.Value = "INVALIDO"
+        'Catch ex As Exception
+        '    txt_Address.Value = "INVALIDO"
+        '    txt_Address.Value = "INVALIDO"
+        '    txt_Address_District.Value = "INVALIDO"
+        '    txt_Address_City.Value = "INVALIDO"
+        '    txt_Address_State.Value = "INVALIDO"
 
-            m.Alert(Me, "CEP INVÁLIDO")
-        End Try
+        '    m.Alert(Me, "CEP INVÁLIDO")
+        'End Try
     End Sub
 
     Public Function FormataIcone(Parameter As String) As String
@@ -92,7 +92,7 @@
         If Parameter = "Sim" Then FormataIcone = "Images/Brigadista_Icone.png"
     End Function
 
-    Private Sub cmd_ConsultaCEP_ServerClick(sender As Object, e As EventArgs) Handles cmd_ConsultaCEP.ServerClick
-        ConsultaCEP()
-    End Sub
+    'Private Sub cmd_ConsultaCEP_ServerClick(sender As Object, e As EventArgs) Handles cmd_ConsultaCEP.ServerClick
+    '    ConsultaCEP()
+    'End Sub
 End Class

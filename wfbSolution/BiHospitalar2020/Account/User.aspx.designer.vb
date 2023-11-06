@@ -122,87 +122,6 @@ Partial Public Class User
     Protected WithEvents txt_WhatsApp As Global.System.Web.UI.HtmlControls.HtmlInputText
 
     '''<summary>
-    '''Controle txt_Address_ZIP.
-    '''</summary>
-    '''<remarks>
-    '''Campo gerado automaticamente.
-    '''Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
-    '''</remarks>
-    Protected WithEvents txt_Address_ZIP As Global.System.Web.UI.HtmlControls.HtmlInputText
-
-    '''<summary>
-    '''Controle cmd_ConsultaCEP.
-    '''</summary>
-    '''<remarks>
-    '''Campo gerado automaticamente.
-    '''Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
-    '''</remarks>
-    Protected WithEvents cmd_ConsultaCEP As Global.System.Web.UI.HtmlControls.HtmlInputButton
-
-    '''<summary>
-    '''Controle txt_Address.
-    '''</summary>
-    '''<remarks>
-    '''Campo gerado automaticamente.
-    '''Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
-    '''</remarks>
-    Protected WithEvents txt_Address As Global.System.Web.UI.HtmlControls.HtmlInputText
-
-    '''<summary>
-    '''Controle txt_Address_Number.
-    '''</summary>
-    '''<remarks>
-    '''Campo gerado automaticamente.
-    '''Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
-    '''</remarks>
-    Protected WithEvents txt_Address_Number As Global.System.Web.UI.HtmlControls.HtmlInputText
-
-    '''<summary>
-    '''Controle txt_Address_Complement.
-    '''</summary>
-    '''<remarks>
-    '''Campo gerado automaticamente.
-    '''Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
-    '''</remarks>
-    Protected WithEvents txt_Address_Complement As Global.System.Web.UI.HtmlControls.HtmlInputText
-
-    '''<summary>
-    '''Controle txt_Address_District.
-    '''</summary>
-    '''<remarks>
-    '''Campo gerado automaticamente.
-    '''Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
-    '''</remarks>
-    Protected WithEvents txt_Address_District As Global.System.Web.UI.HtmlControls.HtmlInputText
-
-    '''<summary>
-    '''Controle txt_Address_City.
-    '''</summary>
-    '''<remarks>
-    '''Campo gerado automaticamente.
-    '''Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
-    '''</remarks>
-    Protected WithEvents txt_Address_City As Global.System.Web.UI.HtmlControls.HtmlInputText
-
-    '''<summary>
-    '''Controle txt_Address_State.
-    '''</summary>
-    '''<remarks>
-    '''Campo gerado automaticamente.
-    '''Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
-    '''</remarks>
-    Protected WithEvents txt_Address_State As Global.System.Web.UI.HtmlControls.HtmlInputText
-
-    '''<summary>
-    '''Controle txt_Address_Country.
-    '''</summary>
-    '''<remarks>
-    '''Campo gerado automaticamente.
-    '''Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
-    '''</remarks>
-    Protected WithEvents txt_Address_Country As Global.System.Web.UI.HtmlControls.HtmlInputText
-
-    '''<summary>
     '''Controle txt_Notes.
     '''</summary>
     '''<remarks>
@@ -210,24 +129,6 @@ Partial Public Class User
     '''Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
     '''</remarks>
     Protected WithEvents txt_Notes As Global.System.Web.UI.HtmlControls.HtmlTextArea
-
-    '''<summary>
-    '''Controle cmb_User_Administrator.
-    '''</summary>
-    '''<remarks>
-    '''Campo gerado automaticamente.
-    '''Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
-    '''</remarks>
-    Protected WithEvents cmb_User_Administrator As Global.System.Web.UI.WebControls.DropDownList
-
-    '''<summary>
-    '''Controle txt_Insert_Date.
-    '''</summary>
-    '''<remarks>
-    '''Campo gerado automaticamente.
-    '''Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
-    '''</remarks>
-    Protected WithEvents txt_Insert_Date As Global.System.Web.UI.HtmlControls.HtmlInputText
 
     '''<summary>
     '''Controle txt_Last_Login_Date.

@@ -260,6 +260,7 @@ Err_CheckExists:
 
         Exit Function
 Err_SendMail:
+
         SendMail = False
     End Function
 

@@ -4,7 +4,8 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     <%--Data Sources--%>
-    <asp:SqlDataSource ID="dtsUsers" runat="server" ConnectionString="<%$ ConnectionStrings:DefaultConnection %>" />
+    <asp:SqlDataSource ID="dts" runat="server" ConnectionString="<%$ ConnectionStrings:DefaultConnection %>" />
+     <asp:SqlDataSource ID="dtsUsers" runat="server" ConnectionString="<%$ ConnectionStrings:DefaultConnection %>" />
     <asp:SqlDataSource ID="dtsDoctors" runat="server" ConnectionString="<%$ ConnectionStrings:DefaultConnection %>" />
     <asp:SqlDataSource ID="dtsDoctorsQtd" runat="server" ConnectionString="<%$ ConnectionStrings:DefaultConnection %>" />
 

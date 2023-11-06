@@ -1,6 +1,6 @@
 ﻿'------------------------------------------------------------------------------
 ' <gerado automaticamente>
-'     Este código foi gerado por uma ferramenta.
+'     Esse código foi gerado por uma ferramenta.
 '
 '     As alterações ao arquivo poderão causar comportamento incorreto e serão perdidas se
 '     o código for recriado
@@ -18,7 +18,7 @@ Partial Public Class _Master
     '''</summary>
     '''<remarks>
     '''Campo gerado automaticamente.
-    '''Modificar a declaração do campo de movimento do arquivo de designer para o arquivo code-behind.
+    '''Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
     '''</remarks>
     Protected WithEvents HeadContent As Global.System.Web.UI.WebControls.ContentPlaceHolder
 
@@ -27,7 +27,7 @@ Partial Public Class _Master
     '''</summary>
     '''<remarks>
     '''Campo gerado automaticamente.
-    '''Modificar a declaração do campo de movimento do arquivo de designer para o arquivo code-behind.
+    '''Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
     '''</remarks>
     Protected WithEvents frm_Main As Global.System.Web.UI.HtmlControls.HtmlForm
 
@@ -36,7 +36,7 @@ Partial Public Class _Master
     '''</summary>
     '''<remarks>
     '''Campo gerado automaticamente.
-    '''Modificar a declaração do campo de movimento do arquivo de designer para o arquivo code-behind.
+    '''Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
     '''</remarks>
     Protected WithEvents lgv_Master_L As Global.System.Web.UI.WebControls.LoginView
 
@@ -45,7 +45,7 @@ Partial Public Class _Master
     '''</summary>
     '''<remarks>
     '''Campo gerado automaticamente.
-    '''Modificar a declaração do campo de movimento do arquivo de designer para o arquivo code-behind.
+    '''Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
     '''</remarks>
     Protected WithEvents lgv_Master_R As Global.System.Web.UI.WebControls.LoginView
 
@@ -54,7 +54,7 @@ Partial Public Class _Master
     '''</summary>
     '''<remarks>
     '''Campo gerado automaticamente.
-    '''Modificar a declaração do campo de movimento do arquivo de designer para o arquivo code-behind.
+    '''Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
     '''</remarks>
     Protected WithEvents MainContent As Global.System.Web.UI.WebControls.ContentPlaceHolder
 
@@ -63,7 +63,7 @@ Partial Public Class _Master
     '''</summary>
     '''<remarks>
     '''Campo gerado automaticamente.
-    '''Modificar a declaração do campo de movimento do arquivo de designer para o arquivo code-behind.
+    '''Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
     '''</remarks>
     Protected WithEvents FooterContent As Global.System.Web.UI.WebControls.ContentPlaceHolder
 End Class

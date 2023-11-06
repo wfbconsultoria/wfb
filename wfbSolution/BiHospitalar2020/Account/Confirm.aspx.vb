@@ -17,12 +17,12 @@ Partial Public Class Confirm
                 Dim email = manager.GetEmail(userId)
                 u.GetUserInfos(email)
                 Dim sql = ""
-                sql = sql & " Update tb_Users Set "
-                sql = sql & " User_Status = 'Confirmed', "
-                sql = sql & " Confirmed = 1, "
-                sql = sql & " Confirmed_Date = '" & m.GettDateToString & "', "
-                sql = sql & " Confirmed_User = '" & email & "', "
-                sql = sql & " Confirmed_IP = '" & HttpContext.Current.Request.ServerVariables("REMOTE_ADDR").ToString & "' "
+                sql = sql & " Update sys_Users Set "
+                sql = sql & " User_Status = 'Confirmed' "
+                'sql = sql & " ,Confirmed = 1, "
+                'sql = sql & " Confirmed_Date = '" & m.GettDateToString & "', "
+                'sql = sql & " Confirmed_User = '" & email & "', "
+                'sql = sql & " Confirmed_IP = '" & HttpContext.Current.Request.ServerVariables("REMOTE_ADDR").ToString & "' "
                 sql = sql & " Where Email = '" & email & "' "
                 m.ExecuteSQL(sql)
 

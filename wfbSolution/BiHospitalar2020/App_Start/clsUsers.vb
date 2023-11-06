@@ -109,7 +109,7 @@ Public Class clsUsers
                 cnn_Logged.Open()
                 Dim cmd_Logged As System.Data.SqlClient.SqlCommand = cnn_Logged.CreateCommand
 
-                Dim sql_Logged As String = "Select * From vw_Users Where Email ='" & LoggedEmail & "'"
+                Dim sql_Logged As String = "Select * From sys_vw_Users Where Email ='" & LoggedEmail & "'"
                 Dim dtr_Logged As System.Data.SqlClient.SqlDataReader
                 cmd_Logged.CommandText = sql_Logged
                 dtr_Logged = cmd_Logged.ExecuteReader
@@ -123,10 +123,10 @@ Public Class clsUsers
                     LoggedStatusDescription = dtr_Logged("Status_Description")
                     LoggedProfile = dtr_Logged("User_Profile")
                     LoggedProfileCode = dtr_Logged("User_Profile_Code")
-                    LoggedDate = m.ConvertText(dtr_Logged("Login_Date"), clsMaster.TextCaseOptions.UpperCase)
-                    LoggedIP = m.ConvertText(dtr_Logged("Login_IP"), clsMaster.TextCaseOptions.UpperCase)
-                    LoggedSession = m.ConvertText(dtr_Logged("Login_Session"), clsMaster.TextCaseOptions.TextCase)
-                    LoggedBrowser = m.ConvertText(dtr_Logged("Login_Browser"), clsMaster.TextCaseOptions.TextCase)
+                    LoggedDate = m.ConvertText(dtr_Logged("Logged_Date"), clsMaster.TextCaseOptions.UpperCase)
+                    'LoggedIP = m.ConvertText(dtr_Logged("Login_IP"), clsMaster.TextCaseOptions.UpperCase)
+                    'LoggedSession = m.ConvertText(dtr_Logged("Login_Session"), clsMaster.TextCaseOptions.TextCase)
+                    'LoggedBrowser = m.ConvertText(dtr_Logged("Login_Browser"), clsMaster.TextCaseOptions.TextCase)
 
                     'String  SQL PARA MÉDICOS conforme o pefil do usuário logado
                     Select Case LoggedProfileCode

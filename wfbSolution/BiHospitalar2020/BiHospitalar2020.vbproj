@@ -278,6 +278,8 @@
     <Content Include="Doctors.aspx" />
     <Content Include="Doctor_Patients.aspx" />
     <Content Include="Doctor_Visit.aspx" />
+    <Content Include="Establishment.aspx" />
+    <Content Include="Establishments.aspx" />
     <Content Include="favicon.ico" />
     <Content Include="Ficha.aspx" />
     <Content Include="Global.asax" />
@@ -683,6 +685,7 @@
     <Compile Include="App_Start\clsMaster.vb" />
     <Compile Include="App_Start\clsUsers.vb" />
     <Compile Include="App_Start\clsWebInfos.vb" />
+    <Compile Include="App_Start\cslEstablishments.vb" />
     <Compile Include="App_Start\IdentityConfig.vb" />
     <Compile Include="App_Start\RouteConfig.vb" />
     <Compile Include="About.aspx.designer.vb">
@@ -754,6 +757,20 @@
     </Compile>
     <Compile Include="Doctor_Visit.aspx.vb">
       <DependentUpon>Doctor_Visit.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="Establishment.aspx.designer.vb">
+      <DependentUpon>Establishment.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Establishment.aspx.vb">
+      <DependentUpon>Establishment.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="Establishments.aspx.designer.vb">
+      <DependentUpon>Establishments.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Establishments.aspx.vb">
+      <DependentUpon>Establishments.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
     </Compile>
     <Compile Include="Ficha.aspx.designer.vb">

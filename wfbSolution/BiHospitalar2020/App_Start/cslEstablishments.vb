@@ -1,0 +1,53 @@
+﻿Public Class cslEstablishments
+
+	Public Function sql_Stablishments() As String
+		sql_Stablishments = ""
+		sql_Stablishments &= " SELECT "
+		sql_Stablishments &= " TBL_ESTABELECIMENTOS_BIH.ID AS Id "
+		sql_Stablishments &= " ,TBL_ESTABELECIMENTOS_BIH.CNPJ AS CNPJ "
+		sql_Stablishments &= " ,TBL_ESTABELECIMENTOS_BIH.ESTABELECIMENTO AS Estabelecimento "
+		sql_Stablishments &= " ,TBL_ESTABELECIMENTOS_BIH.ENDERECO AS Endereco "
+		sql_Stablishments &= " ,TBL_ESTABELECIMENTOS_BIH.COMPLEMENTO AS Complemento "
+		sql_Stablishments &= " ,TBL_ESTABELECIMENTOS_BIH.BAIRRO AS Bairro "
+		sql_Stablishments &= " ,TBL_ESTABELECIMENTOS_BIH.CEP AS CEP "
+		sql_Stablishments &= " ,TBL_IBGE_MUNICIPIOS.MUNICIPIO AS Cidade "
+		sql_Stablishments &= " ,TBL_IBGE_MUNICIPIOS.UF AS UF "
+		sql_Stablishments &= " ,TBL_SETORIZACAO_SETORES.ID_SETOR AS Id_Setor "
+		sql_Stablishments &= " ,TBL_SETORIZACAO_SETORES.SETOR AS Setor "
+		sql_Stablishments &= " ,TBL_SETORIZACAO_SETORES.EMAIL_RESPONSAVEL AS Email_Representante "
+		sql_Stablishments &= " ,REPRESENTANTES.NOME AS Representante "
+		sql_Stablishments &= " ,TBL_SETORIZACAO_REGIONAIS.ID_REGIONAL AS Id_Regional "
+		sql_Stablishments &= " ,TBL_SETORIZACAO_REGIONAIS.EMAIL_RESPONSAVEL AS Email_Gerente "
+		sql_Stablishments &= " ,GERENTES.NOME AS Gerente "
+		sql_Stablishments &= " ,TBL_ESTABELECIMENTOS_BIH.ID_GRUPO_ESTABELECIMENTO AS Id_Grupo "
+		sql_Stablishments &= " ,TBL_ESTABELECIMENTOS_GRUPOS.GRUPO AS Grupo "
+		sql_Stablishments &= " ,TBL_ESTABELECIMENTOS_BIH.COD_ESFERA AS Cod_Esfera "
+		sql_Stablishments &= " ,TBL_ESTABELECIMENTOS_ESFERA.ESFERA AS Esfera "
+		sql_Stablishments &= " ,TBL_ESTABELECIMENTOS_BIH.ID_GRUPO_DISTRIBUIDOR AS Id_Grupo_Distribuidor "
+		sql_Stablishments &= " ,TBL_DISTRIBUIDORES_GRUPOS.GRUPO_DISTRIBUIDOR AS [Grupo Distribuidor] "
+
+		sql_Stablishments &= " FROM "
+		sql_Stablishments &= " TBL_IBGE_MUNICIPIOS INNER JOIN TBL_ESTABELECIMENTOS_BIH "
+		sql_Stablishments &= " ON TBL_IBGE_MUNICIPIOS.COD_IBGE_7 = TBL_ESTABELECIMENTOS_BIH.COD_IBGE_7 "
+		sql_Stablishments &= " INNER JOIN TBL_SETORIZACAO_SETORES "
+		sql_Stablishments &= " ON TBL_ESTABELECIMENTOS_BIH.COD_DISTRITO = TBL_SETORIZACAO_SETORES.COD_DISTRITO "
+		sql_Stablishments &= " AND TBL_ESTABELECIMENTOS_BIH.COD_REGIONAL = TBL_SETORIZACAO_SETORES.COD_REGIONAL "
+		sql_Stablishments &= " AND TBL_ESTABELECIMENTOS_BIH.COD_SETOR = TBL_SETORIZACAO_SETORES.COD_SETOR "
+		sql_Stablishments &= " INNER JOIN TBL_USUARIOS AS REPRESENTANTES "
+		sql_Stablishments &= " ON TBL_SETORIZACAO_SETORES.EMAIL_RESPONSAVEL = REPRESENTANTES.EMAIL "
+		sql_Stablishments &= " INNER JOIN TBL_SETORIZACAO_REGIONAIS	"
+		sql_Stablishments &= " ON TBL_SETORIZACAO_SETORES.COD_REGIONAL = TBL_SETORIZACAO_REGIONAIS.COD_REGIONAL "
+		sql_Stablishments &= " INNER JOIN TBL_USUARIOS AS GERENTES "
+		sql_Stablishments &= " ON TBL_SETORIZACAO_REGIONAIS.EMAIL_RESPONSAVEL = GERENTES.EMAIL "
+		sql_Stablishments &= " INNER JOIN TBL_ESTABELECIMENTOS_ESFERA "
+		sql_Stablishments &= " ON TBL_ESTABELECIMENTOS_BIH.COD_ESFERA = TBL_ESTABELECIMENTOS_ESFERA.COD_ESFERA "
+		sql_Stablishments &= " INNER JOIN TBL_ESTABELECIMENTOS_GRUPOS "
+		sql_Stablishments &= " ON TBL_ESTABELECIMENTOS_BIH.ID_GRUPO_ESTABELECIMENTO = TBL_ESTABELECIMENTOS_GRUPOS.ID_GRUPO "
+		sql_Stablishments &= " LEFT JOIN TBL_DISTRIBUIDORES_GRUPOS "
+		sql_Stablishments &= " ON TBL_ESTABELECIMENTOS_BIH.ID_GRUPO_DISTRIBUIDOR = TBL_DISTRIBUIDORES_GRUPOS.ID_GRUPO_DISTRIBUIDOR "
+
+		sql_Stablishments &= " ORDER BY Estabelecimento ASC, UF ASC, Cidade ASC, Representante ASC "
+
+	End Function
+
+End Class

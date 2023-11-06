@@ -17,7 +17,7 @@ Public Class LogOut
         Dim LogLocation As String = ""
         Dim sql As String = ""
 
-        sql = sql & " Insert Into tb_Users_Logins (Email, LogIn_Date, LogIn_Ip, LogIn_Session, LogIn_Browser, Type, User_Status) Values( "
+        sql = sql & " Insert Into sys_Users_Logins (Email, LogIn_Date, LogIn_Ip, LogIn_Session, LogIn_Browser, Type, User_Status) Values( "
         sql = sql & "'" & UserEmail & "', "
         sql = sql & "'" & LogDate & "', "
         sql = sql & "'" & LogIP & "', "
@@ -26,7 +26,7 @@ Public Class LogOut
         sql = sql & "'LogOut', "
         sql = sql & "'" & UserStatus & "') "
         m.ExecuteSQL(sql)
-        m.ExecuteSQL("Update tb_Users Set Login = 0, LogOut = 1, LogOut_Date = '" & LogDate & "', Login_Ip = '" & LogIP & "', Login_Session = '" & LogSession & "', Login_Browser = '" & LogBrowser & "', Login_Location = '" & LogLocation & "' Where Email = '" & UserEmail & "'")
+        m.ExecuteSQL("Update sys_Users Set Logged = 0, Logged_Date = '" & LogDate & "'Where Email = '" & UserEmail & "'")
         Context.GetOwinContext().Authentication.SignOut(DefaultAuthenticationTypes.ApplicationCookie)
         m.Alert(Me, UserName & " LogOut em " & m.GetDateTimeToString, False, "")
     End Sub

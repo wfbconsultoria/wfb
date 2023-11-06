@@ -38,16 +38,16 @@ Partial Public Class Login
                     Dim LogBrowser As String = Request.ServerVariables("HTTP_USER_AGENT").ToString
                     Dim LogLocation As String = ""
                     Session("ID_SESSION") = IDSession
-                    sql = sql & " Insert Into tb_Users_Logins (Email, LogIn_Date, LogIn_Ip, LogIn_Session, LogIn_Browser, Type, User_Status) Values( "
-                    sql = sql & "'" & u.UserEmail & "', "
-                    sql = sql & "'" & LogDate & "', "
-                    sql = sql & "'" & LogIP & "', "
-                    sql = sql & "'" & Session.SessionID.ToString & "', "
-                    sql = sql & "'" & LogBrowser & "', "
-                    sql = sql & "'LogIn', "
-                    sql = sql & "'" & u.UserStatus & "') "
-                    'm.ExecuteSQL(sql)
-                    'm.ExecuteSQL("Update tb_Users Set Login = 1, LogOut = 0, Login_Date = '" & LogDate & "', Login_Ip = '" & LogIP & "', Login_Session = '" & LogSession & "', Login_Browser = '" & LogBrowser & "', Login_Location = '" & LogLocation & "' Where Email = '" & Email.Text & "'")
+                    sql &= " Insert Into sys_Users_Logins (Email, LogIn_Date, LogIn_Ip, LogIn_Session, LogIn_Browser, Type, User_Status) Values( "
+                    sql &= "'" & u.UserEmail & "', "
+                    sql &= "'" & LogDate & "', "
+                    sql &= "'" & LogIP & "', "
+                    sql &= "'" & Session.SessionID.ToString & "', "
+                    sql &= "'" & LogBrowser & "', "
+                    sql &= "'LogIn', "
+                    sql &= "'" & u.UserStatus & "') "
+                    m.ExecuteSQL(sql)
+                    m.ExecuteSQL("Update sys_Users Set Logged = 1, Logged_Date = '" & LogDate & "'  Where Email = '" & Email.Text & "'")
                     m.Alert(Me, u.UserName & " Login efetuado com sucesso em " & m.GetDateTimeToString, True, "../Default")
                     Exit Select
                 Case SignInStatus.LockedOut

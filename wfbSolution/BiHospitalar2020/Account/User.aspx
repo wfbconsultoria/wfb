@@ -57,9 +57,9 @@
 
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
-    <asp:SqlDataSource ID="dts_Users_Status" runat="server" ConnectionString="<%$ ConnectionStrings:DefaultConnection %>" SelectCommand="SELECT [User_Status] FROM [tb_Users_Status] ORDER BY [User_Status]"></asp:SqlDataSource>
-    <asp:SqlDataSource ID="dts_Users_Profiles" runat="server" ConnectionString="<%$ ConnectionStrings:DefaultConnection %>" SelectCommand="SELECT [User_Profile_Code], [User_Profile] FROM [tb_Users_Profiles] ORDER BY [User_Profile_Code]"></asp:SqlDataSource>
-     <asp:SqlDataSource ID="dts_Users_Administrators" runat="server" ConnectionString="<%$ ConnectionStrings:DefaultConnection %>" SelectCommand="SELECT [Email], [Name] FROM [tb_Users] ORDER BY [Name]"></asp:SqlDataSource>
+    <asp:SqlDataSource ID="dts_Users_Status" runat="server" ConnectionString="<%$ ConnectionStrings:DefaultConnection %>" SelectCommand="SELECT [User_Status] FROM [sys_User_Status] ORDER BY [User_Status]"></asp:SqlDataSource>
+    <asp:SqlDataSource ID="dts_Users_Profiles" runat="server" ConnectionString="<%$ ConnectionStrings:DefaultConnection %>" SelectCommand="SELECT [User_Profile_Code], [User_Profile] FROM [sys_Users_Profiles] ORDER BY [User_Profile_Code]"></asp:SqlDataSource>
+     <asp:SqlDataSource ID="dts_Users_Administrators" runat="server" ConnectionString="<%$ ConnectionStrings:DefaultConnection %>" SelectCommand="SELECT [Email], [Name] FROM [sys_Users] ORDER BY [Name]"></asp:SqlDataSource>
     <%--Titulo da Pagina--%>
     <h4 class="text-secondary text-uppercase" style="padding-top: 5px"><%:Page.Title %></h4>
     
@@ -131,9 +131,9 @@
     <%--TELEFONE/CELULAR/WHATS-APP--%>
 
     <%--CEP/ENDERECO--%>
-    <div class="form-row">
+    <%--<div class="form-row">--%>
         <%--CEP--%>
-        <div class="form-group col-md-3">
+        <%--<div class="form-group col-md-3">
             <label>CEP</label>
             <div class="input-group">
                 <div class="custom-file">
@@ -143,53 +143,53 @@
                     <input runat="server" type="button" id="cmd_ConsultaCEP" value="Busca" />
                 </div>
             </div>
-        </div>
+        </div>--%>
         <%--Endereço--%>
-        <div class="form-group col-md-9">
+        <%--<div class="form-group col-md-9">
             <label>Endereço</label>
             <input id="txt_Address" runat="server" type="text" autocomplete="off" maxlength="200" class="form-control" placeholder="Endereço" readonly="readonly" />
-        </div>
-    </div>
+        </div>--%>
+    <%--</div>--%>
     <%--CEP/ENDERECO--%>
 
     <%--NUMERO/COMPLEMENTO/BAIRRO--%>
-    <div class="form-row">
+   <%-- <div class="form-row">--%>
         <%--Numero--%>
-        <div class="form-group col-md-2">
+        <%--<div class="form-group col-md-2">
             <label>Número</label>
             <input id="txt_Address_Number" runat="server" type="text" autocomplete="off" maxlength="30" class="form-control" placeholder="Número" />
-        </div>
+        </div>--%>
         <%--Complemento--%>
-        <div class="form-group col-md-4">
+       <%-- <div class="form-group col-md-4">
             <label>Complemento</label>
             <input id="txt_Address_Complement" runat="server" type="text" autocomplete="off" maxlength="50" class="form-control" placeholder="Complemento" />
-        </div>
+        </div>--%>
         <%--Bairro--%>
-        <div class="form-group col-md-6">
+        <%--<div class="form-group col-md-6">
             <label>Bairro</label>
             <input id="txt_Address_District" runat="server" type="text" autocomplete="off" class="form-control" placeholder="Bairro" readonly="readonly" />
-        </div>
-    </div>
+        </div>--%>
+   <%-- </div>--%>
     <%--/NUMERO/COMPLEMENTO/BAIRRO--%>
 
     <%--CIDADE/ESTADO/PAIS--%>
-    <div class="form-row">
+   <%-- <div class="form-row">--%>
         <%--Cidade--%>
-        <div class="form-group col-md-6">
+        <%--<div class="form-group col-md-6">
             <label>Cidade</label>
             <input id="txt_Address_City" runat="server" type="text" autocomplete="off" class="form-control" placeholder="Cidade" readonly="readonly" />
-        </div>
+        </div>--%>
         <%--UF--%>
-        <div class="form-group col-md-2">
+        <%--<div class="form-group col-md-2">
             <label>UF</label>
             <input id="txt_Address_State" runat="server" type="text" autocomplete="off" class="form-control" placeholder="UF" readonly="readonly" />
-        </div>
+        </div>--%>
         <%--Pais--%>
-        <div class="form-group col-md-4">
+        <%--<div class="form-group col-md-4">
             <label>País</label>
             <input id="txt_Address_Country" runat="server" type="text" autocomplete="off" class="form-control" placeholder="País" readonly="readonly" />
-        </div>
-    </div>
+        </div>--%>
+    <%--</div>--%>
     <%--/CIDADE/ESTADO/PAIS--%>
 
     <div class="form-row">
@@ -202,14 +202,14 @@
 
     <div class="form-row">
         <%-- liberado por--%>
-        <div class="form-group col-sm-6">
+        <%--<div class="form-group col-sm-6">
             <label>Liberado por</label>
              <asp:DropDownList ID="cmb_User_Administrator" runat="server" CssClass="form-control" DataSourceID="dts_Users_Administrators" DataTextField="Name" DataValueField="Email"></asp:DropDownList>
         </div>
         <div class="form-group col-sm-3">
             <label>Data Inclusão</label>
             <input runat="server" id="txt_Insert_Date" type="text" maxlength="128" class="form-control" readonly="readonly" />
-        </div>
+        </div>--%>
         <div class="form-group col-sm-3">
             <label>Último Acesso</label>
             <input runat="server" id="txt_Last_Login_Date" type="text" maxlength="128" class="form-control" readonly="readonly" />

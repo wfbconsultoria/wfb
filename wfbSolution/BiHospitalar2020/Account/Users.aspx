@@ -9,7 +9,6 @@
  <h4 class="text-secondary text-uppercase"><%:Page.Title %></h4>
     <%-- Localizar/ Incluir--%>
     <div class="input-group">
-        <
         <input id="filter" type="text" maxlength="128" class="form-control" placeholder="Localizar" />
     </div>
     <br />
@@ -37,7 +36,7 @@
                         <td><a href='<%# "User?UserEmail" + "=" + DataBinder.Eval(Container.DataItem, "Email").ToString  %>'><%# DataBinder.Eval(Container.DataItem, "Name").ToString%></a></td>
                         <td><%# LCase(DataBinder.Eval(Container.DataItem, "Email").ToString)%></td>
                         <td><%# DataBinder.Eval(Container.DataItem, "User_Profile").ToString%></td>
-                        <td><%#DataBinder.Eval(Container.DataItem, "Login_Date").ToString%></td>
+                        <td><%#DataBinder.Eval(Container.DataItem, "Logged_Date").ToString%></td>
                     </tr>
                 </ItemTemplate>
             </asp:Repeater>

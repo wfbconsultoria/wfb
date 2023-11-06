@@ -130,8 +130,6 @@
         <script src="Plugins/js/jquery.multi-select.js"></script>
         <script src="Plugins/js/jquery.quicksearch.js"></script>
         
-        
-
         <asp:ContentPlaceHolder ID="FooterContent" runat="server">
         </asp:ContentPlaceHolder>
     </form>
