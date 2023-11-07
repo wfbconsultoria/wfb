@@ -3,10 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.32126.317
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "SiteTemplate", "SiteTemplate\SiteTemplate.vbproj", "{CD8E53D2-B177-494B-AE08-1CEEF98E43D7}"
-EndProject
-Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "SiteEmpty", "SiteEmpty\SiteEmpty.vbproj", "{C211209F-4EA1-482F-815C-529873866C31}"
-EndProject
 Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "CannaMedsBrasil", "CannaMedsBrasil\CannaMedsBrasil.vbproj", "{48271797-EC19-42BE-89FA-02BA993B9AC6}"
 EndProject
 Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "Chapeira", "Chapeira\Chapeira.vbproj", "{AF8F2D67-A89F-4281-BC26-9A8F6E627BF8}"
@@ -50,25 +46,25 @@ Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "Visitas", "Visitas\", "{3CD
 		SlnRelativePath = "Visitas\"
 	EndProjectSection
 EndProject
-Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "SiteBootstrap", "SiteBootstrap\", "{7A0AFB35-FCB6-4426-A5D2-E14AC3648107}"
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "SiteTemplate(1)", "SiteTemplate\", "{62B42AB6-4249-4F9D-AB29-1761FB52F87D}"
 	ProjectSection(WebsiteProperties) = preProject
 		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.8"
-		Debug.AspNetCompiler.VirtualPath = "/localhost_58561"
-		Debug.AspNetCompiler.PhysicalPath = "SiteBootstrap\"
-		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_58561\"
+		Debug.AspNetCompiler.VirtualPath = "/localhost_60039"
+		Debug.AspNetCompiler.PhysicalPath = "SiteTemplate\"
+		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_60039\"
 		Debug.AspNetCompiler.Updateable = "true"
 		Debug.AspNetCompiler.ForceOverwrite = "true"
 		Debug.AspNetCompiler.FixedNames = "false"
 		Debug.AspNetCompiler.Debug = "True"
-		Release.AspNetCompiler.VirtualPath = "/localhost_58561"
-		Release.AspNetCompiler.PhysicalPath = "SiteBootstrap\"
-		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_58561\"
+		Release.AspNetCompiler.VirtualPath = "/localhost_60039"
+		Release.AspNetCompiler.PhysicalPath = "SiteTemplate\"
+		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_60039\"
 		Release.AspNetCompiler.Updateable = "true"
 		Release.AspNetCompiler.ForceOverwrite = "true"
 		Release.AspNetCompiler.FixedNames = "false"
 		Release.AspNetCompiler.Debug = "False"
-		VWDPort = "58561"
-		SlnRelativePath = "SiteBootstrap\"
+		VWDPort = "60039"
+		SlnRelativePath = "SiteTemplate\"
 		DefaultWebSiteLanguage = "Visual Basic"
 	EndProjectSection
 EndProject
@@ -78,14 +74,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{CD8E53D2-B177-494B-AE08-1CEEF98E43D7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{CD8E53D2-B177-494B-AE08-1CEEF98E43D7}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{CD8E53D2-B177-494B-AE08-1CEEF98E43D7}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{CD8E53D2-B177-494B-AE08-1CEEF98E43D7}.Release|Any CPU.Build.0 = Release|Any CPU
-		{C211209F-4EA1-482F-815C-529873866C31}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C211209F-4EA1-482F-815C-529873866C31}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C211209F-4EA1-482F-815C-529873866C31}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C211209F-4EA1-482F-815C-529873866C31}.Release|Any CPU.Build.0 = Release|Any CPU
 		{48271797-EC19-42BE-89FA-02BA993B9AC6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{48271797-EC19-42BE-89FA-02BA993B9AC6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{48271797-EC19-42BE-89FA-02BA993B9AC6}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -134,10 +122,10 @@ Global
 		{3CDA2CD7-635F-4E57-A238-97A79B815ECF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3CDA2CD7-635F-4E57-A238-97A79B815ECF}.Release|Any CPU.ActiveCfg = Debug|Any CPU
 		{3CDA2CD7-635F-4E57-A238-97A79B815ECF}.Release|Any CPU.Build.0 = Debug|Any CPU
-		{7A0AFB35-FCB6-4426-A5D2-E14AC3648107}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{7A0AFB35-FCB6-4426-A5D2-E14AC3648107}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{7A0AFB35-FCB6-4426-A5D2-E14AC3648107}.Release|Any CPU.ActiveCfg = Debug|Any CPU
-		{7A0AFB35-FCB6-4426-A5D2-E14AC3648107}.Release|Any CPU.Build.0 = Debug|Any CPU
+		{62B42AB6-4249-4F9D-AB29-1761FB52F87D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{62B42AB6-4249-4F9D-AB29-1761FB52F87D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{62B42AB6-4249-4F9D-AB29-1761FB52F87D}.Release|Any CPU.ActiveCfg = Debug|Any CPU
+		{62B42AB6-4249-4F9D-AB29-1761FB52F87D}.Release|Any CPU.Build.0 = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

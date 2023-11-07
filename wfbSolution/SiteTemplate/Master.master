@@ -1,0 +1,53 @@
+﻿<%@ Master Language="VB" CodeFile="Master.master.vb" Inherits="Master" %>
+
+<%@ Register Src="~/Scripts_Header.ascx" TagPrefix="uc1" TagName="Scripts_Header" %>
+<%@ Register Src="~/Scripts_Footer.ascx" TagPrefix="uc1" TagName="Scripts_Footer" %>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+
+    <!-- Scripts, meta e referencias do cabeçalho da página -->
+    <uc1:Scripts_Header runat="server" ID="Scripts_Header" />
+    <link href="css/navbar-top-fixed.css" rel="stylesheet" />
+    <title></title>
+    <asp:ContentPlaceHolder ID="HeadContent" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+
+<body>
+    <form id="frmMaster" runat="server">
+        <!-- Bara de navegação -->
+        <nav class="navbar navbar-expand-lg bg-body-tertiary fixed-top">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#">
+                    <img src="Images/_Ico.png" alt="Bootstrap" width="30" height="30">
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                    <div class="navbar-nav">
+                        <a class="nav-link" href="Default.aspx">Início</a>
+                        <a class="nav-link" href="Table.aspx">Tabela</a>
+                        <a class="nav-link" href="Table2.aspx">Tabela</a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Conteudo e corpo da página filho -->
+        <main role="main" class="container">
+            <asp:ContentPlaceHolder ID="BodyContent" runat="server">
+            </asp:ContentPlaceHolder>
+        </main>
+
+        <!--Scripts e referencias do final da página -->
+        <asp:ContentPlaceHolder ID="FooterContent" runat="server">
+        </asp:ContentPlaceHolder>
+        <uc1:Scripts_Footer runat="server" ID="Scripts_Footer" />
+
+    </form>
+</body>
+</html>

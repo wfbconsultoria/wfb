@@ -28,7 +28,7 @@
         End If
 
         If c.ColaboradorAdministrador = "Nao" Then
-            m.Alert(Me, "você não tem permissão de admnistrador")
+            m.Alert(Me, "você não tem permissão de administrador")
             Exit Sub
         End If
 

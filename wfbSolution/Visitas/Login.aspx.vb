@@ -13,13 +13,6 @@ Partial Class Login
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
 
         ''REDIRECIONAMENTO HTTPS WWW.BIHOSPITALAR.COM.BR
-        'If Request.Url.GetLeftPart(UriPartial.Authority) <> "https://www.bihospitalar.com.br" Then
-        '    Response.Redirect("https://www.bihospitalar.com.br" & VirtualPathUtility.ToAbsolute("~"))
-        'End If
-        'If Not Request.IsSecureConnection Then
-        '    Response.Redirect(Request.Url.AbsoluteUri.Replace("http://", "https://"))
-        'End If
-
         'LIMPA TODAS AS CONFIGURACOES DO SISTEMA
         Session("HORA_LOGIN") = ""
         Session("HOJE") = ""
@@ -39,15 +32,9 @@ Partial Class Login
         Session("UPLOAD") = ""
         Session("UPLOAD_MAPAS") = ""
 
-        If Session("IP_LOGIN") = "187.182.70.124" Or Session("IP_LOGIN") = "189.111.216.129" Then
-            txt_EMAIL.Enabled = True
-            txt_SENHA.Enabled = True
-            cmd_Login.Visible = True
-        Else
-            txt_EMAIL.Enabled = True
-            txt_SENHA.Enabled = True
-            cmd_Login.Visible = True
-        End If
+        txt_EMAIL.Enabled = True
+        txt_SENHA.Enabled = True
+        cmd_Login.Visible = True
 
     End Sub
 

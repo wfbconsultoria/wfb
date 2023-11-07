@@ -6,8 +6,8 @@ Public Class clsMaster
     'VARIAVEIS GLOBAIS DO SISTEMA CARREGADAS NO LOGIN
     'CONEXOES
     Public cnnStr As String = ConfigurationManager.ConnectionStrings("cnnStr").ToString
-    Public cnnCNES As String = ConfigurationManager.ConnectionStrings("cnnCNES").ToString
-    Public cnnMedicos As String = ConfigurationManager.ConnectionStrings("cnnMedicos").ToString
+    'Public cnnCNES As String = ConfigurationManager.ConnectionStrings("cnnCNES").ToString
+    'Public cnnMedicos As String = ConfigurationManager.ConnectionStrings("cnnMedicos").ToString
     'INFORMAÇÕES DE E-MAIL
     Public _EMAIL_SUPORTE As String = ConfigurationManager.AppSettings("EMAIL_SUPORTE").ToString
     Public _EMAIL_SISTEMA As String = ConfigurationManager.AppSettings("EMAIL_SISTEMA").ToString
