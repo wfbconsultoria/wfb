@@ -86,7 +86,7 @@ Err_CheckExists:
         UrlError = UrlError & "ErrNumber=" & ErrNUmber & "&ErrDescription=" & ErrDescription & "&ErrMessage=" & ErrMessage & "&ErrLocation=" & ErrLocation
         UrlError = Replace(UrlError, Chr(10), " ")
         SystemError = UrlError
-        HttpContext.Current.Response.Redirect("/Erro.aspx" & UrlError)
+        HttpContext.Current.Response.Redirect("/Erro.aspx?" & UrlError)
     End Function
     Public Function CheckQueryStringParameter(QryParameter As String, Optional RedirectPage As String = "") As String
 

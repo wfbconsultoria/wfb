@@ -1,7 +1,7 @@
 ﻿Imports Microsoft.VisualBasic
 
 Public Class clsEstabelecimentos
-	Public Function sql_Estabelecimentos() As String
+	Public Function sql_Estabelecimentos(tipo As String, Optional id As String = "") As String
 		sql_Estabelecimentos = ""
 		sql_Estabelecimentos &= " SELECT "
 		sql_Estabelecimentos &= " TBL_ESTABELECIMENTOS_BIH.ID AS Id "
@@ -47,7 +47,19 @@ Public Class clsEstabelecimentos
 		sql_Estabelecimentos &= " LEFT JOIN TBL_DISTRIBUIDORES_GRUPOS "
 		sql_Estabelecimentos &= " ON TBL_ESTABELECIMENTOS_BIH.ID_GRUPO_DISTRIBUIDOR = TBL_DISTRIBUIDORES_GRUPOS.ID_GRUPO_DISTRIBUIDOR "
 
-		sql_Estabelecimentos &= " ORDER BY Estabelecimento ASC, UF ASC, Cidade ASC, Representante ASC "
+		If tipo = "lista" Then
+			Select Case HttpContext.Current.Session("NIVEL_LOGIN")
+				Case = 3
+					sql_Estabelecimentos &= " Where TBL_SETORIZACAO_SETORES.EMAIL_RESPONSAVEL = '" & HttpContext.Current.Session("EMAIL_LOGIN") & "'"
+			End Select
+			sql_Estabelecimentos &= " Order By TBL_ESTABELECIMENTOS_BIH.ESTABELECIMENTO "
+		End If
+
+		If tipo = "ficha" Then
+
+			sql_Estabelecimentos &= " Where TBL_ESTABELECIMENTOS_BIH.ID = '" & id & "'"
+
+		End If
 
 	End Function
 End Class

@@ -26,7 +26,7 @@
             </div>
             
             <div class="form-floating">
-                <input runat="server" id="txtPassword"  type="password" class="form-control" placeholder="Password" required="required" />
+                <input runat="server" id="txtPassword"  type="password" class="form-control" placeholder="Password" required="required"  />
                 <label for="txtPassword">Password</label>
             </div>
 

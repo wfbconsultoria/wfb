@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="VB" MasterPageFile="~/Master.master" AutoEventWireup="false" CodeFile="Table.aspx.vb" Inherits="Table" %>
+﻿<%@ Page Title="Meus Estabelecimentos" Language="VB" MasterPageFile="~/Master.master" AutoEventWireup="false" CodeFile="Estabelecimentos.aspx.vb" Inherits="Estabelecimentos" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="Server">
  
@@ -17,6 +17,7 @@
             data-search-highlight="true"
             data-sortable="true"
             data-pagination="true"
+            data-pagination-v-align="both"
             data-show-columns="true"
             data-show-columns-toggle-all="true"
             data-show-pagination-switch="true"
@@ -30,7 +31,7 @@
                 <tr>
                     <th data-field="CNPJ"  data-sortable="true" style="width: 10%">CNPJ</th>
                     <th data-field="Estabelecimento" data-sortable="true"  style="width: 40%">Cliente</th>
-                    <th data-field="Representante" data-filter-control="select" data-sortable="true" style="width: 25%">Representante</th>
+                    <th data-field="Representante" data-filter-control="select" data-sortable="true" style="width: 25%">Rep</th>
                     <th data-field="Cidade" data-filter-control="select" data-sortable="true" style="width: 20%">Cidade</th>
                     <th data-field="UF" data-filter-control="select" data-sortable="true" style="width: 5%">UF</th>
                 </tr>
@@ -39,7 +40,7 @@
                 <asp:Repeater ID="dtr" runat="server" DataSourceID="dts">
                     <ItemTemplate>
                         <tr>
-                            <td><a href='<%# "Establishment?Id" + "=" + DataBinder.Eval(Container.DataItem, "Id").ToString %>'><%# DataBinder.Eval(Container.DataItem, "CNPJ").ToString%></a></td>
+                            <td><a href='<%# "Estabelecimento.aspx?idEstabelecimento" + "=" + DataBinder.Eval(Container.DataItem, "Id").ToString %>'><%# DataBinder.Eval(Container.DataItem, "CNPJ").ToString%></a></td>
                             <td><%# DataBinder.Eval(Container.DataItem, "Estabelecimento").ToString%></td>
                             <td><%# DataBinder.Eval(Container.DataItem, "Representante").ToString%></td>
                             <td><%# DataBinder.Eval(Container.DataItem, "Cidade").ToString%></td>
