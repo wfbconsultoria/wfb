@@ -17,7 +17,7 @@
 </head>
 
 <body>
-    <form id="frmMaster" runat="server">
+    <form runat="server" id="frmMaster">
         <!-- Bara de navegação -->
         <nav class="navbar navbar-expand-lg bg-body-tertiary fixed-top">
             <div class="container-fluid">
@@ -30,7 +30,9 @@
                 <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                     <div class="navbar-nav">
                         <a class="nav-link" href="Default.aspx">Início</a>
+                        <a class="nav-link" href="_Templates_Form.aspx">Form Template</a>
                         <a class="nav-link" href="Estabelecimentos.aspx">Meus Clientes</a>
+                        <a class="nav-link" href="Medicos.aspx">Meus Médicos</a>
                         <a class="nav-link text-muted" href="#"><%:Session("NOME_LOGIN") %></a>
                         <a class="nav-link text-danger" href="Login.aspx">Sair</a>
                     </div>
@@ -40,7 +42,10 @@
 
         <!-- Conteudo e corpo da página filho -->
         <main role="main" class="container">
+
             <asp:ContentPlaceHolder ID="BodyContent" runat="server">
+                <%--Titulo da Pagina--%>
+                <h4 class="text-secondary text-uppercase" style="padding-top: 5px"><%:Page.Title %></h4>
             </asp:ContentPlaceHolder>
         </main>
 

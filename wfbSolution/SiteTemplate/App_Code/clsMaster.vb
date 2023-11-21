@@ -60,6 +60,7 @@ Err_ExcuteSelect:
         ExecuteSelect = Nothing
         SystemError(Err.Number, Err.Description, SQL, "Function: clsMaster.ExecuteSelect")
     End Function
+
     Public Function CheckExists(ByVal Table As String, ByVal KeyColumn As String, ByVal Parameter As String) As Boolean
         On Error GoTo Err_CheckExists
 

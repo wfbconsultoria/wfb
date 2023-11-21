@@ -13,3 +13,59 @@
 <!-- Bootstrap CSS -->
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous"/>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css"/>
+
+
+<%--Máscara de entrada--%>
+    <script type="text/javascript">
+        // mascara entrada
+        function formatar(mascara, documento) {
+            let i = documento.value.length;
+            let saida = mascara.substring(0, 1);
+            let texto = mascara.substring(i)
+
+            if (texto.substring(0, 1) != saida) {
+                documento.value += texto.substring(0, 1);
+            }
+        }
+
+ <%--Somente Numeros--%>
+        function somenteNumeros(e) {
+            var charCode = e.charCode ? e.charCode : e.keyCode;
+            // charCode 8 = backspace   
+            // charCode 9 = tab
+            if (charCode != 8 && charCode != 9) {
+                // charCode 48 equivale a 0   
+                // charCode 57 equivale a 9
+                if (charCode < 48 || charCode > 57) {
+                    return false;
+                }
+            }
+        }
+
+     <%--Valida Data--%>
+        function validaDat(campo, valor) {
+            var date = valor;
+            var ardt = new Array;
+            var ExpReg = new RegExp("(0[1-9]|[12][0-9]|3[01])/(0[1-9]|1[012])/[12][0-9]{3}");
+            ardt = date.split("/");
+            erro = false;
+            if (date.search(ExpReg) == -1) {
+                erro = true;
+            }
+            else if (((ardt[1] == 4) || (ardt[1] == 6) || (ardt[1] == 9) || (ardt[1] == 11)) && (ardt[0] > 30))
+                erro = true;
+            else if (ardt[1] == 2) {
+                if ((ardt[0] > 28) && ((ardt[2] % 4) != 0))
+                    erro = true;
+                if ((ardt[0] > 29) && ((ardt[2] % 4) == 0))
+                    erro = true;
+            }
+            if (date == "") erro = false;
+            if (erro) {
+                alert("DATA Formato inválido (dd/mm/aaaa");
+                campo.value = "";
+                return false;
+            }
+            return true;
+        }
+    </script>
