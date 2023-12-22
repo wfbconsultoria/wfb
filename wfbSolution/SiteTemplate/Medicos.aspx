@@ -11,7 +11,7 @@
 
     <div>
         <div id="toolbar">
-            <a href="Medico_Incluir.aspx" class="btn btn-primary">Novo Medico</a>
+            <%--<a href="_Templates_Form.aspx" class="btn btn-primary">Novo Medico</a>--%>
         </div>
         <table class="table table-bordered table-hover"
             id="table"
@@ -39,17 +39,21 @@
             <thead>
                 <tr>
                     <th data-field="CRM" data-sortable="true" style="width: 10%">CRM</th>
-                    <th data-field="NOME" data-sortable="true" style="width: 60%">Medico</th>
-                    <th data-field="ESPECIALIDADE" data-sortable="true" style="width: 30%">Especialidade</th>
+                    <th data-field="NOME" data-sortable="true" style="width: 40%">Medico</th>
+                    <th data-field="ESPECIALIDADE" data-sortable="true" style="width: 15%">Especialidade</th>
+                     <th data-field="ESTABELECIMENTO" data-sortable="true" style="width: 30%">Estabelecimento</th>
+                    <th data-field="VISITAR" data-sortable="true" style="width: 5%">Visitar</th>
                 </tr>
             </thead>
             <tbody>
                 <asp:Repeater ID="dtr" runat="server" DataSourceID="dts">
                     <ItemTemplate>
                         <tr>
-                            <td><a href='<%# "Medico.aspx?idMedico" + "=" + DataBinder.Eval(Container.DataItem, "ID").ToString %>'><%# DataBinder.Eval(Container.DataItem, "CRM_UF").ToString%></a></td>
+                            <td><a href='<%# "Medico.aspx?idMedico" + "=" + DataBinder.Eval(Container.DataItem, "IdMedico").ToString %>'><%# DataBinder.Eval(Container.DataItem, "CRM_UF").ToString%></a></td>
                             <td><%# DataBinder.Eval(Container.DataItem, "NOME").ToString%></td>
                             <td><%# DataBinder.Eval(Container.DataItem, "ESPECIALIDADE").ToString%></td>
+                            <td><%# DataBinder.Eval(Container.DataItem, "ESTABELECIMENTO").ToString%></td>
+                            <td><a href='<%# "Medico.aspx?idMedico" + "=" + DataBinder.Eval(Container.DataItem, "IdMedico").ToString %>'>Visitar</a></td>
                         </tr>
                     </ItemTemplate>
                 </asp:Repeater>

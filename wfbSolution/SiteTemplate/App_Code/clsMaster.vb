@@ -89,21 +89,25 @@ Err_CheckExists:
         SystemError = UrlError
         HttpContext.Current.Response.Redirect("/Erro.aspx?" & UrlError)
     End Function
-    Public Function CheckQueryStringParameter(QryParameter As String, Optional RedirectPage As String = "") As String
+    Public Function CheckQueryString(QryParameter As String, Optional RedirectPage As String = "") As Boolean
 
         Try
-            CheckQueryStringParameter = ""
-            If QryParameter = Nothing _
-                        Or QryParameter = "" _
-                        Or IsNothing(QryParameter) _
-                        Or IsDBNull(QryParameter) Then
-                CheckQueryStringParameter = ""
+            CheckQueryString = False
+            If HttpContext.Current.Request.QueryString(QryParameter) = "" _
+                Or IsNothing(HttpContext.Current.Request.QueryString(QryParameter)) _
+                Or IsDBNull(HttpContext.Current.Request.QueryString(QryParameter)) _
+                Or QryParameter = Nothing _
+                Or QryParameter = "" _
+                Or IsNothing(QryParameter) _
+                Or IsDBNull(QryParameter) Then
+                CheckQueryString = False
                 If RedirectPage <> "" Then HttpContext.Current.Response.Redirect(RedirectPage)
             Else
-                CheckQueryStringParameter = QryParameter
+
+                CheckQueryString = True
             End If
         Catch ex As Exception
-            CheckQueryStringParameter = ""
+            CheckQueryString = False
             If RedirectPage <> "" Then HttpContext.Current.Response.Redirect(RedirectPage)
         End Try
 
@@ -151,7 +155,7 @@ Err_CheckExists:
         Return apenasDigitos.Replace(strCPF, "")
     End Function
 
-    Public Function ConvertText(ByVal Text As String, TextCase As TextCaseOptions) As String
+    Public Function ConvertText(ByVal Text As String, Optional TextCase As TextCaseOptions = TextCaseOptions.UpperCase) As String
         ConvertText = ""
         If IsDBNull(Text) Then
             Text = ""
@@ -187,6 +191,20 @@ Err_CheckExists:
         End If
         ConvertText = Trim(Text)
     End Function
+
+    Public Function ConvertValue(ByVal strValue As String, Optional ValueOption As ValuesOptions = ValuesOptions.NumeroInteiro) As String
+
+        If IsDBNull(strValue) Then strValue = "0"
+
+        For Each A In strValue
+            If Integer.TryParse(A, strValue) Then
+            Else
+                If ValueOption = ValuesOptions.NumeroInteiro Then Replace(strValue, A, "")
+            End If
+        Next
+        ConvertValue = strValue
+    End Function
+
     Public Function FormatDate(ByVal TextDate As String) As String
         'passar sempre a data no formato dd/mm/aaaa para converter para yyyy-mm-dd (sql server)
         Try
@@ -205,6 +223,11 @@ Err_CheckExists:
         UpperCase
         LowerCase
         TextCase
+    End Enum
+    Public Enum ValuesOptions
+        NumeroInteiro
+        NumeroDecimal
+        NumeroMoeda
     End Enum
     Public Function SendMail(MailToAddress As String, MailToName As String, MailSubject As String, MailMessage As String) As Boolean
         On Error GoTo Err_SendMail

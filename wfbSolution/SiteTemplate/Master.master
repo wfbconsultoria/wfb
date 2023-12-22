@@ -30,8 +30,7 @@
                 <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                     <div class="navbar-nav">
                         <a class="nav-link" href="Default.aspx">Início</a>
-                        <a class="nav-link" href="_Templates_Form.aspx">Form Template</a>
-                        <a class="nav-link" href="Estabelecimentos.aspx">Meus Clientes</a>
+                        <a class="nav-link" href="Estabelecimentos.aspx">Meus Estabelecimentos</a>
                         <a class="nav-link" href="Medicos.aspx">Meus Médicos</a>
                         <a class="nav-link text-muted" href="#"><%:Session("NOME_LOGIN") %></a>
                         <a class="nav-link text-danger" href="Login.aspx">Sair</a>

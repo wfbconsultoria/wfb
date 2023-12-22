@@ -1,39 +1,37 @@
 ﻿<%@ Page Title="Meus Estabelecimentos" Language="VB" MasterPageFile="~/Master.master" AutoEventWireup="false" CodeFile="Estabelecimentos.aspx.vb" Inherits="Estabelecimentos" %>
 
+<%@ Register Src="~/Titulo_Pagina.ascx" TagPrefix="uc1" TagName="Titulo_Pagina" %>
+
+
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="Server">
  
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="BodyContent" runat="Server">
     <%--Data Sources--%>
     <asp:SqlDataSource ID="dts" runat="server" ConnectionString="<%$ ConnectionStrings:DefaultConnection %>" />
-
+    <uc1:Titulo_Pagina runat="server" ID="Titulo_Pagina" />
     <div>
-        <table class="table table-bordered table-hover"
-            id="table"
+        <table id="table" 
+            class="table table-bordered table-hover"
             data-toggle="table"
             data-search="true"
-            data-search-align="right"
+            data-search-align="left"
             data-search-accent-neutralise="true"
             data-search-highlight="true"
-            data-sortable="true"
-            data-pagination="true"
-            data-pagination-v-align="both"
-            data-show-columns="true"
-            data-show-columns-toggle-all="true"
-            data-show-pagination-switch="true"
+            data-show-search-clear-button="true"
             data-show-toggle="true"
-            data-show-multi-sort="true"
-            data-mobile-responsive="true"
-            data-check-on-init="true"
-            data-filter-control="true"
-            data-show-search-clear-button="true">
+            data-show-fullscreen="true"
+            data-show-pagination-switch="true"
+            data-sortable="true"                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     
+            data-pagination="true"
+            data-mobile-responsive="true">
             <thead>
                 <tr>
-                    <th data-field="CNPJ"  data-sortable="true" style="width: 10%">CNPJ</th>
-                    <th data-field="Estabelecimento" data-sortable="true"  style="width: 40%">Cliente</th>
-                    <th data-field="Representante" data-filter-control="select" data-sortable="true" style="width: 25%">Rep</th>
-                    <th data-field="Cidade" data-filter-control="select" data-sortable="true" style="width: 20%">Cidade</th>
-                    <th data-field="UF" data-filter-control="select" data-sortable="true" style="width: 5%">UF</th>
+                    <th data-field="CNPJ" data-sortable="true" style="width:10%">CNPJ</th>
+                    <th data-field="Estabelecimento" data-sortable="true"  style="width:40%">Cliente</th>
+                    <th data-field="Representante" data-sortable="true" style="width:25%">Rep</th>
+                    <th data-field="Cidade" data-sortable="true" style="width:20%">Cidade</th>
+                    <th data-field="UF" data-sortable="true" style="width:5%">UF</th>
                 </tr>
             </thead>
             <tbody>
@@ -43,7 +41,7 @@
                             <td><a href='<%# "Estabelecimento.aspx?idEstabelecimento" + "=" + DataBinder.Eval(Container.DataItem, "Id").ToString %>'><%# DataBinder.Eval(Container.DataItem, "CNPJ").ToString%></a></td>
                             <td><%# DataBinder.Eval(Container.DataItem, "Estabelecimento").ToString%></td>
                             <td><%# DataBinder.Eval(Container.DataItem, "Representante").ToString%></td>
-                            <td><%# DataBinder.Eval(Container.DataItem, "Cidade").ToString%></td>
+                            <td><%# UCase(DataBinder.Eval(Container.DataItem, "Cidade").ToString)%></td>
                             <td><%# UCase(DataBinder.Eval(Container.DataItem, "UF").ToString)%></td>
                         </tr>
                     </ItemTemplate>

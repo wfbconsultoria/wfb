@@ -11,15 +11,16 @@ Public Class clsEstabelecimentos
 		sql &= " ,TBL_ESTABELECIMENTOS_BIH.COMPLEMENTO AS Complemento "
 		sql &= " ,TBL_ESTABELECIMENTOS_BIH.BAIRRO AS Bairro "
 		sql &= " ,TBL_ESTABELECIMENTOS_BIH.CEP AS CEP "
+		sql &= " ,TBL_IBGE_MUNICIPIOS.COD_IBGE_7 AS Cod_IBGE_7 "
 		sql &= " ,TBL_IBGE_MUNICIPIOS.MUNICIPIO AS Cidade "
 		sql &= " ,TBL_IBGE_MUNICIPIOS.UF AS UF "
 		sql &= " ,TBL_SETORIZACAO_SETORES.ID_SETOR AS Id_Setor "
 		sql &= " ,TBL_SETORIZACAO_SETORES.SETOR AS Setor "
 		sql &= " ,TBL_SETORIZACAO_SETORES.EMAIL_RESPONSAVEL AS Email_Representante "
-		sql &= " ,REPRESENTANTES.NOME AS Representante "
+		sql &= " ,REPRESENTANTES.APELIDO AS Representante "
 		sql &= " ,TBL_SETORIZACAO_REGIONAIS.ID_REGIONAL AS Id_Regional "
 		sql &= " ,TBL_SETORIZACAO_REGIONAIS.EMAIL_RESPONSAVEL AS Email_Gerente "
-		sql &= " ,GERENTES.NOME AS Gerente "
+		sql &= " ,GERENTES.APELIDO AS Gerente "
 		sql &= " ,TBL_ESTABELECIMENTOS_BIH.ID_GRUPO_ESTABELECIMENTO AS Id_Grupo "
 		sql &= " ,TBL_ESTABELECIMENTOS_GRUPOS.GRUPO AS Grupo "
 		sql &= " ,TBL_ESTABELECIMENTOS_BIH.COD_ESFERA AS Cod_Esfera "
@@ -50,9 +51,9 @@ Public Class clsEstabelecimentos
 			Select Case HttpContext.Current.Session("NIVEL_LOGIN")
 
 				Case = 0
-					sql &= " Where TBL_ESTABELECIMENTOS_BIH.CNPJ = '01571702000198'"
+					'sql &= " Where TBL_ESTABELECIMENTOS_BIH.CNPJ = '01571702000198'"
 				Case = 1
-					sql &= " TBL_SETORIZACAO_REGIONAIS.EMAIL_RESPONSAVEL  = '" & HttpContext.Current.Session("EMAIL_LOGIN") & "'"
+					sql &= " Where TBL_SETORIZACAO_REGIONAIS.EMAIL_RESPONSAVEL  = '" & HttpContext.Current.Session("EMAIL_LOGIN") & "'"
 				Case = 3
 					sql &= " Where TBL_SETORIZACAO_SETORES.EMAIL_RESPONSAVEL = '" & HttpContext.Current.Session("EMAIL_LOGIN") & "'"
 			End Select
