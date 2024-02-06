@@ -38,7 +38,7 @@ Partial Class Estabelecimento
 
         'Valida UF do CRM
         If UF_CRM.Text = "" Or Len(UF_CRM.Text) = 0 Or m.CheckExists("TBL_IBGE_ESTADOS", "UF", UF_CRM.Text) = False Then
-            m.Alert(Me, "SELECIONE A UNIDADE DE FEDERAÇÃO DO CRM", False, "")
+            m.Alert(Me, "SELECIONE A UNIDADE DE FEDERAÇÃO Do CRM", False, "")
             Exit Sub
         Else
             _UF_CRM = UF_CRM.Text
@@ -48,20 +48,15 @@ Partial Class Estabelecimento
         CRM_UF = _CRM & _UF_CRM
 
         'Verifica se o médico está cadastrado
-        If m.CheckExists("TBL_MEDICOS", "CRM_UF", CRM_UF) = False Then
+        If m.CheckExists("APP_MEDICOS", "CRM_UF", CRM_UF) = False Then
             Response.Redirect("Medico_Incluir.aspx?IdEStabelecimento=" & IdEstabelecimento & "&CRM_UF=" & CRM_UF & "&Cadastrado=0")
         Else
             'Verifica se cadastrado no ESTABELECIMENTO
             Dim dtr As SqlClient.SqlDataReader
-            Dim sql As String = ""
-            sql &= " SELECT TBL_ESTABELECIMENTOS_BIH.CNPJ, TBL_MEDICOS_ESTABELECIMENTOS.CRM_UF "
-            sql &= " FROM TBL_ESTABELECIMENTOS_BIH	INNER JOIN TBL_MEDICOS_ESTABELECIMENTOS "
-            sql &= " ON TBL_ESTABELECIMENTOS_BIH.CNPJ = TBL_MEDICOS_ESTABELECIMENTOS.CNPJ "
-            sql &= " WHERE	TBL_ESTABELECIMENTOS_BIH.ID = '" & IdEstabelecimento & "' AND TBL_MEDICOS_ESTABELECIMENTOS.CRM_UF = '" & CRM_UF & "'"
-
+            Dim sql As String = " Select * From APP_MEDICOS_ESTABELECIMENTOS Where IdEstabeleciemnto = '" & IdEstabelecimento & "' And CRM_UF = '" & CRM_UF & "' "
             dtr = m.ExecuteSelect(sql)
             If dtr.HasRows Then
-                m.Alert(Me, "Este CRM já está cadastrasdo neste estabelecimento")
+                m.Alert(Me, "Este CRM já está cadastrado neste estabelecimento")
                 Exit Sub
             Else
                 Response.Redirect("Medico_Incluir.aspx?IdEStabelecimento=" & IdEstabelecimento & "&CRM_UF=" & CRM_UF & "&Cadastrado=1")

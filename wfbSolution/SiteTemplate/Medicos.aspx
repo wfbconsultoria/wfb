@@ -50,9 +50,9 @@
                     <ItemTemplate>
                         <tr>
                             <td><a href='<%# "Medico.aspx?idMedico" + "=" + DataBinder.Eval(Container.DataItem, "IdMedico").ToString %>'><%# DataBinder.Eval(Container.DataItem, "CRM_UF").ToString%></a></td>
-                            <td><%# DataBinder.Eval(Container.DataItem, "NOME").ToString%></td>
+                            <td><%# DataBinder.Eval(Container.DataItem, "NOME_SOBRENOME").ToString%></td>
                             <td><%# DataBinder.Eval(Container.DataItem, "ESPECIALIDADE").ToString%></td>
-                            <td><%# DataBinder.Eval(Container.DataItem, "ESTABELECIMENTO").ToString%></td>
+                            <td><%# DataBinder.Eval(Container.DataItem, "ESTABELECIMENTO_CNPJ").ToString%></td>
                             <td><a href='<%# "Medico.aspx?idMedico" + "=" + DataBinder.Eval(Container.DataItem, "IdMedico").ToString %>'>Visitar</a></td>
                         </tr>
                     </ItemTemplate>

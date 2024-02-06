@@ -8,7 +8,8 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="BodyContent" runat="Server">
     <%--Data Sources--%>
     <asp:SqlDataSource ID="dts_UF" runat="server" ConnectionString="<%$ ConnectionStrings:DefaultConnection %>" />
-
+   
+    
     <%--Titulo da Página--%>
     <uc1:Titulo_Pagina runat="server" ID="Titulo_Pagina" />
 
@@ -18,7 +19,7 @@
     <%-- DIV PRINCIPAL --%>
     <div class="row g-3">
 
-         <%-- Sub Titulo e instruções--%>
+        <%-- Sub Titulo e instruções--%>
         <div class="row">
             <br />
             <h5>Incluir novo médico</h5>
@@ -44,9 +45,10 @@
             </div>
         </div>
         <%-- UF_CRM/CRM/BOTÃO--%>
-
     </div>
     <%-- DIV PRINCIPAL --%>
+
+   
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="FooterContent" runat="Server">
 </asp:Content>

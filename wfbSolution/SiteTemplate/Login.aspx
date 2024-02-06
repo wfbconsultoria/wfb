@@ -31,11 +31,12 @@
             </div>
 
             <div class="checkbox mb-3">
-                <a href="Register.aspx">[registrar usuário]</a>&nbsp;&nbsp;<a href="Forgot.aspx">[lembrar senha]</a>
+                <a href="Forgot.aspx">recover password</a>
             </div>
 
             <button runat="server" id="cmdLogin" class="w-100 btn btn-lg btn-primary" type="submit" causesvalidation="true">Sign in</button>
             <p class="mt-5 mb-3 text-muted">&copy; <%:ConfigurationManager.AppSettings("App.Owner") %></p>
+            
             
             <uc1:Scripts_Footer runat="server" ID="Scripts_Footer" />
         </form>

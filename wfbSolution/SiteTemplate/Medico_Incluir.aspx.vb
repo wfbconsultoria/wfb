@@ -83,10 +83,8 @@ Partial Class Medico_Incluir
         Dim dtr As SqlClient.SqlDataReader
 
         Sql = ""
-        sql &= " SELECT TBL_ESTABELECIMENTOS_BIH.CNPJ, TBL_MEDICOS_ESTABELECIMENTOS.CRM_UF "
-        sql &= " FROM TBL_ESTABELECIMENTOS_BIH	INNER JOIN TBL_MEDICOS_ESTABELECIMENTOS "
-        sql &= " ON TBL_ESTABELECIMENTOS_BIH.CNPJ = TBL_MEDICOS_ESTABELECIMENTOS.CNPJ "
-        sql &= " WHERE	TBL_ESTABELECIMENTOS_BIH.ID = '" & IdEstabelecimento & "' AND TBL_MEDICOS_ESTABELECIMENTOS.CRM_UF = '" & strCRM_UF & "'"
+        sql &= " SELECT * FROM APP_MEDICOS_ESTABELECIMENTOS "
+        sql &= " WHERE IdEstabelecimento = '" & IdEstabelecimento & "' AND CRM_UF = '" & strCRM_UF & "'"
 
         dtr = m.ExecuteSelect(sql)
         If dtr.HasRows Then
@@ -131,8 +129,8 @@ Partial Class Medico_Incluir
             sql &= " ,'" & UF_CRM.Value & "' "
             sql &= " ,'" & m.ConvertText(NOME.Value) & "' "
             sql &= " ,'" & m.ConvertText(SOBRENOME.Value) & "' "
-            sql &= " ,'" & m.ConvertValue(ID_ESPECIALIDADE.SelectedValue) & "' "
-            sql &= " ,'" & m.ConvertValue(ID_TIPO.SelectedValue) & "' "
+            sql &= " ," & ID_ESPECIALIDADE.SelectedValue
+            sql &= " ," & ID_TIPO.SelectedValue
             sql &= " ,'" & m.ConvertText(EMAIL.Value) & "' "
             sql &= " ,'" & m.ConvertText(TELEFONE.Value) & "' "
             sql &= " ,'" & m.ConvertText(CELULAR.Value) & "' "

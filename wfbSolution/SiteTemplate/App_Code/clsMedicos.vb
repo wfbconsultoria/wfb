@@ -6,32 +6,7 @@ Public Class clsMedicos
 
 	Public Function sql_medicos(Optional tipo As String = "", Optional id As String = "") As String
 		Dim sql As String = ""
-		sql &= " SELECT * FROM VW_MEDICOS_ESTABELECIMENTOS "
-		'sql &= " TBL_MEDICOS.ID "
-		'sql &= " ,TBL_MEDICOS.CRM_UF "
-		'sql &= " ,TBL_MEDICOS.CRM "
-		'sql &= " ,TBL_MEDICOS.UF_CRM "
-		'sql &= " ,TBL_MEDICOS.NOME "
-		'sql &= " ,TBL_MEDICOS.ID_ESPECIALIDADE "
-		'sql &= " ,TBL_MEDICOS_ESPECIALIDADES.ESPECIALIDADE "
-		'sql &= " ,TBL_MEDICOS.ID_TIPO "
-		'sql &= " ,TBL_MEDICOS_TIPOS.TIPO "
-		'sql &= " ,TBL_MEDICOS.EMAIL "
-		'sql &= " ,TBL_MEDICOS.TELEFONE "
-		'sql &= " ,TBL_MEDICOS.CELULAR "
-		'sql &= " ,TBL_MEDICOS.ENDERECO "
-		'sql &= " ,TBL_MEDICOS.COMPLEMENTO "
-		'sql &= " ,TBL_MEDICOS.BAIRRO "
-		'sql &= " ,TBL_MEDICOS.CEP "
-		'sql &= " ,TBL_MEDICOS.COD_IBGE_7 "
-		'sql &= " ,TBL_MEDICOS.CIDADE "
-		'sql &= " ,TBL_MEDICOS.UF "
-		'sql &= " ,TBL_MEDICOS.OBSERVACOES "
-		'sql &= " ,TBL_MEDICOS.DATA_INCLUSAO "
-		'sql &= " ,TBL_MEDICOS.DATA_ALTERACAO "
-		'sql &= " FROM "
-		'sql &= " TBL_MEDICOS INNER JOIN TBL_MEDICOS_ESPECIALIDADES ON TBL_MEDICOS.ID_ESPECIALIDADE = TBL_MEDICOS_ESPECIALIDADES.ID_ESPECIALIDADE "
-		'sql &= " INNER JOIN TBL_MEDICOS_TIPOS ON TBL_MEDICOS.ID_TIPO = TBL_MEDICOS_TIPOS.ID_TIPO "
+		sql &= " SELECT * FROM APP_MEDICOS_ESTABELECIMENTOS "
 
 		If tipo = "lista" Then
 			Select Case HttpContext.Current.Session("NIVEL_LOGIN")
@@ -39,11 +14,11 @@ Public Class clsMedicos
 				Case = 0
 					sql &= sql
 				Case = 1
-					sql &= sql
+					sql &= " Where EMAIL_GERENTE = '" & HttpContext.Current.Session("EMAIL_LOGIN") & "'"
 				Case = 3
 					sql &= " Where EMAIL_REPRESENTANTE = '" & HttpContext.Current.Session("EMAIL_LOGIN") & "'"
 			End Select
-			sql &= " Order By NOME "
+			sql &= " Order By NOME_SOBRENOME "
 		End If
 
 		If tipo = "ficha" Then

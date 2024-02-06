@@ -4,9 +4,9 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="BodyContent" runat="Server">
     
-    <div class="container-fluid">
+    <%--<div class="container-fluid">
         <embed runat="server" id="pbiReport" src="#" style="width: 100%; height: 900px;"/>
-    </div>
+    </div>--%>
     
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="FooterContent" runat="Server">

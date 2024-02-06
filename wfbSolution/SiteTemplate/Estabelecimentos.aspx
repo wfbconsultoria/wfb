@@ -28,10 +28,11 @@
             <thead>
                 <tr>
                     <th data-field="CNPJ" data-sortable="true" style="width:10%">CNPJ</th>
-                    <th data-field="Estabelecimento" data-sortable="true"  style="width:40%">Cliente</th>
+                    <th data-field="Estabelecimento" data-sortable="true"  style="width:35%">Cliente</th>
                     <th data-field="Representante" data-sortable="true" style="width:25%">Rep</th>
                     <th data-field="Cidade" data-sortable="true" style="width:20%">Cidade</th>
                     <th data-field="UF" data-sortable="true" style="width:5%">UF</th>
+                    <th data-field="UF" data-sortable="true" style="width:5%">MEDICOS</th>
                 </tr>
             </thead>
             <tbody>
@@ -39,10 +40,11 @@
                     <ItemTemplate>
                         <tr>
                             <td><a href='<%# "Estabelecimento.aspx?idEstabelecimento" + "=" + DataBinder.Eval(Container.DataItem, "Id").ToString %>'><%# DataBinder.Eval(Container.DataItem, "CNPJ").ToString%></a></td>
-                            <td><%# DataBinder.Eval(Container.DataItem, "Estabelecimento").ToString%></td>
-                            <td><%# DataBinder.Eval(Container.DataItem, "Representante").ToString%></td>
-                            <td><%# UCase(DataBinder.Eval(Container.DataItem, "Cidade").ToString)%></td>
+                            <td><%# DataBinder.Eval(Container.DataItem, "ESTABELECIMENTO").ToString%></td>
+                            <td><%# DataBinder.Eval(Container.DataItem, "REPRESENTANTE").ToString%></td>
+                            <td><%# UCase(DataBinder.Eval(Container.DataItem, "CIDADE").ToString)%></td>
                             <td><%# UCase(DataBinder.Eval(Container.DataItem, "UF").ToString)%></td>
+                            <td><%# UCase(DataBinder.Eval(Container.DataItem, "MEDICOS").ToString)%></td>
                         </tr>
                     </ItemTemplate>
                 </asp:Repeater>

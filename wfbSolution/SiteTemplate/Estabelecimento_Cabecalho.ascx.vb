@@ -34,15 +34,15 @@ Partial Class Estabelecimento_Cabecalho
 
                 'ATRIBUI VALORES AS PROPRIEDADES
                 If Not IsDBNull(dtr("CNPJ")) Then CNPJ = m.ConvertText(dtr("CNPJ"))
-                If Not IsDBNull(dtr("Estabelecimento")) Then ESTABELECIMENTO = m.ConvertText(dtr("Estabelecimento"))
-                If Not IsDBNull(dtr("Representante")) Then REPRESENTANTE = m.ConvertText(dtr("Representante"))
-                If Not IsDBNull(dtr("Email_Representante")) Then EMAIL_REPRESENTANTE = m.ConvertText(dtr("Email_Representante"))
-                If Not IsDBNull(dtr("Gerente")) Then GERENTE = m.ConvertText(dtr("Gerente"))
-                If Not IsDBNull(dtr("Email_Gerente")) Then EMAIL_GERENTE = m.ConvertText(dtr("Email_Gerente"))
-                If Not IsDBNull(dtr("Endereco")) Then ENDERECO = m.ConvertText(dtr("Endereco"))
-                If Not IsDBNull(dtr("Bairro")) Then BAIRRO = m.ConvertText(dtr("Bairro"))
-                If Not IsDBNull(dtr("Complemento")) Then COMPLEMENTO = m.ConvertText(dtr("Complemento"))
-                If Not IsDBNull(dtr("Cidade")) Then CIDADE = m.ConvertText(dtr("Cidade"))
+                If Not IsDBNull(dtr("Estabelecimento")) Then ESTABELECIMENTO = m.ConvertText(dtr("ESTABELECIMENTO"))
+                If Not IsDBNull(dtr("Representante")) Then REPRESENTANTE = m.ConvertText(dtr("REPRESENTANTE"))
+                If Not IsDBNull(dtr("Email_Representante")) Then EMAIL_REPRESENTANTE = m.ConvertText(dtr("EMAIL_REPRESENTANTE"))
+                If Not IsDBNull(dtr("Gerente")) Then GERENTE = m.ConvertText(dtr("GERENTE"))
+                If Not IsDBNull(dtr("Email_Gerente")) Then EMAIL_GERENTE = m.ConvertText(dtr("EMAIL_GERENTE"))
+                If Not IsDBNull(dtr("Endereco")) Then ENDERECO = m.ConvertText(dtr("ENDERECO"))
+                If Not IsDBNull(dtr("Bairro")) Then BAIRRO = m.ConvertText(dtr("BAIRRO"))
+                If Not IsDBNull(dtr("Complemento")) Then COMPLEMENTO = m.ConvertText(dtr("COMPLEMENTO"))
+                If Not IsDBNull(dtr("Cidade")) Then CIDADE = m.ConvertText(dtr("CIDADE"))
                 If Not IsDBNull(dtr("UF")) Then UF = m.ConvertText(dtr("UF"))
                 If Not IsDBNull(dtr("Cod_IBGE_7")) Then COD_IBGE_7 = m.ConvertText(dtr("Cod_IBGE_7"))
 
@@ -61,6 +61,10 @@ Partial Class Estabelecimento_Cabecalho
                 div_MENSAGEM_ESTABELECIMENTO.Visible = True
             End If
         End If
+
+        dts_MEDICOS.SelectCommand = "Select * from APP_MEDICOS_ESTABELECIMENTOS Where IdEstabelecimento  = '" & ID_ESTABELECIMENTO & "' Order By NOME_SOBRENOME"
+        dts_MEDICOS.DataBind()
+
     End Sub
 
 End Class

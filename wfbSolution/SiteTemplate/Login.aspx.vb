@@ -9,6 +9,8 @@ Partial Class Login
         Session("NOME_LOGIN") = ""
         Session("PERFIL_LOGIN") = ""
         Session("NIVEL_LOGIN") = ""
+        Session("IP_LOGIN") = ""
+        Session("LINK_PBI_LOGIN") = ""
     End Sub
 
     Private Sub cmdLogin_ServerClick(sender As Object, e As EventArgs) Handles cmdLogin.ServerClick
@@ -38,16 +40,15 @@ Partial Class Login
                     M.Alert(Me, "USUÁRIO INATIVO", False, "")
                     Exit Sub
                 End If
-                If DTR("NIVEL") = "99" Then
-                    M.Alert(Me, "USUÁRIO SEM NIVEL DE ACESSO", False, "")
-                    Exit Sub
-                End If
 
                 Session("EMAIL_LOGIN") = DTR("EMAIL")
                 Session("NOME_LOGIN") = DTR("APELIDO")
                 Session("PERFIL_LOGIN") = DTR("COD_FUNCAO")
                 Session("NIVEL_LOGIN") = DTR("NIVEL")
+                Session("IP_LOGIN") = Request.ServerVariables("REMOTE_ADDR").ToString
+                Session("LINK_PBI_LOGIN") = DTR("LINK_RELATORIO")
 
+                M.ExecuteSQL("Insert Into TBL_USUARIOS_LOGIN (EMAIL) Values ('" & Session("EMAIL_LOGIN") & "')")
                 Response.Redirect("Default.aspx")
             Else
                 M.Alert(Me, "SENHA INVÁLIDA", False, "")
