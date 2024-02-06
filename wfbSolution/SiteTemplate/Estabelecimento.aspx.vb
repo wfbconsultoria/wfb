@@ -46,22 +46,24 @@ Partial Class Estabelecimento
 
         'Monta e Formata CRM_UF
         CRM_UF = _CRM & _UF_CRM
+        Response.Redirect("Medico_Incluir.aspx?IdEStabelecimento=" & IdEstabelecimento & "&CRM_UF=" & CRM_UF)
 
-        'Verifica se o médico está cadastrado
-        If m.CheckExists("APP_MEDICOS", "CRM_UF", CRM_UF) = False Then
-            Response.Redirect("Medico_Incluir.aspx?IdEStabelecimento=" & IdEstabelecimento & "&CRM_UF=" & CRM_UF & "&Cadastrado=0")
-        Else
-            'Verifica se cadastrado no ESTABELECIMENTO
-            Dim dtr As SqlClient.SqlDataReader
-            Dim sql As String = " Select * From APP_MEDICOS_ESTABELECIMENTOS Where IdEstabeleciemnto = '" & IdEstabelecimento & "' And CRM_UF = '" & CRM_UF & "' "
-            dtr = m.ExecuteSelect(sql)
-            If dtr.HasRows Then
-                m.Alert(Me, "Este CRM já está cadastrado neste estabelecimento")
-                Exit Sub
-            Else
-                Response.Redirect("Medico_Incluir.aspx?IdEStabelecimento=" & IdEstabelecimento & "&CRM_UF=" & CRM_UF & "&Cadastrado=1")
-            End If
+        ''Verifica se o médico está cadastrado - DESABILITADO a verificação está sendo feita na página de inclusão
+        'If m.CheckExists("APP_MEDICOS", "CRM_UF", CRM_UF) = False Then
+        '    Response.Redirect("Medico_Incluir.aspx?IdEStabelecimento=" & IdEstabelecimento & "&CRM_UF=" & CRM_UF & "&Cadastrado=0")
+        'Else
+        '    'Verifica se cadastrado no ESTABELECIMENTO
+        '    Dim dtr As SqlClient.SqlDataReader
+        '    Dim sql As String = " Select * From APP_MEDICOS_ESTABELECIMENTOS Where IdEstabelecimento = '" & IdEstabelecimento & "' And CRM_UF = '" & CRM_UF & "' "
+        '    dtr = m.ExecuteSelect(sql)
+        '    If dtr.HasRows Then
+        '        dtr.Read()
+        '        Response.Redirect("Medico_Incluir.aspx?IdEStabelecimento=" & IdEstabelecimento & "&CRM_UF=" & CRM_UF & "&Cadastrado=1")
+        '        Exit Sub
+        '    Else
+        '        Response.Redirect("Medico_Incluir.aspx?IdEStabelecimento=" & IdEstabelecimento & "&CRM_UF=" & CRM_UF & "&Cadastrado=0")
+        '    End If
 
-        End If
+        'End If
     End Sub
 End Class

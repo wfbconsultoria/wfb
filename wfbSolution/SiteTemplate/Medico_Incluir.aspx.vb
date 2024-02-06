@@ -1,5 +1,7 @@
 ﻿
 Imports System.Data
+Imports System.Drawing
+Imports System.Threading
 Imports ASP
 
 Partial Class Medico_Incluir
@@ -10,38 +12,80 @@ Partial Class Medico_Incluir
     ReadOnly d As New clsMedicos
     ReadOnly c As New clsCEP
     Dim IdEstabelecimento As String = ""
+    Dim Cadastrado As Integer = 0
     Dim strCRM_UF As String = ""
     Dim strCRM As String = ""
     Dim strUF_CRM As String = ""
     Dim strCNPJ As String = ""
+
     Private Sub Medico_Incluir_Load(sender As Object, e As EventArgs) Handles Me.Load
 
         IdEstabelecimento = Request.QueryString("IdEstabelecimento")
+        strCRM_UF = Request.QueryString("CRM_UF")
+        'Cadastrado = Request.QueryString("Cadastrado")
 
-        'Recupera CNJP do estabelecimento
-        Dim dtr As SqlClient.SqlDataReader
-        dtr = m.ExecuteSelect(s.sql_Estabelecimentos("ficha", Request.QueryString("idEstabelecimento")))
-        If dtr.HasRows Then
-            dtr.Read()
-            strCNPJ = dtr("CNPJ")
+        'Recupera CNPJ E NOME do estabelecimento
+        Dim dtr_Estabelecimento As SqlClient.SqlDataReader = m.ExecuteSelect(s.sql_Estabelecimentos("ficha", Request.QueryString("idEstabelecimento")))
+        If dtr_Estabelecimento.HasRows Then
+            dtr_Estabelecimento.Read()
+            strCNPJ = dtr_Estabelecimento("CNPJ")
         Else
-            m.Alert(Me, "Selecione um estabelecimento para incluir o médico", True, "Estabelecimentos_aspx")
+            m.Alert(Me, "Inicie a inclusão do médico a partir de um estabelecimento", True, "Estabelecimentos_aspx")
         End If
 
-        strCRM_UF = Request.QueryString("CRM_UF")
+        'Atualiza datasources da página
+        Atualiza_DTS()
+
+        'Verifica se o médico já existe na TBL_MEDICOS, caso exista, recupera informações
         CRM.Value = Left(strCRM_UF, 8)
         UF_CRM.Value = Right(strCRM_UF, 2)
-        strCRM = Left(strCRM_UF, 8)
-        strUF_CRM = Right(strCRM_UF, 2)
 
+        Dim dtr_medico As SqlClient.SqlDataReader = m.ExecuteSelect("Select * From APP_MEDICOS Where CRM_UF = '" & strCRM_UF & "'")
+        If dtr_medico.HasRows Then
+            dtr_medico.Read()
+            CRM.Value = dtr_medico("CRM")
+            UF_CRM.Value = dtr_medico("UF_CRM")
+            ID_ESPECIALIDADE.Text = dtr_medico("ID_ESPECIALIDADE")
+            ID_TIPO.Text = dtr_medico("ID_TIPO")
+            NOME.Value = dtr_medico("NOME")
+            SOBRENOME.Value = dtr_medico("SOBRENOME")
+            EMAIL.Value = dtr_medico("EMAIL")
+            CELULAR.Value = dtr_medico("CELULAR")
+            TELEFONE.Value = dtr_medico("TELEFONE")
+            CEP.Value = dtr_medico("CEP")
+            ENDERECO.Value = dtr_medico("ENDERECO")
+            NUMERO.Value = dtr_medico("NUMERO")
+            COMPLEMENTO.Value = dtr_medico("COMPLEMENTO")
+            BAIRRO.Value = dtr_medico("BAIRRO")
+            COD_IBGE_7.Value = dtr_medico("COD_IBGE_7")
+            OBSERVACOES.Value = dtr_medico("OBSERVACOES")
+        End If
+
+        'Verifica se o médico já existe na TBL_MEDICOS_ESTABELECIMENTOS, caso exista, recupera informações
+        Dim dtr_medico_estabelecimento As SqlClient.SqlDataReader
+        dtr_medico_estabelecimento = m.ExecuteSelect(" SELECT * FROM APP_MEDICOS_ESTABELECIMENTOS WHERE IdEstabelecimento = '" & IdEstabelecimento & "' AND CRM_UF = '" & strCRM_UF & "'")
+        If dtr_medico_estabelecimento.HasRows Then
+            dtr_medico_estabelecimento.Read()
+            ID_FUNCAO.Text = dtr_medico_estabelecimento("ID_FUNCAO")
+            If dtr_medico_estabelecimento("ATENDE_SEG") = 1 Then ATENDE_SEG.Checked = True Else ATENDE_SEG.Checked = False
+            If dtr_medico_estabelecimento("ATENDE_TER") = 1 Then ATENDE_SEG.Checked = True Else ATENDE_TER.Checked = False
+            If dtr_medico_estabelecimento("ATENDE_QUA") = 1 Then ATENDE_SEG.Checked = True Else ATENDE_QUA.Checked = False
+            If dtr_medico_estabelecimento("ATENDE_QUI") = 1 Then ATENDE_SEG.Checked = True Else ATENDE_QUI.Checked = False
+            If dtr_medico_estabelecimento("ATENDE_SEX") = 1 Then ATENDE_SEG.Checked = True Else ATENDE_SEX.Checked = False
+        End If
+
+    End Sub
+    Private Sub Atualiza_DTS()
+        'Atualiza datasources da página
         dts_ESPECIALIDADES.SelectCommand = d.sql_especialidades("lista")
         dts_ESPECIALIDADES.DataBind()
 
         dts_TIPOS.SelectCommand = d.sql_tipos("lista")
         dts_TIPOS.DataBind()
 
+        dts_FUNCOES.SelectCommand = d.sql_funcoes("lista")
+        dts_FUNCOES.DataBind()
     End Sub
-
     Private Sub cmd_CEP_ServerClick(sender As Object, e As EventArgs) Handles cmd_CEP.ServerClick
         If c.consultarCEP(CEP.Value) = True Then
             ENDERECO.Value = c.ENDERECO
@@ -61,39 +105,42 @@ Partial Class Medico_Incluir
     End Sub
 
     Private Sub cmd_Gravar_ServerClick(sender As Object, e As EventArgs) Handles cmd_Gravar.ServerClick
-        Incluir()
+        Gravar()
     End Sub
 
-    Private Function Incluir() As Boolean
-        Incluir = False
+    Private Function Gravar() As Boolean
+        Gravar = False
+
         Dim sql As String = ""
         If validaCampos() = False Then Exit Function
 
+        'Caso o CRM_UF JÁ EXISTA, ou seja, o médico já esteja cadastrado na TBL_MEDICOS, ATUALIZA CASO CONTRARIO, INCLUI
         If m.CheckExists("TBL_MEDICOS", "CRM_UF", d.FormatCRM(CRM.Value) & UF_CRM.Value) = True Then
-            sql = ""
-            sql &= " INSERT INTO [TBL_MEDICOS_ESTABELECIMENTOS] ([CRM_UF],[CNPJ]) VALUES ( "
-            sql &= " '" & d.FormatCRM(CRM.Value) & UF_CRM.Value & "', "
-            sql &= " '" & strCNPJ & "') "
-            m.ExecuteSQL(sql)
-            Incluir = True
-            m.Alert(Me, "Médico Incluido com sucesso", True, "Medicos.aspx")
-        End If
+            'ATUALIZA
+            sql &= "Update TBL_MEDICOS Set "
+            sql &= " ID_ESPECIALIDADE = " & ID_ESPECIALIDADE.Text & ", "
+            sql &= " ID_TIPO = " & ID_TIPO.Text & ", "
+            sql &= " NOME = '" & m.ConvertText(NOME.Value) & "', "
+            sql &= " SOBRENOME = '" & m.ConvertText(NOME.Value) & "', "
+            sql &= " EMAIL = '" & m.ConvertText(EMAIL.Value) & "', "
+            sql &= " TELEFONE = '" & m.ConvertText(TELEFONE.Value) & "', "
+            sql &= " CELULAR = '" & m.ConvertText(CELULAR.Value) & "', "
+            sql &= " CEP = '" & m.ConvertText(CEP.Value) & "', "
+            sql &= " ENDERECO = '" & m.ConvertText(ENDERECO.Value) & "', "
+            sql &= " NUMERO = '" & m.ConvertText(NUMERO.Value) & "', "
+            sql &= " COMPLEMENTO = '" & m.ConvertText(COMPLEMENTO.Value) & "', "
+            sql &= " BAIRRO = '" & m.ConvertText(BAIRRO.Value) & "', "
+            sql &= " COD_IBGE_7 = '" & m.ConvertText(COD_IBGE_7.Value) & "', "
+            sql &= " CIDADE = '" & m.ConvertText(CIDADE.Value) & "', "
+            sql &= " UF = '" & m.ConvertText(UF.Value) & "', "
+            sql &= " OBSERVACOES = '" & m.ConvertText(OBSERVACOES.Value) & "' "
+            sql &= " Where CRM_UF = '" & strCRM_UF & "'"
 
-
-        Dim dtr As SqlClient.SqlDataReader
-
-        Sql = ""
-        sql &= " SELECT * FROM APP_MEDICOS_ESTABELECIMENTOS "
-        sql &= " WHERE IdEstabelecimento = '" & IdEstabelecimento & "' AND CRM_UF = '" & strCRM_UF & "'"
-
-        dtr = m.ExecuteSelect(sql)
-        If dtr.HasRows Then
-            m.Alert(Me, "Este CRM já está cadastrado neste estabelecimento")
-            Exit Function
-        End If
-
-        Try
-            Incluir = False
+            If m.ExecuteSQL(sql) = False Then
+                m.Alert(Me, "Erro ao atualizar cadastro médico", True, "Login,aspx")
+            End If
+        Else
+            'INCLUI
             sql = ""
             sql &= " INSERT INTO [TBL_MEDICOS] "
             sql &= " ( "
@@ -149,23 +196,57 @@ Partial Class Medico_Incluir
             ',<EMAIL_INCLUSAO, varchar(256),>
             ',<EMAIL_ALTERACAO, varchar(256),>)
             sql &= " ) "
-
             If m.ExecuteSQL(sql) = False Then
-                m.Alert(Me, "Erro ao incluir médico", False, "")
-            Else
-
-                sql = ""
-                sql &= " INSERT INTO [TBL_MEDICOS_ESTABELECIMENTOS] ([CRM_UF],[CNPJ]) VALUES ( "
-                sql &= " '" & d.FormatCRM(CRM.Value) & UF_CRM.Value & "', "
-                sql &= " '" & strCNPJ & "') "
-                m.ExecuteSQL(sql)
-                Incluir = True
-                m.Alert(Me, "Médico Incluido com sucesso", True, "Medicos.aspx")
+                m.Alert(Me, "Erro ao INCLUIR cadastro médico", False, "")
             End If
+        End If
 
-        Catch
-            Incluir = False
-        End Try
+        'RECUPERA VALORES DE CHECKED DA PAGINA
+        Dim bol_ATENDE_SEG As Integer = 0
+        Dim bol_ATENDE_TER As Integer = 0
+        Dim bol_ATENDE_QUA As Integer = 0
+        Dim bol_ATENDE_QUI As Integer = 0
+        Dim bol_ATENDE_SEX As Integer = 0
+        If (ATENDE_SEG.Checked) Then bol_ATENDE_SEG = 1
+        If (ATENDE_TER.Checked) Then bol_ATENDE_TER = 1
+        If (ATENDE_QUA.Checked) Then bol_ATENDE_QUA = 1
+        If (ATENDE_QUI.Checked) Then bol_ATENDE_QUI = 1
+        If (ATENDE_SEX.Checked) Then bol_ATENDE_SEX = 1
+
+        'verifica se o MEDICO já está cadastrado NA TBL_MEDICOS_ESTABELECIMENTOS, CASO ESTEJA ATUALIZA, CASO CONTRARIO INCLUI
+        Dim dtr As SqlClient.SqlDataReader
+        dtr = m.ExecuteSelect(" SELECT * FROM APP_MEDICOS_ESTABELECIMENTOS WHERE IdEstabelecimento = '" & IdEstabelecimento & "' AND CRM_UF = '" & strCRM_UF & "'")
+        If dtr.HasRows Then
+            'ATUALIZA
+            sql &= "Update TBL_MEDICOS_ESTABELECIMENTOS Set "
+            sql &= " ID_FUNCAO = " & ID_FUNCAO.Text & ", "
+            sql &= " ATENDE_SEG = " & bol_ATENDE_SEG & ", "
+            sql &= " ATENDE_TER = " & bol_ATENDE_TER & ", "
+            sql &= " ATENDE_QUA = " & bol_ATENDE_QUA & ", "
+            sql &= " ATENDE_QUI = " & bol_ATENDE_QUI & ", "
+            sql &= " ATENDE_SEX = " & bol_ATENDE_SEX & " "
+        Else
+            'INCLUI
+            sql = ""
+            sql &= " INSERT INTO [TBL_MEDICOS_ESTABELECIMENTOS] ([CRM_UF],[CNPJ],ID_FUNCAO,ATENDE_SEG,ATENDE_TER,ATENDE_QUA,ATENDE_QUIG,ATENDE_SEX) VALUES ( "
+            sql &= " '" & d.FormatCRM(CRM.Value) & UF_CRM.Value & "', "
+            sql &= " '" & strCNPJ & "', "
+            sql &= " '" & ID_FUNCAO.Text & "', "
+            sql &= " '" & bol_ATENDE_SEG & "', "
+            sql &= " '" & bol_ATENDE_TER & "', "
+            sql &= " '" & bol_ATENDE_QUA & "', "
+            sql &= " '" & bol_ATENDE_QUI & "', "
+            sql &= " '" & bol_ATENDE_SEX & "') "
+
+            m.ExecuteSQL(sql)
+            Gravar = True
+        End If
+
+        If Gravar = True Then
+            m.Alert(Me, "Médico incluido com sucesso", False, "")
+        Else
+            m.Alert(Me, "Erro ao incluir médico", False, "")
+        End If
 
     End Function
 
@@ -175,6 +256,7 @@ Partial Class Medico_Incluir
         If UF_CRM.Value = "00" Or Len(UF_CRM.Value) = 0 Then validaCampos = False
         If ID_ESPECIALIDADE.Text = "" Or Len(ID_ESPECIALIDADE.Text) = 0 Then validaCampos = False
         If ID_TIPO.Text = "" Or Len(ID_TIPO.Text) = 0 Then validaCampos = False
+        If ID_FUNCAO.Text = "" Or Len(ID_FUNCAO.Text) = 0 Then validaCampos = False
         If m.ConvertText(NOME.Value = "") Or Len(m.ConvertText(NOME.Value = "")) = 0 Then validaCampos = False
         If validaCampos = False Then
             m.Alert(Me, "Preencha corretamente os campos em vermelho (*)", False, "")

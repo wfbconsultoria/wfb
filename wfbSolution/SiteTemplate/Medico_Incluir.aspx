@@ -14,9 +14,10 @@
     <%--Data Sources--%>
     <asp:SqlDataSource ID="dts_ESPECIALIDADES" runat="server" ConnectionString="<%$ ConnectionStrings:DefaultConnection %>" />
     <asp:SqlDataSource ID="dts_TIPOS" runat="server" ConnectionString="<%$ ConnectionStrings:DefaultConnection %>" />
+    <asp:SqlDataSource ID="dts_FUNCOES" runat="server" ConnectionString="<%$ ConnectionStrings:DefaultConnection %>" />
 
-     <%--Conteudo--%>
-        <uc1:Estabelecimento_Cabecalho runat="server" ID="Estabelecimento_Cabecalho" />
+    <%--Conteudo--%>
+    <uc1:Estabelecimento_Cabecalho runat="server" ID="Estabelecimento_Cabecalho" />
     <%--DIV PRINCIPAL--%>
     <div class="row g-3">
 
@@ -24,7 +25,7 @@
         <div class="row g-2">
 
             <%-- UF do CRM --%>
-            <div class="col-md-2">
+            <div class="col-md-1">
                 <div class="form-floating">
                     <input runat="server" id="UF_CRM" type="text" class="form-control" maxlength="2" required="required" disabled="disabled" />
                     <label class="text-danger" for="UF_CRM">*UF do CRM</label>
@@ -38,17 +39,25 @@
                 </div>
             </div>
             <%-- ESPECIALIDADE --%>
-            <div class="col-md-4">
+            <div class="col-md-3">
                 <div class="form-floating">
                     <asp:DropDownList runat="server" ID="ID_ESPECIALIDADE" CssClass="form-select" DataSourceID="dts_ESPECIALIDADES" DataTextField="ESPECIALIDADE" DataValueField="ID_ESPECIALIDADE" required="required"></asp:DropDownList>
                     <label class="text-danger" for="ID_ESPECIALIDADE">*Especialidade</label>
                 </div>
             </div>
             <%-- TIPO --%>
-            <div class="col-md-4">
+            <div class="col-md-3">
                 <div class="form-floating">
                     <asp:DropDownList runat="server" ID="ID_TIPO" CssClass="form-select" DataSourceID="dts_TIPOS" DataTextField="TIPO" DataValueField="ID_TIPO" required="required"></asp:DropDownList>
                     <label class="text-danger" for="ID_TIPO">*Tipo</label>
+                </div>
+            </div>
+
+            <%-- FUNCAO --%>
+            <div class="col-md-3">
+                <div class="form-floating">
+                    <asp:DropDownList runat="server" ID="ID_FUNCAO" CssClass="form-select" DataSourceID="dts_FUNCOES" DataTextField="FUNCAO" DataValueField="ID_FUNCAO" required="required"></asp:DropDownList>
+                    <label class="text-danger" for="ID_TIPO">*Funcao no Estabelecimento</label>
                 </div>
             </div>
 
@@ -186,7 +195,6 @@
         </div>
         <%-- COD_IBGE_7/CIDADE/UF --%>
 
-
         <%-- OBSERVAÇÕES --%>
         <div class="row g-2">
             <div class="col-md-12">
@@ -197,6 +205,40 @@
             </div>
         </div>
         <%-- OBSERVAÇÕES --%>
+
+        <%-- DIAS DE ATENDIMENTO --%>
+        <div class="row g-2">
+            <div class="col-md-12">
+                <label class="text-muted">Dias Atendimento</label>
+            </div>
+        </div>
+        <div class="row g-2">
+            <div class="col-md-12">
+
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" value="" id="ATENDE_SEG" runat="server">
+                    <label class="form-check-label" for="flexCheckDefault">SEG</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" value="" id="ATENDE_TER" runat="server">
+                    <label class="form-check-label" for="flexCheckDefault">TER</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" value="" id="ATENDE_QUA" runat="server">
+                    <label class="form-check-label" for="flexCheckDefault">QUA</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" value="" id="ATENDE_QUI" runat="server">
+                    <label class="form-check-label" for="flexCheckDefault">QUI</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" value="" id="ATENDE_SEX" runat="server">
+                    <label class="form-check-label" for="flexCheckDefault">SEX</label>
+                </div>
+            </div>
+
+        </div>
+        <%-- DIAS DE ATENDIMENTO --%>
 
         <%-- BOTÕES --%>
         <div class="row g-2">

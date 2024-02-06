@@ -69,6 +69,28 @@ Public Class clsMedicos
 		sql_tipos = sql
 
 	End Function
+
+	Public Function sql_funcoes(Optional tipo As String = "", Optional id As String = "") As String
+		Dim sql As String = ""
+
+		sql = ""
+		sql &= " SELECT '' AS ID_FUNCAO, '( Selecione )' AS FUNCAO UNION ALL "
+		sql &= " SELECT "
+		sql &= " CONVERT( VARCHAR, TBL_MEDICOS_FUNCOES.ID_FUNCAO ) AS ID_FUNCAO "
+		sql &= " ,TBL_MEDICOS_FUNCOES.FUNCAO "
+		sql &= " FROM "
+		sql &= " TBL_MEDICOS_FUNCOES "
+
+		If tipo = "lista" Then
+			sql &= " ORDER BY FUNCAO "
+		End If
+
+		If tipo = "ficha" Then
+			sql &= " WHERE TBL_MEDICOS_FUNCOES.ID_FUNCAO = '" & id & "'"
+		End If
+		sql_funcoes = sql
+
+	End Function
 	Public Function FormatCRM(CRM As String) As String
 		Dim CRM_Numero As Integer
 		For Each A In CRM
