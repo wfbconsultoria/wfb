@@ -1,4 +1,4 @@
-﻿<%@ Page Title="Novo Médico" Language="VB" MasterPageFile="~/Master.master" AutoEventWireup="false" CodeFile="Medico_Incluir.aspx.vb" Inherits="Medico_Incluir" %>
+﻿<%@ Page Title="Médico" Language="VB" MasterPageFile="~/Master.master" AutoEventWireup="false" CodeFile="Medico_Incluir.aspx.vb" Inherits="Medico_Incluir" %>
 
 <%@ Register Src="~/Titulo_Pagina.ascx" TagPrefix="uc1" TagName="Titulo_Pagina" %>
 <%@ Register Src="~/Estabelecimento_Cabecalho.ascx" TagPrefix="uc1" TagName="Estabelecimento_Cabecalho" %>
@@ -42,7 +42,7 @@
             <div class="col-md-3">
                 <div class="form-floating">
                     <asp:DropDownList runat="server" ID="ID_ESPECIALIDADE" CssClass="form-select" DataSourceID="dts_ESPECIALIDADES" DataTextField="ESPECIALIDADE" DataValueField="ID_ESPECIALIDADE" required="required"></asp:DropDownList>
-                    <label class="text-danger" for="ID_ESPECIALIDADE">*Especialidade</label>
+                    <label class="text-danger" for="ID_ESPECIALIDADE">*Especialidade de formação</label>
                 </div>
             </div>
             <%-- TIPO --%>
@@ -57,7 +57,7 @@
             <div class="col-md-3">
                 <div class="form-floating">
                     <asp:DropDownList runat="server" ID="ID_FUNCAO" CssClass="form-select" DataSourceID="dts_FUNCOES" DataTextField="FUNCAO" DataValueField="ID_FUNCAO" required="required"></asp:DropDownList>
-                    <label class="text-danger" for="ID_TIPO">*Funcao no Estabelecimento</label>
+                    <label class="text-danger" for="ID_TIPO">*Função no Estabelecimento</label>
                 </div>
             </div>
 
@@ -217,24 +217,30 @@
 
                 <div class="form-check form-check-inline">
                     <input class="form-check-input" type="checkbox" value="" id="ATENDE_SEG" runat="server">
-                    <label class="form-check-label" for="flexCheckDefault">SEG</label>
+                    <label class="form-check-label" for="ATENDE_SEG">SEG</label>
                 </div>
                 <div class="form-check form-check-inline">
                     <input class="form-check-input" type="checkbox" value="" id="ATENDE_TER" runat="server">
-                    <label class="form-check-label" for="flexCheckDefault">TER</label>
+                    <label class="form-check-label" for="ATENDE_TER">TER</label>
                 </div>
                 <div class="form-check form-check-inline">
                     <input class="form-check-input" type="checkbox" value="" id="ATENDE_QUA" runat="server">
-                    <label class="form-check-label" for="flexCheckDefault">QUA</label>
+                    <label class="form-check-label" for="ATENDE_QUA">QUA</label>
                 </div>
                 <div class="form-check form-check-inline">
                     <input class="form-check-input" type="checkbox" value="" id="ATENDE_QUI" runat="server">
-                    <label class="form-check-label" for="flexCheckDefault">QUI</label>
+                    <label class="form-check-label" for="ATENDE_QUI">QUI</label>
                 </div>
                 <div class="form-check form-check-inline">
                     <input class="form-check-input" type="checkbox" value="" id="ATENDE_SEX" runat="server">
-                    <label class="form-check-label" for="flexCheckDefault">SEX</label>
+                    <label class="form-check-label" for="ATENDE_SEX">SEX</label>
                 </div>
+                 <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" value="" id="ATIVO" runat="server">
+                    <label class="form-check-label" for="ATIVO">ATIVO</label>
+                </div>
+
+
             </div>
 
         </div>
@@ -243,8 +249,8 @@
         <%-- BOTÕES --%>
         <div class="row g-2">
             <div class="col-12">
-                <button runat="server" id="cmd_Gravar" type="submit" class="btn btn-primary">Incluir</button>
-                <button runat="server" id="cmd_CEP" type="button" class="btn btn-info">CEP</button>
+                <button runat="server" id="cmd_Gravar" type="submit" class="btn btn-primary">Gravar</button>
+                <button runat="server" id="cmd_CEP" type="button" class="btn btn-info">Consultar CEP</button>
             </div>
             <%-- BOTÕES --%>
         </div>

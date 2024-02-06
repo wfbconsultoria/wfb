@@ -32,7 +32,7 @@
                     <th data-field="Representante" data-sortable="true" style="width:25%">Rep</th>
                     <th data-field="Cidade" data-sortable="true" style="width:20%">Cidade</th>
                     <th data-field="UF" data-sortable="true" style="width:5%">UF</th>
-                    <th data-field="UF" data-sortable="true" style="width:5%">MEDICOS</th>
+                    <th data-field="MEDICOS" data-sortable="true" style="width:5%">MEDICOS</th>
                 </tr>
             </thead>
             <tbody>

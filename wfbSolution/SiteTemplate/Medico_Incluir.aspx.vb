@@ -24,6 +24,7 @@ Partial Class Medico_Incluir
         strCRM_UF = Request.QueryString("CRM_UF")
         'Cadastrado = Request.QueryString("Cadastrado")
 
+
         'Recupera CNPJ E NOME do estabelecimento
         Dim dtr_Estabelecimento As SqlClient.SqlDataReader = m.ExecuteSelect(s.sql_Estabelecimentos("ficha", Request.QueryString("idEstabelecimento")))
         If dtr_Estabelecimento.HasRows Then
@@ -35,6 +36,8 @@ Partial Class Medico_Incluir
 
         'Atualiza datasources da página
         Atualiza_DTS()
+
+        If IsPostBack = True Then Gravar()
 
         'Verifica se o médico já existe na TBL_MEDICOS, caso exista, recupera informações
         CRM.Value = Left(strCRM_UF, 8)
@@ -67,45 +70,19 @@ Partial Class Medico_Incluir
         If dtr_medico_estabelecimento.HasRows Then
             dtr_medico_estabelecimento.Read()
             ID_FUNCAO.Text = dtr_medico_estabelecimento("ID_FUNCAO")
-            If dtr_medico_estabelecimento("ATENDE_SEG") = 1 Then ATENDE_SEG.Checked = True Else ATENDE_SEG.Checked = False
-            If dtr_medico_estabelecimento("ATENDE_TER") = 1 Then ATENDE_SEG.Checked = True Else ATENDE_TER.Checked = False
-            If dtr_medico_estabelecimento("ATENDE_QUA") = 1 Then ATENDE_SEG.Checked = True Else ATENDE_QUA.Checked = False
-            If dtr_medico_estabelecimento("ATENDE_QUI") = 1 Then ATENDE_SEG.Checked = True Else ATENDE_QUI.Checked = False
-            If dtr_medico_estabelecimento("ATENDE_SEX") = 1 Then ATENDE_SEG.Checked = True Else ATENDE_SEX.Checked = False
+            If dtr_medico_estabelecimento("ATENDE_SEG") = True Then ATENDE_SEG.Checked = True Else ATENDE_SEG.Checked = False
+            If dtr_medico_estabelecimento("ATENDE_TER") = True Then ATENDE_TER.Checked = True Else ATENDE_TER.Checked = False
+            If dtr_medico_estabelecimento("ATENDE_QUA") = True Then ATENDE_QUA.Checked = True Else ATENDE_QUA.Checked = False
+            If dtr_medico_estabelecimento("ATENDE_QUI") = True Then ATENDE_QUI.Checked = True Else ATENDE_QUI.Checked = False
+            If dtr_medico_estabelecimento("ATENDE_SEX") = True Then ATENDE_SEX.Checked = True Else ATENDE_SEX.Checked = False
+
+
         End If
 
-    End Sub
-    Private Sub Atualiza_DTS()
-        'Atualiza datasources da página
-        dts_ESPECIALIDADES.SelectCommand = d.sql_especialidades("lista")
-        dts_ESPECIALIDADES.DataBind()
-
-        dts_TIPOS.SelectCommand = d.sql_tipos("lista")
-        dts_TIPOS.DataBind()
-
-        dts_FUNCOES.SelectCommand = d.sql_funcoes("lista")
-        dts_FUNCOES.DataBind()
-    End Sub
-    Private Sub cmd_CEP_ServerClick(sender As Object, e As EventArgs) Handles cmd_CEP.ServerClick
-        If c.consultarCEP(CEP.Value) = True Then
-            ENDERECO.Value = c.ENDERECO
-            BAIRRO.Value = c.BAIRRO
-            CIDADE.Value = c.CIDADE
-            UF.Value = c.UF
-            COD_IBGE_7.Value = c.COD_IBGE_7
-        Else
-            CEP.Value = ""
-            ENDERECO.Value = ""
-            BAIRRO.Value = ""
-            CIDADE.Value = ""
-            UF.Value = ""
-            COD_IBGE_7.Value = ""
-            m.Alert(Me, "CEP INVÁLIDO", False, "")
-        End If
     End Sub
 
     Private Sub cmd_Gravar_ServerClick(sender As Object, e As EventArgs) Handles cmd_Gravar.ServerClick
-        Gravar()
+
     End Sub
 
     Private Function Gravar() As Boolean
@@ -115,13 +92,13 @@ Partial Class Medico_Incluir
         If validaCampos() = False Then Exit Function
 
         'Caso o CRM_UF JÁ EXISTA, ou seja, o médico já esteja cadastrado na TBL_MEDICOS, ATUALIZA CASO CONTRARIO, INCLUI
-        If m.CheckExists("TBL_MEDICOS", "CRM_UF", d.FormatCRM(CRM.Value) & UF_CRM.Value) = True Then
+        If m.CheckExists("APP_MEDICOS", "CRM_UF", d.FormatCRM(CRM.Value) & UF_CRM.Value) = True Then
             'ATUALIZA
             sql &= "Update TBL_MEDICOS Set "
             sql &= " ID_ESPECIALIDADE = " & ID_ESPECIALIDADE.Text & ", "
             sql &= " ID_TIPO = " & ID_TIPO.Text & ", "
             sql &= " NOME = '" & m.ConvertText(NOME.Value) & "', "
-            sql &= " SOBRENOME = '" & m.ConvertText(NOME.Value) & "', "
+            sql &= " SOBRENOME = '" & m.ConvertText(SOBRENOME.Value) & "', "
             sql &= " EMAIL = '" & m.ConvertText(EMAIL.Value) & "', "
             sql &= " TELEFONE = '" & m.ConvertText(TELEFONE.Value) & "', "
             sql &= " CELULAR = '" & m.ConvertText(CELULAR.Value) & "', "
@@ -137,7 +114,10 @@ Partial Class Medico_Incluir
             sql &= " Where CRM_UF = '" & strCRM_UF & "'"
 
             If m.ExecuteSQL(sql) = False Then
-                m.Alert(Me, "Erro ao atualizar cadastro médico", True, "Login,aspx")
+                Gravar = False
+                m.Alert(Me, "Erro ao atualizar cadastro médico", False, "")
+            Else
+                Gravar = True
             End If
         Else
             'INCLUI
@@ -197,7 +177,10 @@ Partial Class Medico_Incluir
             ',<EMAIL_ALTERACAO, varchar(256),>)
             sql &= " ) "
             If m.ExecuteSQL(sql) = False Then
+                Gravar = False
                 m.Alert(Me, "Erro ao INCLUIR cadastro médico", False, "")
+            Else
+                Gravar = True
             End If
         End If
 
@@ -218,6 +201,7 @@ Partial Class Medico_Incluir
         dtr = m.ExecuteSelect(" SELECT * FROM APP_MEDICOS_ESTABELECIMENTOS WHERE IdEstabelecimento = '" & IdEstabelecimento & "' AND CRM_UF = '" & strCRM_UF & "'")
         If dtr.HasRows Then
             'ATUALIZA
+            sql = ""
             sql &= "Update TBL_MEDICOS_ESTABELECIMENTOS Set "
             sql &= " ID_FUNCAO = " & ID_FUNCAO.Text & ", "
             sql &= " ATENDE_SEG = " & bol_ATENDE_SEG & ", "
@@ -225,10 +209,17 @@ Partial Class Medico_Incluir
             sql &= " ATENDE_QUA = " & bol_ATENDE_QUA & ", "
             sql &= " ATENDE_QUI = " & bol_ATENDE_QUI & ", "
             sql &= " ATENDE_SEX = " & bol_ATENDE_SEX & " "
+            sql &= " WHERE CNPJ = '" & strCNPJ & "' AND CRM_UF = '" & strCRM_UF & "'"
+            If m.ExecuteSQL(sql) = False Then
+                Gravar = False
+                m.Alert(Me, "Erro ao atualizar médico no estabelecimento", False, "")
+            Else
+                Gravar = True
+            End If
         Else
             'INCLUI
             sql = ""
-            sql &= " INSERT INTO [TBL_MEDICOS_ESTABELECIMENTOS] ([CRM_UF],[CNPJ],ID_FUNCAO,ATENDE_SEG,ATENDE_TER,ATENDE_QUA,ATENDE_QUIG,ATENDE_SEX) VALUES ( "
+            sql &= " INSERT INTO [TBL_MEDICOS_ESTABELECIMENTOS] ([CRM_UF],[CNPJ],ID_FUNCAO,ATENDE_SEG,ATENDE_TER,ATENDE_QUA,ATENDE_QUI,ATENDE_SEX) VALUES ( "
             sql &= " '" & d.FormatCRM(CRM.Value) & UF_CRM.Value & "', "
             sql &= " '" & strCNPJ & "', "
             sql &= " '" & ID_FUNCAO.Text & "', "
@@ -238,18 +229,50 @@ Partial Class Medico_Incluir
             sql &= " '" & bol_ATENDE_QUI & "', "
             sql &= " '" & bol_ATENDE_SEX & "') "
 
-            m.ExecuteSQL(sql)
-            Gravar = True
+            If m.ExecuteSQL(sql) = False Then
+                Gravar = False
+                m.Alert(Me, "Erro ao incluir médico no estabelecimento", False, "")
+            Else
+                Gravar = True
+            End If
         End If
 
         If Gravar = True Then
-            m.Alert(Me, "Médico incluido com sucesso", False, "")
+            m.Alert(Me, "Médico incluido ou atualizado com sucesso", False, "")
         Else
-            m.Alert(Me, "Erro ao incluir médico", False, "")
+            m.Alert(Me, "Erro ao incluir ou atualizar médico", False, "")
         End If
 
     End Function
 
+    Private Sub cmd_CEP_ServerClick(sender As Object, e As EventArgs) Handles cmd_CEP.ServerClick
+        If c.consultarCEP(CEP.Value) = True Then
+            ENDERECO.Value = c.ENDERECO
+            BAIRRO.Value = c.BAIRRO
+            CIDADE.Value = c.CIDADE
+            UF.Value = c.UF
+            COD_IBGE_7.Value = c.COD_IBGE_7
+        Else
+            CEP.Value = ""
+            ENDERECO.Value = ""
+            BAIRRO.Value = ""
+            CIDADE.Value = ""
+            UF.Value = ""
+            COD_IBGE_7.Value = ""
+            m.Alert(Me, "CEP INVÁLIDO", False, "")
+        End If
+    End Sub
+    Private Sub Atualiza_DTS()
+        'Atualiza datasources da página
+        dts_ESPECIALIDADES.SelectCommand = d.sql_especialidades("lista")
+        dts_ESPECIALIDADES.DataBind()
+
+        dts_TIPOS.SelectCommand = d.sql_tipos("lista")
+        dts_TIPOS.DataBind()
+
+        dts_FUNCOES.SelectCommand = d.sql_funcoes("lista")
+        dts_FUNCOES.DataBind()
+    End Sub
     Private Function validaCampos() As Boolean
         validaCampos = True
         If d.FormatCRM(CRM.Value) = "00000000" Or Len(CRM.Value) = 0 Then validaCampos = False

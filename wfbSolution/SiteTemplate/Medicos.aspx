@@ -40,7 +40,7 @@
                 <tr>
                     <th data-field="CRM" data-sortable="true" style="width: 10%">CRM</th>
                     <th data-field="NOME" data-sortable="true" style="width: 40%">Medico</th>
-                    <th data-field="ESPECIALIDADE" data-sortable="true" style="width: 15%">Especialidade</th>
+                    <th data-field="ESPECIALIDADE" data-sortable="true" style="width: 15%">Função</th>
                      <th data-field="ESTABELECIMENTO" data-sortable="true" style="width: 30%">Estabelecimento</th>
                     <th data-field="VISITAR" data-sortable="true" style="width: 5%">Visitar</th>
                 </tr>
@@ -49,9 +49,9 @@
                 <asp:Repeater ID="dtr" runat="server" DataSourceID="dts">
                     <ItemTemplate>
                         <tr>
-                            <td><a href='<%# "Medico.aspx?idMedico" + "=" + DataBinder.Eval(Container.DataItem, "IdMedico").ToString %>'><%# DataBinder.Eval(Container.DataItem, "CRM_UF").ToString%></a></td>
+                            <td><a href='<%# "Medico_Incluir.aspx?IdEstabelecimento" + "=" + DataBinder.Eval(Container.DataItem, "IdEstabelecimento").ToString + "&CRM_UF" + "=" + DataBinder.Eval(Container.DataItem, "CRM_UF") %>'><%# DataBinder.Eval(Container.DataItem, "CRM_UF").ToString%></a></td>
                             <td><%# DataBinder.Eval(Container.DataItem, "NOME_SOBRENOME").ToString%></td>
-                            <td><%# DataBinder.Eval(Container.DataItem, "ESPECIALIDADE").ToString%></td>
+                            <td><%# DataBinder.Eval(Container.DataItem, "FUNCAO").ToString%></td>
                             <td><%# DataBinder.Eval(Container.DataItem, "ESTABELECIMENTO_CNPJ").ToString%></td>
                             <td><a href='<%# "Medico.aspx?idMedico" + "=" + DataBinder.Eval(Container.DataItem, "IdMedico").ToString %>'>Visitar</a></td>
                         </tr>
