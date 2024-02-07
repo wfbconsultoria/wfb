@@ -11,12 +11,15 @@ Partial Class Medico_Incluir
     ReadOnly s As New clsEstabelecimentos
     ReadOnly d As New clsMedicos
     ReadOnly c As New clsCEP
+    ReadOnly v As New clsVisitas
+
     Dim IdEstabelecimento As String = ""
     Dim Cadastrado As Integer = 0
     Dim strCRM_UF As String = ""
     Dim strCRM As String = ""
     Dim strUF_CRM As String = ""
     Dim strCNPJ As String = ""
+    Dim strESTABELECIMENTO As String = ""
 
     Private Sub Medico_Incluir_Load(sender As Object, e As EventArgs) Handles Me.Load
 
@@ -30,6 +33,7 @@ Partial Class Medico_Incluir
         If dtr_Estabelecimento.HasRows Then
             dtr_Estabelecimento.Read()
             strCNPJ = dtr_Estabelecimento("CNPJ")
+            strESTABELECIMENTO = dtr_Estabelecimento("ESTABELECIMENTO")
         Else
             m.Alert(Me, "Inicie a inclusão do médico a partir de um estabelecimento", True, "Estabelecimentos_aspx")
         End If
@@ -62,6 +66,11 @@ Partial Class Medico_Incluir
             BAIRRO.Value = dtr_medico("BAIRRO")
             COD_IBGE_7.Value = dtr_medico("COD_IBGE_7")
             OBSERVACOES.Value = dtr_medico("OBSERVACOES")
+
+            'campos do modal para lançamento de visitas
+            VISITA_MEDICO.Value = dtr_medico("NOME")
+            VISITA_ESTABELECIMENTO.Value = strESTABELECIMENTO
+
         End If
 
         'Verifica se o médico já existe na TBL_MEDICOS_ESTABELECIMENTOS, caso exista, recupera informações
@@ -75,7 +84,7 @@ Partial Class Medico_Incluir
             If dtr_medico_estabelecimento("ATENDE_QUA") = True Then ATENDE_QUA.Checked = True Else ATENDE_QUA.Checked = False
             If dtr_medico_estabelecimento("ATENDE_QUI") = True Then ATENDE_QUI.Checked = True Else ATENDE_QUI.Checked = False
             If dtr_medico_estabelecimento("ATENDE_SEX") = True Then ATENDE_SEX.Checked = True Else ATENDE_SEX.Checked = False
-
+            If dtr_medico_estabelecimento("MEDICO_ATIVO_NO_ESTABELECIMENTO") = True Then ATIVO.Checked = True Else ATIVO.Checked = False
 
         End If
 
@@ -190,11 +199,13 @@ Partial Class Medico_Incluir
         Dim bol_ATENDE_QUA As Integer = 0
         Dim bol_ATENDE_QUI As Integer = 0
         Dim bol_ATENDE_SEX As Integer = 0
+        Dim bol_ATIVO As Integer = 0
         If (ATENDE_SEG.Checked) Then bol_ATENDE_SEG = 1
         If (ATENDE_TER.Checked) Then bol_ATENDE_TER = 1
         If (ATENDE_QUA.Checked) Then bol_ATENDE_QUA = 1
         If (ATENDE_QUI.Checked) Then bol_ATENDE_QUI = 1
         If (ATENDE_SEX.Checked) Then bol_ATENDE_SEX = 1
+        If (ATIVO.Checked) Then bol_ATIVO = 1
 
         'verifica se o MEDICO já está cadastrado NA TBL_MEDICOS_ESTABELECIMENTOS, CASO ESTEJA ATUALIZA, CASO CONTRARIO INCLUI
         Dim dtr As SqlClient.SqlDataReader
@@ -208,7 +219,8 @@ Partial Class Medico_Incluir
             sql &= " ATENDE_TER = " & bol_ATENDE_TER & ", "
             sql &= " ATENDE_QUA = " & bol_ATENDE_QUA & ", "
             sql &= " ATENDE_QUI = " & bol_ATENDE_QUI & ", "
-            sql &= " ATENDE_SEX = " & bol_ATENDE_SEX & " "
+            sql &= " ATENDE_SEX = " & bol_ATENDE_SEX & ", "
+            sql &= " ATIVO = " & bol_ATIVO & " "
             sql &= " WHERE CNPJ = '" & strCNPJ & "' AND CRM_UF = '" & strCRM_UF & "'"
             If m.ExecuteSQL(sql) = False Then
                 Gravar = False
@@ -219,7 +231,7 @@ Partial Class Medico_Incluir
         Else
             'INCLUI
             sql = ""
-            sql &= " INSERT INTO [TBL_MEDICOS_ESTABELECIMENTOS] ([CRM_UF],[CNPJ],ID_FUNCAO,ATENDE_SEG,ATENDE_TER,ATENDE_QUA,ATENDE_QUI,ATENDE_SEX) VALUES ( "
+            sql &= " INSERT INTO [TBL_MEDICOS_ESTABELECIMENTOS] ([CRM_UF],[CNPJ],ID_FUNCAO,ATENDE_SEG,ATENDE_TER,ATENDE_QUA,ATENDE_QUI,ATENDE_SEX,ATIVO) VALUES ( "
             sql &= " '" & d.FormatCRM(CRM.Value) & UF_CRM.Value & "', "
             sql &= " '" & strCNPJ & "', "
             sql &= " '" & ID_FUNCAO.Text & "', "
@@ -227,7 +239,8 @@ Partial Class Medico_Incluir
             sql &= " '" & bol_ATENDE_TER & "', "
             sql &= " '" & bol_ATENDE_QUA & "', "
             sql &= " '" & bol_ATENDE_QUI & "', "
-            sql &= " '" & bol_ATENDE_SEX & "') "
+            sql &= " '" & bol_ATENDE_SEX & "', "
+            sql &= " '" & 1 & "') "
 
             If m.ExecuteSQL(sql) = False Then
                 Gravar = False
@@ -272,6 +285,15 @@ Partial Class Medico_Incluir
 
         dts_FUNCOES.SelectCommand = d.sql_funcoes("lista")
         dts_FUNCOES.DataBind()
+
+        dts_VISITAS_AVALIACOES.SelectCommand = v.sql_visitas_avaliacoes("lista")
+        dts_VISITAS_AVALIACOES.DataBind()
+
+        dts_VISITAS_OBJETIVOS.SelectCommand = v.sql_visitas_objetivos("lista")
+        dts_VISITAS_OBJETIVOS.DataBind()
+
+        dts_VISITAS_LINHA.SelectCommand = v.sql_visitas_linhas("lista")
+        dts_VISITAS_LINHA.DataBind()
     End Sub
     Private Function validaCampos() As Boolean
         validaCampos = True

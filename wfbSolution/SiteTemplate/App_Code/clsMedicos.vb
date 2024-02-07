@@ -18,7 +18,7 @@ Public Class clsMedicos
 				Case = 3
 					sql &= " Where EMAIL_REPRESENTANTE = '" & HttpContext.Current.Session("EMAIL_LOGIN") & "'"
 			End Select
-			sql &= " Order By NOME_SOBRENOME "
+			sql &= " And MEDICO_ATIVO_NO_ESTABELECIMENTO = 1 Order By NOME_SOBRENOME "
 		End If
 
 		If tipo = "ficha" Then

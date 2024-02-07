@@ -62,7 +62,7 @@ Partial Class Estabelecimento_Cabecalho
             End If
         End If
 
-        dts_MEDICOS.SelectCommand = "Select * from APP_MEDICOS_ESTABELECIMENTOS Where IdEstabelecimento  = '" & ID_ESTABELECIMENTO & "' Order By NOME_SOBRENOME"
+        dts_MEDICOS.SelectCommand = "Select * from APP_MEDICOS_ESTABELECIMENTOS Where IdEstabelecimento  = '" & ID_ESTABELECIMENTO & "' And MEDICO_ATIVO_NO_ESTABELECIMENTO = 1 Order By NOME_SOBRENOME"
         dts_MEDICOS.DataBind()
 
     End Sub

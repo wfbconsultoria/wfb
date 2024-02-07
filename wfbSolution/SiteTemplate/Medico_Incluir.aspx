@@ -3,8 +3,6 @@
 <%@ Register Src="~/Titulo_Pagina.ascx" TagPrefix="uc1" TagName="Titulo_Pagina" %>
 <%@ Register Src="~/Estabelecimento_Cabecalho.ascx" TagPrefix="uc1" TagName="Estabelecimento_Cabecalho" %>
 
-
-
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="Server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="BodyContent" runat="Server">
@@ -15,6 +13,9 @@
     <asp:SqlDataSource ID="dts_ESPECIALIDADES" runat="server" ConnectionString="<%$ ConnectionStrings:DefaultConnection %>" />
     <asp:SqlDataSource ID="dts_TIPOS" runat="server" ConnectionString="<%$ ConnectionStrings:DefaultConnection %>" />
     <asp:SqlDataSource ID="dts_FUNCOES" runat="server" ConnectionString="<%$ ConnectionStrings:DefaultConnection %>" />
+    <asp:SqlDataSource ID="dts_VISITAS_AVALIACOES" runat="server" ConnectionString="<%$ ConnectionStrings:DefaultConnection %>" />
+    <asp:SqlDataSource ID="dts_VISITAS_OBJETIVOS" runat="server" ConnectionString="<%$ ConnectionStrings:DefaultConnection %>" />
+    <asp:SqlDataSource ID="dts_VISITAS_LINHA" runat="server" ConnectionString="<%$ ConnectionStrings:DefaultConnection %>" />
 
     <%--Conteudo--%>
     <uc1:Estabelecimento_Cabecalho runat="server" ID="Estabelecimento_Cabecalho" />
@@ -76,16 +77,14 @@
                 </div>
             </div>
             <%-- SOBRENOME --%>
-            <div class="col-md-8">
+            <div class="col-md-4">
                 <div class="form-floating">
                     <input runat="server" id="SOBRENOME" type="text" class="form-control" value="" placeholder="" />
                     <label for="SOBRENOME">Sobrenome</label>
                 </div>
             </div>
-
         </div>
         <%-- NOME/SOBRENOME--%>
-
 
         <%-- EMAIL/CELULAR/TELEFONE--%>
         <div class="row g-2">
@@ -115,7 +114,6 @@
         </div>
         <%-- EMAIL/CELULAR/TELEFONE--%>
 
-
         <%-- CEP/ENDERECO/NUMERO--%>
         <div class="row g-2">
 
@@ -144,7 +142,6 @@
         </div>
         <%-- CEP/ENDERECO/NUMERO--%>
 
-
         <%-- COMPLEMENTO/BAIRRO--%>
         <div class="row g-2">
 
@@ -165,7 +162,6 @@
 
         </div>
         <%-- COMPLEMENTO/BAIRRO --%>
-
 
         <%-- COD_IBGE_7/CIDADE/UF --%>
         <div class="row g-2">
@@ -235,12 +231,6 @@
                     <input class="form-check-input" type="checkbox" value="" id="ATENDE_SEX" runat="server">
                     <label class="form-check-label" for="ATENDE_SEX">SEX</label>
                 </div>
-                 <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="checkbox" value="" id="ATIVO" runat="server">
-                    <label class="form-check-label" for="ATIVO">ATIVO</label>
-                </div>
-
-
             </div>
 
         </div>
@@ -251,10 +241,83 @@
             <div class="col-12">
                 <button runat="server" id="cmd_Gravar" type="submit" class="btn btn-primary">Gravar</button>
                 <button runat="server" id="cmd_CEP" type="button" class="btn btn-info">Consultar CEP</button>
-            </div>
-            <%-- BOTÕES --%>
-        </div>
 
+            </div>
+        </div>
+        <%-- BOTÕES --%>
+
+        <%-- ATIVAR/INATIVAR --%>
+        <a class="link" data-bs-toggle="collapse" href="#ATIVAR" role="button" aria-expanded="false" aria-controls="ATIVAR">Ativar/Inativar Médico</a>
+        <div class="collapse" id="ATIVAR">
+
+            <input runat="server" class="form-check-input" type="checkbox" value="" id="ATIVO">
+            <label class="form-check-label" for="ATIVO">ATIVO</label>
+        </div>
+        <%-- ATIVAR/INATIVAR --%>
+
+        <%-- VISITAR --%>
+        <!-- Button trigger modal -->
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+            Launch static backdrop modal
+        </button>
+
+        <!-- Modal -->
+        <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-scrollable">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Visitar</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="container container-fluid">
+
+                            <div class="form-floating">
+                                <input runat="server" id="VISITA_ESTABELECIMENTO" type="text" class="form-control text-primary" placeholder="" value="" disabled="disabled" />
+                                <label for="VISITA_ESTABELECIMENTO">Estabelecimento</label>
+                            </div>
+
+                            <div class="form-floating">
+                                <input runat="server" id="VISITA_MEDICO" type="text" class="form-control text-primary" placeholder="" value="" disabled="disabled" />
+                                <label for="VISITA_MEDICO">Médico</label>
+                            </div>
+
+                            <div class="form-floating">
+                                <input runat="server" id="VISITA_DATA" type="date" class="form-control" placeholder="" required="required" value="<%:Now()%>" />
+                                <label for="VISITA_DATA">Data Visita</label>
+                            </div>
+
+                            <div class="form-floating">
+                                <asp:DropDownList runat="server" ID="VISITA_OBJETIVO" CssClass="form-select" DataSourceID="dts_VISITAS_OBJETIVOS" DataTextField="OBJETIVO" DataValueField="COD_OBJETIVO" required="required"></asp:DropDownList>
+                                <label class="text-danger" for="VISITA_OBJETIVO">Objetivo</label>
+                            </div>
+
+                            <div class="form-floating">
+                                <asp:DropDownList runat="server" ID="VISITA_LINHA" CssClass="form-select" DataSourceID="dts_VISITAS_LINHA" DataTextField="LINHA" DataValueField="COD_LINHA" required="required"></asp:DropDownList>
+                                <label class="text-danger" for="VISITA_LINHA">Produto Foco</label>
+                            </div>
+
+                            <div class="form-floating">
+                                <asp:DropDownList runat="server" ID="VISITA_AVALIACAO" CssClass="form-select" DataSourceID="dts_VISITAS_AVALIACOES" DataTextField="AVALIACAO" DataValueField="COD_AVALIACAO" required="required"></asp:DropDownList>
+                                <label class="text-danger" for="VISITA_AVALIACAO">Avaliação</label>
+                            </div>
+
+
+                            <div class="form-floating">
+                                <textarea runat="server" id="VISITA_OBSERVACOES" class="form-control" maxlength="5000" cols="30" rows="20" wrap="hard"></textarea>
+                                <label for="VISITA_OBSERVACOES">Observações</label>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                        <button type="button" class="btn btn-primary">Gravar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <%-- VISITAR --%>
     </div>
     <%--DIV PRINCIPAL--%>
 </asp:Content>
