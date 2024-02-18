@@ -20,7 +20,6 @@ Partial Class Medico_Incluir
     Dim strUF_CRM As String = ""
     Dim strCNPJ As String = ""
     Dim strESTABELECIMENTO As String = ""
-
     Private Sub Medico_Incluir_Load(sender As Object, e As EventArgs) Handles Me.Load
 
         IdEstabelecimento = Request.QueryString("IdEstabelecimento")
@@ -89,11 +88,9 @@ Partial Class Medico_Incluir
         End If
 
     End Sub
-
     Private Sub cmd_Gravar_ServerClick(sender As Object, e As EventArgs) Handles cmd_Gravar.ServerClick
 
     End Sub
-
     Private Function Gravar() As Boolean
         Gravar = False
 
@@ -250,11 +247,75 @@ Partial Class Medico_Incluir
             End If
         End If
 
-        If Gravar = True Then
-            m.Alert(Me, "Médico incluido ou atualizado com sucesso", False, "")
+        'INCLUI VISITA
+        If VISITA_OBJETIVO.Text = "" Or VISITA_AVALIACAO.Text = "" Or VISITA_LINHA.Text = "" Or VISITA_DATA.Value = "" Then
+            VISITA_AVALIACAO.Text = ""
+            VISITA_DATA.Value = Now()
+            VISITA_LINHA.Text = ""
+            VISITA_OBJETIVO.Text = ""
+            VISITA_OBSERVACOES.Value = ""
         Else
-            m.Alert(Me, "Erro ao incluir ou atualizar médico", False, "")
+
+            If VISITA_DATA.Value > Now() Then
+                m.Alert(Me, " Data da visita nãompode ser posterior a " & Now())
+                Exit Function
+            End If
+
+            If VISITA_DATA.Value < Now().AddDays(-2) Then
+                m.Alert(Me, " Data da visita não pode ser ANTERIOR a " & Now().AddDays(-1))
+                Exit Function
+            End If
+
+            If VISITA_OBJETIVO_PROXIMA.Text = "" Then VISITA_OBJETIVO_PROXIMA.Text = 0
+
+            If VISITA_PROXIMA.Value = "" Then
+                VISITA_PROXIMA.Value = VISITA_DATA.Value
+            Else
+                If VISITA_PROXIMA.Value < Now().AddDays(1) Then
+                    m.Alert(Me, " Data da PRÓXIMA visita não pode ser ANTERIOR a " & Now().AddDays(1))
+                    Exit Function
+                End If
+            End If
+            sql = ""
+            sql &= " Insert Into TBL_VISITAS (CNPJ, CRM_UF, DATA_VISITA, COD_TIPO, COD_FORMA, COD_OBJETIVO, COD_AVALIACAO, COD_LINHA, OBSERVACOES, DATA_PROXIMA, COD_OBJETIVO_PROXIMA,OBSERVACOES_PROXIMA, EMAIL_USUARIO) "
+            sql &= " Values ( "
+                sql &= " '" & strCNPJ & "', "
+                sql &= " '" & strCRM_UF & "', "
+                sql &= " '" & VISITA_DATA.Value & "', "
+                sql &= " '" & 1 & "', "
+                sql &= " '" & 1 & "', "
+                sql &= " '" & VISITA_OBJETIVO.Text & "', "
+                sql &= " '" & VISITA_AVALIACAO.Text & "', "
+                sql &= " '" & VISITA_LINHA.Text & "', "
+                sql &= " '" & m.ConvertText(VISITA_OBSERVACOES.Value) & "', "
+                sql &= " '" & VISITA_PROXIMA.Value & "', "
+            sql &= " '" & VISITA_OBJETIVO_PROXIMA.Text & "', "
+            sql &= " '" & m.ConvertText(VISITA_OBSERVACOES_PROXIMA.Value) & "', "
+            sql &= " '" & LCase(Session("EMAIL_LOGIN").ToString) & "') "
+
+            If m.ExecuteSQL(sql) = False Then
+                    Gravar = False
+                    m.Alert(Me, "Erro ao incluir visita", False, "")
+                Else
+                    Gravar = True
+                End If
+
+            End If
+
+            If Gravar = True Then
+            m.Alert(Me, "Visita ou Médico incluido ou atualizado com sucesso", False, "")
+        Else
+            m.Alert(Me, "Erro ao incluir ou atualizar", False, "")
         End If
+
+        VISITA_AVALIACAO.Text = ""
+        VISITA_DATA.Value = Now()
+        VISITA_LINHA.Text = ""
+        VISITA_OBJETIVO.Text = ""
+        VISITA_OBSERVACOES.Value = ""
+        VISITA_PROXIMA.Value = ""
+        VISITA_OBJETIVO_PROXIMA.Text = ""
+        VISITA_OBSERVACOES_PROXIMA.Value = ""
 
     End Function
 

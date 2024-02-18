@@ -18,12 +18,14 @@
             data-search-align="left"
             data-search-accent-neutralise="true"
             data-search-highlight="true"
-            data-show-search-clear-button="true"
+            <%--data-show-search-clear-button="true"--%>
             data-show-toggle="true"
-            data-show-fullscreen="true"
-            data-show-pagination-switch="true"
+            data-show-columns="true"
+            <%--data-show-columns-toggle-all="true"--%>
+            <%--data-show-fullscreen="true"--%>
+            <%--data-show-pagination-switch="true"--%>
             data-sortable="true"                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     
-            data-pagination="true"
+            <%--data-pagination="true"--%>
             data-mobile-responsive="true">
             <thead>
                 <tr>
@@ -32,7 +34,7 @@
                     <th data-field="Representante" data-sortable="true" style="width:25%">Rep</th>
                     <th data-field="Cidade" data-sortable="true" style="width:20%">Cidade</th>
                     <th data-field="UF" data-sortable="true" style="width:5%">UF</th>
-                    <th data-field="MEDICOS" data-sortable="true" style="width:5%">MEDICOS</th>
+                    <th data-field="MEDICOS" data-sortable="true" style="width:5%">Médicos</th>
                 </tr>
             </thead>
             <tbody>

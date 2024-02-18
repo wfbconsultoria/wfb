@@ -1,11 +1,11 @@
 ﻿<%@ Control Language="VB" AutoEventWireup="false" CodeFile="Estabelecimento_Cabecalho.ascx.vb" Inherits="Estabelecimento_Cabecalho" %>
- 
+
 <asp:SqlDataSource ID="dts_MEDICOS" runat="server" ConnectionString="<%$ ConnectionStrings:DefaultConnection %>" />
 
 <div class="col-md-12">
-        <a class="link" data-bs-toggle="collapse" href="#div_CORPO_ESTABELECIMENTO" role="button" aria-expanded="false" aria-controls="CORPO">Exibir/Ocultar Endereço</a>
-        <a class="link" data-bs-toggle="collapse" href="#div_CORPO_MEDICOS" role="button" aria-expanded="false" aria-controls="CORPO">Exibir/Ocultar Medicos</a>
-    </div>
+    <a class="link" data-bs-toggle="collapse" href="#div_CORPO_ESTABELECIMENTO" role="button" aria-expanded="false" aria-controls="CORPO">Exibir/Ocultar Endereço</a>
+    <a class="link" data-bs-toggle="collapse" href="#div_CORPO_MEDICOS" role="button" aria-expanded="false" aria-controls="CORPO">Exibir/Ocultar Medicos</a>
+</div>
 
 <%-- DIV MENSAGEM --%>
 <div runat="server" id="div_MENSAGEM_ESTABELECIMENTO" class="row g-3 card card-body">
@@ -16,6 +16,7 @@
         </div>
     </div>
 </div>
+<%-- DIV MENSAGEM --%>
 
 <%-- DIV PRINCIPAL --%>
 <div runat="server" id="div_PRINCIPAL_ESTABELECIMENTO" class="row g-3">
@@ -46,8 +47,6 @@
         </div>
     </div>
     <%-- CNPJ/ESTABELECIMENTO/REPRESENTANTE--%>
-
-    
 
     <%-- CORPO ESTABELECIMENTO --%>
     <div id="div_CORPO_ESTABELECIMENTO" class="collapse">
@@ -95,62 +94,48 @@
     </div>
     <%-- CORPO ESTABELECIMENTO --%>
 
-     <%-- CORPO MEDICOS --%>
+    <%-- CORPO MEDICOS --%>
     <div id="div_CORPO_MEDICOS" class="collapse">
         <%-- DIV MEDICOS --%>
-    <div class="row g-3">
+        <div class="row g-3">
 
-
-        <table class="table table-bordered table-hover"
-            id="table"
-            data-toolbar="#toolbar"
-            <%--data-toggle="table"--%>
-            data-search="true"
-            data-search-align="right"
-            data-search-accent-neutralise="true"
-            data-search-highlight="true"
-            data-sortable="true"
-            <%--data-pagination="true"--%>
-           <%-- data-pagination-v-align="both"--%>
-            data-show-columns="true"
-            data-show-columns-toggle-all="true"
-           <%-- data-show-pagination-switch="true"--%>
-            data-show-toggle="true"
-           <%-- data-show-multi-sort="true"--%>
-           data-show-fullscreen="true"
-            data-buttons="buttons"
-            data-mobile-responsive="true"
-            data-check-on-init="true"
-            data-filter-control="true"
-            data-show-search-clear-button="true">
-
-            <thead>
-                <tr>
-                    <th data-field="CRM" data-sortable="true" style="width: 10%">CRM</th>
-                    <th data-field="NOME" data-sortable="true" style="width: 65%">Medico</th>
-                    <th data-field="FUNCAO" data-sortable="true" style="width: 20%">Função</th>
-                    <th data-field="VISITAR" data-sortable="true" style="width: 5%">Visitar</th>
-                </tr>
-            </thead>
-            <tbody>
-                <asp:Repeater ID="dtr" runat="server" DataSourceID="dts_MEDICOS">
-                    <ItemTemplate>
-                        <tr>
-                            <td><a href='<%# "Medico_Incluir.aspx?IdEstabelecimento" + "=" + DataBinder.Eval(Container.DataItem, "IdEstabelecimento").ToString + "&CRM_UF" + "=" + DataBinder.Eval(Container.DataItem, "CRM_UF") %>'><%# DataBinder.Eval(Container.DataItem, "CRM_UF").ToString%></a></td>
-                            <td><%# DataBinder.Eval(Container.DataItem, "NOME_SOBRENOME").ToString%></td>
-                            <td><%# DataBinder.Eval(Container.DataItem, "FUNCAO").ToString%></td>
-                            <td><a href='<%# "Medico.aspx?idMedico" + "=" + DataBinder.Eval(Container.DataItem, "IdMedico").ToString %>'>Visitar</a></td>
-                        </tr>
-                    </ItemTemplate>
-                </asp:Repeater>
-            </tbody>
-        </table>
-    </div>
-    <%-- DIV MEDICOS --%>
+            <table class="table table-bordered table-hover"
+                id="table"
+                <%--data-toolbar="#toolbar"--%>
+                data-toggle="table"
+                data-search="true"
+                data-search-align="left"
+                data-search-accent-neutralise="true"
+                data-search-highlight="true"
+                data-sortable="true"
+                data-show-toggle="true"
+                data-show-columns="true"
+                data-mobile-responsive="true">
+                <thead>
+                    <tr>
+                        <th data-field="CRM" data-sortable="true" style="width: 10%">CRM</th>
+                        <th data-field="NOME" data-sortable="true" style="width: 65%">Medico</th>
+                        <th data-field="FUNCAO" data-sortable="true" style="width: 20%">Função</th>
+                        <%--<th data-field="VISITAR" data-sortable="true" style="width: 5%">Visitar</th>--%>
+                    </tr>
+                </thead>
+                <tbody>
+                    <asp:Repeater ID="dtr" runat="server" DataSourceID="dts_MEDICOS">
+                        <ItemTemplate>
+                            <tr>
+                                <td><a href='<%# "Medico_Incluir.aspx?IdEstabelecimento" + "=" + DataBinder.Eval(Container.DataItem, "IdEstabelecimento").ToString + "&CRM_UF" + "=" + DataBinder.Eval(Container.DataItem, "CRM_UF") %>'><%# DataBinder.Eval(Container.DataItem, "CRM_UF").ToString%></a></td>
+                                <td><%# DataBinder.Eval(Container.DataItem, "NOME_SOBRENOME").ToString%></td>
+                                <td><%# DataBinder.Eval(Container.DataItem, "FUNCAO").ToString%></td>
+                                <%--<td><a href='<%# "Medico.aspx?idMedico" + "=" + DataBinder.Eval(Container.DataItem, "IdMedico").ToString %>'>Visitar</a></td>--%>
+                            </tr>
+                        </ItemTemplate>
+                    </asp:Repeater>
+                </tbody>
+            </table>
+        </div>
+        <%-- DIV MEDICOS --%>
     </div>
     <%-- CORPO MEDICOS --%>
-
-
 </div>
 <%-- DIV PRINCIPAL --%>
 <hr />

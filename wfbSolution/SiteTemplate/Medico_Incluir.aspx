@@ -16,6 +16,7 @@
     <asp:SqlDataSource ID="dts_VISITAS_AVALIACOES" runat="server" ConnectionString="<%$ ConnectionStrings:DefaultConnection %>" />
     <asp:SqlDataSource ID="dts_VISITAS_OBJETIVOS" runat="server" ConnectionString="<%$ ConnectionStrings:DefaultConnection %>" />
     <asp:SqlDataSource ID="dts_VISITAS_LINHA" runat="server" ConnectionString="<%$ ConnectionStrings:DefaultConnection %>" />
+     <asp:SqlDataSource ID="dts_VISITAS" runat="server" ConnectionString="<%$ ConnectionStrings:DefaultConnection %>" />
 
     <%--Conteudo--%>
     <uc1:Estabelecimento_Cabecalho runat="server" ID="Estabelecimento_Cabecalho" />
@@ -77,7 +78,7 @@
                 </div>
             </div>
             <%-- SOBRENOME --%>
-            <div class="col-md-4">
+            <div class="col-md-8">
                 <div class="form-floating">
                     <input runat="server" id="SOBRENOME" type="text" class="form-control" value="" placeholder="" />
                     <label for="SOBRENOME">Sobrenome</label>
@@ -86,9 +87,9 @@
         </div>
         <%-- NOME/SOBRENOME--%>
 
+
         <%-- EMAIL/CELULAR/TELEFONE--%>
         <div class="row g-2">
-
             <%-- EMAIL --%>
             <div class="col-md-4">
                 <div class="form-floating">
@@ -110,86 +111,95 @@
                     <label for="TELEFONE">Telefone</label>
                 </div>
             </div>
-
         </div>
         <%-- EMAIL/CELULAR/TELEFONE--%>
-
-        <%-- CEP/ENDERECO/NUMERO--%>
+        
+        
         <div class="row g-2">
-
-            <%-- CEP --%>
-            <div class="col-md-2">
-                <div class="form-floating">
-                    <input runat="server" id="CEP" type="text" class="form-control" maxlength="8" placeholder="00000000" onfocus="limpa_endereco();" onkeypress="return somenteNumeros(event)" />
-                    <label for="CEP">CEP</label>
-                </div>
+            <div class="col-md-12">
+                <a class="link" data-bs-toggle="collapse" href="#div_MEDICO_ENDERECO" role="button" aria-expanded="false" aria-controls="div_MEDICO_ENDERECO">Endereço do Médico</a>
             </div>
-            <%-- ENDERECO --%>
-            <div class="col-md-8">
-                <div class="form-floating">
-                    <input runat="server" id="ENDERECO" type="text" class="form-control" placeholder="" value="" disabled="disabled" />
-                    <label for="ENDERECO">Endereço</label>
-                </div>
-            </div>
-            <%-- NUMERO --%>
-            <div class="col-md-2">
-                <div class="form-floating">
-                    <input runat="server" id="NUMERO" type="text" class="form-control" placeholder="" value="" />
-                    <label for="NUMERO">Número</label>
-                </div>
-            </div>
-
         </div>
-        <%-- CEP/ENDERECO/NUMERO--%>
+        <div id="div_MEDICO_ENDERECO" class=" row g-2 collapse">
 
-        <%-- COMPLEMENTO/BAIRRO--%>
-        <div class="row g-2">
+            <%-- CEP/ENDERECO/NUMERO--%>
+            <div class="row g-2">
 
-            <%-- COMPLEMENTO --%>
-            <div class="col-md-6">
-                <div class="form-floating">
-                    <input runat="server" id="COMPLEMENTO" type="text" class="form-control" placeholder="" value="" />
-                    <label for="COMPLEMENTO">Complemento</label>
+
+                <%-- CEP --%>
+                <div class="col-md-2">
+                    <div class="form-floating">
+                        <input runat="server" id="CEP" type="text" class="form-control" maxlength="8" placeholder="00000000" onfocus="limpa_endereco();" onkeypress="return somenteNumeros(event)" />
+                        <label for="CEP">CEP</label>
+                    </div>
+                </div>
+                <%-- ENDERECO --%>
+                <div class="col-md-8">
+                    <div class="form-floating">
+                        <input runat="server" id="ENDERECO" type="text" class="form-control" placeholder="" value="" disabled="disabled" />
+                        <label for="ENDERECO">Endereço</label>
+                    </div>
+                </div>
+                <%-- NUMERO --%>
+                <div class="col-md-2">
+                    <div class="form-floating">
+                        <input runat="server" id="NUMERO" type="text" class="form-control" placeholder="" value="" />
+                        <label for="NUMERO">Número</label>
+                    </div>
+                </div>
+
+            </div>
+            <%-- CEP/ENDERECO/NUMERO--%>
+
+            <%-- COMPLEMENTO/BAIRRO--%>
+            <div class="row g-2">
+
+                <%-- COMPLEMENTO --%>
+                <div class="col-md-6">
+                    <div class="form-floating">
+                        <input runat="server" id="COMPLEMENTO" type="text" class="form-control" placeholder="" value="" />
+                        <label for="COMPLEMENTO">Complemento</label>
+                    </div>
+                </div>
+                <%-- BAIRRO --%>
+                <div class="col-md-6">
+                    <div class="form-floating">
+                        <input runat="server" id="BAIRRO" type="text" class="form-control" placeholder="" disabled="disabled" />
+                        <label for="BAIRRO">Bairro</label>
+                    </div>
+                </div>
+
+            </div>
+            <%-- COMPLEMENTO/BAIRRO --%>
+
+            <%-- COD_IBGE_7/CIDADE/UF --%>
+            <div class="row g-2">
+
+                <%-- COD_IBGE_7 --%>
+                <div class="col-md-2">
+                    <div class="form-floating">
+                        <input runat="server" id="COD_IBGE_7" type="text" class="form-control" placeholder="" value="" disabled="disabled" />
+                        <label for="COD_IBGE_7">Cod IBGE</label>
+                    </div>
+                </div>
+                <%-- CIDADE --%>
+                <div class="col-md-8">
+                    <div class="form-floating">
+                        <input runat="server" id="CIDADE" type="text" class="form-control" placeholder="" value="" disabled="disabled" />
+                        <label for="CIDADE">Cidade</label>
+                    </div>
+                </div>
+                <%-- UF --%>
+                <div class="col-md-2">
+                    <div class="form-floating">
+                        <input runat="server" id="UF" type="text" class="form-control" placeholder="" value="" disabled="disabled" />
+                        <label for="UF">UF</label>
+                    </div>
                 </div>
             </div>
-            <%-- BAIRRO --%>
-            <div class="col-md-6">
-                <div class="form-floating">
-                    <input runat="server" id="BAIRRO" type="text" class="form-control" placeholder="" disabled="disabled" />
-                    <label for="BAIRRO">Bairro</label>
-                </div>
-            </div>
-
+            <%-- COD_IBGE_7/CIDADE/UF --%>
+        
         </div>
-        <%-- COMPLEMENTO/BAIRRO --%>
-
-        <%-- COD_IBGE_7/CIDADE/UF --%>
-        <div class="row g-2">
-
-            <%-- COD_IBGE_7 --%>
-            <div class="col-md-2">
-                <div class="form-floating">
-                    <input runat="server" id="COD_IBGE_7" type="text" class="form-control" placeholder="" value="" disabled="disabled" />
-                    <label for="COD_IBGE_7">Cod IBGE</label>
-                </div>
-            </div>
-            <%-- CIDADE --%>
-            <div class="col-md-8">
-                <div class="form-floating">
-                    <input runat="server" id="CIDADE" type="text" class="form-control" placeholder="" value="" disabled="disabled" />
-                    <label for="CIDADE">Cidade</label>
-                </div>
-            </div>
-            <%-- UF --%>
-            <div class="col-md-2">
-                <div class="form-floating">
-                    <input runat="server" id="UF" type="text" class="form-control" placeholder="" value="" disabled="disabled" />
-                    <label for="UF">UF</label>
-                </div>
-            </div>
-
-        </div>
-        <%-- COD_IBGE_7/CIDADE/UF --%>
 
         <%-- OBSERVAÇÕES --%>
         <div class="row g-2">
@@ -241,28 +251,18 @@
             <div class="col-12">
                 <button runat="server" id="cmd_Gravar" type="submit" class="btn btn-primary">Gravar</button>
                 <button runat="server" id="cmd_CEP" type="button" class="btn btn-info">Consultar CEP</button>
-
             </div>
         </div>
         <%-- BOTÕES --%>
 
-        <%-- ATIVAR/INATIVAR --%>
-        <a class="link" data-bs-toggle="collapse" href="#ATIVAR" role="button" aria-expanded="false" aria-controls="ATIVAR">Ativar/Inativar Médico</a>
-        <div class="collapse" id="ATIVAR">
-
-            <input runat="server" class="form-check-input" type="checkbox" value="" id="ATIVO">
-            <label class="form-check-label" for="ATIVO">ATIVO</label>
-        </div>
-        <%-- ATIVAR/INATIVAR --%>
-
         <%-- VISITAR --%>
         <!-- Button trigger modal -->
-        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-            Launch static backdrop modal
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#VISITAR">
+            VISITAR
         </button>
 
         <!-- Modal -->
-        <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal fade" id="VISITAR" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="VISITAR" aria-hidden="true">
             <div class="modal-dialog modal-dialog-scrollable">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -304,23 +304,56 @@
 
 
                             <div class="form-floating">
-                                <textarea runat="server" id="VISITA_OBSERVACOES" class="form-control" maxlength="5000" cols="30" rows="20" wrap="hard"></textarea>
+                                <textarea runat="server" id="VISITA_OBSERVACOES" class="form-control" maxlength="2048" cols="30" rows="50" wrap="soft"></textarea>
                                 <label for="VISITA_OBSERVACOES">Observações</label>
+                            </div>
+
+
+                            <hr />
+                             <div class="form-floating">
+                                <input runat="server" id="VISITA_PROXIMA" type="date" class="form-control" placeholder=""  value="<%:Now()%>" />
+                                <label for="VISITA_PROXIMA">Próxima Visita</label>
+                            </div>
+
+
+                            <div class="form-floating">
+                                <asp:DropDownList runat="server" ID="VISITA_OBJETIVO_PROXIMA" CssClass="form-select" DataSourceID="dts_VISITAS_OBJETIVOS" DataTextField="OBJETIVO" DataValueField="COD_OBJETIVO"></asp:DropDownList>
+                                <label class="text-danger" for="VISITA_OBJETIVO_PROXIMA">Objetivo Próxima</label>
+                            </div>
+
+                            <div class="form-floating">
+                                <textarea runat="server" id="VISITA_OBSERVACOES_PROXIMA" class="form-control" maxlength="2048" cols="30" rows="50" wrap="soft"></textarea>
+                                <label for="VISITA_OBSERVACOES_PROXIMA">Observações Próxima</label>
                             </div>
 
                         </div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                        <button type="button" class="btn btn-primary">Gravar</button>
+                        <button runat="server" id="cmd_Gravar_Visita" type="submit" class="btn btn-primary">Gravar</button>
                     </div>
                 </div>
             </div>
         </div>
         <%-- VISITAR --%>
+
+        <%-- ATIVAR/INATIVAR --%>
+        <a class="link" data-bs-toggle="collapse" href="#ATIVAR" role="button" aria-expanded="false" aria-controls="ATIVAR">Ativar/Inativar Médico</a>
+        <div class="collapse" id="ATIVAR">
+
+            <input runat="server" class="form-check-input" type="checkbox" value="" id="ATIVO">
+            <label class="form-check-label" for="ATIVO">ATIVO</label>
+        </div>
+        <%-- ATIVAR/INATIVAR --%>
     </div>
     <%--DIV PRINCIPAL--%>
+    <script>
+        $('#VISITAR').on('show.bs.modal', function () {
+            $('#VISITAR input').val = '';
+        })</script>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="FooterContent" runat="Server">
+    
+    
 </asp:Content>
 

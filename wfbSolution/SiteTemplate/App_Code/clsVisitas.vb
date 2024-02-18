@@ -1,11 +1,30 @@
 ﻿Imports Microsoft.VisualBasic
 
 Public Class clsVisitas
+
+	Public Function sql_visitas(Optional tipo As String = "", Optional COD_TIPO As String = "", Optional COD_FORMA As String = "") As String
+		Dim sql As String = ""
+		sql = ""
+		sql &= " SELECT * FROM APP_VISITAS_MEDICOS"
+		sql &= " SELECT COD_LINHA, LINHA FROM TBL_PRODUTOS_LINHAS "
+
+		If tipo = "lista" Then
+			sql &= " WHERE ANALISAR = 1 OR COD_LINHA = '000'"
+		End If
+
+		If tipo = "ficha" Then
+			sql &= " WHERE COD_LINHA = '" & COD_LINHA & "'"
+		End If
+		sql &= " ORDER BY LINHA "
+		sql_visitas_linhas = sql
+
+	End Function
+
 	Public Function sql_visitas_objetivos(Optional tipo As String = "", Optional COD_OBJETIVO As String = "") As String
 		Dim sql As String = ""
 		sql = ""
 		sql &= " SELECT '' AS COD_OBJETIVO, '( Selecione )' AS OBJETIVO UNION ALL "
-		sql &= " SELECT SELECT CONVERT(VARCHAR COD_OBJETIVO) AS COD_OBJETIVO, OBJETIVO FROM TBL_VISITAS_OBJETIVOS "
+		sql &= " SELECT CONVERT(VARCHAR, COD_OBJETIVO) AS COD_OBJETIVO, OBJETIVO FROM TBL_VISITAS_OBJETIVOS "
 
 		If tipo = "lista" Then
 			sql &= " ORDER BY OBJETIVO "
@@ -22,7 +41,7 @@ Public Class clsVisitas
 		Dim sql As String = ""
 		sql = ""
 		sql &= " SELECT '' AS COD_AVALIACAO, '( Selecione )' AS AVALIACAO UNION ALL "
-		sql &= " SELECT CONVERT(VARCHAR COD_AVALIACAO) AS COD_AVALIACAO, AVALIACAO FROM TBL_VISITAS_AVALIACOES "
+		sql &= " SELECT CONVERT(VARCHAR, COD_AVALIACAO) AS COD_AVALIACAO, AVALIACAO FROM TBL_VISITAS_AVALIACOES "
 
 		If tipo = "lista" Then
 			sql &= " ORDER BY AVALIACAO "
@@ -42,7 +61,7 @@ Public Class clsVisitas
 		sql &= " SELECT COD_LINHA, LINHA FROM TBL_PRODUTOS_LINHAS "
 
 		If tipo = "lista" Then
-			sql &= " WHERE ANALISAR = 1 "
+			sql &= " WHERE ANALISAR = 1 OR COD_LINHA = '000'"
 		End If
 
 		If tipo = "ficha" Then
