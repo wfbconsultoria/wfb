@@ -10,9 +10,7 @@
     <h4 class="text-secondary text-uppercase" style="padding-top: 5px"><%:Page.Title %></h4>
 
     <div>
-        <div id="toolbar">
-            <%--<a href="_Templates_Form.aspx" class="btn btn-primary">Novo Medico</a>--%>
-        </div>
+        
         <table class="table table-bordered table-hover"
             id="table"
             <%--data-toolbar="#toolbar"--%>

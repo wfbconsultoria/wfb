@@ -290,7 +290,7 @@
 
                             <div class="form-floating">
                                 <asp:DropDownList runat="server" ID="VISITA_FORMA" CssClass="form-select" DataSourceID="dts_VISITAS_FORMAS" DataTextField="FORMA" DataValueField="COD_FORMA"></asp:DropDownList>
-                                <label class="text-danger" for="VISITA_FORMA">Objetivo</label>
+                                <label class="text-danger" for="VISITA_FORMA">Forma</label>
                             </div>
 
                             <div class="form-floating">
@@ -322,10 +322,14 @@
                                 <label for="VISITA_PROXIMA">Próxima Visita</label>
                             </div>
 
-
                             <div class="form-floating">
                                 <asp:DropDownList runat="server" ID="VISITA_OBJETIVO_PROXIMA" CssClass="form-select" DataSourceID="dts_VISITAS_OBJETIVOS" DataTextField="OBJETIVO" DataValueField="COD_OBJETIVO"></asp:DropDownList>
                                 <label class="text-danger" for="VISITA_OBJETIVO_PROXIMA">Objetivo Próxima</label>
+                            </div>
+
+                            <div class="form-floating">
+                                <asp:DropDownList runat="server" ID="VISITA_LINHA_PROXIMA" CssClass="form-select" DataSourceID="dts_VISITAS_LINHA" DataTextField="LINHA" DataValueField="COD_LINHA"></asp:DropDownList>
+                                <label class="text-danger" for="VISITA_LINHA_PROXIMA">Produto Foco Próxima</label>
                             </div>
 
                             <div class="form-floating">

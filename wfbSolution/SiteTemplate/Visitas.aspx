@@ -1,30 +1,45 @@
-﻿<%@ Page Title="" Language="VB" MasterPageFile="~/Master.master" AutoEventWireup="false" CodeFile="Visitas.aspx.vb" Inherits="Visitas" %>
+﻿<%@ Page Title="Visitas" Language="VB" MasterPageFile="~/Master.master" AutoEventWireup="false" CodeFile="Visitas.aspx.vb" Inherits="Visitas" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="Server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="BodyContent" runat="Server">
     <%--Data Sources--%>
     <asp:SqlDataSource ID="dts_VISITAS" runat="server" ConnectionString="<%$ ConnectionStrings:DefaultConnection %>" />
-    <asp:SqlDataSource ID="dts_Representantes" runat="server" ConnectionString="<%$ ConnectionStrings:DefaultConnection %>" />
+    <asp:SqlDataSource ID="dts_REPRESENTANTES" runat="server" ConnectionString="<%$ ConnectionStrings:DefaultConnection %>" />
+    <asp:SqlDataSource ID="dts_ANOS" runat="server" ConnectionString="<%$ ConnectionStrings:DefaultConnection %>" />
+    <asp:SqlDataSource ID="dts_MESES" runat="server" ConnectionString="<%$ ConnectionStrings:DefaultConnection %>" />
 
-   
-    
+    <%--Titulo da Pagina--%>
+    <h4 class="text-secondary text-uppercase" style="padding-top: 5px"><%:Page.Title %></h4>
+
     <%--FILTROS--%>
     <div class="row g-3">
         <div class="row g-2">
             <%-- REPRESENTANTE --%>
             <div class="col-md-3">
                 <div class="form-floating">
-                    <asp:DropDownList runat="server" ID="EMAIL_REPRESENTANTE" CssClass="form-select" DataSourceID="dts_REPRESENTANTES" DataTextField="REPRESENTANTE" DataValueField="EMAIL_REPRESENTANTE"></asp:DropDownList>
-                    <label class="text-danger" for="EMAIL_REPRESENTANTE">REPRESENTANTE</label>
+                    <asp:DropDownList runat="server" ID="EMAIL_REPRESENTANTE" CssClass="form-select" DataSourceID="dts_REPRESENTANTES" DataTextField="REPRESENTANTE" DataValueField="EMAIL_REPRESENTANTE" AutoPostBack="True"></asp:DropDownList>
+                    <label class="text-danger" for="EMAIL_REPRESENTANTE">Representante</label>
+                </div>
+            </div>
+            <%-- ANO --%>
+            <div class="col-md-1">
+                <div class="form-floating">
+                    <asp:DropDownList runat="server" ID="ANO" CssClass="form-select" DataSourceID="dts_ANOS" DataTextField="ANO_DESC" DataValueField="ANO" AutoPostBack="True"></asp:DropDownList>
+                    <label class="text-danger" for="ANO">Ano</label>
+                </div>
+            </div>
+            <%-- MES --%>
+            <div class="col-md-1">
+                <div class="form-floating">
+                    <asp:DropDownList runat="server" ID="MES" CssClass="form-select" DataSourceID="dts_MESES" DataTextField="MES_SIGLA" DataValueField="MES" AutoPostBack="True"></asp:DropDownList>
+                    <label class="text-danger" for="MES">Mês</label>
                 </div>
             </div>
         </div>
-        <%-- UF/CRM/ESPECIALDADE/TIPO--%>
-    
     </div>
-    
-    
+    <%-- FILTROS--%>
+
     <%-- DIV VISITAS --%>
     <div class="row g-3">
         <table class="table table-bordered table-hover"
@@ -52,7 +67,7 @@
                     <th data-field="Contato" data-sortable="true" style="width: 45%">Contato</th>
                     <th data-field="Representante" data-sortable="true" data-visible="false" style="width: 100%">Representante</th>
                     <th data-field="Objetivo" data-sortable="true" data-visible="false" style="width: 100%">Objetivo</th>
-                    <th data-field="Avaliação" data-sortable="true" data-visible="false"  style="width: 100%">Avaliação</th>
+                    <th data-field="Avaliação" data-sortable="true" data-visible="false" style="width: 100%">Avaliação</th>
                     <th data-field="DATA_PROXIMA" data-sortable="true" style="width: 10%">Próxima</th>
                     <th data-field="OBSERVACOES" data-sortable="true" style="width: 10%">Observacoes</th>
                 </tr>

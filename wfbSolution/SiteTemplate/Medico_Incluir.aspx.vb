@@ -94,6 +94,7 @@ Partial Class Medico_Incluir
     End Sub
 
     Private Function Gravar() As Boolean
+        On Error GoTo Err_Gravar
         Dim mensagem As String = ""
         Gravar = False
 
@@ -313,6 +314,7 @@ Partial Class Medico_Incluir
         Else
             VISITA_PROXIMA.Value = ""
             VISITA_OBJETIVO_PROXIMA.Text = ""
+            VISITA_LINHA_PROXIMA.Text = ""
             VISITA_OBSERVACOES_PROXIMA.Value = ""
         End If
 
@@ -323,7 +325,6 @@ Partial Class Medico_Incluir
 
             If VISITA_LINHA.Text <> "" Then
                 sql &= " COD_LINHA, "
-                Exit Function
             End If
 
             sql &= "  OBSERVACOES, "
@@ -368,13 +369,24 @@ Partial Class Medico_Incluir
         'Inclui visita agendada
         If Incluir_Proxima = True Then
             sql = ""
-            sql &= " Insert Into TBL_VISITAS (CNPJ, CRM_UF, DATA_VISITA, COD_TIPO, COD_OBJETIVO, OBSERVACOES, EMAIL_USUARIO) "
+            sql &= " Insert Into TBL_VISITAS (CNPJ, CRM_UF, DATA_VISITA, COD_TIPO, COD_OBJETIVO, "
+
+            If VISITA_LINHA_PROXIMA.Text <> "" Then
+                sql &= " COD_LINHA, "
+            End If
+
+            sql &= " OBSERVACOES, EMAIL_USUARIO) "
             sql &= " Values ( "
             sql &= " '" & strCNPJ & "', "
             sql &= " '" & strCRM_UF & "', "
             sql &= " '" & VISITA_PROXIMA.Value & "', "
             sql &= " '" & 2 & "', "
             sql &= " '" & VISITA_OBJETIVO_PROXIMA.Text & "', "
+
+            If VISITA_LINHA_PROXIMA.Text <> "" Then
+                sql &= " '" & VISITA_LINHA_PROXIMA.Text & "', "
+            End If
+
             sql &= " '" & m.ConvertText(VISITA_OBSERVACOES_PROXIMA.Value) & "', "
             sql &= " '" & LCase(Session("EMAIL_LOGIN").ToString) & "') "
 
@@ -406,12 +418,14 @@ Partial Class Medico_Incluir
         VISITA_OBSERVACOES.Value = ""
         VISITA_PROXIMA.Value = ""
         VISITA_OBJETIVO_PROXIMA.Text = ""
+        VISITA_LINHA_PROXIMA.Text = ""
         VISITA_OBSERVACOES_PROXIMA.Value = ""
 
         m.Alert(Me, StrMensagem.ToString)
         Exit Function
 Err_Gravar:
-        m.Alert(Me, "EastAsianLunisolarCalendar", False, "")
+        m.Alert(Me, Err.Number & " - " & Err.Description)
+
     End Function
 
     Private Sub cmd_CEP_ServerClick(sender As Object, e As EventArgs) Handles cmd_CEP.ServerClick
