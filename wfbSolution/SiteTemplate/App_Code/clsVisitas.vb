@@ -107,4 +107,23 @@ Public Class clsVisitas
 		sql_visitas_linhas = sql
 
 	End Function
+
+	Public Function sql_visitas_formas(Optional tipo As String = "", Optional COD_FORMA As String = "") As String
+		Dim sql As String = ""
+		sql = ""
+		sql &= " SELECT '' AS COD_FORMA, '( Selecione )' AS FORMA UNION ALL "
+		sql &= " SELECT CONVERT(VARCHAR,COD_FORMA) as COD_FORMA, FORMA FROM TBL_VISITAS_FORMA "
+
+		If tipo = "lista" Then
+			sql &= " ORDER BY FORMA "
+		End If
+
+		If tipo = "ficha" Then
+			sql &= " WHERE COD_FORMA = '" & COD_FORMA & "'"
+		End If
+
+		sql_visitas_formas = sql
+
+	End Function
+
 End Class

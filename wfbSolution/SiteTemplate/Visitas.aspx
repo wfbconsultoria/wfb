@@ -27,11 +27,6 @@
     
     <%-- DIV VISITAS --%>
     <div class="row g-3">
-
-
-
-
-
         <table class="table table-bordered table-hover"
             id="table"
             <%--data-toolbar="#toolbar"--%>
@@ -52,12 +47,12 @@
 
             <thead>
                 <tr>
-                    <th data-field="Data" data-sortable="true" style="width: 10%">Data</th>
-                    <th data-field="Estabelecimento" data-sortable="true" style="width: 25%">Estabelecimento</th>
-                    <th data-field="NOME" data-sortable="true" style="width: 25%">Médico</th>
-                    <th data-field="REPRESENTANTE" data-sortable="true" data-filter-control="select" style="width: 10%">Representante</th>
-                    <th data-field="OBJETIVO" data-sortable="true" data-filter-control="select" style="width: 10%">Objetivo</th>
-                    <th data-field="AVALIACAO" data-sortable="true" data-filter-control="select" style="width: 10%">Avaliação</th>
+                    <th data-field="Data" data-sortable="true" style="width: 5%">Data</th>
+                    <th data-field="Estabelecimento" data-sortable="true" style="width: 55%">Estabelecimento</th>
+                    <th data-field="Contato" data-sortable="true" style="width: 45%">Contato</th>
+                    <th data-field="Representante" data-sortable="true" data-visible="false" style="width: 100%">Representante</th>
+                    <th data-field="Objetivo" data-sortable="true" data-visible="false" style="width: 100%">Objetivo</th>
+                    <th data-field="Avaliação" data-sortable="true" data-visible="false"  style="width: 100%">Avaliação</th>
                     <th data-field="DATA_PROXIMA" data-sortable="true" style="width: 10%">Próxima</th>
                     <th data-field="OBSERVACOES" data-sortable="true" style="width: 10%">Observacoes</th>
                 </tr>

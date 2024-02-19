@@ -14,9 +14,10 @@
     <asp:SqlDataSource ID="dts_TIPOS" runat="server" ConnectionString="<%$ ConnectionStrings:DefaultConnection %>" />
     <asp:SqlDataSource ID="dts_FUNCOES" runat="server" ConnectionString="<%$ ConnectionStrings:DefaultConnection %>" />
     <asp:SqlDataSource ID="dts_VISITAS_AVALIACOES" runat="server" ConnectionString="<%$ ConnectionStrings:DefaultConnection %>" />
+    <asp:SqlDataSource ID="dts_VISITAS_FORMAS" runat="server" ConnectionString="<%$ ConnectionStrings:DefaultConnection %>" />
     <asp:SqlDataSource ID="dts_VISITAS_OBJETIVOS" runat="server" ConnectionString="<%$ ConnectionStrings:DefaultConnection %>" />
     <asp:SqlDataSource ID="dts_VISITAS_LINHA" runat="server" ConnectionString="<%$ ConnectionStrings:DefaultConnection %>" />
-     <asp:SqlDataSource ID="dts_VISITAS" runat="server" ConnectionString="<%$ ConnectionStrings:DefaultConnection %>" />
+    <asp:SqlDataSource ID="dts_VISITAS" runat="server" ConnectionString="<%$ ConnectionStrings:DefaultConnection %>" />
 
     <%--Conteudo--%>
     <uc1:Estabelecimento_Cabecalho runat="server" ID="Estabelecimento_Cabecalho" />
@@ -283,22 +284,27 @@
                             </div>
 
                             <div class="form-floating">
-                                <input runat="server" id="VISITA_DATA" type="date" class="form-control" placeholder="" required="required" value="<%:Now()%>" />
+                                <input runat="server" id="VISITA_DATA" type="date" class="form-control" placeholder="" value="<%:Now()%>" />
                                 <label for="VISITA_DATA">Data Visita</label>
                             </div>
 
                             <div class="form-floating">
-                                <asp:DropDownList runat="server" ID="VISITA_OBJETIVO" CssClass="form-select" DataSourceID="dts_VISITAS_OBJETIVOS" DataTextField="OBJETIVO" DataValueField="COD_OBJETIVO" required="required"></asp:DropDownList>
+                                <asp:DropDownList runat="server" ID="VISITA_FORMA" CssClass="form-select" DataSourceID="dts_VISITAS_FORMAS" DataTextField="FORMA" DataValueField="COD_FORMA"></asp:DropDownList>
+                                <label class="text-danger" for="VISITA_FORMA">Objetivo</label>
+                            </div>
+
+                            <div class="form-floating">
+                                <asp:DropDownList runat="server" ID="VISITA_OBJETIVO" CssClass="form-select" DataSourceID="dts_VISITAS_OBJETIVOS" DataTextField="OBJETIVO" DataValueField="COD_OBJETIVO"></asp:DropDownList>
                                 <label class="text-danger" for="VISITA_OBJETIVO">Objetivo</label>
                             </div>
 
                             <div class="form-floating">
-                                <asp:DropDownList runat="server" ID="VISITA_LINHA" CssClass="form-select" DataSourceID="dts_VISITAS_LINHA" DataTextField="LINHA" DataValueField="COD_LINHA" required="required"></asp:DropDownList>
+                                <asp:DropDownList runat="server" ID="VISITA_LINHA" CssClass="form-select" DataSourceID="dts_VISITAS_LINHA" DataTextField="LINHA" DataValueField="COD_LINHA"></asp:DropDownList>
                                 <label class="text-danger" for="VISITA_LINHA">Produto Foco</label>
                             </div>
 
                             <div class="form-floating">
-                                <asp:DropDownList runat="server" ID="VISITA_AVALIACAO" CssClass="form-select" DataSourceID="dts_VISITAS_AVALIACOES" DataTextField="AVALIACAO" DataValueField="COD_AVALIACAO" required="required"></asp:DropDownList>
+                                <asp:DropDownList runat="server" ID="VISITA_AVALIACAO" CssClass="form-select" DataSourceID="dts_VISITAS_AVALIACOES" DataTextField="AVALIACAO" DataValueField="COD_AVALIACAO"></asp:DropDownList>
                                 <label class="text-danger" for="VISITA_AVALIACAO">Avaliação</label>
                             </div>
 
@@ -310,6 +316,7 @@
 
 
                             <hr />
+                            <h5 class="">Agendar Próxima Visita</h5>
                              <div class="form-floating">
                                 <input runat="server" id="VISITA_PROXIMA" type="date" class="form-control" placeholder=""  value="<%:Now()%>" />
                                 <label for="VISITA_PROXIMA">Próxima Visita</label>
@@ -329,6 +336,7 @@
                         </div>
                     </div>
                     <div class="modal-footer">
+                        <button type="RESET" class="btn btn-secondary">Limpar</button>
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
                         <button runat="server" id="cmd_Gravar_Visita" type="submit" class="btn btn-primary">Gravar</button>
                     </div>
