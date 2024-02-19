@@ -279,16 +279,22 @@ Partial Class Medico_Incluir
             sql = ""
             sql &= " Insert Into TBL_VISITAS (CNPJ, CRM_UF, DATA_VISITA, COD_TIPO, COD_FORMA, COD_OBJETIVO, COD_AVALIACAO, COD_LINHA, OBSERVACOES, DATA_PROXIMA, COD_OBJETIVO_PROXIMA,OBSERVACOES_PROXIMA, EMAIL_USUARIO) "
             sql &= " Values ( "
-                sql &= " '" & strCNPJ & "', "
-                sql &= " '" & strCRM_UF & "', "
-                sql &= " '" & VISITA_DATA.Value & "', "
+            sql &= " '" & strCNPJ & "', "
+            sql &= " '" & strCRM_UF & "', "
+            sql &= " '" & VISITA_DATA.Value & "', "
+
+            If VISITA_DATA.Value < VISITA_PROXIMA.Value Then
+                sql &= " '" & 2 & "', "
+            Else
                 sql &= " '" & 1 & "', "
-                sql &= " '" & 1 & "', "
-                sql &= " '" & VISITA_OBJETIVO.Text & "', "
-                sql &= " '" & VISITA_AVALIACAO.Text & "', "
-                sql &= " '" & VISITA_LINHA.Text & "', "
-                sql &= " '" & m.ConvertText(VISITA_OBSERVACOES.Value) & "', "
-                sql &= " '" & VISITA_PROXIMA.Value & "', "
+            End If
+
+            sql &= " '" & 1 & "', "
+            sql &= " '" & VISITA_OBJETIVO.Text & "', "
+            sql &= " '" & VISITA_AVALIACAO.Text & "', "
+            sql &= " '" & VISITA_LINHA.Text & "', "
+            sql &= " '" & m.ConvertText(VISITA_OBSERVACOES.Value) & "', "
+            sql &= " '" & VISITA_PROXIMA.Value & "', "
             sql &= " '" & VISITA_OBJETIVO_PROXIMA.Text & "', "
             sql &= " '" & m.ConvertText(VISITA_OBSERVACOES_PROXIMA.Value) & "', "
             sql &= " '" & LCase(Session("EMAIL_LOGIN").ToString) & "') "

@@ -2,23 +2,59 @@
 
 Public Class clsVisitas
 
-	Public Function sql_visitas(Optional tipo As String = "", Optional COD_TIPO As String = "", Optional COD_FORMA As String = "") As String
+	Public Function sql_visitas(Optional tipo As String = "", Optional ID_VISITA As String = "") As String
 		Dim sql As String = ""
 		sql = ""
 		sql &= " SELECT * FROM APP_VISITAS_MEDICOS"
-		sql &= " SELECT COD_LINHA, LINHA FROM TBL_PRODUTOS_LINHAS "
 
 		If tipo = "lista" Then
-			sql &= " WHERE ANALISAR = 1 OR COD_LINHA = '000'"
+			Select Case HttpContext.Current.Session("NIVEL_LOGIN")
+				Case = 0
+					sql &= ""
+				Case = 1
+					sql &= " Where EMAIL_GERENTE  = '" & HttpContext.Current.Session("EMAIL_LOGIN") & "'"
+				Case = 3
+					sql &= " Where EMAIL_REPRESENTANTE = '" & HttpContext.Current.Session("EMAIL_LOGIN") & "'"
+			End Select
 		End If
 
 		If tipo = "ficha" Then
-			sql &= " WHERE COD_LINHA = '" & COD_LINHA & "'"
+			sql &= " WHERE ID_VISITA = '" & ID_VISITA & "'"
 		End If
-		sql &= " ORDER BY LINHA "
-		sql_visitas_linhas = sql
+		sql &= " ORDER BY DATA_VISITA  "
+
+		sql_visitas = sql
 
 	End Function
+
+	Public Function sql_visitas_representantes(Optional tipo As String = "", Optional EMAIL_REPRESENTANTE As String = "") As String
+		Dim sql As String = ""
+		sql = ""
+
+		sql = ""
+		sql &= " SELECT '' AS EMAIL_REPRESENTANTE, '( Selecione )' AS REPRESENTANTE UNION ALL "
+		sql &= " SELECT DISTINCT EMAIL_REPRESENTANTE, REPRESENTANTE FROM APP_VISITAS_MEDICOS"
+
+		If tipo = "lista" Then
+			Select Case HttpContext.Current.Session("NIVEL_LOGIN")
+				Case = 0
+					sql &= ""
+				Case = 1
+					sql &= " Where EMAIL_GERENTE  = '" & HttpContext.Current.Session("EMAIL_LOGIN") & "'"
+				Case = 3
+					sql &= " Where EMAIL_REPRESENTANTE = '" & HttpContext.Current.Session("EMAIL_LOGIN") & "'"
+			End Select
+		End If
+
+		If tipo = "ficha" Then
+			sql &= " WHERE EMAIL_REPRESENTANTE = '" & EMAIL_REPRESENTANTE & "'"
+		End If
+		sql &= " ORDER BY REPRESENTANTE  "
+
+		sql_visitas_representantes = sql
+
+	End Function
+
 
 	Public Function sql_visitas_objetivos(Optional tipo As String = "", Optional COD_OBJETIVO As String = "") As String
 		Dim sql As String = ""
