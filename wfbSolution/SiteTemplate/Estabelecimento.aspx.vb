@@ -2,6 +2,7 @@
 Imports System.Activities.Expressions
 Imports System.Data
 Imports System.Runtime.Serialization
+Imports ASP
 
 Partial Class Estabelecimento
     Inherits System.Web.UI.Page
@@ -21,6 +22,8 @@ Partial Class Estabelecimento
             UF_CRM.DataBind()
         End If
 
+        dts_FUNCAO.SelectCommand = d.sql_funcoes("lista")
+        dts_FUNCAO.DataBind()
     End Sub
 
     Private Sub cmd_Novo_CRM_ServerClick(sender As Object, e As EventArgs) Handles cmd_Novo_CRM.ServerClick
@@ -48,22 +51,22 @@ Partial Class Estabelecimento
         CRM_UF = _CRM & _UF_CRM
         Response.Redirect("Medico_Incluir.aspx?IdEStabelecimento=" & IdEstabelecimento & "&CRM_UF=" & CRM_UF)
 
-        ''Verifica se o médico está cadastrado - DESABILITADO a verificação está sendo feita na página de inclusão
-        'If m.CheckExists("APP_MEDICOS", "CRM_UF", CRM_UF) = False Then
-        '    Response.Redirect("Medico_Incluir.aspx?IdEStabelecimento=" & IdEstabelecimento & "&CRM_UF=" & CRM_UF & "&Cadastrado=0")
-        'Else
-        '    'Verifica se cadastrado no ESTABELECIMENTO
-        '    Dim dtr As SqlClient.SqlDataReader
-        '    Dim sql As String = " Select * From APP_MEDICOS_ESTABELECIMENTOS Where IdEstabelecimento = '" & IdEstabelecimento & "' And CRM_UF = '" & CRM_UF & "' "
-        '    dtr = m.ExecuteSelect(sql)
-        '    If dtr.HasRows Then
-        '        dtr.Read()
-        '        Response.Redirect("Medico_Incluir.aspx?IdEStabelecimento=" & IdEstabelecimento & "&CRM_UF=" & CRM_UF & "&Cadastrado=1")
-        '        Exit Sub
-        '    Else
-        '        Response.Redirect("Medico_Incluir.aspx?IdEStabelecimento=" & IdEstabelecimento & "&CRM_UF=" & CRM_UF & "&Cadastrado=0")
-        '    End If
+    End Sub
 
-        'End If
+    Private Sub cmd_Novo_Contato_ServerClick(sender As Object, e As EventArgs) Handles cmd_Novo_Contato.ServerClick
+
+        Dim CNPJ As String = ""
+        Dim dtr As SqlClient.SqlDataReader
+        dtr = m.ExecuteSelect(s.sql_Estabelecimentos("ficha", IdEstabelecimento))
+        If dtr.HasRows Then
+            dtr.Read()
+            'ATRIBUI VALORES AS PROPRIEDADES
+            If Not IsDBNull(dtr("CNPJ")) Then CNPJ = m.ConvertText(dtr("CNPJ"))
+        Else
+            m.Alert(Me, "Selecione novamente o ESTABELECIMENTO", True, "estabelecimentos.aspx")
+        End If
+
+        Dim CRM_UF = "CC" & CNPJ & Format(Now.Year, "0000") & Format(Now.Month, "00") & Format(Now.Day, "00") & Format(Now.Hour, "00") & Format(Now.Minute, "00") & Format(Now.Second, "00") & Format(Now.Millisecond, "0000")
+        Response.Redirect("Medico_Incluir.aspx?IdEStabelecimento=" & IdEstabelecimento & "&CRM_UF=" & CRM_UF)
     End Sub
 End Class

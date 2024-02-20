@@ -8,6 +8,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="BodyContent" runat="Server">
     <%--Data Sources--%>
     <asp:SqlDataSource ID="dts_UF" runat="server" ConnectionString="<%$ ConnectionStrings:DefaultConnection %>" />
+     <asp:SqlDataSource ID="dts_FUNCAO" runat="server" ConnectionString="<%$ ConnectionStrings:DefaultConnection %>" />
    
     <%--Titulo da Página--%>
     <uc1:Titulo_Pagina runat="server" ID="Titulo_Pagina" />
@@ -21,7 +22,7 @@
         <%-- Sub Titulo e instruções--%>
         <div class="row">
             <br />
-            <h5>Incluir novo médico</h5>
+            <h5 class =" text-primary">Incluir novo médico</h5>
             <h6 class="text-muted">Selecione o UF e digite o CRM</h6>
         </div>
         <%-- Sub Titulo e instruções--%>
@@ -44,6 +45,34 @@
             </div>
         </div>
         <%-- UF_CRM/CRM/BOTÃO--%>
+
+        <%-- Sub Titulo e instruções--%>
+        <div class="row">
+            <br />
+            <h5 class="text-info">Incluir novo contato</h5>
+            <h6 class="text-muted">Selecione a função e digite o nome</h6>
+        </div>
+        <%-- Sub Titulo e instruções--%>
+
+         <%-- CONTATO/BOTÃO--%>
+        <div class="row g-2">
+            <div class="col-10">
+                <div class="input-group mb-3">
+                    <%-- UF_CRM --%>
+                    <span class="input-group-text">Função</span>
+                    <asp:DropDownList runat="server" ID="FUNCAO" CssClass="form-select" DataSourceID="dts_FUNCAO" DataTextField="FUNCAO" DataValueField="ID_FUNCAO"></asp:DropDownList>
+                    <%-- CRM --%>
+                    <span class="input-group-text">Contato</span>
+                    <input runat="server" id="CONTATO" type="text" class="form-control" />
+                </div>
+            </div>
+            <div class="col-2">
+                <%-- BOTÃO INCLUIR --%>
+                <button runat="server" id="cmd_Novo_Contato" type="button" class="form-control btn btn-info">OK</button>
+            </div>
+        </div>
+        <%-- UF_CRM/CRM/BOTÃO--%>
+
     </div>
     <%-- DIV PRINCIPAL --%>
 

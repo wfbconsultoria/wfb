@@ -55,30 +55,23 @@ Public Class clsVisitas
 
 	End Function
 
-	Public Function sql_visitas_anos(Optional tipo As String = "", Optional EMAIL_REPRESENTANTE As String = "") As String
+	Public Function sql_visitas_anos() As String
 		Dim sql As String = ""
 		sql = ""
 
 		sql = ""
 		sql &= " SELECT '' AS ANO, '( Selecione )' AS ANO_DESC UNION ALL "
-
-		sql &= " SELECT DISTINCT APP_VISITAS_MEDICOS.ANO AS ANO, APP_VISITAS_MEDICOS.ANO AS ANO_DESC "
+		sql &= " SELECT DISTINCT CONVERT(VARCHAR, APP_VISITAS_MEDICOS.ANO) AS ANO, CONVERT(VARCHAR, APP_VISITAS_MEDICOS.ANO) AS ANO_DESC "
 		sql &= " FROM APP_VISITAS_MEDICOS "
 
-		If tipo = "lista" Then
-			Select Case HttpContext.Current.Session("NIVEL_LOGIN")
-				Case = 0
-					sql &= ""
-				Case = 1
-					sql &= " Where EMAIL_GERENTE  = '" & HttpContext.Current.Session("EMAIL_LOGIN") & "'"
-				Case = 3
-					sql &= " Where EMAIL_REPRESENTANTE = '" & HttpContext.Current.Session("EMAIL_LOGIN") & "'"
-			End Select
-		End If
-
-		If tipo = "ficha" Then
-			sql &= " WHERE EMAIL_REPRESENTANTE = '" & EMAIL_REPRESENTANTE & "'"
-		End If
+		Select Case HttpContext.Current.Session("NIVEL_LOGIN")
+			Case = 0
+				sql &= ""
+			Case = 1
+				sql &= " Where EMAIL_GERENTE  = '" & HttpContext.Current.Session("EMAIL_LOGIN") & "'"
+			Case = 3
+				sql &= " Where EMAIL_REPRESENTANTE = '" & HttpContext.Current.Session("EMAIL_LOGIN") & "'"
+		End Select
 		sql &= " ORDER BY ANO  "
 
 		sql_visitas_anos = sql
@@ -92,7 +85,7 @@ Public Class clsVisitas
 		sql = ""
 		sql &= " SELECT '' AS MES, '( Selecione )' AS MES_SIGLA UNION ALL "
 
-		sql &= " SELECT DISTINCT APP_VISITAS_MEDICOS.MES AS MES, TBL_DATAS_MESES.Mes_Sigla AS MES_SIGLA "
+		sql &= " SELECT DISTINCT CONVERT(VARCHAR, APP_VISITAS_MEDICOS.MES) AS MES, TBL_DATAS_MESES.Mes_Sigla AS MES_SIGLA "
 		sql &= " FROM APP_VISITAS_MEDICOS INNER JOIN TBL_DATAS_MESES ON APP_VISITAS_MEDICOS.MES = TBL_DATAS_MESES.Mes_Numero "
 
 
@@ -110,11 +103,6 @@ Public Class clsVisitas
 		sql_visitas_meses = sql
 
 	End Function
-
-
-
-
-
 
 	Public Function sql_visitas_objetivos(Optional tipo As String = "", Optional COD_OBJETIVO As String = "") As String
 		Dim sql As String = ""
@@ -183,6 +171,24 @@ Public Class clsVisitas
 		End If
 
 		sql_visitas_formas = sql
+
+	End Function
+
+	Public Function sql_visitas_tipos(Optional tipo As String = "", Optional COD_TIPO As String = "") As String
+		Dim sql As String = ""
+		sql = ""
+		sql &= " SELECT '' AS COD_TIPO, '( Selecione )' AS TIPO UNION ALL "
+		sql &= " SELECT CONVERT(VARCHAR,COD_TIPO) as COD_TIPO, TIPO FROM TBL_VISITAS_TIPOS "
+
+		If tipo = "lista" Then
+			sql &= " ORDER BY TIPO "
+		End If
+
+		If tipo = "ficha" Then
+			sql &= " WHERE COD_TIPO = '" & COD_TIPO & "'"
+		End If
+
+		sql_visitas_tipos = sql
 
 	End Function
 

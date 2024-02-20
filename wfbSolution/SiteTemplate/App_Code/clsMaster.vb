@@ -365,5 +365,7 @@ Err_Alert:
         Next
 
     End Function
-
+    Public Function GenerateContactKey(CNPJ As String, Optional Sigla As String = "") As String
+        GenerateContactKey = "CC" & CNPJ & Format(Now.Year, "0000") & "-" & Format(Now.Month, "00") & "-" & Format(Now.Day, "00") & "-" & Format(Now.Hour, "00") & "-" & Format(Now.Minute, "00") & "-" & Format(Now.Second, "00") & "-" & Format(Now.Millisecond, "0000")
+    End Function
 End Class

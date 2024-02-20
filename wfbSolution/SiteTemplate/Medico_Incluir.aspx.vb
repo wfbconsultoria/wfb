@@ -27,6 +27,8 @@ Partial Class Medico_Incluir
     Dim strUF_CRM As String = ""
     Dim strCNPJ As String = ""
     Dim strESTABELECIMENTO As String = ""
+    Dim strUF_ESTABELECIMENTO As String = ""
+    Dim strTipo_CONTATO As String = ""
     Private Sub Medico_Incluir_Load(sender As Object, e As EventArgs) Handles Me.Load
 
         IdEstabelecimento = Request.QueryString("IdEstabelecimento")
@@ -38,9 +40,21 @@ Partial Class Medico_Incluir
             dtr_Estabelecimento.Read()
             strCNPJ = dtr_Estabelecimento("CNPJ")
             strESTABELECIMENTO = dtr_Estabelecimento("ESTABELECIMENTO")
+            strUF_ESTABELECIMENTO = dtr_Estabelecimento("UF")
         Else
             m.Alert(Me, "Inicie a inclusão do médico a partir de um estabelecimento", True, "Estabelecimentos_aspx")
         End If
+
+        If Left(strCRM_UF, 2) = "CC" Then
+            strTipo_CONTATO = "CONTATO"
+            CRM.Value = "CONTATOS"
+            UF_CRM.Value = strUF_ESTABELECIMENTO
+        Else
+            strTipo_CONTATO = "MEDICO"
+            CRM.Value = Left(strCRM_UF, 8)
+            UF_CRM.Value = Right(strCRM_UF, 2)
+        End If
+
 
         'Atualiza datasources da página
         Atualiza_DTS()
@@ -49,8 +63,15 @@ Partial Class Medico_Incluir
         If IsPostBack = True Then Gravar()
 
         'Verifica se o médico já existe na TBL_MEDICOS, caso exista, recupera informações
+        'MEDICO
         CRM.Value = Left(strCRM_UF, 8)
         UF_CRM.Value = Right(strCRM_UF, 2)
+
+        'CONTATO
+        If Left(strCRM_UF, 2) = "CC" Then
+            CRM.Value = "CONTATOS"
+            UF_CRM.Value = strUF_ESTABELECIMENTO
+        End If
 
         Dim dtr_medico As SqlClient.SqlDataReader = m.ExecuteSelect("Select * From APP_MEDICOS Where CRM_UF = '" & strCRM_UF & "'")
         If dtr_medico.HasRows Then
@@ -105,7 +126,9 @@ Partial Class Medico_Incluir
         Dim Atualizar_Medico As Boolean = False
 
         'Caso o CRM_UF JÁ EXISTA, ou seja, o médico já esteja cadastrado na TBL_MEDICOS, ATUALIZA CASO CONTRARIO, INCLUI
-        If m.CheckExists("APP_MEDICOS", "CRM_UF", d.FormatCRM(CRM.Value) & UF_CRM.Value) = True Then
+        If m.CheckExists("APP_MEDICOS", "CRM_UF", strCRM_UF) = True Then
+            'If m.CheckExists("APP_MEDICOS", "CRM_UF", d.FormatCRM(CRM.Value) & UF_CRM.Value) = True Then
+
             'ATUALIZA
             sql &= "Update TBL_MEDICOS Set "
             sql &= " ID_ESPECIALIDADE = " & ID_ESPECIALIDADE.Text & ", "
@@ -167,7 +190,7 @@ Partial Class Medico_Incluir
             sql &= " ) "
             sql &= " VALUES "
             sql &= " ( "
-            sql &= " '" & d.FormatCRM(CRM.Value) & UF_CRM.Value & "' "
+            sql &= " '" & strCRM_UF & "' "
             sql &= " ,'" & d.FormatCRM(CRM.Value) & "' "
             sql &= " ,'" & UF_CRM.Value & "' "
             sql &= " ,'" & m.ConvertText(NOME.Value) & "' "
@@ -241,7 +264,7 @@ Partial Class Medico_Incluir
             'INCLUI
             sql = ""
             sql &= " INSERT INTO [TBL_MEDICOS_ESTABELECIMENTOS] ([CRM_UF],[CNPJ],ID_FUNCAO,ATENDE_SEG,ATENDE_TER,ATENDE_QUA,ATENDE_QUI,ATENDE_SEX,ATIVO) VALUES ( "
-            sql &= " '" & d.FormatCRM(CRM.Value) & UF_CRM.Value & "', "
+            sql &= " '" & strCRM_UF & "', "
             sql &= " '" & strCNPJ & "', "
             sql &= " '" & ID_FUNCAO.Text & "', "
             sql &= " '" & bol_ATENDE_SEG & "', "
