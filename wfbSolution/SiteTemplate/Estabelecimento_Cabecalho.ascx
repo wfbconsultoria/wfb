@@ -1,10 +1,10 @@
 ﻿<%@ Control Language="VB" AutoEventWireup="false" CodeFile="Estabelecimento_Cabecalho.ascx.vb" Inherits="Estabelecimento_Cabecalho" %>
 
-<asp:SqlDataSource ID="dts_MEDICOS" runat="server" ConnectionString="<%$ ConnectionStrings:DefaultConnection %>" />
+<%--<asp:SqlDataSource ID="dts_MEDICOS" runat="server" ConnectionString="<%$ ConnectionStrings:DefaultConnection %>" />--%>
 
 <div class="col-md-12">
-    <a class="link" data-bs-toggle="collapse" href="#div_CORPO_ESTABELECIMENTO" role="button" aria-expanded="false" aria-controls="CORPO">Exibir/Ocultar Endereço</a>
-    <a class="link" data-bs-toggle="collapse" href="#div_CORPO_MEDICOS" role="button" aria-expanded="false" aria-controls="CORPO">Exibir/Ocultar Medicos</a>
+    <a class="link" data-bs-toggle="collapse" href="#div_CORPO_ESTABELECIMENTO" role="button" aria-expanded="false" aria-controls="CORPO">Endereço</a>
+   <%-- <a class="link" data-bs-toggle="collapse" href="#div_CORPO_MEDICOS" role="button" aria-expanded="false" aria-controls="CORPO">Contatos</a>--%>
 </div>
 
 <%-- DIV MENSAGEM --%>
@@ -94,6 +94,7 @@
     </div>
     <%-- CORPO ESTABELECIMENTO --%>
 
+    <!--
     <%-- CORPO MEDICOS --%>
     <div id="div_CORPO_MEDICOS" class="collapse">
         <%-- DIV MEDICOS --%>
@@ -123,7 +124,7 @@
                     <asp:Repeater ID="dtr" runat="server" DataSourceID="dts_MEDICOS">
                         <ItemTemplate>
                             <tr>
-                                <td><a href='<%# "Medico_Incluir.aspx?IdEstabelecimento" + "=" + DataBinder.Eval(Container.DataItem, "IdEstabelecimento").ToString + "&CRM_UF" + "=" + DataBinder.Eval(Container.DataItem, "CRM_UF") %>'><%# DataBinder.Eval(Container.DataItem, "CRM_UF").ToString%></a></td>
+                                <td><a href='<%# "Medico_Incluir.aspx?IdEstabelecimento" + "=" + DataBinder.Eval(Container.DataItem, "IdEstabelecimento").ToString + "&CRM_UF" + "=" + DataBinder.Eval(Container.DataItem, "CRM_UF") %>'><%# LEFT(DataBinder.Eval(Container.DataItem, "CRM_UF").ToString, 10)%></a></td>
                                 <td><%# DataBinder.Eval(Container.DataItem, "NOME_SOBRENOME").ToString%></td>
                                 <td><%# DataBinder.Eval(Container.DataItem, "FUNCAO").ToString%></td>
                                 <%--<td><a href='<%# "Medico.aspx?idMedico" + "=" + DataBinder.Eval(Container.DataItem, "IdMedico").ToString %>'>Visitar</a></td>--%>
@@ -135,7 +136,7 @@
         </div>
         <%-- DIV MEDICOS --%>
     </div>
-    <%-- CORPO MEDICOS --%>
+    <%-- CORPO MEDICOS --%> -->
 </div>
 <%-- DIV PRINCIPAL --%>
 <hr />

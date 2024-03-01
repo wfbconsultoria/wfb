@@ -99,7 +99,7 @@
                     <ItemTemplate>
                         <tr>
                             <%--<td><a href='<%# "Medico_Incluir.aspx?IdEstabelecimento" + "=" + DataBinder.Eval(Container.DataItem, "IdEstabelecimento").ToString + "&CRM_UF" + "=" + DataBinder.Eval(Container.DataItem, "CRM_UF") %>'><%# DataBinder.Eval(Container.DataItem, "CRM_UF").ToString%></a></td>--%>
-                            <td><%# DataBinder.Eval(Container.DataItem, "DATA").ToString%></td>
+                            <td><%# DataBinder.Eval(Container.DataItem, "DATA_VISITA_BR").ToString%></td>
                             <td><%# DataBinder.Eval(Container.DataItem, "VISITA_TIPO").ToString%></td>
                             <td><%# DataBinder.Eval(Container.DataItem, "ESTABELECIMENTO").ToString%></td>
                             <td><%# DataBinder.Eval(Container.DataItem, "NOME").ToString%></td>
@@ -114,7 +114,7 @@
                             <td><%# DataBinder.Eval(Container.DataItem, "LINHA").ToString%></td>
                             <td><%# DataBinder.Eval(Container.DataItem, "AVALIACAO").ToString%></td>
                             <td><%# DataBinder.Eval(Container.DataItem, "OBSERVACOES").ToString%></td>
-                            <td><%# DataBinder.Eval(Container.DataItem, "DATA_PROXIMA").ToString%></td>
+                            <td><%# DataBinder.Eval(Container.DataItem, "DATA_PROXIMA_BR").ToString%></td>
                             <td><%# DataBinder.Eval(Container.DataItem, "OBJETIVO_PROXIMA").ToString%></td>
                             <td><%# DataBinder.Eval(Container.DataItem, "OBSERVACOES_PROXIMA").ToString%></td>
 

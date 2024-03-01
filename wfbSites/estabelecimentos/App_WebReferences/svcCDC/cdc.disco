@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<discovery xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://schemas.xmlsoap.org/disco/">
-  <contractRef ref="http://www.soawebservices.com.br/webservices/producao/cdc/cdc.asmx?wsdl" docRef="http://www.soawebservices.com.br/webservices/producao/cdc/cdc.asmx" xmlns="http://schemas.xmlsoap.org/disco/scl/" />
-  <soap address="http://www.soawebservices.com.br/webservices/producao/cdc/cdc.asmx" xmlns:q1="SOAWebServices" binding="q1:CDCSoap" xmlns="http://schemas.xmlsoap.org/disco/soap/" />
-  <soap address="http://www.soawebservices.com.br/webservices/producao/cdc/cdc.asmx" xmlns:q2="SOAWebServices" binding="q2:CDCSoap12" xmlns="http://schemas.xmlsoap.org/disco/soap/" />
+<discovery xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schemas.xmlsoap.org/disco/">
+  <contractRef ref="https://svc1.soawebservices.com.br/webservices/producao/cdc/cdc.asmx?wsdl" docRef="https://svc1.soawebservices.com.br/webservices/producao/cdc/cdc.asmx" xmlns="http://schemas.xmlsoap.org/disco/scl/" />
+  <soap address="https://svc1.soawebservices.com.br/webservices/producao/cdc/cdc.asmx" xmlns:q1="SOAWebServices" binding="q1:CDCSoap" xmlns="http://schemas.xmlsoap.org/disco/soap/" />
+  <soap address="https://svc1.soawebservices.com.br/webservices/producao/cdc/cdc.asmx" xmlns:q2="SOAWebServices" binding="q2:CDCSoap12" xmlns="http://schemas.xmlsoap.org/disco/soap/" />
 </discovery>

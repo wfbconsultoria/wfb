@@ -31,11 +31,11 @@
                     <div class="navbar-nav">
                         <a class="nav-link" href="Default.aspx">Início</a>
                         <a class="nav-link" href="Estabelecimentos.aspx">Meus Estabelecimentos</a>
-                        <a class="nav-link" href="Medicos.aspx">Meus Médicos</a>
+                        <a class="nav-link" href="Medicos.aspx">Meus Médicos/Contatos</a>
                         <a class="nav-link" href="Visitas.aspx">Visitas</a>
-                        <a class="nav-link" href="Table.aspx">tabela</a>
                         <a class="nav-link text-muted" href="#"><%:Session("NOME_LOGIN") %></a>
                         <a class="nav-link text-danger" href="Login.aspx">Sair</a>
+                        <a class="nav-link" href="Estabelecimento_Incluir.aspx">Novo</a>
                     </div>
                 </div>
             </div>

@@ -24,6 +24,10 @@ Partial Class Estabelecimento
 
         dts_FUNCAO.SelectCommand = d.sql_funcoes("lista")
         dts_FUNCAO.DataBind()
+
+        dts_MEDICOS.SelectCommand = "Select * from APP_MEDICOS_ESTABELECIMENTOS Where IdEstabelecimento  = '" & IdEstabelecimento & "' And MEDICO_ATIVO_NO_ESTABELECIMENTO = 1 Order By NOME_SOBRENOME"
+        dts_MEDICOS.DataBind()
+
     End Sub
 
     Private Sub cmd_Novo_CRM_ServerClick(sender As Object, e As EventArgs) Handles cmd_Novo_CRM.ServerClick

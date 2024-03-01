@@ -1,13 +1,5 @@
 ﻿Option Explicit On
 Imports System.Data
-Imports System.Drawing
-Imports System.Drawing.Imaging
-Imports System.Globalization
-Imports System.IO
-Imports System.Runtime.Serialization
-Imports System.Threading
-Imports ASP
-Imports wsCorreios
 
 Partial Class Medico_Incluir
     Inherits System.Web.UI.Page
@@ -49,10 +41,16 @@ Partial Class Medico_Incluir
             strTipo_CONTATO = "CONTATO"
             CRM.Value = "CONTATOS"
             UF_CRM.Value = strUF_ESTABELECIMENTO
+            ID_ESPECIALIDADE.Text = 0
+            ID_ESPECIALIDADE.Enabled = False
+            ID_TIPO.Text = 0
+            ID_TIPO.Enabled = False
         Else
             strTipo_CONTATO = "MEDICO"
             CRM.Value = Left(strCRM_UF, 8)
             UF_CRM.Value = Right(strCRM_UF, 2)
+            ID_ESPECIALIDADE.Enabled = True
+            ID_TIPO.Enabled = True
         End If
 
 
@@ -325,8 +323,8 @@ Partial Class Medico_Incluir
 
         'Valida próxima visita
         If VISITA_PROXIMA.Value <> "" Then
-            If VISITA_PROXIMA.Value < Now().AddDays(1) Then
-                m.Alert(Me, " Data da próxima visita não pode ser ANTERIOR a " & Now().AddDays(1))
+            If VISITA_PROXIMA.Value < Now() Then
+                m.Alert(Me, " Data da próxima visita não pode ser ANTERIOR a " & Now())
                 Exit Function
             End If
             If VISITA_OBJETIVO_PROXIMA.Text = "" Then
@@ -443,7 +441,7 @@ Partial Class Medico_Incluir
         VISITA_OBJETIVO_PROXIMA.Text = ""
         VISITA_LINHA_PROXIMA.Text = ""
         VISITA_OBSERVACOES_PROXIMA.Value = ""
-
+        Atualiza_DTS()
         m.Alert(Me, StrMensagem.ToString)
         Exit Function
 Err_Gravar:
@@ -490,6 +488,10 @@ Err_Gravar:
 
         dts_VISITAS_FORMAS.SelectCommand = v.sql_visitas_formas("lista")
         dts_VISITAS_FORMAS.DataBind()
+
+        dts_MEDICOS.SelectCommand = "Select * from APP_MEDICOS_ESTABELECIMENTOS Where IdEstabelecimento  = '" & IdEstabelecimento & "' And MEDICO_ATIVO_NO_ESTABELECIMENTO = 1 Order By NOME_SOBRENOME"
+        dts_MEDICOS.DataBind()
+        dtr.DataBind()
     End Sub
     Private Function validaCampos() As Boolean
         validaCampos = True
