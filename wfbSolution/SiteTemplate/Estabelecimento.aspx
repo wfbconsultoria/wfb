@@ -98,7 +98,7 @@
         <div class="row g-2">
 
             <div class="col-12">
-                <%-- BOTÃO INCLUIR NOVO CONTATP--%>
+                <%-- BOTÃO INCLUIR NOVO CONTATO--%>
                 <button runat="server" id="cmd_Novo_Contato" type="button" class="form-control btn btn-info">NOVO CONTATO</button>
             </div>
         </div>

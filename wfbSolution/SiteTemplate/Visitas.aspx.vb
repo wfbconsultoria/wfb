@@ -5,16 +5,16 @@ Partial Class Visitas
     Dim sql As String
     Private Sub Visitas_Load(sender As Object, e As EventArgs) Handles Me.Load
 
-        dts_REPRESENTANTES.SelectCommand = v.sql_visitas_representantes("lista")
+        dts_REPRESENTANTES.SelectCommand = v.sql_visitas_representantes
         dts_REPRESENTANTES.DataBind()
 
-        dts_TIPOS.SelectCommand = v.sql_visitas_tipos("lista")
+        dts_TIPOS.SelectCommand = v.sql_visitas_tipos
         dts_TIPOS.DataBind()
 
-        dts_ANOS.SelectCommand = v.sql_visitas_anos()
+        dts_ANOS.SelectCommand = v.sql_visitas_anos
         dts_ANOS.DataBind()
 
-        dts_MESES.SelectCommand = v.sql_visitas_meses()
+        dts_MESES.SelectCommand = v.sql_visitas_meses
         dts_MESES.DataBind()
 
         sql = ""

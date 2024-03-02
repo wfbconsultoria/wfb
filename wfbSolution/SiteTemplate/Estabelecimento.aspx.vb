@@ -17,12 +17,12 @@ Partial Class Estabelecimento
     Private Sub Atualiza_DTS()
 
         If UF_CRM.Items.Count = 0 Then
-            dts_UF.SelectCommand = s.sql_UF("lista")
+            dts_UF.SelectCommand = s.sql_UF
             dts_UF.DataBind()
             UF_CRM.DataBind()
         End If
 
-        dts_FUNCAO.SelectCommand = d.sql_funcoes("lista")
+        dts_FUNCAO.SelectCommand = d.sql_funcoes
         dts_FUNCAO.DataBind()
 
         dts_MEDICOS.SelectCommand = "Select * from APP_MEDICOS_ESTABELECIMENTOS Where IdEstabelecimento  = '" & IdEstabelecimento & "' And MEDICO_ATIVO_NO_ESTABELECIMENTO = 1 Order By NOME_SOBRENOME"

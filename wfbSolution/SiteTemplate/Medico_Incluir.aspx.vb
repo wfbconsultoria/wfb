@@ -25,7 +25,7 @@ Partial Class Medico_Incluir
 
         IdEstabelecimento = Request.QueryString("IdEstabelecimento")
         strCRM_UF = Request.QueryString("CRM_UF")
-
+        hlk_Novo_Contato.NavigateUrl = "~/Estabelecimento.aspx?idEstabelecimento=" & IdEstabelecimento
         'Recupera CNPJ E NOME do estabelecimento
         Dim dtr_Estabelecimento As SqlClient.SqlDataReader = m.ExecuteSelect(s.sql_Estabelecimentos("ficha", Request.QueryString("idEstabelecimento")))
         If dtr_Estabelecimento.HasRows Then
@@ -144,7 +144,8 @@ Partial Class Medico_Incluir
             sql &= " COD_IBGE_7 = '" & m.ConvertText(COD_IBGE_7.Value) & "', "
             sql &= " CIDADE = '" & m.ConvertText(CIDADE.Value) & "', "
             sql &= " UF = '" & m.ConvertText(UF.Value) & "', "
-            sql &= " OBSERVACOES = '" & m.ConvertText(OBSERVACOES.Value) & "' "
+            sql &= " OBSERVACOES = '" & m.ConvertText(OBSERVACOES.Value) & "', "
+            sql &= " EMAIL_ALTERACAO = '" & m.ConvertText(Session("EMAIL_LOGIN"), clsMaster.TextCaseOptions.LowerCase) & "' "
             sql &= " Where CRM_UF = '" & strCRM_UF & "'"
 
             If m.ExecuteSQL(sql) = False Then
@@ -183,7 +184,7 @@ Partial Class Medico_Incluir
             'sql &= " ,[ATIVO] "
             'sql &= " ,[DATA_INCLUSAO] "
             'sql &= " ,[DATA_ALTERACAO] "
-            'sql &= " ,[EMAIL_INCLUSAO] "
+            sql &= " ,[EMAIL_INCLUSAO] "
             'sql &= " ,[EMAIL_ALTERACAO] "
             sql &= " ) "
             sql &= " VALUES "
@@ -210,7 +211,7 @@ Partial Class Medico_Incluir
             'sql &= " , O "
             ',<DATA_INCLUSAO, datetime,>
             ',<DATA_ALTERACAO, datetime,>
-            ',<EMAIL_INCLUSAO, varchar(256),>
+            sql &= " ,'" & m.ConvertText(Session("EMAIL_LOGIN"), clsMaster.TextCaseOptions.LowerCase) & "' "
             ',<EMAIL_ALTERACAO, varchar(256),>)
             sql &= " ) "
             If m.ExecuteSQL(sql) = False Then
@@ -250,7 +251,8 @@ Partial Class Medico_Incluir
             sql &= " ATENDE_QUA = " & bol_ATENDE_QUA & ", "
             sql &= " ATENDE_QUI = " & bol_ATENDE_QUI & ", "
             sql &= " ATENDE_SEX = " & bol_ATENDE_SEX & ", "
-            sql &= " ATIVO = " & bol_ATIVO & " "
+            sql &= " ATIVO = " & bol_ATIVO & ", "
+            sql &= " EMAIL_ALTERACAO = '" & m.ConvertText(Session("EMAIL_LOGIN"), clsMaster.TextCaseOptions.LowerCase) & "' "
             sql &= " WHERE CNPJ = '" & strCNPJ & "' AND CRM_UF = '" & strCRM_UF & "'"
             If m.ExecuteSQL(sql) = False Then
                 Gravar = False
@@ -261,7 +263,7 @@ Partial Class Medico_Incluir
         Else
             'INCLUI
             sql = ""
-            sql &= " INSERT INTO [TBL_MEDICOS_ESTABELECIMENTOS] ([CRM_UF],[CNPJ],ID_FUNCAO,ATENDE_SEG,ATENDE_TER,ATENDE_QUA,ATENDE_QUI,ATENDE_SEX,ATIVO) VALUES ( "
+            sql &= " INSERT INTO [TBL_MEDICOS_ESTABELECIMENTOS] ([CRM_UF],[CNPJ],ID_FUNCAO,ATENDE_SEG,ATENDE_TER,ATENDE_QUA,ATENDE_QUI,ATENDE_SEX,ATIVO,EMAIL_INCLUSAO) VALUES ( "
             sql &= " '" & strCRM_UF & "', "
             sql &= " '" & strCNPJ & "', "
             sql &= " '" & ID_FUNCAO.Text & "', "
@@ -270,8 +272,8 @@ Partial Class Medico_Incluir
             sql &= " '" & bol_ATENDE_QUA & "', "
             sql &= " '" & bol_ATENDE_QUI & "', "
             sql &= " '" & bol_ATENDE_SEX & "', "
-            sql &= " '" & 1 & "') "
-
+            sql &= " '" & 1 & "', "
+            sql &= " '" & m.ConvertText(Session("EMAIL_LOGIN"), clsMaster.TextCaseOptions.LowerCase) & "') "
             If m.ExecuteSQL(sql) = False Then
                 Gravar = False
                 m.Alert(Me, "Erro ao incluir médico no estabelecimento", False, "")
@@ -468,25 +470,25 @@ Err_Gravar:
     End Sub
     Private Sub Atualiza_DTS()
         'Atualiza datasources da página
-        dts_ESPECIALIDADES.SelectCommand = d.sql_especialidades("lista")
+        dts_ESPECIALIDADES.SelectCommand = d.sql_especialidades
         dts_ESPECIALIDADES.DataBind()
 
-        dts_TIPOS.SelectCommand = d.sql_tipos("lista")
+        dts_TIPOS.SelectCommand = d.sql_tipos
         dts_TIPOS.DataBind()
 
-        dts_FUNCOES.SelectCommand = d.sql_funcoes("lista")
+        dts_FUNCOES.SelectCommand = d.sql_funcoes
         dts_FUNCOES.DataBind()
 
-        dts_VISITAS_AVALIACOES.SelectCommand = v.sql_visitas_avaliacoes("lista")
+        dts_VISITAS_AVALIACOES.SelectCommand = v.sql_visitas_avaliacoes
         dts_VISITAS_AVALIACOES.DataBind()
 
-        dts_VISITAS_OBJETIVOS.SelectCommand = v.sql_visitas_objetivos("lista")
+        dts_VISITAS_OBJETIVOS.SelectCommand = v.sql_visitas_objetivos
         dts_VISITAS_OBJETIVOS.DataBind()
 
-        dts_VISITAS_LINHA.SelectCommand = v.sql_visitas_linhas("lista")
+        dts_VISITAS_LINHA.SelectCommand = v.sql_visitas_linhas
         dts_VISITAS_LINHA.DataBind()
 
-        dts_VISITAS_FORMAS.SelectCommand = v.sql_visitas_formas("lista")
+        dts_VISITAS_FORMAS.SelectCommand = v.sql_visitas_formas
         dts_VISITAS_FORMAS.DataBind()
 
         dts_MEDICOS.SelectCommand = "Select * from APP_MEDICOS_ESTABELECIMENTOS Where IdEstabelecimento  = '" & IdEstabelecimento & "' And MEDICO_ATIVO_NO_ESTABELECIMENTO = 1 Order By NOME_SOBRENOME"

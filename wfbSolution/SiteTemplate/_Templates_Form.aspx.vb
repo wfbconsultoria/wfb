@@ -35,13 +35,13 @@ Partial Class _Templates_Form
         End If
 
         If ID_ESPECIALIDADE.Items.Count = 0 Then
-            dts_ESPECIALIDADES.SelectCommand = d.sql_especialidades("lista")
+            dts_ESPECIALIDADES.SelectCommand = d.sql_especialidades
             dts_ESPECIALIDADES.DataBind()
             ID_ESPECIALIDADE.DataBind()
         End If
 
         If ID_TIPO.Items.Count = 0 Then
-            dts_TIPOS.SelectCommand = d.sql_tipos("lista")
+            dts_TIPOS.SelectCommand = d.sql_tipos
             dts_TIPOS.DataBind()
             ID_TIPO.DataBind()
         End If

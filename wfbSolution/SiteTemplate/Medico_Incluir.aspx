@@ -25,7 +25,10 @@
     
      <%-- LINKS --%>
     <div class="row g-3">
+        <div class="col-md-12">
         <h5><a class="link" data-bs-toggle="collapse" href="#div_CORPO_MEDICOS" role="button" aria-expanded="false" aria-controls="CORPO">Contatos</a></h5>
+        <asp:HyperLink ID="hlk_Novo_Contato" runat="server" NavigateUrl="~/Estabelecimento.aspx">Novo Médico/Contato</asp:HyperLink>
+            </div>
     </div>
      <%-- LINKS --%>
     <hr />
@@ -50,7 +53,6 @@
                         <th data-field="CRM" data-sortable="true" style="width: 10%">CRM</th>
                         <th data-field="NOME" data-sortable="true" style="width: 65%">Medico</th>
                         <th data-field="FUNCAO" data-sortable="true" style="width: 20%">Função</th>
-                        <%--<th data-field="VISITAR" data-sortable="true" style="width: 5%">Visitar</th>--%>
                     </tr>
                 </thead>
                 <tbody>
@@ -60,7 +62,6 @@
                                 <td><a href='<%# "Medico_Incluir.aspx?IdEstabelecimento" + "=" + DataBinder.Eval(Container.DataItem, "IdEstabelecimento").ToString + "&CRM_UF" + "=" + DataBinder.Eval(Container.DataItem, "CRM_UF") %>'><%# LEFT(DataBinder.Eval(Container.DataItem, "CRM_UF").ToString, 10)%></a></td>
                                 <td><%# DataBinder.Eval(Container.DataItem, "NOME_SOBRENOME").ToString%></td>
                                 <td><%# DataBinder.Eval(Container.DataItem, "FUNCAO").ToString%></td>
-                                <%--<td><a href='<%# "Medico.aspx?idMedico" + "=" + DataBinder.Eval(Container.DataItem, "IdMedico").ToString %>'>Visitar</a></td>--%>
                             </tr>
                         </ItemTemplate>
                     </asp:Repeater>
