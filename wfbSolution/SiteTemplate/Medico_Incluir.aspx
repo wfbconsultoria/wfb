@@ -21,65 +21,64 @@
     <asp:SqlDataSource ID="dts_MEDICOS" runat="server" ConnectionString="<%$ ConnectionStrings:DefaultConnection %>" />
     <%--Conteudo--%>
     <uc1:Estabelecimento_Cabecalho runat="server" ID="Estabelecimento_Cabecalho" />
-    
-    
-     <%-- LINKS --%>
+
     <div class="row g-3">
-        <div class="col-md-12">
-        <h5><a class="link" data-bs-toggle="collapse" href="#div_CORPO_MEDICOS" role="button" aria-expanded="false" aria-controls="CORPO">Contatos</a></h5>
-        <asp:HyperLink ID="hlk_Novo_Contato" runat="server" NavigateUrl="~/Estabelecimento.aspx">Novo Médico/Contato</asp:HyperLink>
-            </div>
-    </div>
-     <%-- LINKS --%>
-    <hr />
-    <%-- CORPO MEDICOS --%>
-    <div id="div_CORPO_MEDICOS" class="collapse">
-        <%-- DIV MEDICOS --%>
-        <div class="row g-3">
-            <table class="table table-bordered table-hover"
-                id="table"
-                <%--data-toolbar="#toolbar"--%>
-                data-toggle="table"
-                data-search="true"
-                data-search-align="left"
-                data-search-accent-neutralise="true"
-                data-search-highlight="true"
-                data-sortable="true"
-                data-show-toggle="true"
-                data-show-columns="true"
-                data-mobile-responsive="true">
-                <thead>
-                    <tr>
-                        <th data-field="CRM" data-sortable="true" style="width: 10%">CRM</th>
-                        <th data-field="NOME" data-sortable="true" style="width: 65%">Medico</th>
-                        <th data-field="FUNCAO" data-sortable="true" style="width: 20%">Função</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <asp:Repeater ID="dtr" runat="server" DataSourceID="dts_MEDICOS">
-                        <ItemTemplate>
-                            <tr>
-                                <td><a href='<%# "Medico_Incluir.aspx?IdEstabelecimento" + "=" + DataBinder.Eval(Container.DataItem, "IdEstabelecimento").ToString + "&CRM_UF" + "=" + DataBinder.Eval(Container.DataItem, "CRM_UF") %>'><%# LEFT(DataBinder.Eval(Container.DataItem, "CRM_UF").ToString, 10)%></a></td>
-                                <td><%# DataBinder.Eval(Container.DataItem, "NOME_SOBRENOME").ToString%></td>
-                                <td><%# DataBinder.Eval(Container.DataItem, "FUNCAO").ToString%></td>
-                            </tr>
-                        </ItemTemplate>
-                    </asp:Repeater>
-                </tbody>
-            </table>
+
+        <%-- LINKS --%>
+        <div class="row g-2">
+            <spam class="form-control">
+                <div class="col-md-12">Médicos/Contatos</div>
+                <div class="col-md-12">
+                    <div class="input-group">
+                        <a class="btn btn-outline-primary form-control" data-bs-toggle="collapse" href="#div_CORPO_MEDICOS" role="button" aria-expanded="false" aria-controls="CORPO">&nbsp&nbsp LISTA &nbsp&nbsp</a>
+                        <button type="button" class="btn btn-primary form-control" data-bs-toggle="modal" data-bs-target="#VISITAR">VISITAR</button>
+                        <asp:HyperLink CssClass="btn btn-info form-control" ID="hlk_Novo_Contato" runat="server" NavigateUrl="~/Estabelecimento.aspx">NOVO</asp:HyperLink>
+                    </div>
+                </div>
+            </spam>
         </div>
-        <%-- DIV MEDICOS --%>
-    </div>
-    <%-- CORPO MEDICOS --%>
-    
-    
-    
-    <%--DIV PRINCIPAL--%>
-    <div class="row g-3">
+        <%-- LINKS --%>
+
+        <%-- LISTA CONTATOS --%>
+        <div id="div_CORPO_MEDICOS" class="collapse">
+            <div class="row g-2">
+                <table class="table table-bordered table-hover"
+                    id="table"
+                    <%--data-toolbar="#toolbar"--%>
+                    data-toggle="table"
+                    data-search="true"
+                    data-search-align="left"
+                    data-search-accent-neutralise="true"
+                    data-search-highlight="true"
+                    data-sortable="true"
+                    data-show-toggle="true"
+                    data-show-columns="true"
+                    data-mobile-responsive="true">
+                    <thead>
+                        <tr>
+                            <th data-field="CRM" data-sortable="true" style="width: 10%">CRM</th>
+                            <th data-field="NOME" data-sortable="true" style="width: 65%">Medico</th>
+                            <th data-field="FUNCAO" data-sortable="true" style="width: 20%">Função</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <asp:Repeater ID="dtr" runat="server" DataSourceID="dts_MEDICOS">
+                            <ItemTemplate>
+                                <tr>
+                                    <td><a href='<%# "Medico_Incluir.aspx?IdEstabelecimento" + "=" + DataBinder.Eval(Container.DataItem, "IdEstabelecimento").ToString + "&CRM_UF" + "=" + DataBinder.Eval(Container.DataItem, "CRM_UF") %>'><%# LEFT(DataBinder.Eval(Container.DataItem, "CRM_UF").ToString, 10)%></a></td>
+                                    <td><%# DataBinder.Eval(Container.DataItem, "NOME_SOBRENOME").ToString%></td>
+                                    <td><%# DataBinder.Eval(Container.DataItem, "FUNCAO").ToString%></td>
+                                </tr>
+                            </ItemTemplate>
+                        </asp:Repeater>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <%-- LISTA CONTATOS --%>
 
         <%-- UF/CRM/ESPECIALDADE/TIPO--%>
         <div class="row g-2">
-
             <%-- UF do CRM --%>
             <div class="col-md-1">
                 <div class="form-floating">
@@ -237,7 +236,6 @@
         </div>
         <%-- COD_IBGE_7/CIDADE/UF --%>
 
-
         <%-- OBSERVAÇÕES --%>
         <div class="row g-2">
             <div class="col-md-12">
@@ -251,54 +249,65 @@
 
         <%-- DIAS DE ATENDIMENTO --%>
         <div class="row g-2">
-            <div class="col-md-12">
-                <label class="text-muted">Dias Atendimento</label>
-            </div>
-        </div>
-        <div class="row g-2">
-            <div class="col-md-12">
+            <spam class="form-control">
+                <div class="col-md-12">Dias Atendimento</div>
+                <div class="col-md-12">
 
-                <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="checkbox" value="" id="ATENDE_SEG" runat="server">
-                    <label class="form-check-label" for="ATENDE_SEG">SEG</label>
+                    <div class="input-group">
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" value="" id="ATENDE_SEG" runat="server">
+                            <small>
+                                <label class="form-check-label" for="ATENDE_SEG">SEG</label></small>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" value="" id="ATENDE_TER" runat="server">
+                            <small>
+                                <label class="form-check-label" for="ATENDE_TER">TER</label></small>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" value="" id="ATENDE_QUA" runat="server">
+                            <small>
+                                <label class="form-check-label" for="ATENDE_QUA">QUA</label></small>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" value="" id="ATENDE_QUI" runat="server">
+                            <small>
+                                <label class="form-check-label" for="ATENDE_QUI">QUI</label></small>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" value="" id="ATENDE_SEX" runat="server">
+                            <small>
+                                <label class="form-check-label" for="ATENDE_SEX">SEX</label></small>
+                        </div>
+                    </div>
+
                 </div>
-                <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="checkbox" value="" id="ATENDE_TER" runat="server">
-                    <label class="form-check-label" for="ATENDE_TER">TER</label>
-                </div>
-                <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="checkbox" value="" id="ATENDE_QUA" runat="server">
-                    <label class="form-check-label" for="ATENDE_QUA">QUA</label>
-                </div>
-                <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="checkbox" value="" id="ATENDE_QUI" runat="server">
-                    <label class="form-check-label" for="ATENDE_QUI">QUI</label>
-                </div>
-                <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="checkbox" value="" id="ATENDE_SEX" runat="server">
-                    <label class="form-check-label" for="ATENDE_SEX">SEX</label>
-                </div>
-            </div>
+            </spam>
 
         </div>
         <%-- DIAS DE ATENDIMENTO --%>
 
+        <%-- BOTÃO VISITAR aciona modal --%>
+        <div class="row g-2">
+            <div class="col-md-12">
+                <!-- Button trigger modal -->
+                <button type="button" class="btn btn-primary form-control" data-bs-toggle="modal" data-bs-target="#VISITAR">VISITAR</button>
+            </div>
+        </div>
+        <%-- BOTÃO VISITAR aciona modal --%>
+
         <%-- BOTÕES --%>
         <div class="row g-2">
-            <div class="col-12">
-                <button runat="server" id="cmd_Gravar" type="submit" class="btn btn-primary">Gravar</button>
-                <button runat="server" id="cmd_CEP" type="button" class="btn btn-info">Consultar CEP</button>
+            <div class="col-md-12">
+                <div class="input-group">
+                    <button runat="server" id="cmd_Gravar" type="submit" class="btn btn-primary form-control">Gravar</button>
+                    <button runat="server" id="cmd_CEP" type="button" class="btn btn-info form-control">Consultar CEP</button>
+                </div>
             </div>
         </div>
         <%-- BOTÕES --%>
 
-        <%-- VISITAR --%>
-        <!-- Button trigger modal -->
-        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#VISITAR">
-            VISITAR
-        </button>
-
-        <!-- Modal -->
+        <!-- Modal VISITAR -->
         <div class="modal fade" id="VISITAR" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="VISITAR" aria-hidden="true">
             <div class="modal-dialog modal-dialog-scrollable">
                 <div class="modal-content">
@@ -383,7 +392,7 @@
                 </div>
             </div>
         </div>
-        <%-- VISITAR --%>
+        <!-- Modal VISITAR -->
 
         <%-- ATIVAR/INATIVAR --%>
         <a class="link" data-bs-toggle="collapse" href="#ATIVAR" role="button" aria-expanded="false" aria-controls="ATIVAR">Ativar/Inativar Médico</a>

@@ -30,14 +30,42 @@
                 <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                     <div class="navbar-nav">
                         <a class="nav-link" href="Default.aspx">Início</a>
-                        <a class="nav-link" href="Estabelecimentos.aspx">Meus Estabelecimentos</a>
-                        <a class="nav-link" href="Medicos.aspx">Meus Médicos/Contatos</a>
+                        <a class="nav-link" href="Estabelecimentos.aspx">Estabelecimentos</a>
+                        <a class="nav-link" href="Medicos.aspx">Médicos/Contatos</a>
                         <a class="nav-link" href="Visitas.aspx">Visitas</a>
-                        <a class="nav-link text-muted" href="#"><%:Session("NOME_LOGIN") %></a>
-                        <a class="nav-link text-danger" href="Login.aspx">Sair</a>
-                        <a class="nav-link" href="Estabelecimento_Incluir.aspx">Novo</a>
+                        
+                        <!-- MENU RELATORIOS -->
+                        <div class="dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Relatórios</a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="#">Relatório 01</a></li>
+                                <li><a class="dropdown-item" href="#">Relatório 02</a></li>
+                                <li><a class="dropdown-item" href="#">Relatório 03</a></li>
+                            </ul>
+                        </div>
+                        
+                        <!-- MENU ACOES -->
+                        <div class="dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Ações</a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="Estabelecimento_Incluir.aspx"">Incluir Estabelecimento</a></li>
+                                <li><a class="dropdown-item" href="Pesquisa_CEP.aspx">Consulta Endereço</a></li>
+                                <li><a class="dropdown-item" href="#">Ação 03</a></li>
+                            </ul>
+                        </div>
+
+                        <!-- MENU USUARIO -->
+                        <div class="dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><%:Session("NOME_LOGIN")%></a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="#">Perfil</a></li>
+                                <li><a class="dropdown-item" href="#">Trocar Senha</a></li>
+                                <li><a class="dropdown-item" href="#">Ação 03</a></li>
+                            </ul>
+                        </div>
+                <a class="nav-link text-danger" href="Login.aspx">Sair</a>
                     </div>
-                </div>
+            </div>
             </div>
         </nav>
 
