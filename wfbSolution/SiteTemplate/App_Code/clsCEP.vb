@@ -1,14 +1,10 @@
 ﻿Imports System.Data
+Imports Newtonsoft.Json
+Imports System.Net
 
 Public Class clsCEP
     ReadOnly m As New clsMaster
-    Public Property CEP As String = ""
-    Public Property LOGRADOURO As String = ""
-    Public Property ENDERECO As String = ""
-    Public Property BAIRRO As String = ""
-    Public Property CIDADE As String = ""
-    Public Property UF As String = ""
-    Public Property COD_IBGE_7 As String = ""
+    Public Property cepStatus As Boolean
 
     Public Function FormatCEP(CEP As String) As String
         Dim CEP_Numero As Integer
@@ -26,30 +22,54 @@ Public Class clsCEP
             FormatCEP = Right("00000000" & CEP, 8)
         End If
     End Function
-    Public Function consultarCEP(strCEP As String) As Boolean
+    Public Function consultarCEP(strCEP As String) As Result
 
+        cepStatus = False
         Try
-            Dim WS As New wsCorreios.AtendeClienteClient
-            Dim wsCEP = WS.consultaCEP(strCEP)
-            CEP = wsCEP.cep
-            ENDERECO = wsCEP.end
-            BAIRRO = wsCEP.bairro
-            CIDADE = wsCEP.cidade
-            UF = wsCEP.uf
-
-            Dim dtr As SqlClient.SqlDataReader
-            Dim sql As String = "Select COD_IBGE_7 From TBL_IBGE_MUNICIPIOS Where MUNICIPIO = '" & CIDADE & "' And UF = '" & UF & "'"
-            dtr = m.ExecuteSelect(sql)
-            If dtr.HasRows Then
-                dtr.Read()
-                COD_IBGE_7 = dtr("COD_IBGE_7")
-            End If
-
-            consultarCEP = True
-        Catch ex As Exception
-            consultarCEP = False
+            strCEP = FormatCEP(strCEP)
+            Dim apiURL As String = "https://api.brasilaberto.com/v1/zipcode/"
+            'Dim apiURL As String = "https://api.brasilaberto.com/v2/zipcode/" api paga que retorna latitude longitude
+            apiURL = apiURL & strCEP
+            Dim client = New WebClient()
+            client.Encoding = Encoding.UTF8
+            client.Headers(HttpRequestHeader.Authorization) = "Bearer ywrDQmn4IQmctYX7rExhQIKOt2BNq0BEbvwJbW0W3PX2rxWD9qpXkbXJNT8xai9B"
+            Dim response = client.DownloadString(New Uri(apiURL))
+            'Dim retorno As Root = JsonConvert.DeserializeObject(Of Root)(response).result
+            consultarCEP = JsonConvert.DeserializeObject(Of Root)(response).result
+            cepStatus = True
+        Catch
+            cepStatus = False
+            consultarCEP = Nothing
         End Try
-
     End Function
+
+    Public Class Root
+        Public Property meta As Meta
+        Public Property result As Result
+    End Class
+    Public Class Meta
+        Public Property currentPage As Integer
+        Public Property itemsPerPage As Integer
+        Public Property totalOfItems As Integer
+        Public Property totalOfPages As Integer
+    End Class
+
+    Public Class Result
+        Public Property street As String
+        Public Property complement As String
+        Public Property district As String
+        Public Property districtId As Integer
+        Public Property city As String
+        Public Property cityId As Integer
+        Public Property ibgeId As Integer
+        Public Property state As String
+        Public Property stateShortname As String
+        Public Property zipcode As String
+        Public Property code As String
+        <JsonProperty("error")>
+        Public Property erro As String
+
+    End Class
+
 
 End Class

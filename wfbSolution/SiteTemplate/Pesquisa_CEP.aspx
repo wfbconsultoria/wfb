@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="VB" MasterPageFile="~/Master.master" AutoEventWireup="false" CodeFile="Pesquisa_CEP.aspx.vb" Inherits="Pesquisa_CEP" %>
+﻿<%@ Page Title="Pesquisa CEP" Language="VB" MasterPageFile="~/Master.master" AutoEventWireup="false" CodeFile="Pesquisa_CEP.aspx.vb" Inherits="Pesquisa_CEP" %>
 
 <%@ Register Src="~/Titulo_Pagina.ascx" TagPrefix="uc1" TagName="Titulo_Pagina" %>
 
@@ -30,8 +30,8 @@
             <%-- ENDERECO --%>
             <div class="col-md-8">
                 <div class="form-floating">
-                    <input runat="server" id="ENDERECO" type="text" class="form-control" placeholder="" value="" disabled="disabled" />
-                    <label for="ENDERECO">Endereço</label>
+                    <input runat="server" id="LOGRADOURO" type="text" class="form-control" placeholder="" value="" disabled="disabled" />
+                    <label for="LOGRADOURO">Endereço</label>
                 </div>
             </div>
             <%-- NUMERO --%>
@@ -94,7 +94,6 @@
         <div class="row g-2">
             <div class="col-md-12">
                 <div class="input-group">
-                    <button runat="server" id="cmd_Gravar" type="submit" class="btn btn-primary form-control">Gravar</button>
                     <button runat="server" id="cmd_CEP" type="button" class="btn btn-info form-control">Consultar CEP</button>
                 </div>
             </div>

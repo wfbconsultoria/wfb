@@ -56,21 +56,21 @@ Partial Class Medico
     End Sub
 
     Private Sub cmd_CEP_ServerClick(sender As Object, e As EventArgs) Handles cmd_CEP.ServerClick
-        If c.consultarCEP(CEP.Value) = True Then
-            ENDERECO.Value = c.ENDERECO
-            BAIRRO.Value = c.BAIRRO
-            CIDADE.Value = c.CIDADE
-            UF.Value = c.UF
-            COD_IBGE_7.Value = c.COD_IBGE_7
-        Else
-            CEP.Value = ""
-            ENDERECO.Value = ""
-            BAIRRO.Value = ""
-            CIDADE.Value = ""
-            UF.Value = ""
-            COD_IBGE_7.Value = ""
-            m.Alert(Me, "CEP INVÁLIDO", False, "")
-        End If
+        'If c.consultarCEP(CEP.Value) = True Then
+        '    ENDERECO.Value = c.ENDERECO
+        '    BAIRRO.Value = c.BAIRRO
+        '    CIDADE.Value = c.CIDADE
+        '    UF.Value = c.UF
+        '    COD_IBGE_7.Value = c.COD_IBGE_7
+        'Else
+        '    CEP.Value = ""
+        '    ENDERECO.Value = ""
+        '    BAIRRO.Value = ""
+        '    CIDADE.Value = ""
+        '    UF.Value = ""
+        '    COD_IBGE_7.Value = ""
+        '    m.Alert(Me, "CEP INVÁLIDO", False, "")
+        'End If
     End Sub
 
 End Class
