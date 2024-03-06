@@ -79,6 +79,7 @@ Err_CheckExists:
         CheckExists = False
         SystemError(Err.Number, Err.Description, sql, "Function: clsMaster.CheckExists")
     End Function
+
     'Função para página de erro
     Public Function SystemError(ErrNUmber As String, ErrDescription As String, ErrMessage As String, ErrLocation As String) As String
         Dim EmailMessage As String = ""

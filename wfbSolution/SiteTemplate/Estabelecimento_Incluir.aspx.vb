@@ -86,7 +86,6 @@ Partial Class Estabelecimento_Incluir
         Dim NATUREZA_JURIDICA_DESCRICAO As String = m.ConvertText(Retorno.CodigoNaturezaJuridicaDescricao)
         Dim SITUACAO_RF As String = m.ConvertText(Retorno.SituacaoRFB)
 
-
         'INSERE INFORMAÇÕES NO BANCO DE DADOS DA WFB
         'Dim SQL As String = ""
         'SQL &= " INSERT INTO [dbo].[TBL_ESTABELECIMENTOS] "

@@ -5,12 +5,12 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="BodyContent" runat="Server">
     <%--Data Sources--%>
     <asp:SqlDataSource ID="dts" runat="server" ConnectionString="<%$ ConnectionStrings:DefaultConnection %>" />
+    <asp:SqlDataSource ID="dts_TOTAIS" runat="server" ConnectionString="<%$ ConnectionStrings:DefaultConnection %>" />
     <asp:SqlDataSource ID="dts_REPRESENTANTES" runat="server" ConnectionString="<%$ ConnectionStrings:DefaultConnection %>" />
     <asp:SqlDataSource ID="dts_TIPOS" runat="server" ConnectionString="<%$ ConnectionStrings:DefaultConnection %>" />
     <asp:SqlDataSource ID="dts_TIPOS_CONTATOS" runat="server" ConnectionString="<%$ ConnectionStrings:DefaultConnection %>" />
     <asp:SqlDataSource ID="dts_FUNCOES" runat="server" ConnectionString="<%$ ConnectionStrings:DefaultConnection %>" />
-     <asp:SqlDataSource ID="dts_VISITAS_ANOS" runat="server" ConnectionString="<%$ ConnectionStrings:DefaultConnection %>" />
-     <asp:SqlDataSource ID="dts_VISITAS_MESES" runat="server" ConnectionString="<%$ ConnectionStrings:DefaultConnection %>" />
+    <asp:SqlDataSource ID="dts_ATIVO" runat="server" ConnectionString="<%$ ConnectionStrings:DefaultConnection %>" />
 
     <%--Titulo da Pagina--%>
     <h4 class="text-secondary text-uppercase" style="padding-top: 5px"><%:Page.Title %></h4>
@@ -18,18 +18,7 @@
     <div class="row g-3">
         <%--FILTROS--%>
         <div class="row g-2">
-            
-            <div class="col-10">
-                <div class="input-group m3-3">
-                    <%-- ANO --%>
-                    <span class="input-group-text">Ano</span>
-                    <asp:DropDownList runat="server" ID="ANO" CssClass="form-select" DataSourceID="dts_VISITAS_ANOS" DataTextField="UF" DataValueField="UF" required="required"></asp:DropDownList>
-                    <%-- MES --%>
-                    <span class="input-group-text">Mes</span>
-                    <asp:DropDownList runat="server" ID="MES" CssClass="form-select" DataSourceID="dts_VISITAS_MESES" DataTextField="UF" DataValueField="UF" required="required"></asp:DropDownList>
-                </div>
-            </div>
-            
+
             <%-- REPRESENTANTE --%>
             <div class="col-md-3">
                 <div class="form-floating">
@@ -52,15 +41,40 @@
                 </div>
             </div>
             <%-- TIPO --%>
-            <div class="col-md-3">
+            <div class="col-md-2">
                 <div class="form-floating">
                     <asp:DropDownList runat="server" ID="ID_TIPO" CssClass="form-select" DataSourceID="dts_TIPOS" DataTextField="TIPO" DataValueField="ID_TIPO" AutoPostBack="True"></asp:DropDownList>
                     <label class="" for="ID_TIPO">Tipo</label>
                 </div>
             </div>
+            <%-- ATIVO/INATIVO --%>
+            <div class="col-md-2">
+                <div class="form-floating">
+                    <asp:DropDownList runat="server" ID="ATIVO" CssClass="form-select" DataSourceID="dts_ATIVO" DataTextField="ATIVO_DESCRICAO" DataValueField="ATIVO" AutoPostBack="True"></asp:DropDownList>
+                    <label class="" for="ATIVO">Ativo</label>
+                </div>
+            </div>
         </div>
         <%--FILTROS--%>
-        
+
+        <%--TOTAIS--%>
+        <div class="row g-2">
+            <table class="table table-bordered" id="table_totais">
+                <thead>
+                    <asp:Repeater ID="dtr_TOTAIS" runat="server" DataSourceID="dts_MEDICOS">
+                        <ItemTemplate>
+                            <tr>
+                                <th class="text-muted">Médicos/Contatos na lista: &nbsp<%# DataBinder.Eval(Container.DataItem, "MEDICOS").ToString%></th>
+                            </tr>
+                            <tr>
+                                <th class="text-muted">Médicos/Contatos na lista: &nbsp<%# DataBinder.Eval(Container.DataItem, "ESTABELECIMENTOS").ToString%></th>
+                            </tr>
+                        </ItemTemplate>
+                    </asp:Repeater>
+            </table>
+        </div>
+        <%--TOTAIS--%>
+
         <%--LISTA MEDICOS--%>
         <div class="row g-2">
             <table class="table table-bordered table-hover"
@@ -78,10 +92,11 @@
                 <thead>
                     <tr>
                         <th data-field="CRM" data-sortable="true" style="width: 10%">CRM</th>
-                        <th data-field="NOME" data-sortable="true" style="width: 40%">Médico/Contato</th>
+                        <th data-field="NOME" data-sortable="true" style="width: 35%">Nome</th>
                         <th data-field="ESPECIALIDADE" data-sortable="true" style="width: 15%">Função</th>
-                        <th data-field="ESTABELECIMENTO" data-sortable="true" style="width: 30%">Estabelecimento</th>
-                        <%--<th data-field="VISITAR" data-sortable="true" style="width: 5%">Visitar</th>--%>
+                        <th data-field="ESTABELECIMENTO" data-sortable="true" style="width: 30%">Local</th>
+                        <th data-field="ULTIMA_VISITA_REALIZADA_BR" data-sortable="true" style="width: 5%">Última Visita</th>
+                        <th data-field="ULTIMA_VISITA_AGENDADA_BR" data-sortable="true" style="width: 5%">Próxima Visita</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -92,7 +107,8 @@
                                 <td><%# DataBinder.Eval(Container.DataItem, "NOME_SOBRENOME").ToString%></td>
                                 <td><%# DataBinder.Eval(Container.DataItem, "FUNCAO").ToString%></td>
                                 <td><%# DataBinder.Eval(Container.DataItem, "ESTABELECIMENTO").ToString%></td>
-                                <%--<td><a href='<%# "Medico.aspx?idMedico" + "=" + DataBinder.Eval(Container.DataItem, "IdMedico").ToString %>'>Visitar</a></td>--%>
+                                <td><%# DataBinder.Eval(Container.DataItem, "ULTIMA_VISITA_ESTABELECIMENTO_REALIZADA_BR").ToString%></td>
+                                <td><%# DataBinder.Eval(Container.DataItem, "ULTIMA_VISITA_ESTABELECIMENTO_AGENDADA_BR").ToString%></td>
                             </tr>
                         </ItemTemplate>
                     </asp:Repeater>

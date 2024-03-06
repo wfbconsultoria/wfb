@@ -11,7 +11,6 @@ Partial Class Medico_Incluir
     ReadOnly v As New clsVisitas
 
     Dim StrMensagem As String
-
     Dim IdEstabelecimento As String = ""
     Dim Cadastrado As Integer = 0
     Dim strCRM_UF As String = ""
@@ -84,7 +83,7 @@ Partial Class Medico_Incluir
             CELULAR.Value = dtr_medico("CELULAR")
             TELEFONE.Value = dtr_medico("TELEFONE")
             CEP.Value = dtr_medico("CEP")
-            ENDERECO.Value = dtr_medico("ENDERECO")
+            LOGRADOURO.Value = dtr_medico("ENDERECO")
             NUMERO.Value = dtr_medico("NUMERO")
             COMPLEMENTO.Value = dtr_medico("COMPLEMENTO")
             BAIRRO.Value = dtr_medico("BAIRRO")
@@ -137,7 +136,7 @@ Partial Class Medico_Incluir
             sql &= " TELEFONE = '" & m.ConvertText(TELEFONE.Value) & "', "
             sql &= " CELULAR = '" & m.ConvertText(CELULAR.Value) & "', "
             sql &= " CEP = '" & m.ConvertText(CEP.Value) & "', "
-            sql &= " ENDERECO = '" & m.ConvertText(ENDERECO.Value) & "', "
+            sql &= " ENDERECO = '" & m.ConvertText(LOGRADOURO.Value) & "', "
             sql &= " NUMERO = '" & m.ConvertText(NUMERO.Value) & "', "
             sql &= " COMPLEMENTO = '" & m.ConvertText(COMPLEMENTO.Value) & "', "
             sql &= " BAIRRO = '" & m.ConvertText(BAIRRO.Value) & "', "
@@ -200,7 +199,7 @@ Partial Class Medico_Incluir
             sql &= " ,'" & m.ConvertText(TELEFONE.Value) & "' "
             sql &= " ,'" & m.ConvertText(CELULAR.Value) & "' "
             sql &= " ,'" & c.FormatCEP(CEP.Value) & "' "
-            sql &= " ,'" & m.ConvertText(ENDERECO.Value) & "' "
+            sql &= " ,'" & m.ConvertText(LOGRADOURO.Value) & "' "
             sql &= " ,'" & m.ConvertText(NUMERO.Value) & "' "
             sql &= " ,'" & m.ConvertText(COMPLEMENTO.Value) & "' "
             sql &= " ,'" & m.ConvertText(BAIRRO.Value) & "' "
@@ -452,21 +451,24 @@ Err_Gravar:
     End Function
 
     Private Sub cmd_CEP_ServerClick(sender As Object, e As EventArgs) Handles cmd_CEP.ServerClick
-        'If c.consultarCEP(CEP.Value) = True Then
-        '    ENDERECO.Value = c.ENDERECO
-        '    BAIRRO.Value = c.BAIRRO
-        '    CIDADE.Value = c.CIDADE
-        '    UF.Value = c.UF
-        '    COD_IBGE_7.Value = c.COD_IBGE_7
-        'Else
-        '    CEP.Value = ""
-        '    ENDERECO.Value = ""
-        '    BAIRRO.Value = ""
-        '    CIDADE.Value = ""
-        '    UF.Value = ""
-        '    COD_IBGE_7.Value = ""
-        '    m.Alert(Me, "CEP INVÁLIDO", False, "")
-        'End If
+        Dim endereco = c.consultarCEP(CEP.Value)
+        If c.cepStatus = False Then
+            CEP.Value = "INVALIDO"
+            LOGRADOURO.Value = ""
+            COMPLEMENTO.Value = ""
+            BAIRRO.Value = ""
+            COD_IBGE_7.Value = ""
+            CIDADE.Value = ""
+            UF.Value = ""
+        Else
+            LOGRADOURO.Value = endereco.street
+            COMPLEMENTO.Value = endereco.complement
+            BAIRRO.Value = endereco.district
+            COD_IBGE_7.Value = endereco.cityId
+            CIDADE.Value = endereco.city
+            UF.Value = endereco.stateShortname
+        End If
+
     End Sub
     Private Sub Atualiza_DTS()
         'Atualiza datasources da página
@@ -491,7 +493,7 @@ Err_Gravar:
         dts_VISITAS_FORMAS.SelectCommand = v.sql_visitas_formas
         dts_VISITAS_FORMAS.DataBind()
 
-        dts_MEDICOS.SelectCommand = "Select * from APP_MEDICOS_ESTABELECIMENTOS Where IdEstabelecimento  = '" & IdEstabelecimento & "' And MEDICO_ATIVO_NO_ESTABELECIMENTO = 1 Order By NOME_SOBRENOME"
+        dts_MEDICOS.SelectCommand = "Select * from APP_MEDICOS_ESTABELECIMENTOS Where IdEstabelecimento  = '" & IdEstabelecimento & "' And ATIVO_VISITAS = 1 Order By NOME_SOBRENOME"
         dts_MEDICOS.DataBind()
         dtr.DataBind()
     End Sub

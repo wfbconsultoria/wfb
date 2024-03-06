@@ -1,7 +1,6 @@
 ﻿Imports Microsoft.VisualBasic
 
 Public Class clsVisitas
-
 	Public Function sql_visitas(Optional tipo As String = "", Optional ID_VISITA As String = "") As String
 		Dim sql As String = ""
 		sql = ""
@@ -22,7 +21,6 @@ Public Class clsVisitas
 		sql &= " ORDER BY DATA_VISITA  "
 		sql_visitas = sql
 	End Function
-
 	Public Function sql_visitas_representantes() As String
 		Dim sql As String = ""
 		sql = ""
@@ -39,7 +37,6 @@ Public Class clsVisitas
 		sql &= " ORDER BY REPRESENTANTE  "
 		sql_visitas_representantes = sql
 	End Function
-
 	Public Function sql_visitas_anos() As String
 		Dim sql As String = ""
 		sql = ""
@@ -57,7 +54,6 @@ Public Class clsVisitas
 		sql &= " ORDER BY ANO  "
 		sql_visitas_anos = sql
 	End Function
-
 	Public Function sql_visitas_meses() As String
 		Dim sql As String = ""
 		sql = ""

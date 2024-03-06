@@ -46,7 +46,7 @@
                             <td><%# DataBinder.Eval(Container.DataItem, "REPRESENTANTE").ToString%></td>
                             <td><%# UCase(DataBinder.Eval(Container.DataItem, "CIDADE").ToString)%></td>
                             <td><%# UCase(DataBinder.Eval(Container.DataItem, "UF").ToString)%></td>
-                            <td><%# UCase(DataBinder.Eval(Container.DataItem, "MEDICOS").ToString)%></td>
+                            <td><%# UCase(DataBinder.Eval(Container.DataItem, "MEDICOS_ATIVOS").ToString)%></td>
                         </tr>
                     </ItemTemplate>
                 </asp:Repeater>

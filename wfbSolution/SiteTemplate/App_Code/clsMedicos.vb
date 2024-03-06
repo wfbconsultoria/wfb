@@ -1,22 +1,23 @@
-﻿Imports Microsoft.VisualBasic
-
+﻿
 Public Class clsMedicos
     ReadOnly m As New clsMaster
 
+
 	Public Function sql_medicos(Optional tipo As String = "", Optional id As String = "") As String
 		Dim sql As String = ""
-		sql &= " SELECT * FROM APP_MEDICOS_ESTABELECIMENTOS "
+		sql &= " SELECT * FROM APP_MEDICOS "
 
 		If tipo = "lista" Then
 			Select Case HttpContext.Current.Session("NIVEL_LOGIN")
 				Case = 0
-					sql &= sql
+
 				Case = 1
-					sql &= " Where EMAIL_GERENTE = '" & HttpContext.Current.Session("EMAIL_LOGIN") & "'"
+					sql &= " Where EMAIL_GERENTE = '" & HttpContext.Current.Session("EMAIL_LOGIN") & "' "
 				Case = 3
-					sql &= " Where EMAIL_REPRESENTANTE = '" & HttpContext.Current.Session("EMAIL_LOGIN") & "'"
+					sql &= " Where EMAIL_REPRESENTANTE = '" & HttpContext.Current.Session("EMAIL_LOGIN") & "' "
 			End Select
-			sql &= " And MEDICO_ATIVO_NO_ESTABELECIMENTO = 1 Order By NOME_SOBRENOME "
+
+			sql &= " Order By NOME_SOBRENOME "
 		End If
 
 		If tipo = "ficha" Then
@@ -25,11 +26,33 @@ Public Class clsMedicos
 
 		sql_medicos = sql
 	End Function
+
+	Public Function sql_medicos_estabelecimentos(Optional tipo As String = "", Optional id As String = "") As String
+		Dim sql As String = ""
+		sql &= " SELECT * FROM APP_MEDICOS_ESTABELECIMENTOS "
+
+		If tipo = "lista" Then
+			Select Case HttpContext.Current.Session("NIVEL_LOGIN")
+				Case = 0
+
+				Case = 1
+					sql &= " Where EMAIL_GERENTE = '" & HttpContext.Current.Session("EMAIL_LOGIN") & "' "
+				Case = 3
+					sql &= " Where EMAIL_REPRESENTANTE = '" & HttpContext.Current.Session("EMAIL_LOGIN") & "' "
+			End Select
+
+			sql &= " Order By NOME_SOBRENOME "
+		End If
+
+		If tipo = "ficha" Then
+			sql &= " Where IdMedico = '" & id & "'"
+		End If
+
+		sql_medicos_estabelecimentos = sql
+	End Function
 	Public Function sql_especialidades() As String
 		Dim sql As String = ""
-
-		sql = ""
-		sql &= " SELECT '' AS ID_ESPECIALIDADE, '( Todas )' AS ESPECIALIDADE UNION ALL "
+		sql &= " SELECT '' AS ID_ESPECIALIDADE, '( Selecione )' AS ESPECIALIDADE UNION ALL "
 		sql &= " SELECT "
 		sql &= " CONVERT (VARCHAR, TBL_MEDICOS_ESPECIALIDADES.ID_ESPECIALIDADE) AS ID_ESPECIALIDADE "
 		sql &= " ,TBL_MEDICOS_ESPECIALIDADES.ESPECIALIDADE "
@@ -42,9 +65,7 @@ Public Class clsMedicos
 	Public Function sql_funcoes() As String
 
 		Dim sql As String = ""
-
-		sql = ""
-		sql &= " SELECT '' AS ID_FUNCAO, '( Todas )' AS FUNCAO UNION ALL "
+		sql &= " SELECT '' AS ID_FUNCAO, '( Selecione )' AS FUNCAO UNION ALL "
 		sql &= " SELECT "
 		sql &= " CONVERT( VARCHAR, TBL_MEDICOS_FUNCOES.ID_FUNCAO ) AS ID_FUNCAO "
 		sql &= " ,TBL_MEDICOS_FUNCOES.FUNCAO "
@@ -53,13 +74,10 @@ Public Class clsMedicos
 		sql &= " ORDER BY FUNCAO "
 
 		sql_funcoes = sql
-
 	End Function
 	Public Function sql_tipos() As String
 		Dim sql As String = ""
-
-		sql = ""
-		sql &= " SELECT '' AS ID_TIPO, '( Todos )' AS TIPO UNION ALL "
+		sql &= " SELECT '' AS ID_TIPO, '( Selecione )' AS TIPO UNION ALL "
 		sql &= " SELECT "
 		sql &= " CONVERT( VARCHAR, TBL_MEDICOS_TIPOS.ID_TIPO ) AS ID_TIPO "
 		sql &= " ,TBL_MEDICOS_TIPOS.TIPO "
@@ -68,21 +86,19 @@ Public Class clsMedicos
 		sql &= " ORDER BY TIPO "
 
 		sql_tipos = sql
-
 	End Function
 	Public Function sql_tipos_contatos() As String
 		Dim sql As String = ""
 		sql &= " SELECT '( Todos )' AS TIPO_CONTATO UNION ALL "
 		sql &= " SELECT DISTINCT TIPO_CONTATO FROM APP_MEDICOS_ESTABELECIMENTOS "
-		sql &= " Where MEDICO_ATIVO_NO_ESTABELECIMENTO = 1 "
 
 		Select Case HttpContext.Current.Session("NIVEL_LOGIN")
 			Case = 0
-				sql &= sql
+				'sql &= Where MEDICO_ATIVO_NO_ESTABELECIMENTO = 1
 			Case = 1
-				sql &= " And EMAIL_GERENTE = '" & HttpContext.Current.Session("EMAIL_LOGIN") & "'"
+				sql &= " Where EMAIL_GERENTE = '" & HttpContext.Current.Session("EMAIL_LOGIN") & "' " '& And MEDICO_ATIVO_NO_ESTABELECIMENTO = 1
 			Case = 3
-				sql &= " And EMAIL_REPRESENTANTE = '" & HttpContext.Current.Session("EMAIL_LOGIN") & "'"
+				sql &= " Where EMAIL_REPRESENTANTE = '" & HttpContext.Current.Session("EMAIL_LOGIN") & "' " '& And MEDICO_ATIVO_NO_ESTABELECIMENTO = 1
 		End Select
 
 		sql &= " Order By TIPO_CONTATO "
@@ -106,6 +122,5 @@ Public Class clsMedicos
             FormatCRM = Right("00000000" & CRM, 8)
         End If
     End Function
-
 
 End Class

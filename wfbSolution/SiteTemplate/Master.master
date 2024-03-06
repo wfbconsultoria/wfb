@@ -16,11 +16,11 @@
     </asp:ContentPlaceHolder>
 </head>
 
-<body>
+<body class="container">
     <form runat="server" id="frmMaster">
         <!-- Bara de navegação -->
         <nav class="navbar navbar-expand-lg bg-body-tertiary fixed-top">
-            <div class="container-fluid">
+            <div class="container">
                 <a class="navbar-brand" href="#">
                     <img src="Images/_Logo.png" alt="Bootstrap" width="130" height="30">
                 </a>

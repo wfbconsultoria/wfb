@@ -166,27 +166,32 @@
 
         <%-- CEP/ENDERECO/NUMERO--%>
         <div class="row g-2">
+
             <%-- CEP --%>
             <div class="col-md-2">
-                <div class="form-floating">
-                    <input runat="server" id="CEP" type="text" class="form-control" maxlength="8" placeholder="00000000" onfocus="limpa_endereco();" onkeypress="return somenteNumeros(event)" />
-                    <label for="CEP">CEP</label>
+                <div class="input-group">
+                    <div class="form-floating">
+                        <input runat="server" id="CEP" type="text" class="form-control" maxlength="8" placeholder="00000000" onfocus="limpa_endereco();" onkeypress="return somenteNumeros(event)" />
+                        <label for="CEP">CEP</label>
+                    </div>
+                    <button runat="server" id="cmd_CEP" type="button" class="btn btn-primary">Consultar</button>
                 </div>
             </div>
-            <%-- ENDERECO --%>
-            <div class="col-md-8">
-                <div class="form-floating">
-                    <input runat="server" id="ENDERECO" type="text" class="form-control" placeholder="" value="" disabled="disabled" />
-                    <label for="ENDERECO">Endereço</label>
-                </div>
+        
+        <%-- ENDERECO --%>
+        <div class="col-md-8">
+            <div class="form-floating">
+                <input runat="server" id="LOGRADOURO" type="text" class="form-control" placeholder="" value="" disabled="disabled" />
+                <label for="LOGRADOURO">Endereço</label>
             </div>
-            <%-- NUMERO --%>
-            <div class="col-md-2">
-                <div class="form-floating">
-                    <input runat="server" id="NUMERO" type="text" class="form-control" placeholder="" value="" />
-                    <label for="NUMERO">Número</label>
-                </div>
+        </div>
+        <%-- NUMERO --%>
+        <div class="col-md-2">
+            <div class="form-floating">
+                <input runat="server" id="NUMERO" type="text" class="form-control" placeholder="" value="" />
+                <label for="NUMERO">Número</label>
             </div>
+        </div>
         </div>
         <%-- CEP/ENDERECO/NUMERO--%>
 
@@ -288,12 +293,12 @@
         <%-- DIAS DE ATENDIMENTO --%>
 
         <%-- BOTÃO VISITAR aciona modal --%>
-        <div class="row g-2">
+        <%--<div class="row g-2">
             <div class="col-md-12">
                 <!-- Button trigger modal -->
                 <button type="button" class="btn btn-primary form-control" data-bs-toggle="modal" data-bs-target="#VISITAR">VISITAR</button>
             </div>
-        </div>
+        </div>--%>
         <%-- BOTÃO VISITAR aciona modal --%>
 
         <%-- BOTÕES --%>
@@ -301,7 +306,7 @@
             <div class="col-md-12">
                 <div class="input-group">
                     <button runat="server" id="cmd_Gravar" type="submit" class="btn btn-primary form-control">Gravar</button>
-                    <button runat="server" id="cmd_CEP" type="button" class="btn btn-info form-control">Consultar CEP</button>
+
                 </div>
             </div>
         </div>
@@ -353,12 +358,10 @@
                                 <label class="text-danger" for="VISITA_AVALIACAO">Avaliação</label>
                             </div>
 
-
                             <div class="form-floating">
                                 <textarea runat="server" id="VISITA_OBSERVACOES" class="form-control" maxlength="2048" cols="30" rows="50" wrap="soft"></textarea>
                                 <label for="VISITA_OBSERVACOES">Observações</label>
                             </div>
-
 
                             <hr />
                             <h5 class="">Agendar Próxima Visita</h5>
@@ -397,7 +400,7 @@
         <%-- ATIVAR/INATIVAR --%>
         <a class="link" data-bs-toggle="collapse" href="#ATIVAR" role="button" aria-expanded="false" aria-controls="ATIVAR">Ativar/Inativar Médico</a>
         <div class="collapse" id="ATIVAR">
-            <input runat="server" class="form-check-input" type="checkbox" value="" id="ATIVO">
+            <input runat="server" class="form-check-input" type="checkbox" value="" id="ATIVO" disabled="disabled">
             <label class="form-check-label" for="ATIVO">ATIVO</label>
         </div>
         <%-- ATIVAR/INATIVAR --%>

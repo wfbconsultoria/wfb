@@ -3,11 +3,27 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="Server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="BodyContent" runat="Server">
-    
-    <%--<div class="container-fluid">
-        <embed runat="server" id="pbiReport" src="#" style="width: 100%; height: 900px;"/>
-    </div>--%>
-    
+
+    <%--Titulo da Pagina--%>
+    <h4 class="text-secondary text-uppercase" style="padding-top: 5px"><%:Page.Title %></h4>
+
+    <div class="row g-3">
+
+        <div class="alert alert-warning" role="alert">
+            <h4 class="text-primary">Caro representante, Halexistar</h4>
+            <h5>Estamos implementando novas funcionalidades no nosso sistema</h5>
+            <h5>Portanto, estão surgindo alguns novos itens nos menus, que serão liberados para uso em breve</h5>
+            <h5>Porém a utilização do sistema continua disponível normalmente</h5>
+            <br />
+            <br />
+            <br />
+            <h5>Bom trabalho a todos,</h5>
+            <h5 class="text-primary">WFB Consultoria</h5>
+            <h6 class="text-muted"><%:Now() %></h6>
+        </div>
+
+    </div>
+
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="FooterContent" runat="Server">
 </asp:Content>

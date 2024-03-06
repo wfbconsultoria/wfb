@@ -44,7 +44,7 @@ Public Class clsEstabelecimentos
 	Public Function sql_estabelecimentos_representantes() As String
 		Dim sql As String = ""
 		sql = ""
-		sql &= " SELECT '' AS EMAIL_REPRESENTANTE, '( Selecione )' AS REPRESENTANTE UNION ALL "
+
 		sql &= " SELECT  REPRESENTANTES.EMAIL AS EMAIL_REPRESENTANTE, REPRESENTANTES.APELIDO AS REPRESENTANTE "
 		sql &= " FROM TBL_ESTABELECIMENTOS AS ESTABELECIMENTOS "
 		sql &= " INNER JOIN TBL_SETORIZACAO_SETORES AS SETORES "
@@ -57,13 +57,18 @@ Public Class clsEstabelecimentos
 		sql &= " On REGIONAIS.EMAIL_RESPONSAVEL = GERENTES.EMAIL "
 		Select Case HttpContext.Current.Session("NIVEL_LOGIN")
 			Case = 0
-				sql &= ""
+				sql &= " Group BY REPRESENTANTES.EMAIL, REPRESENTANTES.APELIDO "
+				sql &= " UNION ALL SELECT '' AS EMAIL_REPRESENTANTE, '( Selecione )' AS REPRESENTANTE "
 			Case = 1
 				sql &= " Where GERENTES.EMAIL  = '" & HttpContext.Current.Session("EMAIL_LOGIN") & "'"
+				sql &= " Group BY REPRESENTANTES.EMAIL, REPRESENTANTES.APELIDO "
+				sql &= " UNION ALL SELECT '' AS EMAIL_REPRESENTANTE, '( Selecione )' AS REPRESENTANTE"
 			Case = 3
 				sql &= " Where REPRESENTANTES.EMAIL = '" & HttpContext.Current.Session("EMAIL_LOGIN") & "'"
+				sql &= " Group BY REPRESENTANTES.EMAIL, REPRESENTANTES.APELIDO "
+
 		End Select
-		sql &= " Group BY REPRESENTANTES.EMAIL, REPRESENTANTES.APELIDO "
+
 		sql &= " ORDER BY REPRESENTANTE  "
 		sql_estabelecimentos_representantes = sql
 	End Function
