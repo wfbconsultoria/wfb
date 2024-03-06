@@ -41,13 +41,11 @@ Partial Class Medicos
         dtr.DataBind()
 
         'Atualiza table_totais
-        dts_TOTAIS.SelectCommand = "SELECT COUNT(DISTINCT CRM_UF) AS MEDICOS, COUNT(CRM_UF) AS ESTABELECIMENTOS FROM (" & sql & ") AS AS TB_TOTAIS"
+        dts_TOTAIS.SelectCommand = "SELECT COUNT(DISTINCT CRM_UF) AS MEDICOS, COUNT(DISTINCT CNPJ) AS ESTABELECIMENTOS FROM (" & sql & ") AS TB_TOTAIS"
         dts_TOTAIS.DataBind()
         dtr_TOTAIS.DataBind()
     End Sub
     Sub Atualiza_DTS()
-
-
 
         dts_REPRESENTANTES.SelectCommand = s.sql_estabelecimentos_representantes
         dts_REPRESENTANTES.DataBind()

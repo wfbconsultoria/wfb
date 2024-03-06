@@ -61,13 +61,11 @@
         <div class="row g-2">
             <table class="table table-bordered" id="table_totais">
                 <thead>
-                    <asp:Repeater ID="dtr_TOTAIS" runat="server" DataSourceID="dts_MEDICOS">
+                    <asp:Repeater ID="dtr_TOTAIS" runat="server" DataSourceID="dts_TOTAIS">
                         <ItemTemplate>
                             <tr>
-                                <th class="text-muted">Médicos/Contatos na lista: &nbsp<%# DataBinder.Eval(Container.DataItem, "MEDICOS").ToString%></th>
-                            </tr>
-                            <tr>
-                                <th class="text-muted">Médicos/Contatos na lista: &nbsp<%# DataBinder.Eval(Container.DataItem, "ESTABELECIMENTOS").ToString%></th>
+                                <td class="text-muted">Médicos/Contatos na lista: &nbsp<%# DataBinder.Eval(Container.DataItem, "MEDICOS").ToString%>
+                                 &nbsp Em &nbsp<%# DataBinder.Eval(Container.DataItem, "ESTABELECIMENTOS").ToString%> &nbsp estabelecimentos</td>
                             </tr>
                         </ItemTemplate>
                     </asp:Repeater>
