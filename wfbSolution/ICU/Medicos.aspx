@@ -20,40 +20,40 @@
         <div class="row g-2">
 
             <%-- REPRESENTANTE --%>
-            <div class="col-md-3">
+            <%--<div class="col-md-3">
                 <div class="form-floating">
                     <asp:DropDownList runat="server" ID="EMAIL_REPRESENTANTE" CssClass="form-select" DataSourceID="dts_REPRESENTANTES" DataTextField="REPRESENTANTE" DataValueField="EMAIL_REPRESENTANTE" AutoPostBack="True"></asp:DropDownList>
                     <label class="text-danger" for="EMAIL_REPRESENTANTE">*Representante</label>
                 </div>
-            </div>
+            </div>--%>
             <%-- TIPO_CONTATO --%>
-            <div class="col-md-2">
+            <%--<div class="col-md-2">
                 <div class="form-floating">
                     <asp:DropDownList runat="server" ID="TIPO_CONTATO" CssClass="form-select" DataSourceID="dts_TIPOS_CONTATOS" DataTextField="TIPO_CONTATO" DataValueField="TIPO_CONTATO" AutoPostBack="True"></asp:DropDownList>
                     <label class="" for="TIPO_CONTATO">Tipo de Contato</label>
                 </div>
-            </div>
+            </div>--%>
             <%-- FUNCAO --%>
-            <div class="col-md-3">
+            <div class="col-md-12">
                 <div class="form-floating">
                     <asp:DropDownList runat="server" ID="ID_FUNCAO" CssClass="form-select" DataSourceID="dts_FUNCOES" DataTextField="FUNCAO" DataValueField="ID_FUNCAO" AutoPostBack="True"></asp:DropDownList>
                     <label class="" for="ID_FUNCAO">Função</label>
                 </div>
             </div>
             <%-- TIPO --%>
-            <div class="col-md-2">
+            <%--<div class="col-md-2">
                 <div class="form-floating">
                     <asp:DropDownList runat="server" ID="ID_TIPO" CssClass="form-select" DataSourceID="dts_TIPOS" DataTextField="TIPO" DataValueField="ID_TIPO" AutoPostBack="True"></asp:DropDownList>
                     <label class="" for="ID_TIPO">Tipo</label>
                 </div>
-            </div>
+            </div>--%>
             <%-- ATIVO/INATIVO --%>
-            <div class="col-md-2">
+            <%--<div class="col-md-2">
                 <div class="form-floating">
                     <asp:DropDownList runat="server" ID="ATIVO" CssClass="form-select" DataSourceID="dts_ATIVO" DataTextField="ATIVO_DESCRICAO" DataValueField="ATIVO" AutoPostBack="True"></asp:DropDownList>
                     <label class="" for="ATIVO">Ativo</label>
                 </div>
-            </div>
+            </div>--%>
         </div>
         <%--FILTROS--%>
 
@@ -89,8 +89,8 @@
                 data-mobile-responsive="true">
                 <thead>
                     <tr>
-                        <th data-field="VISITAR" data-sortable="false" style="width: 3%"></th>
-                        <th data-field="CRM" data-sortable="true" style="width: 7%">CRM</th>
+                        <%--<th data-field="VISITAR" data-sortable="false" style="width: 3%"></th>--%>
+                        <th data-field="CRM" data-sortable="true" style="width: 10%">CRM</th>
                         <th data-field="NOME" data-sortable="true" style="width: 35%">Nome</th>
                         <th data-field="ESPECIALIDADE" data-sortable="true" style="width: 15%">Função</th>
                         <th data-field="ESTABELECIMENTO" data-sortable="true" style="width: 30%">Local</th>
@@ -102,7 +102,7 @@
                     <asp:Repeater ID="dtr" runat="server" DataSourceID="dts">
                         <ItemTemplate>
                             <tr>
-                                <td><a href='<%# "Visitar.aspx?CNPJ" + "=" + DataBinder.Eval(Container.DataItem, "CNPJ").ToString + "&CRM_UF" + "=" + DataBinder.Eval(Container.DataItem, "CRM_UF") %>' class="btn btn-primary btn-sm"><i class="bi bi-people"></i></a></td>
+                                <%--<td><a href='<%# "Visitar.aspx?CNPJ" + "=" + DataBinder.Eval(Container.DataItem, "CNPJ").ToString + "&CRM_UF" + "=" + DataBinder.Eval(Container.DataItem, "CRM_UF") %>' class="btn btn-primary btn-sm"><i class="bi bi-people"></i></a></td>--%>
                                 <td><a href='<%# "Medico_Incluir.aspx?IdEstabelecimento" + "=" + DataBinder.Eval(Container.DataItem, "IdEstabelecimento").ToString + "&CRM_UF" + "=" + DataBinder.Eval(Container.DataItem, "CRM_UF") %>'><%# LEFT(DataBinder.Eval(Container.DataItem, "CRM_UF").ToString, 10)%></a></td>
                                 <td><%# DataBinder.Eval(Container.DataItem, "NOME_SOBRENOME").ToString%></td>
                                 <td><%# DataBinder.Eval(Container.DataItem, "FUNCAO").ToString%></td>

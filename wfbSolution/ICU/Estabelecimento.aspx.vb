@@ -25,7 +25,7 @@ Partial Class Estabelecimento
         dts_FUNCAO.SelectCommand = d.sql_funcoes
         dts_FUNCAO.DataBind()
 
-        dts_MEDICOS.SelectCommand = "Select * from APP_MEDICOS_ESTABELECIMENTOS Where IdEstabelecimento  = '" & IdEstabelecimento & "' And MEDICO_ATIVO_NO_ESTABELECIMENTO = 1 Order By NOME_SOBRENOME"
+        dts_MEDICOS.SelectCommand = "Select * from APP_MEDICOS_ESTABELECIMENTOS Where IdEstabelecimento  = '" & IdEstabelecimento & "' Order By NOME_SOBRENOME"
         dts_MEDICOS.DataBind()
 
     End Sub

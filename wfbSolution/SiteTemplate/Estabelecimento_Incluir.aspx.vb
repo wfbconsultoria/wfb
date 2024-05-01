@@ -39,53 +39,47 @@ Partial Class Estabelecimento_Incluir
             Exit Sub
         End If
 
-        'Declara o Servico que vai ser usado
-        Dim oWebServices As New svcCDC.CDC
 
-        'Declara o Objeto que contem as credenciais de Acesso
-        Dim Credenciais As New svcCDC.Credenciais
-        Dim Retorno As New svcCDC.PessoaJuridicaNFe
-        'Preenche com sua credenciais o objeto "Credenciais"
-        Credenciais.Email = ConfigurationManager.AppSettings("SoaWebServices.User").ToString
-        Credenciais.Senha = ConfigurationManager.AppSettings("SoaWebServices.Password").ToString
-        Retorno = oWebServices.PessoaJuridicaNFe(Credenciais, strCNPJ)
 
-        If Retorno.Status = False Then
-            m.Alert(Me, "CNPJ NÃO ENCONTRADO NA RECEITA FEDERAL OU INVÁLIDO", False, "")
-            Exit Sub
-        End If
+        ''Declara o Servico que vai ser usado
+        'Dim oWebServices As New svcCDC.CDC
 
+        ''Declara o Objeto que contem as credenciais de Acesso
+        'Dim Credenciais As New svcCDC.Credenciais
+        'Dim Retorno As New svcCDC.PessoaJuridicaNFe
+        ''Preenche com sua credenciais o objeto "Credenciais"
+        'Credenciais.Email = ConfigurationManager.AppSettings("SoaWebServices.User").ToString
+        'Credenciais.Senha = ConfigurationManager.AppSettings("SoaWebServices.Password").ToString
+        'Retorno = oWebServices.PessoaJuridicaNFe(Credenciais, strCNPJ)
+
+        'If Retorno.Status = False Then
+        '    m.Alert(Me, "CNPJ NÃO ENCONTRADO NA RECEITA FEDERAL OU INVÁLIDO", False, "")
+        '    Exit Sub
+        'End If
+
+        Dim Retorno = s.consultarCNPJ(strCNPJ)
         Dim RAZAO_SOCIAL As String = m.ConvertText(Retorno.RazaoSocial)
         Dim NOME_FANTASIA As String = m.ConvertText(Retorno.NomeFantasia)
         If NOME_FANTASIA = "" Then NOME_FANTASIA = RAZAO_SOCIAL
-        Dim ENDERECO As String = ""
-        Dim NUMERO As String = ""
-        Dim COMPLEMENTO As String = ""
-        Dim BAIRRO As String = ""
-        Dim CEP As String = ""
-        Dim CIDADE As String = ""
-        Dim ESTADO As String = ""
-        Dim COD_IBGE As String = ""
-        'LOOP PARA PREENCHER ENDEREÇO A PARTIR DO ARRAY
-        For Each Item As svcCDC.Endereco2 In Retorno.Enderecos
-            ENDERECO = m.ConvertText(Item.Logradouro)
-            COMPLEMENTO = m.ConvertText(Item.Complemento)
-            NUMERO = m.ConvertText(Item.Numero)
-            BAIRRO = m.ConvertText(Item.Bairro)
-            CEP = m.ConvertText(Item.CEP)
-            If CEP = "" Then
-                CEP = "00000000"
-            End If
-            CIDADE = m.ConvertText(Item.Cidade)
-            ESTADO = m.ConvertText(Item.Estado)
-            COD_IBGE = m.ConvertText(Item.CodigoIBGE)
-        Next
-        Dim COD_CNAE As String = m.ConvertText(Retorno.CodigoAtividadeEconomica)
-        Dim CNAE_DESCRICAO As String = m.ConvertText(Retorno.CodigoAtividadeEconomicaDescricao)
-        Dim COD_NATUREZA_JURIDICA As String = m.ConvertText(Retorno.CodigoNaturezaJuridica)
-        Dim NATUREZA_JURIDICA_DESCRICAO As String = m.ConvertText(Retorno.CodigoNaturezaJuridicaDescricao)
+        Dim ENDERECO As String = m.ConvertText(Retorno.Logradouro)
+        Dim NUMERO As String = m.ConvertText(Retorno.Numero)
+        Dim COMPLEMENTO As String = m.ConvertText(Retorno.Complemento)
+        Dim BAIRRO As String = m.ConvertText(Retorno.Bairro)
+        Dim CEP As String = m.ConvertText(Retorno.CEP)
+        Dim CIDADE As String = m.ConvertText(Retorno.Cidade)
+        Dim ESTADO As String = m.ConvertText(Retorno.Estado)
+        Dim COD_IBGE As String = m.ConvertText(Retorno.CodIBGE)
+        Dim COD_NATUREZA As String = m.ConvertText(Retorno.CodNaturezaJuridica)
+        Dim NATUREZA As String = m.ConvertText(Retorno.NaturezaJuridicaDescricao)
+
+        Dim COD_CNAE As String = m.ConvertText(Retorno.CodCNAE)
+        Dim CNAE_DESCRICAO As String = m.ConvertText(Retorno.CNAEDescricao)
+        Dim COD_NATUREZA_JURIDICA As String = m.ConvertText(Retorno.CodNaturezaJuridica)
+        Dim NATUREZA_JURIDICA_DESCRICAO As String = m.ConvertText(Retorno.NaturezaJuridicaDescricao)
         Dim SITUACAO_RF As String = m.ConvertText(Retorno.SituacaoRFB)
 
+        CNPJ.Value = strCNPJ
+        txt_NOME_FANTASIA.Value = NOME_FANTASIA
         'INSERE INFORMAÇÕES NO BANCO DE DADOS DA WFB
         'Dim SQL As String = ""
         'SQL &= " INSERT INTO [dbo].[TBL_ESTABELECIMENTOS] "

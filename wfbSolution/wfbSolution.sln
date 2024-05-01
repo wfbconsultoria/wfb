@@ -111,6 +111,28 @@ Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "ICU", "ICU\", "{0B9E9D7E-67
 		SlnRelativePath = "ICU\"
 	EndProjectSection
 EndProject
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "pbi", "pbi\", "{BA0A826E-642F-4372-B7EA-B4864641CE3A}"
+	ProjectSection(WebsiteProperties) = preProject
+		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.8"
+		Debug.AspNetCompiler.VirtualPath = "/localhost_56158"
+		Debug.AspNetCompiler.PhysicalPath = "pbi\"
+		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_56158\"
+		Debug.AspNetCompiler.Updateable = "true"
+		Debug.AspNetCompiler.ForceOverwrite = "true"
+		Debug.AspNetCompiler.FixedNames = "false"
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.VirtualPath = "/localhost_56158"
+		Release.AspNetCompiler.PhysicalPath = "pbi\"
+		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_56158\"
+		Release.AspNetCompiler.Updateable = "true"
+		Release.AspNetCompiler.ForceOverwrite = "true"
+		Release.AspNetCompiler.FixedNames = "false"
+		Release.AspNetCompiler.Debug = "False"
+		VWDPort = "56158"
+		SlnRelativePath = "pbi\"
+		DefaultWebSiteLanguage = "Visual Basic"
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -177,6 +199,10 @@ Global
 		{0B9E9D7E-67E0-437C-AE0A-9B53865E8F0E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0B9E9D7E-67E0-437C-AE0A-9B53865E8F0E}.Release|Any CPU.ActiveCfg = Debug|Any CPU
 		{0B9E9D7E-67E0-437C-AE0A-9B53865E8F0E}.Release|Any CPU.Build.0 = Debug|Any CPU
+		{BA0A826E-642F-4372-B7EA-B4864641CE3A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BA0A826E-642F-4372-B7EA-B4864641CE3A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BA0A826E-642F-4372-B7EA-B4864641CE3A}.Release|Any CPU.ActiveCfg = Debug|Any CPU
+		{BA0A826E-642F-4372-B7EA-B4864641CE3A}.Release|Any CPU.Build.0 = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

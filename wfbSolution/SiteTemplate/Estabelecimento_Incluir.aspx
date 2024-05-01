@@ -30,8 +30,8 @@
             <%-- NOME_FANTASIA --%>
             <div class="col-md-10">
                 <div class="form-floating">
-                    <input runat="server" id="NOME_FANTASIA" type="text" class="form-control" value="" />
-                    <label for="NOME_FANTASIA">Nome Fantasia</label>
+                    <input runat="server" id="txt_NOME_FANTASIA" type="text" class="form-control" value="" />
+                    <label for="txt_NOME_FANTASIA">Nome Fantasia</label>
                 </div>
             </div>
         </div>
@@ -41,8 +41,8 @@
         <div class="row g-2">
             <div class="col-md-10">
                 <div class="form-floating">
-                    <input runat="server" id="RAZAO_SOCIAL" type="text" class="form-control" value="" disabled="disabled" />
-                    <label for="RAZAO_SOCIAL">Razão Social</label>
+                    <input runat="server" id="txt_RAZAO_SOCIAL" type="text" class="form-control" value="" disabled="disabled" />
+                    <label for="txt_RAZAO_SOCIAL">Razão Social</label>
                 </div>
             </div>
             <%-- CLASSE_ESTABELECIMENTO --%>

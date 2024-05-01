@@ -56,8 +56,8 @@
                     data-mobile-responsive="true">
                     <thead>
                         <tr>
-                            <th data-field="CRM" data-sortable="true" style="width: 10%">CRM</th>
-                            <th data-field="NOME" data-sortable="true" style="width: 65%">Medico</th>
+                            <th data-field="CRM" data-sortable="true" style="width: 10%">ID</th>
+                            <th data-field="NOME" data-sortable="true" style="width: 65%">Contato</th>
                             <th data-field="FUNCAO" data-sortable="true" style="width: 20%">Função</th>
                         </tr>
                     </thead>
@@ -90,7 +90,7 @@
             <div class="col-md-2">
                 <div class="form-floating">
                     <input runat="server" id="CRM" type="text" class="form-control" required="required" disabled="disabled" />
-                    <label runat="server" id="lblCRM" class="text-danger" for="CRM">*CRM</label>
+                    <label runat="server" id="lblCRM" class="text-danger" for="CRM">Grupo</label>
                 </div>
             </div>
             <%-- ESPECIALIDADE --%>
@@ -330,7 +330,7 @@
 
                             <div class="form-floating">
                                 <input runat="server" id="VISITA_MEDICO" type="text" class="form-control text-primary" placeholder="" value="" disabled="disabled" />
-                                <label for="VISITA_MEDICO">Médico</label>
+                                <label for="VISITA_MEDICO">Contato</label>
                             </div>
 
                             <div class="form-floating">
@@ -398,7 +398,7 @@
         <!-- Modal VISITAR -->
 
         <%-- ATIVAR/INATIVAR --%>
-        <a class="link" data-bs-toggle="collapse" href="#ATIVAR" role="button" aria-expanded="false" aria-controls="ATIVAR">Ativar/Inativar Médico</a>
+        <a class="link" data-bs-toggle="collapse" href="#ATIVAR" role="button" aria-expanded="false" aria-controls="ATIVAR">Ativar/Inativar Contato</a>
         <div class="collapse" id="ATIVAR">
             <input runat="server" class="form-check-input" type="checkbox" value="" id="ATIVO" disabled="disabled">
             <label class="form-check-label" for="ATIVO">ATIVO</label>

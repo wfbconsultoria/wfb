@@ -493,7 +493,7 @@ Err_Gravar:
         dts_VISITAS_FORMAS.SelectCommand = v.sql_visitas_formas
         dts_VISITAS_FORMAS.DataBind()
 
-        dts_MEDICOS.SelectCommand = "Select * from APP_MEDICOS_ESTABELECIMENTOS Where IdEstabelecimento  = '" & IdEstabelecimento & "' And ATIVO_VISITAS = 1 Order By NOME_SOBRENOME"
+        dts_MEDICOS.SelectCommand = "Select * from APP_MEDICOS_ESTABELECIMENTOS Where IdEstabelecimento  = '" & IdEstabelecimento & "' Order By NOME_SOBRENOME"
         dts_MEDICOS.DataBind()
         dtr.DataBind()
     End Sub

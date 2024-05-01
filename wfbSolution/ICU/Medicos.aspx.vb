@@ -13,25 +13,25 @@ Partial Class Medicos
         sql = ""
         Select Case HttpContext.Current.Session("NIVEL_LOGIN")
             Case = 0
-                sql = " SELECT * FROM APP_MEDICOS_ESTABELECIMENTOS WHERE EMAIL_REPRESENTANTE = '" & EMAIL_REPRESENTANTE.Text & "' "
+                sql = " SELECT * FROM APP_MEDICOS_ESTABELECIMENTOS "
             Case = 1
-                sql = " SELECT * FROM APP_MEDICOS_ESTABELECIMENTOS WHERE EMAIL_REPRESENTANTE = '" & EMAIL_REPRESENTANTE.Text & "' "
+                sql = " SELECT * FROM APP_MEDICOS_ESTABELECIMENTOS " ' WHERE EMAIL_REPRESENTANTE = '" & EMAIL_REPRESENTANTE.Text & "' "
             Case = 3
-                sql = " SELECT * FROM APP_MEDICOS_ESTABELECIMENTOS WHERE EMAIL_REPRESENTANTE = '" & HttpContext.Current.Session("EMAIL_LOGIN") & "' "
+                sql = " SELECT * FROM APP_MEDICOS_ESTABELECIMENTOS " 'WHERE EMAIL_REPRESENTANTE = '" & HttpContext.Current.Session("EMAIL_LOGIN") & "' "
         End Select
 
-        If ATIVO.Text = "" Then
-            sql &= " And ATIVO_VISITAS = 1"
-        Else
-            sql &= " And ATIVO_VISITAS = " & ATIVO.Text
-        End If
+        'If ATIVO.Text = "" Then
+        '    sql &= " And ATIVO_VISITAS = 1"
+        'Else
+        '    sql &= " And ATIVO_VISITAS = " & ATIVO.Text
+        'End If
 
-        If TIPO_CONTATO.Text <> "" Then
-            If TIPO_CONTATO.Text <> "( Todos )" Then sql &= " And TIPO_CONTATO = '" & TIPO_CONTATO.Text & "'"
-        End If
+        'If TIPO_CONTATO.Text <> "" Then
+        '    If TIPO_CONTATO.Text <> "( Todos )" Then sql &= " And TIPO_CONTATO = '" & TIPO_CONTATO.Text & "'"
+        'End If
 
-        If ID_FUNCAO.Text <> "" Then sql &= " And ID_FUNCAO = '" & ID_FUNCAO.Text & "'"
-        If ID_TIPO.Text <> "" Then sql &= " And ID_TIPO = " & ID_TIPO.Text
+        If ID_FUNCAO.Text <> "" Then sql &= " Where ID_FUNCAO = '" & ID_FUNCAO.Text & "'"
+        'If ID_TIPO.Text <> "" Then sql &= " And ID_TIPO = " & ID_TIPO.Text
 
         'Atualiza table_lista
         dts.SelectCommand = sql
@@ -45,20 +45,20 @@ Partial Class Medicos
     End Sub
     Sub Atualiza_DTS()
 
-        dts_REPRESENTANTES.SelectCommand = s.sql_estabelecimentos_representantes
-        dts_REPRESENTANTES.DataBind()
+        'dts_REPRESENTANTES.SelectCommand = s.sql_estabelecimentos_representantes
+        'dts_REPRESENTANTES.DataBind()
 
-        dts_TIPOS.SelectCommand = d.sql_tipos
-        dts_TIPOS.DataBind()
+        'dts_TIPOS.SelectCommand = d.sql_tipos
+        'dts_TIPOS.DataBind()
 
-        dts_TIPOS_CONTATOS.SelectCommand = d.sql_tipos_contatos
-        dts_TIPOS_CONTATOS.DataBind()
+        'dts_TIPOS_CONTATOS.SelectCommand = d.sql_tipos_contatos
+        'dts_TIPOS_CONTATOS.DataBind()
 
         dts_FUNCOES.SelectCommand = d.sql_funcoes
         dts_FUNCOES.DataBind()
 
-        dts_ATIVO.SelectCommand = "SELECT * FROM TBL_ATIVO_INATIVO ORDER BY ATIVO_DESCRICAO"
-        dts_ATIVO.DataBind()
+        'dts_ATIVO.SelectCommand = "SELECT * FROM TBL_ATIVO_INATIVO ORDER BY ATIVO_DESCRICAO"
+        'dts_ATIVO.DataBind()
 
     End Sub
 

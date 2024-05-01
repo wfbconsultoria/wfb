@@ -11,14 +11,7 @@
 
         <div class="alert alert-primary" role="alert">
             <h4 class="text-primary">ICU MEDICAL</h4>
-            <h5>Implementar LOGOTIPO</h5>
-            <h5>Atualizar Cadastro de Estabelecimetos</h5>
-            <h5>Atualizar Cadastro de Usuários</h5>
-            <h5>Atualizar Setorização</h5>
-            <h5>Atualizar Cadastro de Produtos</h5>
             <h5>Definir Relatórios/DashBoard</h5>
-            <br />
-            <br />
             <br />
             <h5 class="text-primary">WFB Consultoria</h5>
             <h6 class="text-muted"><%:Now() %></h6>

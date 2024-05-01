@@ -19,7 +19,7 @@
 
         <form id="frmLogin" runat="server">
             
-            <img class="form-control" src="Images/_Logo.png" alt="" width="300" height="280" />
+            <img class="form-control" src="Images/LOGO_ICU.png" alt="" width="240" height="120" />
             <div class="form-floating">
                 <input runat="server" id="txtEmail"  type="email" class="form-control" placeholder="name@example.com" required="required" />
                 <label for="txtEmail">Email address</label>

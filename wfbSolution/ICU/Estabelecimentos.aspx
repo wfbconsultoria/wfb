@@ -34,7 +34,7 @@
                     <th data-field="Representante" data-sortable="true" style="width:25%">Rep</th>
                     <th data-field="Cidade" data-sortable="true" style="width:20%">Cidade</th>
                     <th data-field="UF" data-sortable="true" style="width:5%">UF</th>
-                    <th data-field="MEDICOS" data-sortable="true" style="width:5%">Médicos</th>
+                    <th data-field="MEDICOS" data-sortable="true" style="width:5%">Contatos</th>
                 </tr>
             </thead>
             <tbody>
@@ -46,7 +46,7 @@
                             <td><%# DataBinder.Eval(Container.DataItem, "REPRESENTANTE").ToString%></td>
                             <td><%# UCase(DataBinder.Eval(Container.DataItem, "CIDADE").ToString)%></td>
                             <td><%# UCase(DataBinder.Eval(Container.DataItem, "UF").ToString)%></td>
-                            <td><%# UCase(DataBinder.Eval(Container.DataItem, "MEDICOS_ATIVOS").ToString)%></td>
+                            <td><%# UCase(DataBinder.Eval(Container.DataItem, "MEDICOS").ToString)%></td>
                         </tr>
                     </ItemTemplate>
                 </asp:Repeater>

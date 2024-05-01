@@ -1,6 +1,11 @@
-﻿Imports Microsoft.VisualBasic
+﻿Imports System.Net
+
+Imports System.Net.NetworkInformation
+Imports Microsoft.VisualBasic
+Imports Newtonsoft.Json
 
 Public Class clsEstabelecimentos
+	Public Property cnpjStatus As Boolean
 	Public Function sql_Estabelecimentos(tipo As String, Optional id As String = "") As String
 		Dim sql As String = ""
 		sql = ""
@@ -89,4 +94,139 @@ Public Class clsEstabelecimentos
 		strCNPJ = Left(str, 14 - tamanhoCNPJ) & strCNPJ
 		Formata_CNPJ = strCNPJ
 	End Function
+	Public Function consultarCNPJ(strCNPJ As String) As retornoCNPJ
+		cnpjStatus = False
+		Try
+			strCNPJ = Formata_CNPJ(strCNPJ)
+
+			Dim apiURL As String = "https://estabelecimentos-app.azurewebsites.net/soa"
+
+			Dim client = New WebClient()
+			client.Headers("Content-Type") = "application/json"
+			Dim clientCNPJ As New Dictionary(Of String, Object) From {{"cnpj", strCNPJ}}
+			Dim jsonbody As String = JsonConvert.SerializeObject(clientCNPJ)
+			Dim responseBytes As Byte() = client.UploadData(apiURL, "POST", Encoding.UTF8.GetBytes(jsonbody))
+			Dim responseString As String = Encoding.UTF8.GetString(responseBytes)
+			consultarCNPJ = JsonConvert.DeserializeObject(Of retornoCNPJ)(responseString)
+			cnpjStatus = True
+		Catch
+			cnpjStatus = False
+			consultarCNPJ = Nothing
+		End Try
+	End Function
+
+	Public Class Root
+		Public Property meta As Meta
+		Public Property result As retornoCNPJ
+	End Class
+	Public Class Meta
+		Public Property currentPage As Integer
+		Public Property itemsPerPage As Integer
+		Public Property totalOfItems As Integer
+		Public Property totalOfPages As Integer
+	End Class
+
+	Public Class Result
+		Public Property street As String
+		Public Property complement As String
+		Public Property district As String
+		Public Property districtId As Integer
+		Public Property city As String
+		Public Property cityId As Integer
+		Public Property ibgeId As Integer
+		Public Property state As String
+		Public Property stateShortname As String
+		Public Property zipcode As String
+		Public Property code As String
+		<JsonProperty("error")>
+		Public Property erro As String
+
+	End Class
+
+
+	Public Class retornoCNPJ
+		<JsonProperty("cnpj")>
+		Public Property CNPJ As String
+
+		<JsonProperty("cpf")>
+		Public Property CPF As Object
+
+		<JsonProperty("documento")>
+		Public Property Documento As String
+
+		<JsonProperty("cod_tipo_pessoa")>
+		Public Property CodTipoPessoa As Integer
+
+		<JsonProperty("cnes")>
+		Public Property CNES As String
+
+		<JsonProperty("razao_social")>
+		Public Property RazaoSocial As String
+
+		<JsonProperty("nome_fantasia")>
+		Public Property NomeFantasia As String
+
+		<JsonProperty("data_fundacao")>
+		Public Property DataFundacao As String
+
+		<JsonProperty("logradouro")>
+		Public Property Logradouro As String
+
+		<JsonProperty("complemento")>
+		Public Property Complemento As String
+
+		<JsonProperty("numero")>
+		Public Property Numero As String
+
+		<JsonProperty("bairro")>
+		Public Property Bairro As String
+
+		<JsonProperty("cep")>
+		Public Property CEP As String
+
+		<JsonProperty("cidade")>
+		Public Property Cidade As String
+
+		<JsonProperty("estado")>
+		Public Property Estado As String
+
+		<JsonProperty("cod_ibge")>
+		Public Property CodIBGE As String
+
+		<JsonProperty("cod_natureza_juridica")>
+		Public Property CodNaturezaJuridica As String
+
+		<JsonProperty("natureza_juridica_descricao")>
+		Public Property NaturezaJuridicaDescricao As String
+
+		<JsonProperty("cod_cnae")>
+		Public Property CodCNAE As String
+
+		<JsonProperty("cnae_descricao")>
+		Public Property CNAEDescricao As String
+
+		<JsonProperty("situacao_rfb")>
+		Public Property SituacaoRFB As String
+
+		<JsonProperty("motivo_rfb")>
+		Public Property MotivoRFB As String
+
+		<JsonProperty("motivo_especial_rfb")>
+		Public Property MotivoEspecialRFB As String
+
+		<JsonProperty("data_rfb")>
+		Public Property DataRFB As String
+
+		<JsonProperty("inclusao_email")>
+		Public Property InclusaoEmail As String
+
+		<JsonProperty("inclusao_data")>
+		Public Property InclusaoData As String
+
+		<JsonProperty("manual")>
+		Public Property Manual As String
+	End Class
+
+
+
 End Class

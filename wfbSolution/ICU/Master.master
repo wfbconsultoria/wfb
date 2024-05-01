@@ -22,7 +22,7 @@
         <nav class="navbar navbar-expand-lg bg-body-tertiary fixed-top">
             <div class="container">
                 <a class="navbar-brand" href="#">
-                    <img src="Images/ICU_SMITHS.jpg" alt="Bootstrap" width="180" height="50">
+                    <img src="Images/LOGO_ICU.png" alt="Bootstrap" width="100" height="35">
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -31,16 +31,17 @@
                     <div class="navbar-nav">
                         <a class="nav-link" href="Default.aspx">Início</a>
                         <a class="nav-link" href="Estabelecimentos.aspx">Estabelecimentos</a>
-                        <a class="nav-link" href="Medicos.aspx">Médicos/Contatos</a>
+                        <a class="nav-link" href="Medicos.aspx">Contatos</a>
                         <a class="nav-link" href="Visitas.aspx">Visitas</a>
                         
                         <!-- MENU RELATORIOS -->
                         <div class="dropdown">
                             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Relatórios</a>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="#">Relatório 01</a></li>
-                                <li><a class="dropdown-item" href="#">Relatório 02</a></li>
-                                <li><a class="dropdown-item" href="#">Relatório 03</a></li>
+                                
+                                <li><a class="dropdown-item" href="PBI.aspx">Dash Contatos</a></li>
+                                <li><a class="dropdown-item" href="PBI_CNES.aspx">ICU CNES Market</a></li>
+                                <li><a class="dropdown-item text-danger" href="#">Os relatórios são atualizados sempre as 00:00</a></li>
                             </ul>
                         </div>
                         
@@ -50,7 +51,6 @@
                             <ul class="dropdown-menu">
                                 <li><a class="dropdown-item" href="Estabelecimento_Incluir.aspx"">Incluir Estabelecimento</a></li>
                                 <li><a class="dropdown-item" href="Pesquisa_CEP.aspx">Consulta Endereço</a></li>
-                                <li><a class="dropdown-item" href="#">Ação 03</a></li>
                             </ul>
                         </div>
 
@@ -60,7 +60,6 @@
                             <ul class="dropdown-menu">
                                 <li><a class="dropdown-item" href="#">Perfil</a></li>
                                 <li><a class="dropdown-item" href="#">Trocar Senha</a></li>
-                                <li><a class="dropdown-item" href="#">Ação 03</a></li>
                             </ul>
                         </div>
                 <a class="nav-link text-danger" href="Login.aspx">Sair</a>

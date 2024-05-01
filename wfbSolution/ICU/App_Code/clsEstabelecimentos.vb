@@ -14,7 +14,7 @@ Public Class clsEstabelecimentos
 				Case = 3
 					sql &= " Where EMAIL_REPRESENTANTE = '" & HttpContext.Current.Session("EMAIL_LOGIN") & "'"
 			End Select
-			sql &= " Order By MEDICOS Desc "
+			sql &= " Order By ESTABELECIMENTO_CNPJ "
 		End If
 		If tipo = "ficha" Then
 			sql &= " Where Id = '" & id & "'"

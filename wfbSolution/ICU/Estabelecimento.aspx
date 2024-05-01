@@ -43,8 +43,8 @@
                     data-mobile-responsive="true">
                     <thead>
                         <tr>
-                            <th data-field="CRM" data-sortable="true" style="width: 10%">CRM</th>
-                            <th data-field="NOME" data-sortable="true" style="width: 65%">Medico</th>
+                            <th data-field="CRM" data-sortable="true" style="width: 10%">ID</th>
+                            <th data-field="NOME" data-sortable="true" style="width: 65%">Contato</th>
                             <th data-field="FUNCAO" data-sortable="true" style="width: 20%">Função</th>
                             <%--<th data-field="VISITAR" data-sortable="true" style="width: 5%">Visitar</th>--%>
                         </tr>
@@ -66,6 +66,21 @@
             <%-- MEDICOS LISTA --%>
         </div>
         <%-- CORPO MEDICOS --%>
+
+        <%-- INCLUIR CONTATO --%>
+        <div class="row g-2">
+            <div class="form-control">
+                <div class="col-md-12">
+                    <h5 class=" text-info">Incluir novo contato</h5>
+                </div>
+                <div class="col-md-12">
+                    <div class="input-group mb-3">
+                        <button runat="server" id="cmd_Novo_Contato" type="button" class="form-control btn btn-info">NOVO CONTATO</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <%-- INCLUIR CONTATO --%>
 
         <%-- INCLUIR MEDICO --%>
         <div class="row g-2">
@@ -93,20 +108,6 @@
         </div>
         <%-- INCLUIR MEDICO --%>
 
-        <%-- INCLUIR CONTATO --%>
-        <div class="row g-2">
-            <div class="form-control">
-                <div class="col-md-12">
-                    <h5 class=" text-info">Incluir novo contato</h5>
-                </div>
-                <div class="col-md-12">
-                    <div class="input-group mb-3">
-                        <button runat="server" id="cmd_Novo_Contato" type="button" class="form-control btn btn-info">NOVO CONTATO</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <%-- INCLUIR CONTATO --%>
     </div>
 
 </asp:Content>
