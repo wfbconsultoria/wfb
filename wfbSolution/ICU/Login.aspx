@@ -1,10 +1,6 @@
 ﻿<%@ Page Language="VB" AutoEventWireup="false" CodeFile="Login.aspx.vb" Inherits="Login" %>
-
 <%@ Register Src="~/Scripts_Header.ascx" TagPrefix="uc1" TagName="Scripts_Header" %>
 <%@ Register Src="~/Scripts_Footer.ascx" TagPrefix="uc1" TagName="Scripts_Footer" %>
-
-
-
 <!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -12,11 +8,10 @@
     <uc1:Scripts_Header runat="server" ID="Scripts_Header" />
     <link href="css/signin.css" rel="stylesheet" />
     <title>Login</title>
-
 </head>
+
 <body>
     <main class="form-signin w-100 m-auto">
-
         <form id="frmLogin" runat="server">
             
             <img class="form-control" src="Images/LOGO_ICU.png" alt="" width="240" height="120" />
@@ -36,7 +31,6 @@
 
             <button runat="server" id="cmdLogin" class="w-100 btn btn-lg btn-primary" type="submit" causesvalidation="true">Sign in</button>
             <p class="mt-5 mb-3 text-muted">&copy; <%:ConfigurationManager.AppSettings("App.Owner") %></p>
-            
             
             <uc1:Scripts_Footer runat="server" ID="Scripts_Footer" />
         </form>

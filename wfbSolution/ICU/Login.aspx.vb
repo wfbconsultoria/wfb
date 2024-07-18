@@ -32,22 +32,14 @@ Partial Class Login
             Dim DTR = M.ExecuteSelect(SQL)
             DTR.Read()
             If DTR.HasRows Then
-                If DTR("BLOQUEADO") = "1" Then
-                    M.Alert(Me, "USUÁRIO BLOQUEADO", False, "")
-                    Exit Sub
-                End If
                 If DTR("ATIVO") = "0" Then
                     M.Alert(Me, "USUÁRIO INATIVO", False, "")
                     Exit Sub
                 End If
-
                 Session("EMAIL_LOGIN") = DTR("EMAIL")
-                Session("NOME_LOGIN") = DTR("APELIDO")
-                Session("PERFIL_LOGIN") = DTR("COD_FUNCAO")
+                Session("NOME_LOGIN") = DTR("NOME")
                 Session("NIVEL_LOGIN") = DTR("NIVEL")
                 Session("IP_LOGIN") = Request.ServerVariables("REMOTE_ADDR").ToString
-                Session("LINK_PBI_LOGIN") = DTR("LINK_RELATORIO")
-
                 M.ExecuteSQL("Insert Into TBL_USUARIOS_LOGIN (EMAIL) Values ('" & Session("EMAIL_LOGIN") & "')")
                 Response.Redirect("Default.aspx")
             Else
