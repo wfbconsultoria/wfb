@@ -2,13 +2,13 @@
 Partial Class Forgot
     Inherits System.Web.UI.Page
     ReadOnly M As New clsMaster
+    ReadOnly U As New clsUsuarios
     Private Sub cmdRecover_ServerClick(sender As Object, e As EventArgs) Handles cmdRecover.ServerClick
 
         If Len(txtEmail.Value) = 0 Then
             M.Alert(Me, "PREENCHER EMAIL", False, "")
             Exit Sub
         End If
-
 
         If M.CheckExists("TBL_USUARIOS", "EMAIL", txtEmail.Value) = False Then
             M.Alert(Me, "USUÁRIO NÃO EXISTE", False, "")
@@ -17,30 +17,29 @@ Partial Class Forgot
             Dim SQL As String = "Select * From TBL_USUARIOS Where EMAIL = '" & txtEmail.Value & "'"
             Dim DTR = M.ExecuteSelect(SQL)
             DTR.Read()
+            Dim NOME As String = DTR("NOME")
             If DTR.HasRows Then
-                If DTR("BLOQUEADO") = "1" Then
-                    M.Alert(Me, "USUÁRIO BLOQUEADO", False, "")
-                    Exit Sub
-                End If
                 If DTR("ATIVO") = "0" Then
                     M.Alert(Me, "USUÁRIO INATIVO", False, "")
                     Exit Sub
                 End If
 
-                M.SendMail(txtEmail.Value, txtEmail.Value, "Password Recovery", "Your Password is: " & DTR("SENHA"))
-
-                Session("EMAIL_LOGIN") = DTR("EMAIL")
-                Session("NOME_LOGIN") = DTR("APELIDO")
-                Session("PERFIL_LOGIN") = DTR("COD_FUNCAO")
-                Session("NIVEL_LOGIN") = DTR("NIVEL")
-                Session("IP_LOGIN") = Request.ServerVariables("REMOTE_ADDR").ToString
-                Session("LINK_PBI_LOGIN") = DTR("LINK_RELATORIO")
-
-                M.ExecuteSQL("Insert Into TBL_USUARIOS_LOGIN (EMAIL) Values ('" & Session("EMAIL_LOGIN") & "')")
-                Response.Redirect("Login.aspx")
+                Dim NOVA_SENHA = ConfigurationManager.AppSettings("App.Initials") & U.GeneratePassword
+                SQL = ""
+                SQL &= "UPDATE [dbo].[TBL_USUARIOS] SET "
+                SQL &= "SENHA = '" & NOVA_SENHA & "'"
+                SQL &= ",SENHA_SISTEMA = '" & NOVA_SENHA & "'"
+                SQL &= " WHERE EMAIL = '" & txtEmail.Value & "'"
+                M.ExecuteSQL(SQL)
+                Dim strMESSAGE = ""
+                strMESSAGE &= NOME & ",o sistema enviou uma NOVA SENHA! <br/>"
+                strMESSAGE &= "Acesse https://icumedical.azurewebsites.net <br/> "
+                strMESSAGE &= "Utilize seu EMAIL e a senha temporária " & NOVA_SENHA & "<br/>"
+                strMESSAGE &= "Você deverá susbtituir pela senha de sua preferencia após o primeiro login <br/"
+                M.SendMail(txtEmail.Value, NOME, ConfigurationManager.AppSettings("App.Initials") & " - RECUPERAÇÃO DE SENHA", strMESSAGE)
+                M.Alert(Me, "FOI ENVIADO UM EMAIL COM A NOVA SENHA", True, "Login.aspx")
             End If
         End If
-
 
     End Sub
 End Class

@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="VB" MasterPageFile="~/Master.master" AutoEventWireup="false" CodeFile="Usuario_Incluir.aspx.vb" Inherits="Usuario_Incluir" %>
+﻿<%@ Page Title="Novo Login" Language="VB" MasterPageFile="~/Master.master" AutoEventWireup="false" CodeFile="Usuario_Incluir.aspx.vb" Inherits="Usuario_Incluir" %>
 
 <%@ Register Src="~/Titulo_Pagina.ascx" TagPrefix="uc1" TagName="Titulo_Pagina" %>
 
@@ -8,7 +8,8 @@
     <%--Titulo da Página--%>
     <uc1:Titulo_Pagina runat="server" ID="Titulo_Pagina" />
     <%--Data Sources--%>
-    <asp:SqlDataSource ID="dts" runat="server" ConnectionString="<%$ ConnectionStrings:DefaultConnection %>" />
+    <asp:SqlDataSource ID="dts_NIVEL" runat="server" ConnectionString="<%$ ConnectionStrings:DefaultConnection %>" />
+    <asp:SqlDataSource ID="dts_ATIVO" runat="server" ConnectionString="<%$ ConnectionStrings:DefaultConnection %>" />
 
     <%--CORPO DA PAGINA--%>
     <div class="row g-3">
@@ -17,7 +18,7 @@
             <div class="col-md-4">
                 <div class="form-floating">
                     <input runat="server" id="NOME" type="text" class="form-control" placeholder="" value="" required="required" />
-                    <label class="text-danger" for="NOME">Nome</label>
+                    <label for="NOME">Nome</label>
                 </div>
             </div>
         </div>
@@ -25,7 +26,7 @@
         <div class="row g-2">
             <div class="col-md-4">
                 <div class="form-floating">
-                    <input runat="server" id="EMAIL" type="email" class="form-control" placeholder="" value="" required="required" />
+                    <input runat="server" id="EMAIL" type="email" class="form-control" placeholder="" value="" required="required" disabled="disabled" />
                     <label for="EMAIL">E-Mail</label>
                 </div>
             </div>
@@ -39,22 +40,33 @@
                 </div>
             </div>
         </div>
-        <%-- FUNCAO --%>
+        <%-- NIVEL --%>
         <div class="row g-2">
             <div class="col-md-4">
                 <div class="form-floating">
-                    <asp:DropDownList runat="server" ID="NIVEL" CssClass="form-select" DataSourceID="dts" DataTextField="DESCRICAO" DataValueField="NIVEL" required="required"></asp:DropDownList>
-                    <label class="text-danger" for="NIVEL">Nivel</label>
+                    <asp:DropDownList runat="server" ID="NIVEL" CssClass="form-select" DataSourceID="dts_NIVEL" DataTextField="DESCRICAO" DataValueField="NIVEL" required="required"></asp:DropDownList>
+                    <label for="NIVEL">Nivel</label>
                 </div>
             </div>
         </div>
-        
+        <%-- ATIVO INATIVO --%>
+        <div class="row g-2">
+            <div class="col-md-4">
+                <div class="form-floating">
+                    <asp:DropDownList runat="server" ID="ATIVO" CssClass="form-select" DataSourceID="dts_ATIVO" DataTextField="ATIVO_DESCRICAO" DataValueField="ATIVO"></asp:DropDownList>
+                    <label for="ATIVO">Status</label>
+                </div>
+            </div>
+        </div>
         <%-- BOTÕES --%>
         <div class="row g-2">
             <div class="col-md-4">
                 <div class="input-group">
-                    <input runat="server" id="cmd_Save" type="submit" value="Gravar1" class="btn btn-primary" />
-                    <button runat="server" id="cmd_Gravar" type="submit" class="btn btn-primary form-control">Gravar</button>
+                    <input id="cmd_Save" type="submit" value="Gravar" class="btn btn-primary" />
+                    <select runat="server" name ="RESET_SENHA" id="RESET_SENHA" class="btn btn-info">
+                        <option value="0">Manter Senha</option>
+                        <option value="1">Criar nova senha</option>
+                    </select>
                 </div>
             </div>
         </div>

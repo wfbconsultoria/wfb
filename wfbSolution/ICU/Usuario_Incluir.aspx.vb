@@ -1,5 +1,8 @@
 ﻿
-Imports Newtonsoft.Json.Linq
+
+
+Imports System.Activities.Statements
+Imports System.Data
 
 Partial Class Usuario_Incluir
     Inherits System.Web.UI.Page
@@ -7,21 +10,28 @@ Partial Class Usuario_Incluir
     ReadOnly U As New clsUsuarios
 
     Private Sub Usuario_Incluir_Load(sender As Object, e As EventArgs) Handles Me.Load
-        dts.SelectCommand = "Select * From TBL_USUARIOS_NIVEL Order By NIVEL"
-        dts.DataBind()
+        Atauliza_dts()
+
         If Request.QueryString("EMAIL") = "NOVO" Then
-            If IsPostBack() = False Then NewRecord()
+            If IsPostBack() = False Then
+                ATIVO.Text = 1
+                ATIVO.Enabled = False
+                EMAIL.Value = Request.QueryString("EMAIL2")
+                NewRecord()
+            End If
             If IsPostBack() = True Then InsertRecord()
         Else
             If IsPostBack() = False Then RecoverRecord()
-            If IsPostBack() = True Then SaveRecord()
+            If IsPostBack() = True Then UpdateRecord()
         End If
     End Sub
-
-    Private Sub cmd_Gravar_ServerClick(sender As Object, e As EventArgs) Handles cmd_Gravar.ServerClick
-        Dim SQL As String = ""
-        SQL = "Insert Into TBL_USUARIOS"
-        m.ExecuteSQL(SQL)
+    Sub Atauliza_dts()
+        'NIVEL
+        dts_NIVEL.SelectCommand = "Select * From TBL_USUARIOS_NIVEL Order By NIVEL"
+        dts_NIVEL.DataBind()
+        'ATIVO
+        dts_ATIVO.SelectCommand = "Select * From TBL_ATIVO_INATIVO Order By ATIVO_DESCRICAO"
+        dts_ATIVO.DataBind()
     End Sub
     Function ValidateRecord() As Boolean
         ValidateRecord = False
@@ -43,7 +53,6 @@ Partial Class Usuario_Incluir
 
         ValidateRecord = True
     End Function
-
     Sub NewRecord()
         m.Alert(Me, "NewRecord", False, "")
     End Sub
@@ -51,7 +60,7 @@ Partial Class Usuario_Incluir
         If ValidateRecord() = True Then
             Dim strEMAIL As String = m.ConvertText(EMAIL.Value, clsMaster.TextCaseOptions.LowerCase)
             Dim strNOME As String = m.ConvertText(NOME.Value, clsMaster.TextCaseOptions.UpperCase)
-            Dim strSENHA As String = U.GeneratePassword
+            Dim strSENHA As String = ConfigurationManager.AppSettings(".Initials") & U.GeneratePassword
 
             Dim sql As String = ""
             sql &= "INSERT INTO [dbo].[TBL_USUARIOS]"
@@ -63,6 +72,7 @@ Partial Class Usuario_Incluir
             sql &= ",[SENHA]"
             sql &= ",[ATIVO]"
             sql &= ",[INCLUSAO_EMAIL]"
+            sql &= ",[SENHA_SISTEMA]"
             sql &= ") "
             sql &= "VALUES("
             sql &= "'" & strEMAIL & "'"
@@ -70,26 +80,66 @@ Partial Class Usuario_Incluir
             sql &= ",'" & m.ConvertText(CELULAR.Value, clsMaster.TextCaseOptions.UpperCase) & "'"
             sql &= ",'" & NIVEL.Text & "'"
             sql &= ",'" & strSENHA & "'"
-            sql &= ",1"
-            sql &= ",'" & Session("EMAIL_LOGIN") & "')"
+            sql &= ",'" & ATIVO.Text & "'"
+            sql &= ",'" & Session("EMAIL_LOGIN") & "'"
+            sql &= ",'" & strSENHA & "')"
             If m.ExecuteSQL(sql) = True Then
                 Dim strMESSAGE = ""
-                strMESSAGE &= strNOME & ", seu login foi incluido com sucesso !" & vbCrLf
-                strMESSAGE &= strNOME & "Acesse https://icumedical.azurewebsites.net " & vbCrLf
-                strMESSAGE &= strNOME & "Utilize seu EMAIL e a senha temporária " & strSENHA & vbCrLf
-                strMESSAGE &= strNOME & "Você deverá susbtituir pela senha de sua preferencia após o primeiro login"
+                strMESSAGE &= strNOME & "<br/>"
+                strMESSAGE &= "Seu login foi incluido com sucesso! <br/>"
+                strMESSAGE &= "Acesse https://icumedical.azurewebsites.net <br/> "
+                strMESSAGE &= "Utilize seu EMAIL e a senha temporária " & strSENHA & "<br/>"
+                strMESSAGE &= "Você deverá susbtituir pela senha de sua preferencia após o primeiro login <br/"
                 m.SendMail(strEMAIL, strNOME, ConfigurationManager.AppSettings("App.Name") & " - SEU LOGIN FOI INCLUIDO", strMESSAGE)
-                m.Alert(Me, "Usuário incluido com sucesso", False, "")
+                m.Alert(Me, "Usuário incluido com sucesso", True, "Usuarios_Lista.aspx")
             End If
         End If
     End Sub
 
     Sub RecoverRecord()
         m.Alert(Me, "RecorverRecord", False, "")
-    End Sub
-    Sub SaveRecord()
-        If ValidateRecord() = True Then
-            m.Alert(Me, "InsertRecord " & NIVEL.Text, False, "")
+        Dim sql As String = "Select * From APP_USUARIOS Where EMAIL = '" & Request.QueryString("EMAIL") & "'"
+        Dim dtr As SqlClient.SqlDataReader = m.ExecuteSelect(sql)
+        If dtr.HasRows Then
+            dtr.Read()
+            EMAIL.Value = dtr("EMAIL")
+            NOME.Value = dtr("NOME")
+            CELULAR.Value = dtr("CELULAR")
+            NIVEL.Text = dtr("NIVEL")
+            ATIVO.Text = dtr("ATIVO")
         End If
+    End Sub
+    Sub UpdateRecord()
+        If ValidateRecord() = True Then
+            Dim sql As String = ""
+            sql &= "UPDATE [dbo].[TBL_USUARIOS] "
+            sql &= "SET "
+            sql &= "[NOME] = '" & NOME.Value & "'"
+            sql &= ",[CELULAR] = '" & CELULAR.Value & "'"
+            sql &= ",[NIVEL] = '" & NIVEL.Text & "'"
+            sql &= ",[ATIVO] = '" & ATIVO.Text & "'"
+            sql &= ",[ALTERACAO_DATA] = '" & m.GettDateToString & "'"
+            sql &= ",[ALTERACAO_EMAIL] = '" & Session("EMAIL_LOGIN") & "'"
+            sql &= " WHERE EMAIL = '" & EMAIL.Value & "'"
+            m.ExecuteSQL(sql)
+
+            If RESET_SENHA.Value = 1 Then
+                Dim NOVA_SENHA = ConfigurationManager.AppSettings("App.Initials") & U.GeneratePassword
+                sql = ""
+                sql &= "UPDATE [dbo].[TBL_USUARIOS] SET "
+                sql &= "SENHA = '" & NOVA_SENHA & "'"
+                sql &= ",SENHA_SISTEMA = '" & NOVA_SENHA & "'"
+                sql &= " WHERE EMAIL = '" & EMAIL.Value & "'"
+                m.ExecuteSQL(sql)
+                Dim strMESSAGE = ""
+                strMESSAGE &= NOME.Value & "<br/>"
+                strMESSAGE &= "Sua SENHA foi ALTERADA pelo administrador! <br/>"
+                strMESSAGE &= "Acesse https://icumedical.azurewebsites.net <br/> "
+                strMESSAGE &= "Utilize seu EMAIL e a senha temporária " & NOVA_SENHA & "<br/>"
+                strMESSAGE &= "Você deverá susbtituir pela senha de sua preferencia após o primeiro login <br/"
+                m.SendMail(EMAIL.Value, NOME.Value, ConfigurationManager.AppSettings("App.Initials") & " - SUA SENHA FOI ALTERADA", strMESSAGE)
+            End If
+        End If
+        m.Alert(Me, "Usuário ATUALIZADO com sucesso", True, "Usuarios_Lista.aspx")
     End Sub
 End Class

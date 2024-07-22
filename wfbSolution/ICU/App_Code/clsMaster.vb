@@ -113,7 +113,6 @@ Err_CheckExists:
         End Try
 
     End Function
-
     Public Function ConvertDateBR(varDate As Date) As String
         Dim StrDate As String = ""
         ConvertDateBR = ""
@@ -127,7 +126,6 @@ Err_CheckExists:
 
         Return StrDate
     End Function
-
     Public Function ConvertDate(ByVal Text As String) As String
         Dim StrDate As String = ""
         ConvertDate = ""
@@ -141,23 +139,13 @@ Err_CheckExists:
 
         Return StrDate
     End Function
-    Public Function GettDateToString(Optional strData As String = "") As String
-        Dim UnivDate As Date = Now()
-        If strData = "" Then
-            UnivDate = Now()
-        Else
-            UnivDate = strData
-        End If
-
+    Public Function GettDateToString() As String
         Dim LocalDate As Date = TimeZoneInfo.ConvertTime(DateTime.Now, TimeZoneInfo.FindSystemTimeZoneById("E. South America Standard Time"))
         Dim strDate As String = ""
-
         strDate = strDate & Year(LocalDate) & "-"
         strDate = strDate & Month(LocalDate) & "-"
         strDate = strDate & Day(LocalDate)
-        Return strDate
-
-
+        GettDateToString = strDate
     End Function
     Public Function GetDateTimeToString() As String
         Dim strDate As String = ""
