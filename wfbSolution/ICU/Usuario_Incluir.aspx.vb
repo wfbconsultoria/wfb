@@ -14,7 +14,7 @@ Partial Class Usuario_Incluir
 
         If Request.QueryString("EMAIL") = "NOVO" Then
             If IsPostBack() = False Then
-                ATIVO.Text = 1
+                ATIVO.Text = True
                 ATIVO.Enabled = False
                 EMAIL.Value = Request.QueryString("EMAIL2")
                 NewRecord()
