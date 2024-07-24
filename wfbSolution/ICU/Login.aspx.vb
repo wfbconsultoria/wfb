@@ -1,4 +1,6 @@
 ﻿
+Imports wsCorreios
+
 Partial Class Login
     Inherits System.Web.UI.Page
     ReadOnly M As New clsMaster
@@ -11,15 +13,35 @@ Partial Class Login
     End Sub
 
     Private Sub cmdLogin_ServerClick(sender As Object, e As EventArgs) Handles cmdLogin.ServerClick
-        Response.Redirect("Default.aspx")
+        If ValidateLogin() = True Then Response.Redirect("Default.aspx")
     End Sub
 
     Private Sub cmdChangePassword_ServerClick(sender As Object, e As EventArgs) Handles cmdChangePassword.ServerClick
+
+        If ValidateLogin() = False Then Exit Sub
+
+        If Len(NewPassword.Value) = 0 Then
+            M.Alert(Me, "DIGITE A NOVA SENHA", False, "")
+            Exit Sub
+        End If
+
+        If Len(NewPasswordConfirm.Value) = 0 Then
+            M.Alert(Me, "DIGITE A CONFIRMAÇÃO DA NOVA SENHA", False, "")
+            Exit Sub
+        End If
+
+        If NewPasswordConfirm.Value <> NewPassword.Value Then
+            M.Alert(Me, "AS SENHA E CONFIRMAÇÃO DEVEM SER IGUAIS", False, "")
+            Exit Sub
+        End If
+
+        M.ExecuteSQL("Update TBL_USUARIOS SET SENHA = '" & NewPassword.Value & "' WHERE EMAIL = '" & txtEmail.Value & "'")
         Response.Redirect("Login.aspx")
     End Sub
 
     Public Function ValidateLogin() As Boolean
         ValidateLogin = False
+
         'valida se email esta preenchido
         If Len(txtEmail.Value) = 0 Then
             M.Alert(Me, "PREENCHER EMAIL", False, "")
@@ -53,5 +75,8 @@ Partial Class Login
             M.Alert(Me, "SENHA INVÁLIDA", False, "")
             Exit Function
         End If
+
+        ValidateLogin = True
+
     End Function
 End Class
