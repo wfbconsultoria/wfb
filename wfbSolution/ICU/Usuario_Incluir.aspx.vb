@@ -89,13 +89,12 @@ Partial Class Usuario_Incluir
                 strMESSAGE &= "Seu login foi incluido com sucesso! <br/>"
                 strMESSAGE &= "Acesse https://icumedical.azurewebsites.net <br/> "
                 strMESSAGE &= "Utilize seu EMAIL e a senha temporária " & strSENHA & "<br/>"
-                strMESSAGE &= "Você deverá susbtituir pela senha de sua preferencia após o primeiro login <br/"
+                strMESSAGE &= "Você deverá susbtituir pela senha de sua preferencia após o primeiro login <br/>"
                 m.SendMail(strEMAIL, strNOME, ConfigurationManager.AppSettings("App.Name") & " - SEU LOGIN FOI INCLUIDO", strMESSAGE)
                 m.Alert(Me, "Usuário incluido com sucesso", True, "Usuarios_Lista.aspx")
             End If
         End If
     End Sub
-
     Sub RecoverRecord()
         m.Alert(Me, "RecorverRecord", False, "")
         Dim sql As String = "Select * From APP_USUARIOS Where EMAIL = '" & Request.QueryString("EMAIL") & "'"

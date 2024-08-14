@@ -47,14 +47,16 @@
                         
                         <!-- MENU ACOES -->
                         <div class="dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Ações</a>
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Cadastros</a>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="Usuarios_Lista.aspx">Usuarios</a></li>
-                                <li><a class="dropdown-item" href="Estabelecimento_Incluir.aspx">Incluir Estabelecimento</a></li>
-                                <li><a class="dropdown-item" href="Pesquisa_CEP.aspx">Consulta Endereço</a></li>
+                                <li><a class="dropdown-item" href="Estabelecimentos.aspx">Estabelecimento</a></li>
+                                <li><a class="dropdown-item" href="Distribuidores_Grupos_Lista.aspx">Grupos Distribuidores</a></li>
+                                <li><a class="dropdown-item" href="Setores_Gerentes_Lista.aspx">Regionais</a></li>
+                                <li><a class="dropdown-item" href="Setorizacao_Representantes_Lista.aspx">Setores</a></li>
+                                <li><a class="dropdown-item" href="Usuarios_Lista.aspx">Usuários</a></li>
                             </ul>
                         </div>
-
+                        
                         <!-- MENU USUARIO -->
                         <div class="dropdown">
                             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><%:Session("NOME_LOGIN")%></a>

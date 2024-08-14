@@ -109,7 +109,7 @@ Public Class clsEstabelecimentos
 			Dim responseString As String = Encoding.UTF8.GetString(responseBytes)
 			consultarCNPJ = JsonConvert.DeserializeObject(Of retornoCNPJ)(responseString)
 			cnpjStatus = True
-		Catch
+		Catch e As Exception
 			cnpjStatus = False
 			consultarCNPJ = Nothing
 		End Try

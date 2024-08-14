@@ -1,6 +1,6 @@
-﻿<%@ Page Title="Estabelecimento" Language="VB" MasterPageFile="~/Master.master" AutoEventWireup="false" CodeFile="Estabelecimento_Incluir.aspx.vb" Inherits="Estabelecimento_Incluir" %>
-
+﻿<%@ Page Title="" Language="VB" MasterPageFile="~/Master.master" AutoEventWireup="false" CodeFile="Estabelecimento_Incluir_Consulta.aspx.vb" Inherits="Estabelecimento_Incluir_Consulta" %>
 <%@ Register Src="~/Titulo_Pagina.ascx" TagPrefix="uc1" TagName="Titulo_Pagina" %>
+
 
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="Server">
 </asp:Content>
@@ -8,9 +8,12 @@
     <%--Titulo da Página--%>
     <uc1:Titulo_Pagina runat="server" ID="Titulo_Pagina" />
     <%--Data Sources--%>
+    <asp:SqlDataSource ID="dts_ESTABELECIMENTOS_CLASSES" runat="server" ConnectionString="<%$ ConnectionStrings:DefaultConnection %>" />
+    <asp:SqlDataSource ID="dts_ESTABELECIMENTOS_GRUPOS" runat="server" ConnectionString="<%$ ConnectionStrings:DefaultConnection %>" />
 
     <%-- LINKS --%>
     <div class="row g-3">
+        <a class="link" data-bs-toggle="collapse" href="#div_CORPO_MEDICOS" role="button" aria-expanded="false" aria-controls="CORPO">Contatos</a>
     </div>
     <%-- LINKS --%>
 
@@ -20,9 +23,8 @@
             <%-- CNPJ --%>
             <div class="col-md-2">
                 <div class="form-floating">
-                    <input runat="server" id="CNPJ" type="text" class="form-control" value="" disabled="disabled" />
+                    <input runat="server" id="CNPJ" type="text" class="form-control" value="" />
                     <label for="CNPJ">CNPJ</label>
-
                 </div>
             </div>
             <%-- NOME_FANTASIA --%>
@@ -35,35 +37,50 @@
         </div>
         <%-- CNPJ/NOME_FANTASIA--%>
 
-        <%-- RAZAO_SOCIAL--%>
-        <div class="row g-2">
-            <div class="col-md-12">
+        <%-- RAZAO_SOCIAL/CLASSE ESTABELECIMENTO--%>
+            <%-- RAZAO_SOCIAL--%>
+            <div class="row g-2">
+                <div class="col-md-10">
+                    <div class="form-floating">
+                        <input runat="server" id="txt_RAZAO_SOCIAL" type="text" class="form-control" value="" disabled="disabled" />
+                        <label for="txt_RAZAO_SOCIAL">Razão Social</label>
+                    </div>
+                </div>
+            <%-- CLASSE_ESTABELECIMENTO --%>
+            <div class="col-md-2">
                 <div class="form-floating">
-                    <input runat="server" id="txt_RAZAO_SOCIAL" type="text" class="form-control" value="" disabled="disabled" />
-                    <label for="txt_RAZAO_SOCIAL">Razão Social</label>
+                    <asp:DropDownList runat="server" ID="cmb_COD_CLASSE_ESTABELECIMENTO" CssClass="form-select" DataSourceID="dts_ESTABELECIMENTOS_CLASSES" DataTextField="CLASSE_ESTABELECIMENTO" DataValueField="COD_CLASSE_ESTABELECIMENTO" required="required"></asp:DropDownList>
+                    <label class="text-danger" for="cmb_COD_CLASSE_ESTABELECIMENTO">Classe</label>
                 </div>
             </div>
         </div>
-        <%-- RAZAO_SOCIAL--%>
+       <%-- RAZAO_SOCIAL/CLASSE ESTABELECIMENTO--%>
 
-        <%-- ENDERECO/COMPLEMENTO--%>
+        <%-- ENDERECO/NUMERO/COMPLEMENTO--%>
         <div class="row g-2">
             <%-- ENDERECO --%>
-            <div class="col-md-8">
+            <div class="col-md-6">
                 <div class="form-floating">
                     <input runat="server" id="txt_ENDERECO" type="text" class="form-control" disabled="disabled" />
                     <label for="txt_ENDERECO">Endereço</label>
                 </div>
             </div>
+            <%-- NUMERO --%>
+            <div class="col-md-2">
+                <div class="form-floating">
+                    <input runat="server" id="txt_NUMERO" type="text" class="form-control" />
+                    <label for="txt_NUMERO">Número</label>
+                </div>
+            </div>
             <%-- COMPLEMENTO --%>
             <div class="col-md-4">
                 <div class="form-floating">
-                    <input runat="server" id="txt_COMPLEMENTO" type="text" class="form-control" disabled="disabled" />
+                    <input runat="server" id="txt_COMPLEMENTO" type="text" class="form-control" />
                     <label for="txt_COMPLEMENTO">Complemento</label>
                 </div>
             </div>
         </div>
-        <%-- ENDERECO/COMPLEMENTO--%>
+        <%-- ENDERECO/NUMERO/COMPLEMENTO--%>
 
         <%-- CEP/BAIRRO/COD_IBGE_7/CIDADE/UF--%>
         <div class="row g-2">
@@ -127,37 +144,11 @@
         <%-- BOTÕES --%>
         <div class="row g-2">
             <div class="col-12">
-                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#CONSULTAR_CNPJ">Novo</button>
-                <button runat="server" id="cmd_Gravar" type="submit" class="btn btn-info">Gravar</button>
+                <button runat="server" id="cmd_Consultar" type="submit" class="btn btn-info">Consultar</button>
+                <button runat="server" id="cmd_Gravar" type="button" class="btn btn-primary">Gravar</button>
             </div>
         </div>
         <%-- BOTÕES --%>
-
-        <!-- Modal CONSULTAR_CNPJ -->
-        <div class="modal fade" id="CONSULTAR_CNPJ" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="CONSULTAR _CNPJ" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-scrollable">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Consultar CNPJ</h1>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <div class="container container-fluid">
-                            <div class="form-floating">
-                                <input runat="server" id="CNPJ_CONSULTAR" type="text" class="form-control text-primary" placeholder="" value="" required="required" />
-                                <label for="CNPJ_CONSULTAR">CNPJ</label>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="RESET" class="btn btn-secondary">Limpar</button>
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                        <button runat="server" id="cmd_Consultar_CNPJ" type="submit" class="btn btn-primary">Consultar CNPJ</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Modal CONSULTAR_CNPJ -->
     </div>
 
 </asp:Content>

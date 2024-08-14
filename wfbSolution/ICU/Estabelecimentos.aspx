@@ -1,11 +1,10 @@
-﻿<%@ Page Title="Meus Estabelecimentos" Language="VB" MasterPageFile="~/Master.master" AutoEventWireup="false" CodeFile="Estabelecimentos.aspx.vb" Inherits="Estabelecimentos" %>
+﻿<%@ Page Title="Estabelecimentos" Language="VB" MasterPageFile="~/Master.master" AutoEventWireup="false" CodeFile="Estabelecimentos.aspx.vb" Inherits="Estabelecimentos" %>
 
 <%@ Register Src="~/Titulo_Pagina.ascx" TagPrefix="uc1" TagName="Titulo_Pagina" %>
 
-
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="Server">
- 
 </asp:Content>
+
 <asp:Content ID="Content2" ContentPlaceHolderID="BodyContent" runat="Server">
     <%--Data Sources--%>
     <asp:SqlDataSource ID="dts" runat="server" ConnectionString="<%$ ConnectionStrings:DefaultConnection %>" />
@@ -30,29 +29,28 @@
             <thead>
                 <tr>
                     <th data-field="CNPJ" data-sortable="true" style="width:10%">CNPJ</th>
-                    <th data-field="Estabelecimento" data-sortable="true"  style="width:35%">Cliente</th>
-                    <th data-field="Representante" data-sortable="true" style="width:25%">Rep</th>
-                    <th data-field="Cidade" data-sortable="true" style="width:20%">Cidade</th>
+                    <th data-field="NOME_FANTASIA" data-sortable="true"  style="width:40%">Cliente</th>
+                    <th data-field="MUNICIPIO" data-sortable="true" style="width:25%">Cidade</th>
                     <th data-field="UF" data-sortable="true" style="width:5%">UF</th>
-                    <th data-field="MEDICOS" data-sortable="true" style="width:5%">Contatos</th>
+                    <th data-field="ESFERA" data-sortable="true" style="width:20%">ESFERA</th>
+                    <th data-field="CLASSE_ESTABELECIMENTO" data-sortable="true" style="width:20%">CLASSE</th>
                 </tr>
             </thead>
             <tbody>
                 <asp:Repeater ID="dtr" runat="server" DataSourceID="dts">
                     <ItemTemplate>
                         <tr>
-                            <td><a href='<%# "Estabelecimento.aspx?idEstabelecimento" + "=" + DataBinder.Eval(Container.DataItem, "Id").ToString %>'><%# DataBinder.Eval(Container.DataItem, "CNPJ").ToString%></a></td>
-                            <td><%# DataBinder.Eval(Container.DataItem, "ESTABELECIMENTO").ToString%></td>
-                            <td><%# DataBinder.Eval(Container.DataItem, "REPRESENTANTE").ToString%></td>
-                            <td><%# UCase(DataBinder.Eval(Container.DataItem, "CIDADE").ToString)%></td>
+                            <td><a href='<%# "Estabelecimento_Editar.aspx?idEstabelecimento" + "=" + DataBinder.Eval(Container.DataItem, "Id").ToString %>'><%# DataBinder.Eval(Container.DataItem, "CNPJ").ToString%></a></td>
+                            <td><%# DataBinder.Eval(Container.DataItem, "NOME_FANTASIA").ToString%></td>
+                            <td><%# DataBinder.Eval(Container.DataItem, "MUNICIPIO").ToString%></td>
                             <td><%# UCase(DataBinder.Eval(Container.DataItem, "UF").ToString)%></td>
-                            <td><%# UCase(DataBinder.Eval(Container.DataItem, "MEDICOS").ToString)%></td>
+                            <td><%# UCase(DataBinder.Eval(Container.DataItem, "ESFERA").ToString)%></td>
+                            <td><%# UCase(DataBinder.Eval(Container.DataItem, "CLASSE_ESTABELECIMENTO").ToString)%></td>
                         </tr>
                     </ItemTemplate>
                 </asp:Repeater>
             </tbody>
         </table>
-
     </div>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="FooterContent" runat="Server">

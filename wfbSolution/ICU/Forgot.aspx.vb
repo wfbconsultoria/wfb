@@ -35,7 +35,7 @@ Partial Class Forgot
                 strMESSAGE &= NOME & ",o sistema enviou uma NOVA SENHA! <br/>"
                 strMESSAGE &= "Acesse https://icumedical.azurewebsites.net <br/> "
                 strMESSAGE &= "Utilize seu EMAIL e a senha temporária " & NOVA_SENHA & "<br/>"
-                strMESSAGE &= "Você deverá susbtituir pela senha de sua preferencia após o primeiro login <br/"
+                strMESSAGE &= "Você deverá susbtituir pela senha de sua preferencia após o primeiro login <br/>"
                 M.SendMail(txtEmail.Value, NOME, ConfigurationManager.AppSettings("App.Initials") & " - RECUPERAÇÃO DE SENHA", strMESSAGE)
                 M.Alert(Me, "FOI ENVIADO UM EMAIL COM A NOVA SENHA", True, "Login.aspx")
             End If

@@ -177,21 +177,21 @@
                     <button runat="server" id="cmd_CEP" type="button" class="btn btn-primary">Consultar</button>
                 </div>
             </div>
-        
-        <%-- ENDERECO --%>
-        <div class="col-md-8">
-            <div class="form-floating">
-                <input runat="server" id="LOGRADOURO" type="text" class="form-control" placeholder="" value="" disabled="disabled" />
-                <label for="LOGRADOURO">Endereço</label>
+
+            <%-- ENDERECO --%>
+            <div class="col-md-8">
+                <div class="form-floating">
+                    <input runat="server" id="LOGRADOURO" type="text" class="form-control" placeholder="" value="" disabled="disabled" />
+                    <label for="LOGRADOURO">Endereço</label>
+                </div>
             </div>
-        </div>
-        <%-- NUMERO --%>
-        <div class="col-md-2">
-            <div class="form-floating">
-                <input runat="server" id="NUMERO" type="text" class="form-control" placeholder="" value="" />
-                <label for="NUMERO">Número</label>
+            <%-- NUMERO --%>
+            <div class="col-md-2">
+                <div class="form-floating">
+                    <input runat="server" id="NUMERO" type="text" class="form-control" placeholder="" value="" />
+                    <label for="NUMERO">Número</label>
+                </div>
             </div>
-        </div>
         </div>
         <%-- CEP/ENDERECO/NUMERO--%>
 
@@ -292,21 +292,11 @@
         </div>
         <%-- DIAS DE ATENDIMENTO --%>
 
-        <%-- BOTÃO VISITAR aciona modal --%>
-        <%--<div class="row g-2">
-            <div class="col-md-12">
-                <!-- Button trigger modal -->
-                <button type="button" class="btn btn-primary form-control" data-bs-toggle="modal" data-bs-target="#VISITAR">VISITAR</button>
-            </div>
-        </div>--%>
-        <%-- BOTÃO VISITAR aciona modal --%>
-
         <%-- BOTÕES --%>
         <div class="row g-2">
             <div class="col-md-12">
                 <div class="input-group">
                     <button runat="server" id="cmd_Gravar" type="submit" class="btn btn-primary form-control">Gravar</button>
-
                 </div>
             </div>
         </div>
@@ -410,7 +400,6 @@
         $('#VISITAR').on('show.bs.modal', function () {
             $('#VISITAR input').val = '';
         })
-
     </script>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="FooterContent" runat="Server">
