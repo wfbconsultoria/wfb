@@ -9,8 +9,14 @@
     <%--Data Sources--%>
     <asp:SqlDataSource ID="dts" runat="server" ConnectionString="<%$ ConnectionStrings:DefaultConnection %>" />
     <uc1:Titulo_Pagina runat="server" ID="Titulo_Pagina" />
+
+    <%--BOTOES--%>
     <div>
-        <table id="table" 
+        <a href="Estabelecimento_Incluir.aspx?Id=NOVO" class="btn btn-primary">Novo</a>
+    </div>
+
+    <div>
+        <table id="table"
             class="table table-bordered table-hover"
             data-toggle="table"
             data-search="true"
@@ -23,17 +29,18 @@
             <%--data-show-columns-toggle-all="true"--%>
             <%--data-show-fullscreen="true"--%>
             <%--data-show-pagination-switch="true"--%>
-            data-sortable="true"                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     
+            data-sortable="true"
             <%--data-pagination="true"--%>
             data-mobile-responsive="true">
             <thead>
                 <tr>
-                    <th data-field="CNPJ" data-sortable="true" style="width:10%">CNPJ</th>
-                    <th data-field="NOME_FANTASIA" data-sortable="true"  style="width:40%">Cliente</th>
-                    <th data-field="MUNICIPIO" data-sortable="true" style="width:25%">Cidade</th>
-                    <th data-field="UF" data-sortable="true" style="width:5%">UF</th>
-                    <th data-field="ESFERA" data-sortable="true" style="width:20%">ESFERA</th>
-                    <th data-field="CLASSE_ESTABELECIMENTO" data-sortable="true" style="width:20%">CLASSE</th>
+                    <th data-field="CNPJ" data-sortable="true" style="width: 10%">CNPJ</th>
+                    <th data-field="NOME_FANTASIA" data-sortable="true" style="width: 35%">Cliente</th>
+                    <th data-field="MUNICIPIO" data-sortable="true" style="width: 15%">Cidade</th>
+                    <th data-field="UF" data-sortable="true" style="width: 5%">UF</th>
+                    <th data-field="ESFERA" data-sortable="true" style="width: 10%">Esfera</th>
+                    <th data-field="TIPO" data-sortable="true" style="width: 10%">Tipo</th>
+                    <th data-field="GRUPO_DISTRIBUIDOR" data-sortable="true" style="width: 15%">Grupo Distribuidor</th>
                 </tr>
             </thead>
             <tbody>
@@ -45,15 +52,16 @@
                             <td><%# DataBinder.Eval(Container.DataItem, "MUNICIPIO").ToString%></td>
                             <td><%# UCase(DataBinder.Eval(Container.DataItem, "UF").ToString)%></td>
                             <td><%# UCase(DataBinder.Eval(Container.DataItem, "ESFERA").ToString)%></td>
-                            <td><%# UCase(DataBinder.Eval(Container.DataItem, "CLASSE_ESTABELECIMENTO").ToString)%></td>
+                            <td><%# UCase(DataBinder.Eval(Container.DataItem, "TIPO").ToString)%></td>
+                            <td><%# UCase(DataBinder.Eval(Container.DataItem, "GRUPO_DISTRIBUIDOR").ToString)%></td>
                         </tr>
                     </ItemTemplate>
                 </asp:Repeater>
             </tbody>
         </table>
     </div>
+
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="FooterContent" runat="Server">
-    
 </asp:Content>
 

@@ -25,26 +25,32 @@ Partial Class Estabelecimento_Editar
         Dim sql As String = ""
 
         'GRUPO_ESTABELECIMENTO
-        sql = "Select * From TBL_ESTABELECIMENTOS_GRUPOS Order By GRUPO"
+        sql = ""
+        sql &= "Select Null as Id, '( Nenhum )' AS GRUPO Union All "
+        sql &= "Select Id, GRUPO From TBL_ESTABELECIMENTOS_GRUPOS Order By GRUPO"
         dts_GRUPOS.SelectCommand = sql
         dts_GRUPOS.DataBind()
-        ID_GRUPO_ESTABELECIMENTO.DataBind()
+
+        'GRUPO_DISTRIBUIDOR
+        sql = ""
+        sql &= "Select Null as Id, '( Nenhum )' AS GRUPO_DISTRIBUIDOR Union All "
+        sql &= "Select Id, GRUPO_DISTRIBUIDOR From TBL_DISTRIBUIDORES_GRUPOS Order By GRUPO_DISTRIBUIDOR"
+        dts_GRUPOS_DISTRIBUIDORES.SelectCommand = sql
+        dts_GRUPOS_DISTRIBUIDORES.DataBind()
 
         'CLASSE_ESTABELECIMENTO
         sql = "Select * From TBL_ESTABELECIMENTOS_CLASSES Order By CLASSE_ESTABELECIMENTO"
         dts_CLASSES.SelectCommand = sql
         dts_CLASSES.DataBind()
-        COD_CLASSE_ESTABELECIMENTO.DataBind()
 
         'SETORIZACAO_INCLUIR
         sql = ""
-        sql &= " Select '0' as Id, '( Selecione para INCLUIR )' AS SETOR Union All "
+        sql &= " Select CONVERT(VARCHAR(64), '0') as Id, '( Selecione para INCLUIR )' AS SETOR Union All "
         sql &= " Select CONVERT(VARCHAR(64), Id) as Id, SETOR + ' (' + RESPONSAVEL + ')' as SETOR From APP_SETORIZACAO_SETORES "
         sql &= " Where Id Not In (Select Id_Setor as Id From TBL_SETORIZACAO Where Id_Estabelecimento = '" & Id_Estabelecimento & "')"
         sql &= " Order By SETOR"
         dts_SETORIZACAO_INCLUIR.SelectCommand = sql
         dts_SETORIZACAO_INCLUIR.DataBind()
-        SETORIZACAO_INCLUIR.DataBind()
 
         'SETORIZACAO EXCLUIR
         sql = ""
@@ -54,7 +60,6 @@ Partial Class Estabelecimento_Editar
         sql &= " Order By SETOR"
         dts_SETORIZACAO_EXCLUIR.SelectCommand = sql
         dts_SETORIZACAO_EXCLUIR.DataBind()
-        SETORIZACAO_EXCLUIR.DataBind()
 
         'SETORIZACAO
         sql = ""
@@ -63,7 +68,7 @@ Partial Class Estabelecimento_Editar
         sql &= " Order By Setor_SETOR"
         dts_SETORIZACAO.SelectCommand = sql
         dts_SETORIZACAO.DataBind()
-        dtr_SETORIZACAO.DataBind()
+
     End Sub
     Sub RecoverRecord()
         Atualiza_dts()
@@ -72,22 +77,25 @@ Partial Class Estabelecimento_Editar
         If dtr.HasRows Then
             dtr.Read()
             CNPJ.Value = dtr("CNPJ")
-            txt_NOME_FANTASIA.Value = dtr("NOME_FANTASIA")
-            txt_RAZAO_SOCIAL.Value = dtr("RAZAO_SOCIAL")
-            txt_ENDERECO.Value = dtr("ENDERECO")
-            txt_COMPLEMENTO.Value = dtr("COMPLEMENTO")
-            txt_CEP.Value = dtr("CEP")
-            txt_BAIRRO.Value = dtr("BAIRRO")
-            txt_COD_IBGE_7.Value = dtr("COD_IBGE_7")
-            txt_CIDADE.Value = dtr("MUNICIPIO")
-            txt_UF.Value = dtr("UF")
-            txt_COD_NATUREZA_JURIDICA.Value = dtr("COD_NATUREZA_JURIDICA")
-            txt_NATUREZA_JURIDICA.Value = dtr("NATUREZA_JURIDICA")
-            COD_CLASSE_ESTABELECIMENTO.Text = dtr("COD_CLASSE_ESTABELECIMENTO")
-            ID_GRUPO_ESTABELECIMENTO.Text = dtr("ID_GRUPO_ESTABELECIMENTO")
+            If Not IsDBNull(dtr("NOME_FANTASIA")) Then txt_NOME_FANTASIA.Value = dtr("NOME_FANTASIA")
+            If Not IsDBNull(dtr("RAZAO_SOCIAL")) Then txt_RAZAO_SOCIAL.Value = dtr("RAZAO_SOCIAL")
+            If Not IsDBNull(dtr("ENDERECO")) Then txt_ENDERECO.Value = dtr("ENDERECO")
+            If Not IsDBNull(dtr("COMPLEMENTO")) Then txt_COMPLEMENTO.Value = dtr("COMPLEMENTO")
+            If Not IsDBNull(dtr("CEP")) Then txt_CEP.Value = dtr("CEP")
+            If Not IsDBNull(dtr("BAIRRO")) Then txt_BAIRRO.Value = dtr("BAIRRO")
+            If Not IsDBNull(dtr("COD_IBGE_7")) Then txt_COD_IBGE_7.Value = dtr("COD_IBGE_7")
+            If Not IsDBNull(dtr("MUNICIPIO")) Then txt_CIDADE.Value = dtr("MUNICIPIO")
+            If Not IsDBNull(dtr("UF")) Then txt_UF.Value = dtr("UF")
+            If Not IsDBNull(dtr("ESFERA")) Then txt_ESFERA.Value = dtr("ESFERA")
+            If Not IsDBNull(dtr("NATUREZA_JURIDICA")) Then txt_NATUREZA_JURIDICA.Value = dtr("NATUREZA_JURIDICA")
+            If Not IsDBNull(dtr("CNAE_SUBCLASSE_DESC")) Then txt_NATUREZA_JURIDICA.Value = dtr("CNAE_SUBCLASSE_DESC")
+            If Not IsDBNull(dtr("COD_CLASSE_ESTABELECIMENTO")) Then COD_CLASSE_ESTABELECIMENTO.Text = dtr("COD_CLASSE_ESTABELECIMENTO")
+            If Not IsDBNull(dtr("Id_Grupo_Estabelecimento")) Then ID_GRUPO_ESTABELECIMENTO.Text = dtr("Id_Grupo_Estabelecimento").ToString
+            If Not IsDBNull(dtr("Id_Grupo_Distribuidor")) Then ID_GRUPO_DISTRIBUIDOR.Text = dtr("Id_Grupo_Distribuidor").ToString
         Else
             m.Alert(Me, "Selecione um estabelecimento", True, "Estabelecimentos.aspx")
         End If
+
     End Sub
     Sub UpdateRecord()
         'VALIDA NOME FANTASIA
@@ -101,7 +109,22 @@ Partial Class Estabelecimento_Editar
         sql &= " Update TBL_ESTABELECIMENTOS Set "
         sql &= " NOME_FANTASIA = '" & m.ConvertText(txt_NOME_FANTASIA.Value, clsMaster.TextCaseOptions.UpperCase) & "',"
         sql &= " COD_CLASSE_ESTABELECIMENTO = '" & COD_CLASSE_ESTABELECIMENTO.Text & "',"
-        sql &= " ID_GRUPO_ESTABELECIMENTO = '" & ID_GRUPO_ESTABELECIMENTO.Text & "'"
+
+        If ID_GRUPO_ESTABELECIMENTO.Text = "" Then
+            sql &= " Id_Grupo_Estabelecimento = Null,"
+        Else
+            sql &= " Id_Grupo_Estabelecimento = '" & ID_GRUPO_ESTABELECIMENTO.Text & "',"
+        End If
+
+        If ID_GRUPO_DISTRIBUIDOR.Text = "" Then
+            sql &= "Id_Grupo_Distribuidor = Null,"
+        Else
+            sql &= "Id_Grupo_Distribuidor = '" & ID_GRUPO_DISTRIBUIDOR.Text & "',"
+        End If
+
+        sql &= "[DATA_ALTERACAO] = '" & m.GettDateToString & "',"
+        sql &= "[EMAIL_ALTERACAO] = '" & Session("EMAIL_LOGIN") & "'"
+
         sql &= " Where Id = '" & Id_Estabelecimento & "'"
         m.ExecuteSQL(sql)
 
@@ -123,8 +146,7 @@ Partial Class Estabelecimento_Editar
             sql &= " Id_Estabelecimento = '" & Id_Estabelecimento & "'"
             m.ExecuteSQL(sql)
         End If
-        'Atualiza_dts()
-        m.Alert(Me, "ESTABELECIMENTO atualizado com sucesso", False, "")
+        m.Alert(Me, "ESTABELECIMENTO atualizado com sucesso", True, "Estabelecimento_Editar.aspx?idEstabelecimento=" & Id_Estabelecimento)
     End Sub
 
 End Class

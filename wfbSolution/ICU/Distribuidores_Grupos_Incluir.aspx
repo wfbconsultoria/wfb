@@ -1,4 +1,4 @@
-﻿<%@ Page Title="Grupo Distribuidor" Language="VB" MasterPageFile="~/Master.master" AutoEventWireup="false" CodeFile="Distribuidores_Grupos_Incluir.aspx.vb" Inherits="Distribuidores_Grupos_Incluir" %>
+﻿<%@ Page Title="Grupo de Distribuidores" Language="VB" MasterPageFile="~/Master.master" AutoEventWireup="false" CodeFile="Distribuidores_Grupos_Incluir.aspx.vb" Inherits="Distribuidores_Grupos_Incluir" %>
 
 <%@ Register Src="~/Titulo_Pagina.ascx" TagPrefix="uc1" TagName="Titulo_Pagina" %>
 
@@ -13,12 +13,12 @@
 
     <%--CORPO DA PAGINA--%>
     <div class="row g-3">
-        <%-- REGIONAL --%>
+        <%-- GRUPOP_DISTRIBUIDOR --%>
         <div class="row g-2">
             <div class="col-md-4">
                 <div class="form-floating">
                     <input runat="server" id="GRUPO_DISTRIBUIDOR" type="text" class="form-control" placeholder="" value="" required="required" />
-                    <label for="REGIONAL">Grupo Distribuidor</label>
+                    <label for="GRUPO_DISTRIBUIDOR">Grupo Distribuidor</label>
                 </div>
             </div>
         </div>
@@ -59,6 +59,55 @@
     </div>
     <%-- BOTÕES --%>
     <%--CORPO DA PAGINA--%>
+
+
+    <div>
+        <table id="table" 
+            class="table table-bordered table-hover"
+            data-toggle="table"
+            data-search="true"
+            data-search-align="left"
+            data-search-accent-neutralise="true"
+            data-search-highlight="true"
+            <%--data-show-search-clear-button="true"--%>
+            data-show-toggle="true"
+            data-show-columns="true"
+            <%--data-show-columns-toggle-all="true"--%>
+            <%--data-show-fullscreen="true"--%>
+            <%--data-show-pagination-switch="true"--%>
+            data-sortable="true"                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     
+            <%--data-pagination="true"--%>
+            data-mobile-responsive="true">
+            <thead>
+                <tr>
+                    <th data-field="CNPJ" data-sortable="true" style="width:10%">CNPJ</th>
+                    <th data-field="NOME_FANTASIA" data-sortable="true"  style="width:35%">Cliente</th>
+                    <th data-field="MUNICIPIO" data-sortable="true" style="width:15%">Cidade</th>
+                    <th data-field="UF" data-sortable="true" style="width:5%">UF</th>
+                    <th data-field="ESFERA" data-sortable="true" style="width:10%">Esfera</th>
+                    <th data-field="TIPO" data-sortable="true" style="width:10%">Tipo</th>
+                    <th data-field="GRUPO_DISTRIBUIDOR" data-sortable="true" style="width:15%">Grupo Distribuidor</th>
+                </tr>
+            </thead>
+            <tbody>
+                <asp:Repeater ID="dtr" runat="server" DataSourceID="dts">
+                    <ItemTemplate>
+                        <tr>
+                            <td><a href='<%# "Estabelecimento_Editar.aspx?idEstabelecimento" + "=" + DataBinder.Eval(Container.DataItem, "Id").ToString %>'><%# DataBinder.Eval(Container.DataItem, "CNPJ").ToString%></a></td>
+                            <td><%# DataBinder.Eval(Container.DataItem, "NOME_FANTASIA").ToString%></td>
+                            <td><%# DataBinder.Eval(Container.DataItem, "MUNICIPIO").ToString%></td>
+                            <td><%# UCase(DataBinder.Eval(Container.DataItem, "UF").ToString)%></td>
+                            <td><%# UCase(DataBinder.Eval(Container.DataItem, "ESFERA").ToString)%></td>
+                            <td><%# UCase(DataBinder.Eval(Container.DataItem, "TIPO").ToString)%></td>
+                            <td><%# UCase(DataBinder.Eval(Container.DataItem, "GRUPO_DISTRIBUIDOR").ToString)%></td>
+                        </tr>
+                    </ItemTemplate>
+                </asp:Repeater>
+            </tbody>
+        </table>
+    </div>
+
+
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="FooterContent" runat="Server">
 </asp:Content>

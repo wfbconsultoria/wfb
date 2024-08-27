@@ -7,7 +7,6 @@
 
 <html>
 <head runat="server">
-
     <!-- Scripts, meta e referencias do cabeçalho da página -->
     <uc1:Scripts_Header runat="server" ID="Scripts_Header" />
     <link href="css/navbar-top-fixed.css" rel="stylesheet" />
@@ -33,47 +32,38 @@
                         <a class="nav-link" href="Estabelecimentos.aspx">Estabelecimentos</a>
                         <a class="nav-link" href="Medicos.aspx">Contatos</a>
                         <a class="nav-link" href="Visitas.aspx">Visitas</a>
-                        
+
                         <!-- MENU RELATORIOS -->
                         <div class="dropdown">
                             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Relatórios</a>
                             <ul class="dropdown-menu">
-                                
                                 <li><a class="dropdown-item" href="PBI.aspx">Dash Contatos</a></li>
                                 <li><a class="dropdown-item" href="PBI_CNES.aspx">ICU CNES Market</a></li>
                                 <li><a class="dropdown-item text-danger" href="#">Os relatórios são atualizados sempre as 00:00</a></li>
                             </ul>
                         </div>
-                        
+
                         <!-- MENU ACOES -->
                         <div class="dropdown">
                             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Cadastros</a>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="Estabelecimentos.aspx">Estabelecimento</a></li>
-                                <li><a class="dropdown-item" href="Distribuidores_Grupos_Lista.aspx">Grupos Distribuidores</a></li>
+                                <li><a class="dropdown-item" href="Estabelecimentos_Grupos_Lista.aspx">Grupos de Estabelecimentos</a></li>
+                                <li><a class="dropdown-item" href="Distribuidores_Grupos_Lista.aspx">Grupos de Distribuidores</a></li>
                                 <li><a class="dropdown-item" href="Setores_Gerentes_Lista.aspx">Regionais</a></li>
                                 <li><a class="dropdown-item" href="Setorizacao_Representantes_Lista.aspx">Setores</a></li>
                                 <li><a class="dropdown-item" href="Usuarios_Lista.aspx">Usuários</a></li>
                             </ul>
                         </div>
-                        
-                        <!-- MENU USUARIO -->
-                        <div class="dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><%:Session("NOME_LOGIN")%></a>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="#">Perfil</a></li>
-                                <li><a class="dropdown-item" href="#">Trocar Senha</a></li>
-                            </ul>
-                        </div>
-                <a class="nav-link text-danger" href="Login.aspx">Sair</a>
+                        <!-- USUARIO LOGADO/SAIR -->
+                        <a class="nav-link text-primary" href="#"><%:Session("NOME_LOGIN")%></a>
+                        <a class="nav-link text-danger" href="Login.aspx">Sair</a>
                     </div>
-            </div>
+                </div>
             </div>
         </nav>
 
         <!-- Conteudo e corpo da página filho -->
         <main role="main" class="container">
-
             <asp:ContentPlaceHolder ID="BodyContent" runat="server">
                 <%--Titulo da Pagina--%>
                 <h4 class="text-secondary text-uppercase" style="padding-top: 5px"><%:Page.Title %></h4>

@@ -1,4 +1,4 @@
-﻿<%@ Page Title="Estabelecimento" Language="VB" MasterPageFile="~/Master.master" AutoEventWireup="false" CodeFile="Estabelecimento_Incluir.aspx.vb" Inherits="Estabelecimento_Incluir" %>
+﻿<%@ Page Title="Novo Estabelecimento" Language="VB" MasterPageFile="~/Master.master" AutoEventWireup="false" CodeFile="Estabelecimento_Incluir.aspx.vb" Inherits="Estabelecimento_Incluir" %>
 
 <%@ Register Src="~/Titulo_Pagina.ascx" TagPrefix="uc1" TagName="Titulo_Pagina" %>
 
@@ -13,7 +13,7 @@
     <div class="row g-3">
     </div>
     <%-- LINKS --%>
-
+    <br />
     <div class="row g-3">
         <%-- CNPJ/NOME_FANTASIA--%>
         <div class="row g-2">
@@ -105,7 +105,7 @@
         </div>
         <%-- CEP/BAIRRO/COD_IBGE_7/CIDADE/UF--%>
 
-        <%-- COD_NATUREZA_JURIDICA/NATUREZA_JURIDICA_DESCRICAO/COD_ESFERA/ESFERA --%>
+        <%-- COD_NATUREZA_JURIDICA/NATUREZA_JURIDICA_DESCRICAO/CNAE/CNAE_DESCRICAO --%>
         <div class="row g-2">
             <%-- COD_NATUREZA_JURIDICA --%>
             <div class="col-md-2">
@@ -121,6 +121,23 @@
                     <label for="txt_NATUREZA_JURIDICA_DESCRICAO">Natureza Jurídica</label>
                 </div>
             </div>
+
+            <%-- CNAE --%>
+            <div class="col-md-2">
+                <div class="form-floating">
+                    <input runat="server" id="txt_CNAE" type="text" class="form-control" value="" disabled="disabled" />
+                    <label for="txt_cnae">CNAE</label>
+                </div>
+            </div>
+            <%-- CNAE_DESCRICAO --%>
+            <div class="col-md-4">
+                <div class="form-floating">
+                    <input runat="server" id="txt_CNAE_DESCRICAO" type="text" class="form-control" value="" disabled="disabled" />
+                    <label for="txt_CNAE_DESCRICAO">CNAE Descrição</label>
+                </div>
+            </div>
+
+
         </div>
         <%-- COD_NATUREZA_JURIDICA/NATUREZA_JURIDICA_DESCRICAO --%>
 

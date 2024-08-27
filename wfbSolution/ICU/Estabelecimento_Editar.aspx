@@ -10,15 +10,21 @@
 
     <%--Data Sources--%>
     <asp:SqlDataSource ID="dts_GRUPOS" runat="server" ConnectionString="<%$ ConnectionStrings:DefaultConnection %>" />
+     <asp:SqlDataSource ID="dts_GRUPOS_DISTRIBUIDORES" runat="server" ConnectionString="<%$ ConnectionStrings:DefaultConnection %>" />
     <asp:SqlDataSource ID="dts_CLASSES" runat="server" ConnectionString="<%$ ConnectionStrings:DefaultConnection %>" />
     <asp:SqlDataSource ID="dts_SETORIZACAO_INCLUIR" runat="server" ConnectionString="<%$ ConnectionStrings:DefaultConnection %>" />
     <asp:SqlDataSource ID="dts_SETORIZACAO_EXCLUIR" runat="server" ConnectionString="<%$ ConnectionStrings:DefaultConnection %>" />
     <asp:SqlDataSource ID="dts_SETORIZACAO" runat="server" ConnectionString="<%$ ConnectionStrings:DefaultConnection %>" />
-    <br />
+   
     <%-- LINKS --%>
-    <div class="row g-3">
-    </div>
+    
+        
+       
+
+
     <%-- LINKS --%>
+
+     <br />
 
     <%-- ESTABELECIMENTO CABECALHO --%>
     <div class="row g-3">
@@ -63,12 +69,21 @@
         <%-- GRUPO/CLASSE --%>
         <div class="row g-2">
             <%-- GRUPO --%>
-            <div class="col-md-8">
+            <div class="col-md-4">
                 <div class="form-floating">
-                    <asp:DropDownList runat="server" ID="ID_GRUPO_ESTABELECIMENTO" CssClass="form-select" DataSourceID="dts_GRUPOS" DataTextField="GRUPO" DataValueField="ID_GRUPO"></asp:DropDownList>
-                    <label for="ID_GRUPO">Grupo</label>
+                    <asp:DropDownList runat="server" ID="ID_GRUPO_ESTABELECIMENTO" CssClass="form-select" DataSourceID="dts_GRUPOS" DataTextField="GRUPO" DataValueField="Id"></asp:DropDownList>
+                    <label for="ID_GRUPO_ESTABELECIMENTO">Grupo</label>
                 </div>
             </div>
+
+            <%-- GRUPO DISTRIBUIDOR --%>
+            <div class="col-md-4">
+                <div class="form-floating">
+                    <asp:DropDownList runat="server" ID="ID_GRUPO_DISTRIBUIDOR" CssClass="form-select" DataSourceID="dts_GRUPOS_DISTRIBUIDORES" DataTextField="GRUPO_DISTRIBUIDOR" DataValueField="Id"></asp:DropDownList>
+                    <label for="ID_GRUPO_DISTRIBUIDOR">Grupo Distribuidor</label>
+                </div>
+            </div>
+
             <%-- CLASSE --%>
             <div class="col-md-4">
                 <div class="form-floating">
@@ -138,13 +153,13 @@
         </div>
         <%-- CEP/BAIRRO/COD_IBGE_7/CIDADE/UF--%>
 
-        <%-- COD_NATUREZA_JURIDICA/NATUREZA_JURIDICA_DESCRICAO/COD_ESFERA/ESFERA --%>
+        <%-- ESFERA/NATUREZA_JURIDICA_DESCRICAO/CNAE --%>
         <div class="row g-2">
-            <%-- COD_NATUREZA_JURIDICA --%>
+            <%-- ESFERA --%>
             <div class="col-md-2">
                 <div class="form-floating">
-                    <input runat="server" id="txt_COD_NATUREZA_JURIDICA" type="text" class="form-control" value="" disabled="disabled" />
-                    <label for="txt_COD_NATUREZA_JURIDICA">Cod Natureza</label>
+                    <input runat="server" id="txt_ESFERA" type="text" class="form-control" value="" disabled="disabled" />
+                    <label for="txt_ESFERA">Esfera</label>
                 </div>
             </div>
             <%-- NATUREZA_JURIDICA_DESCRICAO --%>
@@ -154,8 +169,17 @@
                     <label for="txt_NATUREZA_JURIDICA">Natureza Jurídica</label>
                 </div>
             </div>
+
+            <%-- CNAE --%>
+            <div class="col-md-6">
+                <div class="form-floating">
+                    <input runat="server" id="txt_CNAE_COD" type="text" class="form-control" value="" disabled="disabled" />
+                    <label for="txt_CNAE_COD">Atividade</label>
+                </div>
+            </div>
+
         </div>
-        <%-- COD_NATUREZA_JURIDICA/NATUREZA_JURIDICA --%>
+        <%-- COD_NATUREZA_JURIDICA/NATUREZA_JURIDICA/CNAE --%>
 
         <hr />
         <h5>Setorização</h5>
