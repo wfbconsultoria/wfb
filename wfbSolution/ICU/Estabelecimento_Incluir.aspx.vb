@@ -49,13 +49,13 @@ Partial Class Estabelecimento_Incluir
         Dim COMPLEMENTO As String = m.ConvertText(Retorno.Complemento)
         Dim BAIRRO As String = m.ConvertText(Retorno.Bairro)
         Dim CEP As String = m.ConvertText(Retorno.CEP)
-        Dim CIDADE As String = m.ConvertText(Retorno.Cidade)
-        Dim ESTADO As String = m.ConvertText(Retorno.Estado)
+        'Dim CIDADE As String = m.ConvertText(Retorno.Cidade)
+        'Dim ESTADO As String = m.ConvertText(Retorno.Estado)
         Dim COD_IBGE As String = m.ConvertText(Retorno.CodIBGE)
         Dim COD_NATUREZA_JURIDICA As String = m.ConvertText(Retorno.CodNaturezaJuridica)
-        Dim NATUREZA_JURIDICA_DESCRICAO As String = m.ConvertText(Retorno.NaturezaJuridicaDescricao)
+        'Dim NATUREZA_JURIDICA_DESCRICAO As String = m.ConvertText(Retorno.NaturezaJuridicaDescricao)
         Dim CNAE As String = Replace(Replace(m.ConvertText(Retorno.CodCNAE), "/", ""), "-", "")
-        Dim CNAE_DESCRICAO As String = m.ConvertText(Retorno.CNAEDescricao)
+        'Dim CNAE_DESCRICAO As String = m.ConvertText(Retorno.CNAEDescricao)
 
         'POSTA NA PÁGINA
         CNPJ.Value = strCNPJ
@@ -65,13 +65,13 @@ Partial Class Estabelecimento_Incluir
         txt_COMPLEMENTO.Value = COMPLEMENTO
         txt_BAIRRO.Value = BAIRRO
         txt_CEP.Value = CEP
-        txt_CIDADE.Value = CIDADE
-        txt_UF.Value = ESTADO
+        'txt_CIDADE.Value = CIDADE
+        'txt_UF.Value = ESTADO
         txt_COD_IBGE_7.Value = COD_IBGE
         txt_COD_NATUREZA_JURIDICA.Value = COD_NATUREZA_JURIDICA
-        txt_NATUREZA_JURIDICA_DESCRICAO.Value = NATUREZA_JURIDICA_DESCRICAO
+        'txt_NATUREZA_JURIDICA_DESCRICAO.Value = NATUREZA_JURIDICA_DESCRICAO
         txt_CNAE.Value = CNAE
-        txt_CNAE_DESCRICAO.Value = CNAE_DESCRICAO
+        'txt_CNAE_DESCRICAO.Value = CNAE_DESCRICAO
         Exit Sub
 Err_Consulta_RF:
         m.Alert(Me, Err.Number & " - " & Err.Description, False, "")

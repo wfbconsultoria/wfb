@@ -44,7 +44,7 @@ Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "Visitas", "Visitas\", "{3CD
 		SlnRelativePath = "Visitas\"
 	EndProjectSection
 EndProject
-Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "SiteTemplate(1)", "SiteTemplate\", "{62B42AB6-4249-4F9D-AB29-1761FB52F87D}"
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "SiteTemplate", "SiteTemplate\", "{62B42AB6-4249-4F9D-AB29-1761FB52F87D}"
 	ProjectSection(WebsiteProperties) = preProject
 		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.8"
 		Debug.AspNetCompiler.VirtualPath = "/localhost_60039"
@@ -131,7 +131,7 @@ Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "pbi", "pbi\", "{BA0A826E-64
 		DefaultWebSiteLanguage = "Visual Basic"
 	EndProjectSection
 EndProject
-Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "AMG(1)", "AMG\", "{2797EFD5-5FE7-4B46-9F82-552884B935B0}"
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "AMG", "AMG\", "{2797EFD5-5FE7-4B46-9F82-552884B935B0}"
 	ProjectSection(WebsiteProperties) = preProject
 		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.8"
 		Debug.AspNetCompiler.VirtualPath = "/localhost_65308"
