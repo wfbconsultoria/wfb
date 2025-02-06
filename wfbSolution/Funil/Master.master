@@ -46,10 +46,9 @@
 
                         <!-- MENU ACOES -->
                         <div class="dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Ações</a>
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Cadastros</a>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="Estabelecimento_Incluir.aspx">Incluir Estabelecimento</a></li>
-                                <li><a class="dropdown-item" href="Pesquisa_CEP.aspx">Consulta Endereço</a></li>
+                                <li><a class="dropdown-item" href="Setorizacao_Regionais_Lista.aspx">Regionais</a></li>
                                 <li><a class="dropdown-item" href="Usuarios_Lista.aspx">Usuários</a></li>
                             </ul>
                         </div>
