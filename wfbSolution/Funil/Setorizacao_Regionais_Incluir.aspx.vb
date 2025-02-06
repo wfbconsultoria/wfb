@@ -11,11 +11,11 @@ Partial Class Setorizacao_Regionais_Incluir
     Private Sub Setorizacao_Regionais_Incluir_Load(sender As Object, e As EventArgs) Handles Me.Load
 
         Atauliza_dts()
-        Dim sql As String = "Select * From TBL_SETORIZACAO_REGIONAIS Where ID = '" & Request.QueryString("Id") & "'"
+        Dim sql As String = "Select * From APP_SETORIZACAO_REGIONAIS Where ID = '" & Request.QueryString("Id") & "'"
         Dim dtr As SqlClient.SqlDataReader = m.ExecuteSelect(sql)
         If dtr.HasRows Then
             dtr.Read()
-            REGIONAL_ATUAL = dtr("REGIONAL")
+            REGIONAL_ATUAL = m.ConvertText(dtr("REGIONAL"), clsMaster.TextCaseOptions.UpperCase)
         End If
         If Request.QueryString("Id") = "NOVO" Then
             If IsPostBack() = False Then
@@ -87,13 +87,13 @@ Partial Class Setorizacao_Regionais_Incluir
         If ACAO = "InsertRecord" Then
 
             'Verifica se o codigo da REGIONAL já existe
-            If m.CheckExists("TBL_SETORIZACAO_REGIONAIS", "COD_REGIONAL", strCOD_REGIONAL) = True Then
+            If m.CheckExists("APP_SETORIZACAO_REGIONAIS", "COD_REGIONAL", strCOD_REGIONAL) = True Then
                 m.Alert(Me, "Este Codigo de  REGIONAL já existe", False, "")
                 Exit Function
             End If
 
             'Verifica se o nome da REGIONAL já existe
-            If m.CheckExists("TBL_SETORIZACAO_REGIONAIS", "REGIONAL", m.ConvertText(REGIONAL.Value, clsMaster.TextCaseOptions.UpperCase)) = True Then
+            If m.CheckExists("APP_SETORIZACAO_REGIONAIS", "REGIONAL", m.ConvertText(REGIONAL.Value, clsMaster.TextCaseOptions.UpperCase)) = True Then
                 m.Alert(Me, "Esta REGIONAL já existe", False, "")
                 Exit Function
             End If
@@ -102,7 +102,7 @@ Partial Class Setorizacao_Regionais_Incluir
 
         If ACAO = "UpdateRecord" Then
             If REGIONAL_ATUAL <> m.ConvertText(REGIONAL.Value, clsMaster.TextCaseOptions.UpperCase) Then
-                If m.CheckExists("TBL_SETORIZACAO_REGIONAIS", "REGIONAL", m.ConvertText(REGIONAL.Value, clsMaster.TextCaseOptions.LowerCase)) = True Then
+                If m.CheckExists("APP_SETORIZACAO_REGIONAIS", "REGIONAL", m.ConvertText(REGIONAL.Value, clsMaster.TextCaseOptions.UpperCase)) = True Then
                     m.Alert(Me, "Esta REGIONAL já existe", False, "")
                     Exit Function
                 End If
@@ -123,17 +123,17 @@ Partial Class Setorizacao_Regionais_Incluir
             Dim strATIVO As String = ATIVO.Text
 
             Dim sql As String = ""
-            sql &= "INSERT INTO [dbo].[TBL_SETORIZACAO_REGIONAIS]"
+            sql &= "INSERT INTO [TBL_SETORIZACAO_REGIONAIS]"
             sql &= "("
             sql &= "[COD_REGIONAL]"
-            sql &= "[REGIONAL]"
-            sql &= ",[EMAIL_RESPONSAVEL]"
+            sql &= ",[REGIONAL]"
+            sql &= ",[EMAIL_GERENTE]"
             sql &= ",[ATIVO]"
-            sql &= ",[EMAIL_INCLUSAO]"
+            sql &= ",[INCLUSAO_EMAIL]"
             sql &= ") "
             sql &= "VALUES("
             sql &= "'" & strCOD_REGIONAL & "'"
-            sql &= "'" & strREGIONAL & "'"
+            sql &= ",'" & strREGIONAL & "'"
             sql &= ",'" & strEMAIL & "'"
             sql &= ",'" & ATIVO.Text & "'"
             sql &= ",'" & Session("EMAIL_LOGIN") & "')"
@@ -144,36 +144,37 @@ Partial Class Setorizacao_Regionais_Incluir
                 Dim dtr As SqlClient.SqlDataReader = m.ExecuteSelect(sql)
                 If dtr.HasRows Then
                     dtr.Read()
-                    Dim Id = dtr("Id")
-                    m.Alert(Me, "Regional incluida com sucesso", True, "Setores_Gerentes_Incluir.aspx?Id=" & Id.ToString)
+                    Dim Id = dtr("ID")
+                    m.Alert(Me, "Regional incluida com sucesso", True, "Setorizacao_Regionais_Incluir.aspx?Id=" & Id.ToString)
                 End If
             End If
         End If
     End Sub
     Sub RecoverRecord()
-        Dim sql As String = "Select * From TBL_SETORIZACAO_REGIONAIS Where Id = '" & Request.QueryString("Id") & "'"
+        Dim sql As String = "Select * From APP_SETORIZACAO_REGIONAIS Where ID = '" & Request.QueryString("Id") & "'"
         Dim dtr As SqlClient.SqlDataReader = m.ExecuteSelect(sql)
         If dtr.HasRows Then
             dtr.Read()
+            'REGIONAL_ATUAL = dtr("REGIONAL")
             COD_REGIONAL.Value = dtr("COD_REGIONAL")
-            REGIONAL_ATUAL = dtr("REGIONAL")
-            EMAIL_GERENTE.Text = dtr("EMAIL_RESPONSAVEL")
+            REGIONAL.Value = dtr("REGIONAL")
+            EMAIL_GERENTE.Text = dtr("EMAIL_GERENTE")
             ATIVO.Text = dtr("ATIVO")
         End If
     End Sub
     Sub UpdateRecord()
         If ValidateRecord() = True Then
             Dim sql As String = ""
-            sql &= "UPDATE [dbo].[TBL_SETORIZACAO_REGIONAIS] "
+            sql &= "UPDATE [TBL_SETORIZACAO_REGIONAIS] "
             sql &= "SET "
-            sql &= "[REGIONAL] = '" & REGIONAL.Value & "'"
-            sql &= ",[EMAIL_RESPONSAVEL] = '" & EMAIL_GERENTE.Text & "'"
+            sql &= "[REGIONAL] = '" & m.ConvertText(REGIONAL.Value, clsMaster.TextCaseOptions.UpperCase) & "'"
+            sql &= ",[EMAIL_GERENTE] = '" & m.ConvertText(EMAIL_GERENTE.Text, clsMaster.TextCaseOptions.LowerCase) & "'"
             sql &= ",[ATIVO] = '" & ATIVO.Text & "'"
-            sql &= ",[DATA_ALTERACAO] = '" & m.GettDateToString & "'"
-            sql &= ",[EMAIL_ALTERACAO] = '" & Session("EMAIL_LOGIN") & "'"
-            sql &= " WHERE Id = '" & Request.QueryString("Id") & "'"
+            sql &= ",[ATUALIZACAO_DATA] = '" & m.GettDateToString & "'"
+            sql &= ",[ATUALIZACAO_EMAIL] = '" & Session("EMAIL_LOGIN") & "'"
+            sql &= " WHERE ID = '" & Request.QueryString("Id") & "'"
             m.ExecuteSQL(sql)
-            m.Alert(Me, "Regional ATUALIZADA com sucesso", True, "Setores_Gerentes_Incluir.aspx?Id=" & Request.QueryString("Id"))
+            m.Alert(Me, "Regional ATUALIZADA com sucesso", True, "Setorizacao_Regionais_Incluir.aspx?Id=" & Request.QueryString("Id"))
         End If
     End Sub
 End Class
