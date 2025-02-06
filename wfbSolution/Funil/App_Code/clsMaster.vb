@@ -289,23 +289,8 @@ Err_CheckExists:
 
         SendMail = True
 
-        'Grava na tb_Log_Email
-        'Dim sql_Email = ""
-        'sql_Email &= " INSERT INTO [tb_Log_Email] "
-        'sql_Email &= " ([EmailFrom], [NameFrom], [EmailTo], [NameTo], [Subject], [Message],[EmailKey]) "
-        'sql_Email &= "VALUES ( "
-        'sql_Email &= " '" & MailFromAddress & "', "
-        'sql_Email &= " '" & MailFromName & "', "
-        'sql_Email &= " '" & MailToAddress & "', "
-        'sql_Email &= " '" & MailToName & "', "
-        'sql_Email &= " '" & MailSubject & "', "
-        'sql_Email &= " '" & MailMessage & "', "
-        'sql_Email &= " '" & MailKey & "') "
-        'ExecuteSQL(sql_Email)
-
         Exit Function
 Err_SendMail:
-
         SendMail = False
     End Function
 
