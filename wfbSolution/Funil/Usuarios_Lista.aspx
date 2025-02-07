@@ -1,4 +1,4 @@
-﻿<%@ Page Title="Logins" Language="VB" MasterPageFile="~/Master.master" AutoEventWireup="false" CodeFile="Usuarios_Lista.aspx.vb" Inherits="Usuarios_Lista" %>
+﻿<%@ Page Title="Usuarios" Language="VB" MasterPageFile="~/Master.master" AutoEventWireup="false" CodeFile="Usuarios_Lista.aspx.vb" Inherits="Usuarios_Lista" %>
 
 <%@ Register Src="~/Titulo_Pagina.ascx" TagPrefix="uc1" TagName="Titulo_Pagina" %>
 
@@ -13,9 +13,9 @@
     <uc1:Titulo_Pagina runat="server" ID="Titulo_Pagina" />
 
     <%--BOTOES--%>
-    <div>
-        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#NOVO">Novo</button>
-    </div>
+        <div class="input-group">
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#NOVO">Novo</button>
+        </div>
     <%--TABELA LISTA USUARIOS--%>
     <div>
         <table id="table"
@@ -36,7 +36,7 @@
             data-mobile-responsive="true">
             <thead>
                 <tr>
-                    <th data-field="EMAIL" data-sortable="true" style="width: 25%">Email</th>
+                    <th data-field="EMAIL" data-sortable="true" style="width: 20%">Email</th>
                     <th data-field="NOME" data-sortable="true" style="width: 40%">Nome</th>
                     <th data-field="CELULAR" data-sortable="true" style="width: 25%">Celular</th>
                     <th data-field="NIVEL" data-sortable="true" style="width: 5%">Nivel</th>
@@ -84,8 +84,7 @@
             </div>
         </div>
     </div>
-    <!-- Modal VISITAR -->
-
+    <!-- Modal NOVO -->
 
     <%--CORPO DA PAGINA--%>
 </asp:Content>

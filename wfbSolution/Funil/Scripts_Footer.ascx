@@ -3,10 +3,9 @@
 
 <!-- jQuery primeiro, depois Popper.js, depois Bootstrap JS -->
 <script src="Scripts/jquery-3.7.1.slim.min.js"></script>
-<script src="Scripts/bootstrap.min.js"></script>
 <script src="Scripts/popper.min.js"></script>
+<script src="Scripts/bootstrap.min.js"></script>
 <script src="Scripts/bootstrap.bundle.min.js"></script>
-
 
 <!-- Scripts para Bootstrap Table -->
 <script src="Content/bootstrap-table/dist/bootstrap-table.min.js"></script>
