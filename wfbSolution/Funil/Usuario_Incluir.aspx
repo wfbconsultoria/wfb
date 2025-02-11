@@ -10,6 +10,10 @@
     <%--Data Sources--%>
     <asp:SqlDataSource ID="dts_NIVEL" runat="server" ConnectionString="<%$ ConnectionStrings:DefaultConnection %>" />
     <asp:SqlDataSource ID="dts_ATIVO" runat="server" ConnectionString="<%$ ConnectionStrings:DefaultConnection %>" />
+    <asp:SqlDataSource ID="dts_REGIONAIS" runat="server" ConnectionString="<%$ ConnectionStrings:DefaultConnection %>" />
+    <asp:SqlDataSource ID="dts_DISTRITOS" runat="server" ConnectionString="<%$ ConnectionStrings:DefaultConnection %>" />
+    <asp:SqlDataSource ID="dts_SETORES" runat="server" ConnectionString="<%$ ConnectionStrings:DefaultConnection %>" />
+    
 
     <%--CORPO DA PAGINA--%>
     <div class="row g-3">
@@ -67,6 +71,7 @@
                         <option value="0">Manter Senha</option>
                         <option value="1">Criar nova senha</option>
                     </select>
+                    <input id="cmd_Delete" type="submit" value="Excluir" class="btn btn-danger" />
                 </div>
             </div>
         </div>
