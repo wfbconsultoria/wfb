@@ -8,7 +8,10 @@ Partial Class Estabelecimentos_Grupos_Incluir
     Dim GRUPO_ATUAL As String = ""
     Private Sub Estabelecimentos_Grupos_Incluir_Load(sender As Object, e As EventArgs) Handles Me.Load
 
+        If m.CheckQueryString("acao") = True Then ACAO = Request.QueryString("acao").ToString
         Atauliza_dts()
+        If ACAO = "DeleteRecord" Then DeleteRecord()
+
         Dim sql As String = "Select * From TBL_ESTABELECIMENTOS_GRUPOS Where Id = '" & Request.QueryString("Id") & "'"
         Dim dtr As SqlClient.SqlDataReader = m.ExecuteSelect(sql)
         If dtr.HasRows Then
@@ -39,11 +42,19 @@ Partial Class Estabelecimentos_Grupos_Incluir
     End Sub
     Sub Atauliza_dts()
         Dim sql As String = ""
+
+        'ESTABELECIMENTOS
+        sql = ""
+        sql &= "Select * From APP_ESTABELECIMENTOS Where Id_Grupo_Estabelecimento = '" & Request.QueryString("Id") & "'"
+        dts_ESTABELECIMENTOS.SelectCommand = sql
+        dts_ESTABELECIMENTOS.DataBind()
+
+        'EMAIL_RESPOSNSAVEL
         sql &= "Select '@' AS EMAIL, '( SELECIONE )' AS NOME UNION ALL "
         sql &= "Select EMAIL,NOME FROM TBL_USUARIOS Order By NOME "
-        'EMAIL_RESPOSNSAVEL
         dts_EMAIL_RESPONSAVEL.SelectCommand = sql
         dts_EMAIL_RESPONSAVEL.DataBind()
+
         'ATIVO
         sql = "Select * From TBL_ATIVO_INATIVO Order By ATIVO_DESCRICAO"
         dts_ATIVO.SelectCommand = sql
@@ -141,4 +152,33 @@ Partial Class Estabelecimentos_Grupos_Incluir
             m.Alert(Me, "Grupo ATUALIZADO com sucesso", True, "Estabelecimentos_Grupos_Incluir.aspx?Id=" & Request.QueryString("Id"))
         End If
     End Sub
+
+    Sub DeleteRecord()
+        RecoverRecord()
+        Dim pagina_retorno As String = "Estabelecimentos_Grupos_Lista.aspx"
+        'check tabelas
+
+        If m.CheckExists("TBL_RSTABELECIMENTOS_GRUPOS", "Id", Request.QueryString("Id")) = False Then
+            m.Alert(Me, "NÃO É POSSIVEL EXCLUIR NÃO CADASTRADO", True, pagina_retorno)
+            Exit Sub
+        End If
+
+        If m.CheckExists("TBL_ESTABELECIMENTOS", "Id_Grupo_Estabelecimento", Request.QueryString("Id")) = True Then
+            m.Alert(Me, "NÃO É POSSIVEL EXCLUIR, associado a um ou mais ESTABELECIMENTOS", True, "Estabelecimentos_Grupos_Incluir.aspx?Id=" & Request.QueryString("Id"))
+            Exit Sub
+        End If
+
+        'exclui
+        Dim sql As String = ""
+        sql = "Delete From TBL_ESTABELECIMENTOS_GRUPOS Where Id = '" & Request.QueryString("Id") & "'"
+        If m.ExecuteSQL(sql) = True Then
+            m.Alert(Me, "GRUPO DE ESTABELECIMENTOS EXCLUIDO COM SUCESSO", True, pagina_retorno)
+            Exit Sub
+        End If
+
+    End Sub
+    Private Sub cmd_Excluir_ServerClick(sender As Object, e As EventArgs) Handles cmd_Excluir.ServerClick
+        Response.Redirect("Estabelecimentos_Grupos_Incluir.aspx?Id=" & Request.QueryString("Id") & "&acao=DeleteRecord")
+    End Sub
+
 End Class

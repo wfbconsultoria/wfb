@@ -12,7 +12,7 @@
 
     <%--BOTOES--%>
     <div>
-        <a href="Estabelecimento_Incluir.aspx?Id=NOVO" class="btn btn-primary">Novo</a>
+        <a href="Estabelecimento_Incluir.aspx?Id=NOVO&acao=InsertRecord" class="btn btn-primary">Novo</a>
     </div>
 
     <div>
@@ -35,12 +35,12 @@
             <thead>
                 <tr>
                     <th data-field="CNPJ" data-sortable="true" style="width: 10%">CNPJ</th>
-                    <th data-field="NOME_FANTASIA" data-sortable="true" style="width: 35%">Cliente</th>
+                    <th data-field="NOME_FANTASIA" data-sortable="true" style="width: 30%">Cliente</th>
                     <th data-field="MUNICIPIO" data-sortable="true" style="width: 15%">Cidade</th>
                     <th data-field="UF" data-sortable="true" style="width: 5%">UF</th>
                     <th data-field="ESFERA" data-sortable="true" style="width: 10%">Esfera</th>
-                    <th data-field="TIPO" data-sortable="true" style="width: 10%">Tipo</th>
-                    <th data-field="GRUPO_DISTRIBUIDOR" data-sortable="true" style="width: 15%">Grupo Distribuidor</th>
+                    <th data-field="CLASSE" data-sortable="true" style="width: 15%">Classe</th>
+                    <th data-field="GRUPO" data-sortable="true" style="width: 15%">Grupo</th>
                 </tr>
             </thead>
             <tbody>
@@ -52,8 +52,8 @@
                             <td><%# DataBinder.Eval(Container.DataItem, "MUNICIPIO").ToString%></td>
                             <td><%# UCase(DataBinder.Eval(Container.DataItem, "UF").ToString)%></td>
                             <td><%# UCase(DataBinder.Eval(Container.DataItem, "ESFERA").ToString)%></td>
-                            <td><%# UCase(DataBinder.Eval(Container.DataItem, "TIPO").ToString)%></td>
-                            <td><%# UCase(DataBinder.Eval(Container.DataItem, "GRUPO_DISTRIBUIDOR").ToString)%></td>
+                            <td><%# UCase(DataBinder.Eval(Container.DataItem, "CLASSE_ESTABELECIMENTO").ToString)%></td>
+                            <td><%# UCase(DataBinder.Eval(Container.DataItem, "GRUPO").ToString)%></td>
                         </tr>
                     </ItemTemplate>
                 </asp:Repeater>

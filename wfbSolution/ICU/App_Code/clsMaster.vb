@@ -104,7 +104,6 @@ Err_CheckExists:
                 CheckQueryString = False
                 If RedirectPage <> "" Then HttpContext.Current.Response.Redirect(RedirectPage)
             Else
-
                 CheckQueryString = True
             End If
         Catch ex As Exception

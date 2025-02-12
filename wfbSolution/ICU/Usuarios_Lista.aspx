@@ -47,7 +47,7 @@
                 <asp:Repeater ID="dtr" runat="server" DataSourceID="dts">
                     <ItemTemplate>
                         <tr>
-                            <td><a href='<%# "Usuario_Incluir.aspx?EMAIL" + "=" + DataBinder.Eval(Container.DataItem, "EMAIL").ToString %>'><%# DataBinder.Eval(Container.DataItem, "EMAIL").ToString%></a></td>
+                            <td><a href='<%# "Usuario_Incluir.aspx?EMAIL" + "=" + DataBinder.Eval(Container.DataItem, "EMAIL").ToString%>'><%# DataBinder.Eval(Container.DataItem, "EMAIL").ToString%></a></td>
                             <td><%# DataBinder.Eval(Container.DataItem, "NOME").ToString%></td>
                             <td><%# DataBinder.Eval(Container.DataItem, "CELULAR").ToString%></td>
                             <td><%# UCase(DataBinder.Eval(Container.DataItem, "NIVEL_DESCRICAO").ToString)%></td>

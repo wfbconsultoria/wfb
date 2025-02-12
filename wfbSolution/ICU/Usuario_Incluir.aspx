@@ -63,16 +63,47 @@
             <div class="col-md-4">
                 <div class="input-group">
                     <input id="cmd_Save" type="submit" value="Gravar" class="btn btn-primary" />
-                    <select runat="server" name ="RESET_SENHA" id="RESET_SENHA" class="btn btn-info">
+                    <select runat="server" name="RESET_SENHA" id="RESET_SENHA" class="btn btn-info">
                         <option value="0">Manter Senha</option>
                         <option value="1">Criar nova senha</option>
                     </select>
+
                 </div>
+            </div>
+            <div class="row g-2">
+                <a class="text-danger" data-bs-toggle="modal" href="#EXCLUIR">Excluir</a>
             </div>
         </div>
     </div>
     <%-- BOTÕES --%>
     <%--CORPO DA PAGINA--%>
+
+    <!-- Modal EXCLUIR -->
+    <div class="modal fade" id="EXCLUIR" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="EXCLUIR" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="staticBackdropLabel">Close</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="container container-fluid">
+                        <div class="form-floating">
+                            <input runat="server" id="EMAIL_EXCLUIR" type="text" class="form-control text-primary" placeholder="" value="" required="required" disabled="disabled" />
+                            <label for="EMAIL_EXCLUIR">EXCLUIR?</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button runat="server" id="cmd_Excluir" type="button" class="btn btn-link, text-danger">EXCLUIR</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Modal EXCLUIR -->
+
+
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="FooterContent" runat="Server">
 </asp:Content>

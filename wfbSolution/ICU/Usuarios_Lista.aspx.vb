@@ -19,7 +19,7 @@ Partial Class Usuarios_Lista
         End If
 
         If m.CheckExists("TBL_USUARIOS", "EMAIL", EMAIL.Value) = True Then
-            m.Alert(Me, "Este login já existe", True, "Usuario_Incluir.aspx?EMAIL=" & EMAIL.Value)
+            m.Alert(Me, "Este login já existe", True, "Usuario_Incluir.aspx?EMAIL=" & EMAIL.Value & "&acao=NewRecord")
         Else
             Response.Redirect("Usuario_Incluir.aspx?EMAIL=NOVO&EMAIL2=" & EMAIL.Value)
         End If

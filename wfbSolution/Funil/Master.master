@@ -38,9 +38,9 @@
                         <div class="dropdown">
                             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Relatórios</a>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="#">Relatório 01</a></li>
-                                <li><a class="dropdown-item" href="#">Relatório 02</a></li>
-                                <li><a class="dropdown-item" href="#">Relatório 03</a></li>
+                                <li><a class="dropdown-item" href="Apresentacao_01.aspx">Fluxo</a></li>
+                                <li><a class="dropdown-item" href="report_pbi_01.aspx">Relatório</a></li>
+                                
                             </ul>
                         </div>
 

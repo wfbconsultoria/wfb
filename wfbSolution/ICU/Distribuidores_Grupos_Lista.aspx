@@ -14,7 +14,7 @@
 
     <%--BOTOES--%>
     <div>
-        <a href="Distribuidores_Grupos_Incluir.aspx?Id=NOVO" class="btn btn-primary">Novo</a>
+        <a href="Distribuidores_Grupos_Incluir.aspx?Id=-1&Acao=Novo" class="btn btn-primary">Novo</a>
     </div>
     <%--TABELA--%>
     <div>

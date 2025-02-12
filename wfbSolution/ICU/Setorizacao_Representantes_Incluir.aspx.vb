@@ -1,5 +1,6 @@
 ﻿
 Imports System.Data
+Imports System.Drawing
 
 Partial Class Setorizacao_Representantes_Incluir
     Inherits System.Web.UI.Page
@@ -7,7 +8,9 @@ Partial Class Setorizacao_Representantes_Incluir
     Dim ACAO As String = ""
     Dim SETOR_ATUAL As String = ""
     Private Sub Setorizacao_Representantes_Incluir_Load(sender As Object, e As EventArgs) Handles Me.Load
+        If m.CheckQueryString("acao") = True Then ACAO = Request.QueryString("acao").ToString
         Atauliza_dts()
+        If ACAO = "DeleteRecord" Then DeleteRecord()
         Dim sql As String = "Select * From TBL_SETORIZACAO_SETORES Where Id = '" & Request.QueryString("Id") & "'"
         Dim dtr As SqlClient.SqlDataReader = m.ExecuteSelect(sql)
         If dtr.HasRows Then
@@ -38,10 +41,18 @@ Partial Class Setorizacao_Representantes_Incluir
     End Sub
     Sub Atauliza_dts()
         Dim sql As String = ""
+
+        'ESTABELECIMENTOS
+        If m.CheckQueryString("Id") = True Then
+            sql = ""
+            sql &= "Select * From APP_SETORIZACAO Where Id_Setor = " & Request.QueryString("Id")
+            dts_ESTABELECIMENTOS.SelectCommand = sql
+            dts_ESTABELECIMENTOS.DataBind()
+        End If
         'REGIONAIS
         sql = ""
-        sql &= "Select '@' AS Id, '( SELECIONE )' AS REGIONAL UNION ALL "
-        sql &= "Select CONVERT(VARCHAR(64), Id) AS Id ,REGIONAL FROM TBL_SETORIZACAO_REGIONAIS Order By REGIONAL "
+        sql &= "Select -1 AS Id, '( SELECIONE )' AS REGIONAL UNION ALL "
+        sql &= "Select Id ,REGIONAL FROM TBL_SETORIZACAO_REGIONAIS Order By REGIONAL "
         dts_REGIONAIS.SelectCommand = sql
         dts_REGIONAIS.DataBind()
         'EMAIL
@@ -58,7 +69,7 @@ Partial Class Setorizacao_Representantes_Incluir
     Function ValidateRecord() As Boolean
         ValidateRecord = False
         'SETOR
-        If Id_REGIONAL.Text = "@" Then
+        If Id_REGIONAL.Text = -1 Then
             m.Alert(Me, "Selecione a REGIONAL", False, "")
             Exit Function
         End If
@@ -131,12 +142,13 @@ Partial Class Setorizacao_Representantes_Incluir
     End Sub
     Sub RecoverRecord()
         Dim sql As String = ""
-        sql &= "Select SETOR,EMAIL_RESPONSAVEL, CONVERT(VARCHAR(64),Id_Regional) AS Id_REGIONAL, ATIVO "
+        sql &= "Select SETOR,EMAIL_RESPONSAVEL, Id_Regional AS Id_REGIONAL, ATIVO "
         sql &= "From TBL_SETORIZACAO_SETORES Where Id = '" & Request.QueryString("Id") & "'"
 
         Dim dtr As SqlClient.SqlDataReader = m.ExecuteSelect(sql)
         If dtr.HasRows Then
             dtr.Read()
+            EXCLUIR.Value = dtr("SETOR")
             SETOR.Value = dtr("SETOR")
             EMAIL_RESPONSAVEL.Text = dtr("EMAIL_RESPONSAVEL").ToString
             Id_REGIONAL.Text = dtr("Id_REGIONAL").ToString
@@ -144,6 +156,11 @@ Partial Class Setorizacao_Representantes_Incluir
         End If
     End Sub
     Sub UpdateRecord()
+        If m.CheckExists("SYS_REGISTROS_SISTEMA", "VALOR", SETOR.Value) = True Then
+            m.Alert(Me, "NÃO É POSSIVEL ALTERAR " & SETOR.Value & ", registro do sistema", False, "")
+            RecoverRecord()
+        End If
+
         If ValidateRecord() = True Then
             Dim sql As String = ""
             sql &= "UPDATE [dbo].[TBL_SETORIZACAO_SETORES] "
@@ -159,5 +176,39 @@ Partial Class Setorizacao_Representantes_Incluir
             m.Alert(Me, "Setor ATUALIZADO com sucesso", True, "Setorizacao_Representantes_Incluir.aspx?Id=" & Request.QueryString("Id"))
         End If
     End Sub
+
+    Sub DeleteRecord()
+        RecoverRecord()
+        Dim pagina_retorno As String = "Setorizacao_Representantes_Lista.aspx"
+        'check tabelas
+
+        If m.CheckExists("TBL_SETORIZACAO_SETORES", "Id", Request.QueryString("Id")) = False Then
+            m.Alert(Me, "NÃO É POSSIVEL EXCLUIR " & SETOR.Value & ", NÃO CADASTRADO", True, pagina_retorno)
+            Exit Sub
+        End If
+
+        If m.CheckExists("SYS_REGISTROS_SISTEMA", "VALOR", SETOR.Value) = True Then
+            m.Alert(Me, "NÃO É POSSIVEL EXCLUIR " & SETOR.Value & ", registro do sistema", True, pagina_retorno)
+            Exit Sub
+        End If
+
+        If m.CheckExists("TBL_SETORIZACAO", "Id_Setor", Request.QueryString("Id")) = True Then
+            m.Alert(Me, "NÃO É POSSIVEL EXCLUIR " & SETOR.Value & ", associado a um ou mais ESTABELECIMENTOS", True, pagina_retorno)
+            Exit Sub
+        End If
+
+        'exclui
+        Dim sql As String = ""
+        sql = "Delete From TBL_SETORIZACAO_SETORES Where Id = '" & Request.QueryString("Id") & "'"
+        If m.ExecuteSQL(sql) = True Then
+            m.Alert(Me, "SETOR EXCLUIDO COM SUCESSO", True, pagina_retorno)
+            Exit Sub
+        End If
+
+    End Sub
+    Private Sub cmd_Excluir_ServerClick(sender As Object, e As EventArgs) Handles cmd_Excluir.ServerClick
+        Response.Redirect("Setorizacao_Representantes_Incluir.aspx?Id=" & Request.QueryString("Id") & "&acao=DeleteRecord")
+    End Sub
+
 End Class
 

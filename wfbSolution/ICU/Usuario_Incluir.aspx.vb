@@ -8,15 +8,20 @@ Partial Class Usuario_Incluir
     Inherits System.Web.UI.Page
     ReadOnly m As New clsMaster
     ReadOnly U As New clsUsuarios
+    Dim ACAO As String = ""
 
     Private Sub Usuario_Incluir_Load(sender As Object, e As EventArgs) Handles Me.Load
+        If m.CheckQueryString("acao") = True Then ACAO = Request.QueryString("acao").ToString
+
         Atauliza_dts()
+        If ACAO = "DeleteRecord" Then DeleteRecord()
 
         If Request.QueryString("EMAIL") = "NOVO" Then
             If IsPostBack() = False Then
                 ATIVO.Text = True
                 ATIVO.Enabled = False
                 EMAIL.Value = Request.QueryString("EMAIL2")
+
                 NewRecord()
             End If
             If IsPostBack() = True Then InsertRecord()
@@ -54,7 +59,7 @@ Partial Class Usuario_Incluir
         ValidateRecord = True
     End Function
     Sub NewRecord()
-        m.Alert(Me, "NewRecord", False, "")
+
     End Sub
     Sub InsertRecord()
         If ValidateRecord() = True Then
@@ -96,11 +101,11 @@ Partial Class Usuario_Incluir
         End If
     End Sub
     Sub RecoverRecord()
-        m.Alert(Me, "RecorverRecord", False, "")
         Dim sql As String = "Select * From APP_USUARIOS Where EMAIL = '" & Request.QueryString("EMAIL") & "'"
         Dim dtr As SqlClient.SqlDataReader = m.ExecuteSelect(sql)
         If dtr.HasRows Then
             dtr.Read()
+            EMAIL_EXCLUIR.Value = dtr("EMAIL")
             EMAIL.Value = dtr("EMAIL")
             NOME.Value = dtr("NOME")
             CELULAR.Value = dtr("CELULAR")
@@ -109,6 +114,12 @@ Partial Class Usuario_Incluir
         End If
     End Sub
     Sub UpdateRecord()
+
+        If m.CheckExists("SYS_REGISTROS_SISTEMA", "VALOR", EMAIL.Value) = True Then
+            m.Alert(Me, "NÃO É POSSIVEL ALTERAR " & EMAIL.Value & ", registro do sistema", False, "")
+            RecoverRecord()
+        End If
+
         If ValidateRecord() = True Then
             Dim sql As String = ""
             sql &= "UPDATE [dbo].[TBL_USUARIOS] "
@@ -140,5 +151,45 @@ Partial Class Usuario_Incluir
             End If
         End If
         m.Alert(Me, "Usuário ATUALIZADO com sucesso", True, "Usuarios_Lista.aspx")
+    End Sub
+
+    Sub DeleteRecord()
+        RecoverRecord()
+        'check tabelas
+
+        If m.CheckExists("TBL_USUARIOS", "EMAIL", EMAIL.Value) = False Then
+            m.Alert(Me, "NÃO É POSSIVEL EXCLUIR " & EMAIL.Value & ", NÃO CADASTRADO", True, "Usuarios_Lista.aspx")
+            Exit Sub
+        End If
+
+        If m.CheckExists("SYS_REGISTROS_SISTEMA", "VALOR", EMAIL.Value) = True Then
+            m.Alert(Me, "NÃO É POSSIVEL EXCLUIR " & EMAIL.Value & ", registro do sistema", True, "Usuarios_Lista.aspx")
+            Exit Sub
+        End If
+
+        If m.CheckExists("TBL_SETORIZACAO_SETORES", "EMAIL_RESPONSAVEL", EMAIL.Value) = True Then
+            m.Alert(Me, "NÃO É POSSIVEL EXCLUIR " & EMAIL.Value & ", associado a um ou mais SETORES", True, "Usuarios_Lista.aspx")
+            Exit Sub
+        End If
+        If m.CheckExists("TBL_SETORIZACAO_REGIONAIS", "EMAIL_RESPONSAVEL", EMAIL.Value) = True Then
+            m.Alert(Me, "NÃO É POSSIVEL EXCLUIR " & EMAIL.Value & ", associado a uma ou mais REGIONAIS", True, "Usuarios_Lista.aspx")
+            Exit Sub
+        End If
+        If m.CheckExists("TBL_DISTRIBUIDORES_GRUPOS", "EMAIL_RESPONSAVEL", EMAIL.Value) = True Then
+            m.Alert(Me, "NÃO É POSSIVEL EXCLUIR " & EMAIL.Value & ", associado a um ou mais DISTRIBUIDORES", True, "Usuarios_Lista.aspx")
+            Exit Sub
+        End If
+        'exclui
+        Dim sql As String = ""
+        sql = "Delete From TBL_USUARIOS Where EMAIL = '" & EMAIL.Value & "'"
+        If m.ExecuteSQL(sql) = True Then
+            m.Alert(Me, "USUARIO EXCLUIDO COM SUCESSO", True, "Usuarios_Lista.aspx")
+            Exit Sub
+        End If
+
+    End Sub
+
+    Private Sub cmd_Excluir_ServerClick(sender As Object, e As EventArgs) Handles cmd_EXcluir.ServerClick
+        Response.Redirect("Usuario_Incluir.aspx?EMAIL=" & EMAIL.Value & "&acao=DeleteRecord")
     End Sub
 End Class

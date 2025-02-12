@@ -156,28 +156,28 @@ Public Class clsEstabelecimentos
         <JsonProperty("CNES")>
         Public Property CNES As String
 
-        <JsonProperty("RAZAO_SOCIAL")>
+        <JsonProperty("razaoSocial")>
         Public Property RazaoSocial As String
 
-        <JsonProperty("NOME_FANTASIA")>
+        <JsonProperty("nomeFantasia")>
         Public Property NomeFantasia As String
 
         '<JsonProperty("data_fundacao")>
         'Public Property DataFundacao As String
 
-        <JsonProperty("LOGRADOURO")>
+        <JsonProperty("logradouro")>
         Public Property Logradouro As String
 
-        <JsonProperty("COMPLEMENTO")>
+        <JsonProperty("complemento")>
         Public Property Complemento As String
 
-        <JsonProperty("NUMERO")>
+        <JsonProperty("numero")>
         Public Property Numero As String
 
-        <JsonProperty("BAIRRO")>
+        <JsonProperty("bairro")>
         Public Property Bairro As String
 
-        <JsonProperty("CEP")>
+        <JsonProperty("cep")>
         Public Property CEP As String
 
         '<JsonProperty("cidade")>
@@ -186,16 +186,16 @@ Public Class clsEstabelecimentos
         '<JsonProperty("estado")>
         'Public Property Estado As String
 
-        <JsonProperty("COD_IBGE")>
+        <JsonProperty("codIbge")>
         Public Property CodIBGE As String
 
-        <JsonProperty("COD_NATUREZA_JURIDICA")>
+        <JsonProperty("codNaturezaJuridica")>
         Public Property CodNaturezaJuridica As String
 
         '<JsonProperty("natureza_juridica_descricao")>
         'Public Property NaturezaJuridicaDescricao As String
 
-        <JsonProperty("COD_CNAE")>
+        <JsonProperty("codCnae")>
         Public Property CodCNAE As String
 
         '<JsonProperty("cnae_descricao")>
@@ -216,7 +216,7 @@ Public Class clsEstabelecimentos
         '<JsonProperty("inclusao_email")>
         'Public Property InclusaoEmail As String
 
-        <JsonProperty("INSERT_DATE")>
+        <JsonProperty("insertDate")>
         Public Property InclusaoData As String
 
         '<JsonProperty("manual")>

@@ -10,23 +10,18 @@
 
     <%--Data Sources--%>
     <asp:SqlDataSource ID="dts_GRUPOS" runat="server" ConnectionString="<%$ ConnectionStrings:DefaultConnection %>" />
-     <asp:SqlDataSource ID="dts_GRUPOS_DISTRIBUIDORES" runat="server" ConnectionString="<%$ ConnectionStrings:DefaultConnection %>" />
+    <asp:SqlDataSource ID="dts_GRUPOS_DISTRIBUIDORES" runat="server" ConnectionString="<%$ ConnectionStrings:DefaultConnection %>" />
     <asp:SqlDataSource ID="dts_CLASSES" runat="server" ConnectionString="<%$ ConnectionStrings:DefaultConnection %>" />
     <asp:SqlDataSource ID="dts_SETORIZACAO_INCLUIR" runat="server" ConnectionString="<%$ ConnectionStrings:DefaultConnection %>" />
     <asp:SqlDataSource ID="dts_SETORIZACAO_EXCLUIR" runat="server" ConnectionString="<%$ ConnectionStrings:DefaultConnection %>" />
     <asp:SqlDataSource ID="dts_SETORIZACAO" runat="server" ConnectionString="<%$ ConnectionStrings:DefaultConnection %>" />
-   
-    <%-- LINKS --%>
-    
-        
-       
-
 
     <%-- LINKS --%>
 
-     <br />
+    <%-- LINKS --%>
+    <br />
 
-    <%-- ESTABELECIMENTO CABECALHO --%>
+
     <div class="row g-3">
         <%-- CNPJ/NOME_FANTASIA--%>
         <div class="row g-2">
@@ -50,11 +45,6 @@
         </div>
         <%-- CNPJ/NOME_FANTASIA--%>
 
-        <%-- ESTABELECIMENTO CABECALHO --%>
-
-        <%--COLAPSE DADOS ESTABELECIMENTO--%>
-
-        <%--<div id="CABECALHO" class="collapse row g-3">--%>
         <%-- RAZAO_SOCIAL--%>
         <div class="row g-2">
             <div class="col-md-12">
@@ -169,7 +159,6 @@
                     <label for="txt_NATUREZA_JURIDICA">Natureza Jurídica</label>
                 </div>
             </div>
-
             <%-- CNAE --%>
             <div class="col-md-6">
                 <div class="form-floating">
@@ -177,7 +166,6 @@
                     <label for="txt_CNAE_COD">Atividade</label>
                 </div>
             </div>
-
         </div>
         <%-- COD_NATUREZA_JURIDICA/NATUREZA_JURIDICA/CNAE --%>
 
@@ -224,17 +212,17 @@
                 <thead>
                     <tr>
                         <th data-field="Setor_SETOR" data-sortable="true" style="width: 40%">Setor</th>
-                        <th data-field="Setor_RESPONSAVEL" data-sortable="true" style="width: 40%">Responsável</th>
-                        <th data-field="Setor_NIVEL_DESCRICAO" data-sortable="true" style="width: 20%">Nível</th>
+                        <th data-field="Setor_RESPONSAVEL" data-sortable="true" style="width: 60%">Responsável</th>
+
                     </tr>
                 </thead>
                 <tbody>
                     <asp:Repeater ID="dtr_SETORIZACAO" runat="server" DataSourceID="dts_SETORIZACAO">
                         <ItemTemplate>
                             <tr>
-                                <td><%# DataBinder.Eval(Container.DataItem, "Setor_SETOR").ToString%></td>
+                                <td><a href='<%# "Setorizacao_Representantes_Incluir.aspx?Id" + "=" + DataBinder.Eval(Container.DataItem, "Id_Setor").ToString %>'><%# DataBinder.Eval(Container.DataItem, "Setor_SETOR").ToString%></a></td>
                                 <td><%# DataBinder.Eval(Container.DataItem, "Setor_RESPONSAVEL").ToString%></td>
-                                <td><%# UCase(DataBinder.Eval(Container.DataItem, "Setor_RESPONSAVEL_NIVEL_DESCRICAO").ToString)%></td>
+
                             </tr>
                         </ItemTemplate>
                     </asp:Repeater>
@@ -247,12 +235,39 @@
         <div class="row g-2">
             <div class="col-12">
                 <input id="cmd_Save" type="submit" value="Gravar" class="btn btn-primary" />
+                <a class="btn btn-info" href="Estabelecimentos.aspx">Lista</a>
             </div>
         </div>
+         <a class="text-danger" data-bs-toggle="modal" href="#modalEXCLUIR">Excluir</a>
         <%-- BOTÕES --%>
     </div>
     <br />
-    <%--COLAPSE DADOS ESTABELECIMENTO--%>
+
+
+    <!-- Modal EXCLUIR -->
+    <div class="modal fade" id="modalEXCLUIR" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="modalEXCLUIR" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="staticBackdropLabel">Close</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="container container-fluid">
+                        <div class="form-floating">
+                            <input runat="server" id="EXCLUIR" type="text" class="form-control text-primary" placeholder="" value="" required="required" disabled="disabled" />
+                            <label for="EXCLUIR">EXCLUIR?</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button runat="server" id="cmd_Excluir" type="button" class="btn btn-link, text-danger">EXCLUIR</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Modal EXCLUIR -->
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="FooterContent" runat="Server">
 </asp:Content>
