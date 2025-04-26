@@ -168,17 +168,23 @@ Partial Class Usuario_Incluir
         End If
 
         If m.CheckExists("TBL_SETORIZACAO_SETORES", "EMAIL_RESPONSAVEL", EMAIL.Value) = True Then
-            m.Alert(Me, "NÃO É POSSIVEL EXCLUIR " & EMAIL.Value & ", associado a um ou mais SETORES", True, "Usuarios_Lista.aspx")
+            m.Alert(Me, "NÃO É POSSIVEL EXCLUIR " & EMAIL.Value & ", associado a um ou mais SETORES", True, "Usuario_Incluir.aspx?EMAIL=" & EMAIL.Value)
             Exit Sub
         End If
         If m.CheckExists("TBL_SETORIZACAO_REGIONAIS", "EMAIL_RESPONSAVEL", EMAIL.Value) = True Then
-            m.Alert(Me, "NÃO É POSSIVEL EXCLUIR " & EMAIL.Value & ", associado a uma ou mais REGIONAIS", True, "Usuarios_Lista.aspx")
+            m.Alert(Me, "NÃO É POSSIVEL EXCLUIR " & EMAIL.Value & ", associado a uma ou mais REGIONAIS", True, "Usuario_Incluir.aspx?EMAIL=" & EMAIL.Value)
             Exit Sub
         End If
         If m.CheckExists("TBL_DISTRIBUIDORES_GRUPOS", "EMAIL_RESPONSAVEL", EMAIL.Value) = True Then
-            m.Alert(Me, "NÃO É POSSIVEL EXCLUIR " & EMAIL.Value & ", associado a um ou mais DISTRIBUIDORES", True, "Usuarios_Lista.aspx")
+            m.Alert(Me, "NÃO É POSSIVEL EXCLUIR " & EMAIL.Value & ", associado a um ou mais DISTRIBUIDORES", True, "Usuario_Incluir.aspx?EMAIL=" & EMAIL.Value)
             Exit Sub
         End If
+
+        If m.CheckExists("TBL_ESTABELECIMENTOS_GRUPOS", "EMAIL_RESPONSAVEL", EMAIL.Value) = True Then
+            m.Alert(Me, "NÃO É POSSIVEL EXCLUIR " & EMAIL.Value & ", associado a um ou mais GRUPOS DE ESTABELECIMENTOS", True, "Usuario_Incluir.aspx?EMAIL=" & EMAIL.Value)
+            Exit Sub
+        End If
+
         'exclui
         Dim sql As String = ""
         sql = "Delete From TBL_USUARIOS Where EMAIL = '" & EMAIL.Value & "'"

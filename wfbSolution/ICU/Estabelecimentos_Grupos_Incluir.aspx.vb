@@ -9,15 +9,18 @@ Partial Class Estabelecimentos_Grupos_Incluir
     Private Sub Estabelecimentos_Grupos_Incluir_Load(sender As Object, e As EventArgs) Handles Me.Load
 
         If m.CheckQueryString("acao") = True Then ACAO = Request.QueryString("acao").ToString
-        Atauliza_dts()
+        Atualiza_dts()
         If ACAO = "DeleteRecord" Then DeleteRecord()
 
-        Dim sql As String = "Select * From TBL_ESTABELECIMENTOS_GRUPOS Where Id = '" & Request.QueryString("Id") & "'"
-        Dim dtr As SqlClient.SqlDataReader = m.ExecuteSelect(sql)
-        If dtr.HasRows Then
-            dtr.Read()
-            GRUPO_ATUAL = dtr("GRUPO")
+        If Request.QueryString("Id").TOSTRING <> "NOVO" Then
+            Dim sql As String = "Select * From TBL_ESTABELECIMENTOS_GRUPOS Where Id = '" & Request.QueryString("Id") & "'"
+            Dim dtr As SqlClient.SqlDataReader = m.ExecuteSelect(sql)
+            If dtr.HasRows Then
+                dtr.Read()
+                GRUPO_ATUAL = dtr("GRUPO")
+            End If
         End If
+
         If Request.QueryString("Id") = "NOVO" Then
             If IsPostBack() = False Then
                 ATIVO.Text = True
@@ -40,7 +43,7 @@ Partial Class Estabelecimentos_Grupos_Incluir
             End If
         End If
     End Sub
-    Sub Atauliza_dts()
+    Sub Atualiza_dts()
         Dim sql As String = ""
 
         'ESTABELECIMENTOS
@@ -49,13 +52,15 @@ Partial Class Estabelecimentos_Grupos_Incluir
         dts_ESTABELECIMENTOS.SelectCommand = sql
         dts_ESTABELECIMENTOS.DataBind()
 
-        'EMAIL_RESPOSNSAVEL
+        'EMAIL_RESPONSAVEL
+        sql = ""
         sql &= "Select '@' AS EMAIL, '( SELECIONE )' AS NOME UNION ALL "
         sql &= "Select EMAIL,NOME FROM TBL_USUARIOS Order By NOME "
         dts_EMAIL_RESPONSAVEL.SelectCommand = sql
         dts_EMAIL_RESPONSAVEL.DataBind()
 
         'ATIVO
+        sql = ""
         sql = "Select * From TBL_ATIVO_INATIVO Order By ATIVO_DESCRICAO"
         dts_ATIVO.SelectCommand = sql
         dts_ATIVO.DataBind()
@@ -131,6 +136,7 @@ Partial Class Estabelecimentos_Grupos_Incluir
         Dim dtr As SqlClient.SqlDataReader = m.ExecuteSelect(sql)
         If dtr.HasRows Then
             dtr.Read()
+            EXCLUIR.Value = dtr("GRUPO")
             GRUPO.Value = dtr("GRUPO")
             GRUPO_ATUAL = dtr("GRUPO")
             EMAIL_RESPONSAVEL.Text = dtr("EMAIL_RESPONSAVEL")
@@ -158,7 +164,7 @@ Partial Class Estabelecimentos_Grupos_Incluir
         Dim pagina_retorno As String = "Estabelecimentos_Grupos_Lista.aspx"
         'check tabelas
 
-        If m.CheckExists("TBL_RSTABELECIMENTOS_GRUPOS", "Id", Request.QueryString("Id")) = False Then
+        If m.CheckExists("TBL_ESTABELECIMENTOS_GRUPOS", "Id", Request.QueryString("Id")) = False Then
             m.Alert(Me, "NÃO É POSSIVEL EXCLUIR NÃO CADASTRADO", True, pagina_retorno)
             Exit Sub
         End If
