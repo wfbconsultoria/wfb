@@ -1,0 +1,5 @@
+Bootstrap = bootstrap-5.3.5-dist (https://github.com/twbs/bootstrap/archive/v5.3.5.zip)
+Bootstrp-Table = bootstrap-table-1.24.1  (https://github.com/wenzhixin/bootstrap-table/archive/master.zip)
+Bootstrap-Icons= bottstrap-icons-1.11.3 (https://github.com/twbs/icons/releases/download/v1.11.3/bootstrap-icons-1.11.3.zip)
+Popper = popper-2x (https://unpkg.com/@popperjs/core@2)
+JQuery - jquery-3.7.1 (https://code.jquery.com/jquery-3.7.1.min.js)
