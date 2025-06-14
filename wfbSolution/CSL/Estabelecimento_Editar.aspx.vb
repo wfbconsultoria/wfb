@@ -63,8 +63,8 @@ Partial Class Estabelecimento_Editar
         sql &= " Select SETOR_ID, SETOR + ' (' + REP + ')' as SETOR From VIEW_SETORIZACAO_SETORES "
         sql &= " Where SETOR_ID In (Select SETOR_ID From VIEW_ESTABELECIMENTOS_SETORIZADOS Where ESTABELECIMENTO_ID = '" & Id_Estabelecimento & "')"
         sql &= " Order By SETOR"
-        dts_SETORIZACAO_INCLUIR.SelectCommand = sql
-        dts_SETORIZACAO_INCLUIR.DataBind()
+        dts_SETORIZACAO_EXCLUIR.SelectCommand = sql
+        dts_SETORIZACAO_EXCLUIR.DataBind()
 
         'SETORIZACAO
         sql = ""
@@ -113,7 +113,7 @@ Partial Class Estabelecimento_Editar
         Dim sql As String = ""
         sql &= " Update TBL_ESTABELECIMENTOS Set "
         sql &= " NOME_FANTASIA = '" & m.ConvertText(txt_NOME_FANTASIA.Value, clsMaster.TextCaseOptions.UpperCase) & "',"
-        sql &= " ESTABELECIMENTO_CLASSE_ID = '" & CLASSE_ESTABELECIMENTO_ID.Text & "',"
+        sql &= " CLASSE_ESTABELECIMENTO_ID = '" & CLASSE_ESTABELECIMENTO_ID.Text & "',"
 
         If GRUPO_ESTABELECIMENTO_ID.Text = -1 Then
             sql &= " GRUPO_ESTABELECIMENTO_ID = 0,"
@@ -136,16 +136,17 @@ Partial Class Estabelecimento_Editar
         If SETORIZACAO_INCLUIR.Text <> "-1" Then ' 
             sql = ""
             sql &= " Insert Into TBL_SETORIZACAO_ESTABELECIMENTOS"
-            sql &= " (SETOR_ID, CNPJ, SETORIZACAO_ID, INCLUSAO_EMAIL)"
+            sql &= " (SETOR_ID, CNPJ, SETORIZACAO_ACAO_ID, INCLUSAO_EMAIL)"
             sql &= " Values ('" & SETORIZACAO_INCLUIR.Text & "',"
-            sql &= "'" & Val(CNPJ.Value) & "',"
+            sql &= "'" & Val(CNPJ.Value) & "',1,"
             sql &= "'" & Session("EMAIL_LOGIN") & "')"
             m.ExecuteSQL(sql)
         End If
+
         'EXCLUI SETORIZACAO
         If SETORIZACAO_EXCLUIR.Text <> "-1" Then
             sql = ""
-            sql &= " Delete From TBL_SETORIZACAO"
+            sql &= " Delete From TBL_SETORIZACAO_ESTABELECIMENTOS"
             sql &= " Where SETOR_ID = '" & SETORIZACAO_EXCLUIR.Text & "' And "
             sql &= " CNPJ = '" & Val(CNPJ.Value) & "'"
             m.ExecuteSQL(sql)
