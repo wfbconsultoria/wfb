@@ -21,7 +21,6 @@
     <%-- LINKS --%>
     <br />
 
-
     <div class="row g-3">
         <%-- CNPJ/NOME_FANTASIA--%>
         <div class="row g-2">
@@ -176,14 +175,14 @@
             <%-- INCLUIR --%>
             <div class="col-md-6">
                 <div class="form-floating">
-                    <asp:DropDownList runat="server" ID="SETORIZACAO_INCLUIR" CssClass="form-select" DataSourceID="dts_SETORIZACAO_INCLUIR" DataTextField="SETOR" DataValueField="Id"></asp:DropDownList>
+                    <asp:DropDownList runat="server" ID="SETORIZACAO_INCLUIR" CssClass="form-select" DataSourceID="dts_SETORIZACAO_INCLUIR" DataTextField="SETOR" DataValueField="SETOR_ID"></asp:DropDownList>
                     <label for="SETORIZACAO_INCLUIR" class="text-primary">Incluir</label>
                 </div>
             </div>
             <%-- EXCLUIR --%>
             <div class="col-md-6">
                 <div class="form-floating">
-                    <asp:DropDownList runat="server" ID="SETORIZACAO_EXCLUIR" CssClass="form-select" DataSourceID="dts_SETORIZACAO_EXCLUIR" DataTextField="SETOR" DataValueField="Id"></asp:DropDownList>
+                    <asp:DropDownList runat="server" ID="SETORIZACAO_EXCLUIR" CssClass="form-select" DataSourceID="dts_SETORIZACAO_EXCLUIR" DataTextField="SETOR" DataValueField="SETOR_ID"></asp:DropDownList>
                     <label for="SETORIZACAO_EXCLUIR" class="text-danger">Excluir</label>
                 </div>
             </div>
@@ -220,9 +219,8 @@
                     <asp:Repeater ID="dtr_SETORIZACAO" runat="server" DataSourceID="dts_SETORIZACAO">
                         <ItemTemplate>
                             <tr>
-                                <td><a href='<%# "Setorizacao_Representantes_Incluir.aspx?Id" + "=" + DataBinder.Eval(Container.DataItem, "Id_Setor").ToString %>'><%# DataBinder.Eval(Container.DataItem, "Setor_SETOR").ToString%></a></td>
-                                <td><%# DataBinder.Eval(Container.DataItem, "Setor_RESPONSAVEL").ToString%></td>
-
+                                <td><a href='<%# "Setorizacao_Representantes_Incluir.aspx?Id" + "=" + DataBinder.Eval(Container.DataItem, "SETOR_ID").ToString %>'><%# DataBinder.Eval(Container.DataItem, "SETOR").ToString%></a></td>
+                                <td><%# DataBinder.Eval(Container.DataItem, "SETOR").ToString%></td>
                             </tr>
                         </ItemTemplate>
                     </asp:Repeater>

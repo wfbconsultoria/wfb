@@ -68,7 +68,7 @@ Partial Class Estabelecimento_Editar
 
         'SETORIZACAO
         sql = ""
-        sql &= " Select * From VIEW_ESTABELECIMENTOS_SETORIZADOS "
+        sql &= " Select SETOR_ID, REP + ' ' + REP_FUNCAO  + ' (' + SETOR + ' ' + SETORIZACAO_TIPO + ')' AS SETOR From VIEW_ESTABELECIMENTOS_SETORIZADOS "
         sql &= "  Where ESTABELECIMENTO_ID = '" & Id_Estabelecimento & "'"
         sql &= " Order By REP"
         dts_SETORIZACAO.SelectCommand = sql
@@ -133,8 +133,8 @@ Partial Class Estabelecimento_Editar
         m.ExecuteSQL(sql)
 
         'INCLUI SETORIZACAO
-        If SETORIZACAO_INCLUIR.Text <> '-1' Then
-            sql = "" Then
+        If SETORIZACAO_INCLUIR.Text <> "-1" Then ' 
+            sql = ""
             sql &= " Insert Into TBL_SETORIZACAO_ESTABELECIMENTOS"
             sql &= " (SETOR_ID, CNPJ, SETORIZACAO_ID, INCLUSAO_EMAIL)"
             sql &= " Values ('" & SETORIZACAO_INCLUIR.Text & "',"
@@ -143,8 +143,8 @@ Partial Class Estabelecimento_Editar
             m.ExecuteSQL(sql)
         End If
         'EXCLUI SETORIZACAO
-        If SETORIZACAO_EXCLUIR.Text <> '-1' Then
-            sql = "" Then
+        If SETORIZACAO_EXCLUIR.Text <> "-1" Then
+            sql = ""
             sql &= " Delete From TBL_SETORIZACAO"
             sql &= " Where SETOR_ID = '" & SETORIZACAO_EXCLUIR.Text & "' And "
             sql &= " CNPJ = '" & Val(CNPJ.Value) & "'"
@@ -181,7 +181,8 @@ Partial Class Estabelecimento_Editar
 
     End Sub
     Private Sub cmd_Excluir_ServerClick(sender As Object, e As EventArgs) Handles cmd_Excluir.ServerClick
-        Response.Redirect("Estabelecimento_Editar.aspx?IdEstabelecimento=" & Request.QueryString("IdEstabelecimento") & "&acao=DeleteRecord")
+        m.Alert(Me, "NÃO É POSSÍVEL EXCLUIR ESTABELECIMENTOS, CONTATE O ADMINISTRADOR", False, "")
+        'Response.Redirect("Estabelecimento_Editar.aspx?IdEstabelecimento=" & Request.QueryString("IdEstabelecimento") & "&acao=DeleteRecord")
     End Sub
 
 End Class
