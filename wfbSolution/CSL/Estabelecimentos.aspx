@@ -30,7 +30,7 @@
             <%--data-show-fullscreen="true"--%>
             <%--data-show-pagination-switch="true"--%>
             data-sortable="true"
-            <%--data-pagination="true"--%>
+            data-pagination="true"
             data-mobile-responsive="true">
             <thead>
                 <tr>
@@ -49,11 +49,11 @@
                         <tr>
                             <td><a href='<%# "Estabelecimento_Editar.aspx?idEstabelecimento" + "=" + DataBinder.Eval(Container.DataItem, "Id").ToString %>'><%# DataBinder.Eval(Container.DataItem, "CNPJ").ToString%></a></td>
                             <td><%# DataBinder.Eval(Container.DataItem, "NOME_FANTASIA").ToString%></td>
-                            <td><%# DataBinder.Eval(Container.DataItem, "MUNICIPIO").ToString%></td>
+                            <td><%# DataBinder.Eval(Container.DataItem, "MUNICIPIO_UF").ToString%></td>
                             <td><%# UCase(DataBinder.Eval(Container.DataItem, "UF").ToString)%></td>
                             <td><%# UCase(DataBinder.Eval(Container.DataItem, "ESFERA").ToString)%></td>
                             <td><%# UCase(DataBinder.Eval(Container.DataItem, "CLASSE_ESTABELECIMENTO").ToString)%></td>
-                            <td><%# UCase(DataBinder.Eval(Container.DataItem, "GRUPO").ToString)%></td>
+                            <td><%# UCase(DataBinder.Eval(Container.DataItem, "GRUPO_ESTABELECIMENTO").ToString)%></td>
                         </tr>
                     </ItemTemplate>
                 </asp:Repeater>

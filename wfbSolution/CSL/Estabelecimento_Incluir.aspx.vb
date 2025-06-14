@@ -35,7 +35,7 @@ Partial Class Estabelecimento_Incluir
         Dim dtr As SqlClient.SqlDataReader = m.ExecuteSelect("Select Id From TBL_ESTABELECIMENTOS Where CNPJ = '" & strCNPJ & "' ")
         If dtr.HasRows Then
             dtr.Read()
-            Dim ID_ESTABELECIMENTO As String = dtr("Id").ToString
+            Dim ID_ESTABELECIMENTO As String = dtr("ID").ToString
             m.Alert(Me, "CNPJ JÁ ESTÁ CADASTRADO", True, "Estabelecimento.aspx?idEstabelecimento=" & ID_ESTABELECIMENTO)
         End If
 
@@ -45,33 +45,33 @@ Partial Class Estabelecimento_Incluir
         If NOME_FANTASIA = "" Then NOME_FANTASIA = RAZAO_SOCIAL
         Dim NUMERO As String = m.ConvertText(Retorno.Numero)
         Dim ENDERECO As String = m.ConvertText(Retorno.Logradouro)
-        If NUMERO = "" Then ENDERECO = ENDERECO Else ENDERECO = ENDERECO & " " & NUMERO
         Dim COMPLEMENTO As String = m.ConvertText(Retorno.Complemento)
         Dim BAIRRO As String = m.ConvertText(Retorno.Bairro)
         Dim CEP As String = m.ConvertText(Retorno.CEP)
-        'Dim CIDADE As String = m.ConvertText(Retorno.Cidade)
-        'Dim ESTADO As String = m.ConvertText(Retorno.Estado)
+        Dim CIDADE As String = m.ConvertText(Retorno.Cidade)
+        Dim ESTADO As String = m.ConvertText(Retorno.Estado)
         Dim COD_IBGE As String = m.ConvertText(Retorno.CodIBGE)
         Dim COD_NATUREZA_JURIDICA As String = m.ConvertText(Retorno.CodNaturezaJuridica)
-        'Dim NATUREZA_JURIDICA_DESCRICAO As String = m.ConvertText(Retorno.NaturezaJuridicaDescricao)
+        Dim NATUREZA_JURIDICA_DESCRICAO As String = m.ConvertText(Retorno.NaturezaJuridicaDescricao)
         Dim CNAE As String = Replace(Replace(m.ConvertText(Retorno.CodCNAE), "/", ""), "-", "")
-        'Dim CNAE_DESCRICAO As String = m.ConvertText(Retorno.CNAEDescricao)
+        Dim CNAE_DESCRICAO As String = m.ConvertText(Retorno.CNAEDescricao)
 
         'POSTA NA PÁGINA
         CNPJ.Value = strCNPJ
         txt_NOME_FANTASIA.Value = NOME_FANTASIA
         txt_RAZAO_SOCIAL.Value = RAZAO_SOCIAL
         txt_ENDERECO.Value = ENDERECO
+        txt_NUMERO.Value = NUMERO
         txt_COMPLEMENTO.Value = COMPLEMENTO
         txt_BAIRRO.Value = BAIRRO
         txt_CEP.Value = CEP
-        'txt_CIDADE.Value = CIDADE
-        'txt_UF.Value = ESTADO
+        txt_CIDADE.Value = CIDADE
+        txt_UF.Value = ESTADO
         txt_COD_IBGE_7.Value = COD_IBGE
         txt_COD_NATUREZA_JURIDICA.Value = COD_NATUREZA_JURIDICA
-        'txt_NATUREZA_JURIDICA_DESCRICAO.Value = NATUREZA_JURIDICA_DESCRICAO
+        txt_NATUREZA_JURIDICA_DESCRICAO.Value = NATUREZA_JURIDICA_DESCRICAO
         txt_CNAE.Value = CNAE
-        'txt_CNAE_DESCRICAO.Value = CNAE_DESCRICAO
+        txt_CNAE_DESCRICAO.Value = CNAE_DESCRICAO
         Exit Sub
 Err_Consulta_RF:
         m.Alert(Me, Err.Number & " - " & Err.Description, False, "")
@@ -82,34 +82,28 @@ Err_Consulta_RF:
         SQL &= "INSERT INTO [dbo].[TBL_ESTABELECIMENTOS]"
         SQL &= "([CNPJ]"
         SQL &= ",[NOME_FANTASIA],[RAZAO_SOCIAL]"
-        SQL &= ",[ENDERECO],[COMPLEMENTO],[BAIRRO]"
-        SQL &= ",[CEP],[COD_IBGE_7]"
-        SQL &= ",[COD_NATUREZA_JURIDICA]"
-        SQL &= ",[CNAE_COD]"
-        SQL &= ",[EMAIL_INCLUSAO])"
+        SQL &= ",[LOGRADOURO],[NUMERO],[COMPLEMENTO],[BAIRRO]"
+        SQL &= ",[CEP],[MUNICIPIO_ID]"
+        SQL &= ",[NATUREZA_ID]"
+        SQL &= ",[INCLUSAO_EMAIL])"
         SQL &= " VALUES ("
         SQL &= "'" & s.Formata_CNPJ(CNPJ.Value) & "',"
         SQL &= "'" & txt_NOME_FANTASIA.Value & "',"
         SQL &= "'" & txt_RAZAO_SOCIAL.Value & "',"
         SQL &= "'" & txt_ENDERECO.Value & "',"
+        SQL &= "'" & txt_NUMERO.Value & "',"
         SQL &= "'" & txt_COMPLEMENTO.Value & "',"
         SQL &= "'" & txt_BAIRRO.Value & "',"
         SQL &= "'" & txt_CEP.Value & "',"
         SQL &= "'" & txt_COD_IBGE_7.Value & "',"
         SQL &= "'" & txt_COD_NATUREZA_JURIDICA.Value & "',"
-
-        If m.CheckExists("APP_CNAE", "CNAE_COD", txt_CNAE.Value) Then
-            SQL &= "'" & txt_CNAE.Value & "',"
-        Else
-            SQL &= "Null,"
-        End If
-
         SQL &= "'" & Session("EMAIL_LOGIN") & "')"
+
         If m.ExecuteSQL(SQL) = True Then
-            Dim dtr As SqlClient.SqlDataReader = m.ExecuteSelect("Select Id From APP_ESTABELECIMENTOS Where CNPJ = '" & s.Formata_CNPJ(CNPJ.Value) & "' ")
+            Dim dtr As SqlClient.SqlDataReader = m.ExecuteSelect("Select ID From TBL_ESTABELECIMENTOS Where CNPJ = " & CNPJ.Value)
             If dtr.HasRows Then
                 dtr.Read()
-                Dim ID_ESTABELECIMENTO = dtr("Id")
+                Dim ID_ESTABELECIMENTO = dtr("ID")
                 m.Alert(Me, "ESTABELECIMENTO CADASTRADO COM SUCESSO", True, "Estabelecimento_Editar.aspx?IdEstabelecimento=" & ID_ESTABELECIMENTO.ToString)
             Else
                 m.Alert(Me, "ERRO AO CADASTRAR ESTABELECIMENTO", False, "")

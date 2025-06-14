@@ -6,7 +6,7 @@ Partial Class Estabelecimentos
     ReadOnly s As New clsEstabelecimentos
     Private Sub Estabelecimentos_Load(sender As Object, e As EventArgs) Handles Me.Load
         Dim sql As String = ""
-        dts.SelectCommand = "Select * From APP_ESTABELECIMENTOS Order By NOME_FANTASIA"
+        dts.SelectCommand = "Select * From VIEW_ESTABELECIMENTOS Order By NOME_FANTASIA"
         dts.DataBind()
         dtr.DataBind()
     End Sub

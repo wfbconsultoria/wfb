@@ -10,11 +10,11 @@ Partial Class Forgot
             Exit Sub
         End If
 
-        If M.CheckExists("TBL_USUARIOS", "EMAIL", txtEmail.Value) = False Then
+        If M.CheckExists("VIEW_USUARIOS_LOGIN", "EMAIL", txtEmail.Value) = False Then
             M.Alert(Me, "USUÁRIO NÃO EXISTE", False, "")
             Exit Sub
         Else
-            Dim SQL As String = "Select * From TBL_USUARIOS Where EMAIL = '" & txtEmail.Value & "'"
+            Dim SQL As String = "Select * From VIEW_USUARIOS_LOGIN Where EMAIL = '" & txtEmail.Value & "'"
             Dim DTR = M.ExecuteSelect(SQL)
             DTR.Read()
             Dim NOME As String = DTR("NOME")
@@ -26,9 +26,8 @@ Partial Class Forgot
 
                 Dim NOVA_SENHA = ConfigurationManager.AppSettings("App.Initials") & U.GeneratePassword
                 SQL = ""
-                SQL &= "UPDATE [dbo].[TBL_USUARIOS] SET "
+                SQL &= "UPDATE [dbo].[TBL_USUARIOS_LOGIN] SET "
                 SQL &= "SENHA = '" & NOVA_SENHA & "'"
-                SQL &= ",SENHA_SISTEMA = '" & NOVA_SENHA & "'"
                 SQL &= " WHERE EMAIL = '" & txtEmail.Value & "'"
                 M.ExecuteSQL(SQL)
                 Dim strMESSAGE = ""

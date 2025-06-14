@@ -15,7 +15,7 @@
     <main class="form-signin w-100 m-auto">
         <form id="frmLogin" runat="server">
 
-            <img class="form-control" src="Images/LOGO_ICU.png" alt="" width="240" height="120" />
+            <img class="form-control" src="Images/_Logo.png" alt="" width="240" height="100" />
             <div class="form-floating">
                 <input runat="server" id="txtEmail" type="email" class="form-control" placeholder="name@example.com" required="required" />
                 <label for="txtEmail">Email address</label>

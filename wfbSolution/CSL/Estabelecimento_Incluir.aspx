@@ -55,6 +55,15 @@
                     <label for="txt_ENDERECO">Endereço</label>
                 </div>
             </div>
+
+            <%-- NUMERO --%>
+            <div class="col-md-2">
+                <div class="form-floating">
+                    <input runat="server" id="txt_NUMERO" type="text" class="form-control" disabled="disabled" />
+                    <label for="txt_NUMERO">Numero</label>
+                </div>
+            </div>
+
             <%-- COMPLEMENTO --%>
             <div class="col-md-4">
                 <div class="form-floating">

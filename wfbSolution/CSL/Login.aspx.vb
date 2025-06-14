@@ -35,7 +35,7 @@ Partial Class Login
             Exit Sub
         End If
 
-        M.ExecuteSQL("Update TBL_USUARIOS SET SENHA = '" & NewPassword.Value & "' WHERE EMAIL = '" & txtEmail.Value & "'")
+        M.ExecuteSQL("Update TBL_USUARIOS_LOGIN SET SENHA = '" & NewPassword.Value & "' WHERE EMAIL = '" & txtEmail.Value & "'")
         Response.Redirect("Login.aspx")
     End Sub
 
@@ -58,7 +58,7 @@ Partial Class Login
             Exit Function
         End If
         'valida usuario e senha e se esta ativo
-        Dim SQL As String = "Select * From TBL_USUARIOS Where EMAIL = '" & txtEmail.Value & "' and SENHA = '" & txtPassword.Value & "'"
+        Dim SQL As String = "Select * From VIEW_USUARIOS_LOGIN Where EMAIL = '" & txtEmail.Value & "' and SENHA = '" & txtPassword.Value & "'"
         Dim DTR = M.ExecuteSelect(SQL)
         DTR.Read()
         If DTR.HasRows Then
@@ -68,9 +68,10 @@ Partial Class Login
             End If
             Session("EMAIL_LOGIN") = DTR("EMAIL")
             Session("NOME_LOGIN") = DTR("NOME")
-            Session("NIVEL_LOGIN") = DTR("NIVEL")
+            Session("NIVEL_LOGIN") = DTR("PERFIL_ID")
             Session("IP_LOGIN") = Request.ServerVariables("REMOTE_ADDR").ToString
-            M.ExecuteSQL("Insert Into TBL_USUARIOS_LOGIN (EMAIL) Values ('" & Session("EMAIL_LOGIN") & "')")
+            M.ExecuteSQL("Insert Into TBL_USUARIOS_LOGINS (EMAIL,IP) Values ('" & Session("EMAIL_LOGIN") & "', '" & Session("IP_LOGIN") & "' )")
+            M.ExecuteSQL("UPDATE TBL_USUARIOS_LOGIN SET ULTIMO_LOGIN_IP = " & "'" & Session("IP_LOGIN") & "' WHERE EMAIL = '" & Session("EMAIL_LOGIN") & "'")
         Else
             M.Alert(Me, "SENHA INVÁLIDA", False, "")
             Exit Function

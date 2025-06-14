@@ -180,11 +180,11 @@ Public Class clsEstabelecimentos
         <JsonProperty("cep")>
         Public Property CEP As String
 
-        '<JsonProperty("cidade")>
-        'Public Property Cidade As String
+        <JsonProperty("cidade")>
+        Public Property Cidade As String
 
-        '<JsonProperty("estado")>
-        'Public Property Estado As String
+        <JsonProperty("estado")>
+        Public Property Estado As String
 
         <JsonProperty("codIbge")>
         Public Property CodIBGE As String
@@ -192,14 +192,14 @@ Public Class clsEstabelecimentos
         <JsonProperty("codNaturezaJuridica")>
         Public Property CodNaturezaJuridica As String
 
-        '<JsonProperty("natureza_juridica_descricao")>
-        'Public Property NaturezaJuridicaDescricao As String
+        <JsonProperty("natureza_juridica_descricao")>
+        Public Property NaturezaJuridicaDescricao As String
 
         <JsonProperty("codCnae")>
         Public Property CodCNAE As String
 
-        '<JsonProperty("cnae_descricao")>
-        'Public Property CNAEDescricao As String
+        <JsonProperty("cnae_descricao")>
+        Public Property CNAEDescricao As String
 
         '<JsonProperty("situacao_rfb")>
         'Public Property SituacaoRFB As String
