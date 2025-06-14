@@ -14,20 +14,21 @@ Partial Class Estabelecimento_Editar
             m.Alert(Me, "Selecione um estabelecimento", True, "Estabelecimentos.aspx")
             Exit Sub
         Else
-            Atualiza_dts()
             Id_Estabelecimento = Request.QueryString("IdEstabelecimento")
-
             If m.CheckExists("TBL_ESTABELECIMENTOS", "ID", Id_Estabelecimento) = False Then
                 m.Alert(Me, "Selecione um estabelecimento", True, "Estabelecimentos.aspx")
                 Exit Sub
+            Else
+                Atualiza_dts()
             End If
+
             If ACAO = "DeleteRecord" Then DeleteRecord()
             If IsPostBack() = False Then RecoverRecord()
             If IsPostBack() = True Then UpdateRecord()
         End If
     End Sub
     Sub Atualiza_dts()
-        Dim sql As String = ""
+        Dim sql As String
 
         'GRUPO_ESTABELECIMENTO
         sql = ""
@@ -37,20 +38,20 @@ Partial Class Estabelecimento_Editar
 
         'GRUPO_DISTRIBUIDOR
         sql = ""
-
         sql &= "Select GRUPO_DISTRIBUIDOR_ID, GRUPO_DISTRIBUIDOR From TBL_DISTRIBUIDORES_GRUPOS Order By GRUPO_DISTRIBUIDOR"
         dts_GRUPOS_DISTRIBUIDORES.SelectCommand = sql
         dts_GRUPOS_DISTRIBUIDORES.DataBind()
 
         'CLASSE_ESTABELECIMENTO
+        sql = ""
         sql = "Select CLASSE_ESTABELECIMENTO_ID, CLASSE_ESTABELECIMENTO From TBL_ESTABELECIMENTOS_CLASSES Order By CLASSE_ESTABELECIMENTO"
         dts_CLASSES.SelectCommand = sql
         dts_CLASSES.DataBind()
 
         'SETORIZACAO_INCLUIR
         sql = ""
-        sql &= " Select -1 as SETOR_ID, '( Selecione para INCLUIR )' AS SETOR Union All "
-        sql &= " Select SETOR_ID, SETOR + ' (' + `REP + ')' as SETOR From VIEW_SETORIZACAO_SETORES "
+        sql &= " Select '-1' as SETOR_ID, '( Selecione para INCLUIR )' AS SETOR Union All "
+        sql &= " Select SETOR_ID, SETOR + ' (' + REP + ')' as SETOR From VIEW_SETORIZACAO_SETORES "
         sql &= " Where SETOR_ID Not In (Select SETOR_ID From VIEW_ESTABELECIMENTOS_SETORIZADOS Where ESTABELECIMENTO_ID = '" & Id_Estabelecimento & "')"
         sql &= " Order By SETOR"
         dts_SETORIZACAO_INCLUIR.SelectCommand = sql
@@ -58,8 +59,8 @@ Partial Class Estabelecimento_Editar
 
         'SETORIZACAO EXCLUIR
         sql = ""
-        sql &= " Select -1 as SETOR_ID, '( Selecione para INCLUIR )' AS SETOR Union All "
-        sql &= " Select SETOR_ID, SETOR + ' (' + `REP + ')' as SETOR From VIEW_SETORIZACAO_SETORES "
+        sql &= " Select '-1' as SETOR_ID, '( Selecione para INCLUIR )' AS SETOR Union All "
+        sql &= " Select SETOR_ID, SETOR + ' (' + REP + ')' as SETOR From VIEW_SETORIZACAO_SETORES "
         sql &= " Where SETOR_ID In (Select SETOR_ID From VIEW_ESTABELECIMENTOS_SETORIZADOS Where ESTABELECIMENTO_ID = '" & Id_Estabelecimento & "')"
         sql &= " Order By SETOR"
         dts_SETORIZACAO_INCLUIR.SelectCommand = sql
@@ -93,9 +94,9 @@ Partial Class Estabelecimento_Editar
             If Not IsDBNull(dtr("UF")) Then txt_UF.Value = dtr("UF")
             If Not IsDBNull(dtr("ESFERA")) Then txt_ESFERA.Value = dtr("ESFERA")
             If Not IsDBNull(dtr("NATUREZA")) Then txt_NATUREZA_JURIDICA.Value = dtr("NATUREZA")
-            If Not IsDBNull(dtr("CLASSE_ESTABELECIMENTO_ID")) Then COD_CLASSE_ESTABELECIMENTO.Text = dtr("CLASSE_ESTABELECIMENTO_ID")
-            If Not IsDBNull(dtr("GRUPO_ESTABELECIMENTO_ID")) Then ID_GRUPO_ESTABELECIMENTO.Text = dtr("GRUPO_ESTABELECIMENTO_ID").ToString
-            If Not IsDBNull(dtr("GRUPO_DISTRIBUIDOR_ID")) Then ID_GRUPO_DISTRIBUIDOR.Text = dtr("GRUPO_DISTRIBUIDOR_ID").ToString
+            If Not IsDBNull(dtr("CLASSE_ESTABELECIMENTO_ID")) Then CLASSE_ESTABELECIMENTO_ID.Text = dtr("CLASSE_ESTABELECIMENTO_ID")
+            If Not IsDBNull(dtr("GRUPO_ESTABELECIMENTO_ID")) Then GRUPO_ESTABELECIMENTO_ID.Text = dtr("GRUPO_ESTABELECIMENTO_ID").ToString
+            If Not IsDBNull(dtr("GRUPO_DISTRIBUIDOR_ID")) Then GRUPO_DISTRIBUIDOR_ID.Text = dtr("GRUPO_DISTRIBUIDOR_ID").ToString
         Else
             m.Alert(Me, "Selecione um estabelecimento", True, "Estabelecimentos.aspx")
         End If
@@ -112,18 +113,18 @@ Partial Class Estabelecimento_Editar
         Dim sql As String = ""
         sql &= " Update TBL_ESTABELECIMENTOS Set "
         sql &= " NOME_FANTASIA = '" & m.ConvertText(txt_NOME_FANTASIA.Value, clsMaster.TextCaseOptions.UpperCase) & "',"
-        sql &= " ESTABELECIMENTO_CLASSE_ID = '" & COD_CLASSE_ESTABELECIMENTO.Text & "',"
+        sql &= " ESTABELECIMENTO_CLASSE_ID = '" & CLASSE_ESTABELECIMENTO_ID.Text & "',"
 
-        If ID_GRUPO_ESTABELECIMENTO.Text = -1 Then
+        If GRUPO_ESTABELECIMENTO_ID.Text = -1 Then
             sql &= " GRUPO_ESTABELECIMENTO_ID = 0,"
         Else
-            sql &= " GRUPO_ESTABELECIMENTO_ID = '" & ID_GRUPO_ESTABELECIMENTO.Text & "',"
+            sql &= " GRUPO_ESTABELECIMENTO_ID = '" & GRUPO_ESTABELECIMENTO_ID.Text & "',"
         End If
 
-        If ID_GRUPO_DISTRIBUIDOR.Text = -1 Then
+        If GRUPO_DISTRIBUIDOR_ID.Text = -1 Then
             sql &= "GRUPO_DISTRIBUIDOR_ID = 0,"
         Else
-            sql &= "GRUPO_DISTRIBUIDOR_ID = '" & ID_GRUPO_DISTRIBUIDOR.Text & "',"
+            sql &= "GRUPO_DISTRIBUIDOR_ID = '" & GRUPO_DISTRIBUIDOR_ID.Text & "',"
         End If
 
         sql &= "[ATUALIZACAO_EMAIL] = '" & Session("EMAIL_LOGIN") & "'"
@@ -132,8 +133,8 @@ Partial Class Estabelecimento_Editar
         m.ExecuteSQL(sql)
 
         'INCLUI SETORIZACAO
-        If SETORIZACAO_INCLUIR.Text <> -1 Then
-            sql = ""
+        If SETORIZACAO_INCLUIR.Text <> '-1' Then
+            sql = "" Then
             sql &= " Insert Into TBL_SETORIZACAO_ESTABELECIMENTOS"
             sql &= " (SETOR_ID, CNPJ, SETORIZACAO_ID, INCLUSAO_EMAIL)"
             sql &= " Values ('" & SETORIZACAO_INCLUIR.Text & "',"
@@ -142,8 +143,8 @@ Partial Class Estabelecimento_Editar
             m.ExecuteSQL(sql)
         End If
         'EXCLUI SETORIZACAO
-        If SETORIZACAO_EXCLUIR.Text <> -1 Then
-            sql = ""
+        If SETORIZACAO_EXCLUIR.Text <> '-1' Then
+            sql = "" Then
             sql &= " Delete From TBL_SETORIZACAO"
             sql &= " Where SETOR_ID = '" & SETORIZACAO_EXCLUIR.Text & "' And "
             sql &= " CNPJ = '" & Val(CNPJ.Value) & "'"

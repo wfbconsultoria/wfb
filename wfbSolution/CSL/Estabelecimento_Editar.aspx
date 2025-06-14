@@ -61,24 +61,24 @@
             <%-- GRUPO --%>
             <div class="col-md-4">
                 <div class="form-floating">
-                    <asp:DropDownList runat="server" ID="ID_GRUPO_ESTABELECIMENTO" CssClass="form-select" DataSourceID="dts_GRUPOS" DataTextField="GRUPO" DataValueField="Id"></asp:DropDownList>
-                    <label for="ID_GRUPO_ESTABELECIMENTO">Grupo</label>
+                    <asp:DropDownList runat="server" ID="GRUPO_ESTABELECIMENTO_ID" CssClass="form-select" DataSourceID="dts_GRUPOS" DataTextField="GRUPO_ESTABELECIMENTO" DataValueField="GRUPO_ESTABELECIMENTO_ID"></asp:DropDownList>
+                    <label for="GRUPO_ESTABELECIMENTO_ID">Grupo</label>
                 </div>
             </div>
 
             <%-- GRUPO DISTRIBUIDOR --%>
             <div class="col-md-4">
                 <div class="form-floating">
-                    <asp:DropDownList runat="server" ID="ID_GRUPO_DISTRIBUIDOR" CssClass="form-select" DataSourceID="dts_GRUPOS_DISTRIBUIDORES" DataTextField="GRUPO_DISTRIBUIDOR" DataValueField="Id"></asp:DropDownList>
-                    <label for="ID_GRUPO_DISTRIBUIDOR">Grupo Distribuidor</label>
+                    <asp:DropDownList runat="server" ID="GRUPO_DISTRIBUIDOR_ID" CssClass="form-select" DataSourceID="dts_GRUPOS_DISTRIBUIDORES" DataTextField="GRUPO_DISTRIBUIDOR" DataValueField="GRUPO_DISTRIBUIDOR_ID"></asp:DropDownList>
+                    <label for="GRUPO_DISTRIBUIDOR_ID">Grupo Distribuidor</label>
                 </div>
             </div>
 
             <%-- CLASSE --%>
             <div class="col-md-4">
                 <div class="form-floating">
-                    <asp:DropDownList runat="server" ID="COD_CLASSE_ESTABELECIMENTO" CssClass="form-select" DataSourceID="dts_CLASSES" DataTextField="CLASSE_ESTABELECIMENTO" DataValueField="COD_CLASSE_ESTABELECIMENTO"></asp:DropDownList>
-                    <label for="COD_CLASSE_ESTABELECIMENTO">Classe</label>
+                    <asp:DropDownList runat="server" ID="CLASSE_ESTABELECIMENTO_ID" CssClass="form-select" DataSourceID="dts_CLASSES" DataTextField="CLASSE_ESTABELECIMENTO" DataValueField="CLASSE_ESTABELECIMENTO_ID"></asp:DropDownList>
+                    <label for="CLASSE_ESTABELECIMENTO_ID">Classe</label>
                 </div>
             </div>
         </div>

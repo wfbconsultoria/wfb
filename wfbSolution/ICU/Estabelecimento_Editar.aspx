@@ -39,9 +39,6 @@
                     <label for="txt_NOME_FANTASIA">Nome Fantasia</label>
                 </div>
             </div>
-            <%-- <div class="col-md-2">
-                <a class=" form-control btn btn-outline-primary" data-bs-toggle="collapse" href="#CABECALHO" role="button" aria-expanded="false" aria-controls="CABECALHO">&nbsp mais... &nbsp</a>&nbsp&nbsp
-            </div>--%>
         </div>
         <%-- CNPJ/NOME_FANTASIA--%>
 
@@ -61,24 +58,24 @@
             <%-- GRUPO --%>
             <div class="col-md-4">
                 <div class="form-floating">
-                    <asp:DropDownList runat="server" ID="ID_GRUPO_ESTABELECIMENTO" CssClass="form-select" DataSourceID="dts_GRUPOS" DataTextField="GRUPO" DataValueField="Id"></asp:DropDownList>
-                    <label for="ID_GRUPO_ESTABELECIMENTO">Grupo</label>
+                    <asp:DropDownList runat="server" ID="GRUPO_ESTABELECIMENTO_ID" CssClass="form-select" DataSourceID="dts_GRUPOS" DataTextField="GRUPO_ESTABELECIMENTO" DataValueField="GRUPO_ESTABELECIMENTO_ID"></asp:DropDownList>
+                    <label for="GRUPO_ESTABELECIMENTO_ID">Grupo</label>
                 </div>
             </div>
 
             <%-- GRUPO DISTRIBUIDOR --%>
             <div class="col-md-4">
                 <div class="form-floating">
-                    <asp:DropDownList runat="server" ID="ID_GRUPO_DISTRIBUIDOR" CssClass="form-select" DataSourceID="dts_GRUPOS_DISTRIBUIDORES" DataTextField="GRUPO_DISTRIBUIDOR" DataValueField="Id"></asp:DropDownList>
-                    <label for="ID_GRUPO_DISTRIBUIDOR">Grupo Distribuidor</label>
+                    <asp:DropDownList runat="server" ID="GRUPO_DISTRIBUIDOR_ID" CssClass="form-select" DataSourceID="dts_GRUPOS_DISTRIBUIDORES" DataTextField="GRUPO_DISTRIBUIDOR" DataValueField="GRUPO_DISTRIBUIDOR_ID"></asp:DropDownList>
+                    <label for="GRUPO_DISTRIBUIDOR_ID">Grupo Distribuidor</label>
                 </div>
             </div>
 
             <%-- CLASSE --%>
             <div class="col-md-4">
                 <div class="form-floating">
-                    <asp:DropDownList runat="server" ID="COD_CLASSE_ESTABELECIMENTO" CssClass="form-select" DataSourceID="dts_CLASSES" DataTextField="CLASSE_ESTABELECIMENTO" DataValueField="COD_CLASSE_ESTABELECIMENTO"></asp:DropDownList>
-                    <label for="COD_CLASSE_ESTABELECIMENTO">Classe</label>
+                    <asp:DropDownList runat="server" ID="CLASSE_ESTABELECIMENTO_ID" CssClass="form-select" DataSourceID="dts_CLASSES" DataTextField="CLASSE_ESTABELECIMENTO" DataValueField="CLASSE_ESTABELECIMENTO_ID"></asp:DropDownList>
+                    <label for="CLASSE_ESTABELECIMENTO_ID">Classe</label>
                 </div>
             </div>
         </div>
@@ -122,15 +119,15 @@
             <%-- COD_IBGE_7 --%>
             <div class="col-md-2">
                 <div class="form-floating">
-                    <input runat="server" id="txt_COD_IBGE_7" type="text" class="form-control" disabled="disabled" />
-                    <label for="txt_COD_IBGE_7">Cod IBGE(7)</label>
+                    <input runat="server" id="txt_MUNICIPIO_ID" type="text" class="form-control" disabled="disabled" />
+                    <label for="txt_MUNICIPIO_ID">Cod IBGE(7)</label>
                 </div>
             </div>
             <%-- CIDADE --%>
             <div class="col-md-3">
                 <div class="form-floating">
-                    <input runat="server" id="txt_CIDADE" type="text" class="form-control" disabled="disabled" />
-                    <label for="txt_CIDADE">Cidade</label>
+                    <input runat="server" id="txt_MUNICIPIO_UF" type="text" class="form-control" disabled="disabled" />
+                    <label for="txt_MUNICIPIO_UF">Cidade</label>
                 </div>
             </div>
             <%-- UF --%>
@@ -155,17 +152,17 @@
             <%-- NATUREZA_JURIDICA_DESCRICAO --%>
             <div class="col-md-4">
                 <div class="form-floating">
-                    <input runat="server" id="txt_NATUREZA_JURIDICA" type="text" class="form-control" value="" disabled="disabled" />
-                    <label for="txt_NATUREZA_JURIDICA">Natureza Jurídica</label>
+                    <input runat="server" id="txt_NATUREZA" type="text" class="form-control" value="" disabled="disabled" />
+                    <label for="txt_NATUREZA">Natureza Jurídica</label>
                 </div>
             </div>
             <%-- CNAE --%>
-            <div class="col-md-6">
+            <%--<div class="col-md-6">
                 <div class="form-floating">
                     <input runat="server" id="txt_CNAE_COD" type="text" class="form-control" value="" disabled="disabled" />
                     <label for="txt_CNAE_COD">Atividade</label>
                 </div>
-            </div>
+            </div>--%>
         </div>
         <%-- COD_NATUREZA_JURIDICA/NATUREZA_JURIDICA/CNAE --%>
 
@@ -176,14 +173,14 @@
             <%-- INCLUIR --%>
             <div class="col-md-6">
                 <div class="form-floating">
-                    <asp:DropDownList runat="server" ID="SETORIZACAO_INCLUIR" CssClass="form-select" DataSourceID="dts_SETORIZACAO_INCLUIR" DataTextField="SETOR" DataValueField="Id"></asp:DropDownList>
+                    <asp:DropDownList runat="server" ID="SETORIZACAO_INCLUIR" CssClass="form-select" DataSourceID="dts_SETORIZACAO_INCLUIR" DataTextField="SETOR" DataValueField="SETOR_ID"></asp:DropDownList>
                     <label for="SETORIZACAO_INCLUIR" class="text-primary">Incluir</label>
                 </div>
             </div>
             <%-- EXCLUIR --%>
             <div class="col-md-6">
                 <div class="form-floating">
-                    <asp:DropDownList runat="server" ID="SETORIZACAO_EXCLUIR" CssClass="form-select" DataSourceID="dts_SETORIZACAO_EXCLUIR" DataTextField="SETOR" DataValueField="Id"></asp:DropDownList>
+                    <asp:DropDownList runat="server" ID="SETORIZACAO_EXCLUIR" CssClass="form-select" DataSourceID="dts_SETORIZACAO_EXCLUIR" DataTextField="SETOR" DataValueField="SETOR_ID"></asp:DropDownList>
                     <label for="SETORIZACAO_EXCLUIR" class="text-danger">Excluir</label>
                 </div>
             </div>
@@ -211,8 +208,8 @@
                 data-mobile-responsive="true">
                 <thead>
                     <tr>
-                        <th data-field="Setor_SETOR" data-sortable="true" style="width: 40%">Setor</th>
-                        <th data-field="Setor_RESPONSAVEL" data-sortable="true" style="width: 60%">Responsável</th>
+                        <th data-field="SETOR" data-sortable="true" style="width: 40%">Setor</th>
+                        <th data-field="REP" data-sortable="true" style="width: 60%">Represenmtante</th>
 
                     </tr>
                 </thead>
