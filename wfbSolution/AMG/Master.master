@@ -1,0 +1,80 @@
+﻿<%@ Master Language="VB" CodeFile="Master.master.vb" Inherits="Master" %>
+
+<%@ Register Src="~/Scripts_Header.ascx" TagPrefix="uc1" TagName="Scripts_Header" %>
+<%@ Register Src="~/Scripts_Footer.ascx" TagPrefix="uc1" TagName="Scripts_Footer" %>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+    <!-- Scripts, meta e referencias do cabeçalho da página -->
+    <uc1:Scripts_Header runat="server" ID="Scripts_Header" />
+    <link href="css/navbar-top-fixed.css" rel="stylesheet" />
+    <title></title>
+    <asp:ContentPlaceHolder ID="HeadContent" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+
+<body class="container">
+    <form runat="server" id="frmMaster">
+        <!-- Bara de navegação -->
+        <nav class="navbar navbar-expand-lg bg-body-tertiary fixed-top">
+            <div class="container">
+                <a class="navbar-brand" href="#">
+                    <img src="Images/LOGO.png" alt="Bootstrap" width="100" height="35">
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                    <div class="navbar-nav">
+                        <a class="nav-link" href="Default.aspx">Início</a>
+                        <a class="nav-link" href="Estabelecimentos.aspx">Estabelecimentos</a>
+                        <a class="nav-link" href="Medicos.aspx">Contatos</a>
+                        <a class="nav-link" href="Visitas.aspx">Visitas</a>
+
+                        <!-- MENU RELATORIOS -->
+                        <div class="dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Relatórios</a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="PBI.aspx">Dash Contatos</a></li>
+                                <li><a class="dropdown-item" href="PBI_CNES.aspx">ICU CNES Market</a></li>
+                                <li><a class="dropdown-item text-danger" href="#">Os relatórios são atualizados sempre as 00:00</a></li>
+                            </ul>
+                        </div>
+
+                        <!-- MENU ACOES -->
+                        <div class="dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Cadastros</a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="SMS.aspx">SMS</a></li>
+                                <li><a class="dropdown-item" href="Distribuidores_Grupos_Lista.aspx">Grupos de Distribuidores</a></li>
+                                <li><a class="dropdown-item" href="Setores_Gerentes_Lista.aspx">Regionais</a></li>
+                                <li><a class="dropdown-item" href="Setorizacao_Representantes_Lista.aspx">Setores</a></li>
+                                <li><a class="dropdown-item" href="Usuarios_Lista.aspx">Usuários</a></li>
+                            </ul>
+                        </div>
+                        <!-- USUARIO LOGADO/SAIR -->
+                        <a class="nav-link text-primary" href="#"><%:Session("NOME_LOGIN")%></a>
+                        <a class="nav-link text-danger" href="Login.aspx">Sair</a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Conteudo e corpo da página filho -->
+        <main role="main" class="container">
+            <asp:ContentPlaceHolder ID="BodyContent" runat="server">
+                <%--Titulo da Pagina--%>
+                <h4 class="text-secondary text-uppercase" style="padding-top: 5px"><%:Page.Title %></h4>
+            </asp:ContentPlaceHolder>
+        </main>
+
+        <!--Scripts e referencias do final da página -->
+        <asp:ContentPlaceHolder ID="FooterContent" runat="server">
+        </asp:ContentPlaceHolder>
+        <uc1:Scripts_Footer runat="server" ID="Scripts_Footer" />
+
+    </form>
+</body>
+</html>
