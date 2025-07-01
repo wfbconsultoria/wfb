@@ -16,7 +16,6 @@
         
         <form id="frmLogin" runat="server">
             <img class="w-100 rounded" src="Images/LOGO.png" />
-<br />
             
             <div class="form-floating">
                 <input runat="server" id="txtApelido" type="text" class="form-control" placeholder="name@example.com" required="required" />
@@ -51,7 +50,7 @@
                     </div>
                 </div>
 
-                <button runat="server" id="cmdChangePassword" class="w-100 btn btn-lg btn-primary" type="submit" causesvalidation="true">Trocar Senha</button>
+                <button runat="server" id="cmdChangePassword" class="w-100 btn btn-lg btn-dark" type="submit" causesvalidation="true">Trocar Senha</button>
                 <p class="mt-5 mb-3 text-muted">&copy; <%:ConfigurationManager.AppSettings("App.Owner") %></p>
             </div>
             <uc1:Scripts_Footer runat="server" ID="Scripts_Footer" />

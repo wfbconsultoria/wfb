@@ -2,6 +2,7 @@
 Imports System.Data
 Imports System.Net
 Imports System.Net.Mail
+Imports Twilio
 
 Public Class clsMaster
     Public cnn As System.Data.SqlClient.SqlConnection
@@ -19,7 +20,6 @@ Err_DatabaseConnect:
         DatabaseConnect = False
         SystemError(Err.Number, Err.Description, "", "Function: clsMaster.ConectaBanco")
     End Function
-
     Public Function ExecuteSQL(ByVal SQL As String) As Boolean
         On Error GoTo Err_ExecutarSQL
         ExecuteSQL = False
@@ -157,12 +157,10 @@ Err_CheckExists:
         strDate = strDate & Now.Millisecond()
         Return strDate
     End Function
-
     Public Function ConvertCPFToString(ByVal strCPF As String) As String
         Dim apenasDigitos = New Regex("[^\d]")
         Return apenasDigitos.Replace(strCPF, "")
     End Function
-
     Public Function ConvertText(ByVal Text As String, Optional TextCase As TextCaseOptions = TextCaseOptions.UpperCase) As String
         ConvertText = ""
         If IsDBNull(Text) Then
@@ -199,7 +197,6 @@ Err_CheckExists:
         End If
         ConvertText = Trim(Text)
     End Function
-
     Public Function ConvertValue(ByVal strValue As String, Optional ValueOption As ValuesOptions = ValuesOptions.NumeroInteiro) As String
 
         If IsDBNull(strValue) Then strValue = "0"
@@ -212,7 +209,6 @@ Err_CheckExists:
         Next
         ConvertValue = strValue
     End Function
-
     Public Function FormatDate(ByVal TextDate As String) As String
         'passar sempre a data no formato dd/mm/aaaa para converter para yyyy-mm-dd (sql server)
         Try
@@ -226,7 +222,6 @@ Err_CheckExists:
             FormatDate = "1900-01-01"
         End Try
     End Function
-
     Public Enum TextCaseOptions
         UpperCase
         LowerCase
@@ -281,6 +276,17 @@ Err_SendMail:
 
         SendMail = False
     End Function
+
+    Private Sub cmdSMS_ServerClick(sender As Object, e As EventArgs) Handles cmdSMS.ServerClick
+        Dim accountSid = "ACb51e7f47fe56a9a0eaccb9768af8d610"
+        Dim authToken = "42a50e6a863b6d65c0b4ead99af9ebda"
+        TwilioClient.Init(accountSid, authToken)
+        Dim messageOptions = New CreateMessageOptions(New PhoneNumber("+5511939350161"))
+        messageOptions.MessagingServiceSid = "MG913a2070dd221bb9c386f54dda4c3321"
+        messageOptions.Body = "Ahoy 👋"
+        Dim message = MessageResource.Create(messageOptions)
+        Console.WriteLine(message.Body)
+    End Sub
 
     Public Function Alert(MyPage As Page, Mensagem As String, Optional Redirecionar As Boolean = False, Optional ParaPagina As String = "") As Boolean
         On Error GoTo Err_Alert

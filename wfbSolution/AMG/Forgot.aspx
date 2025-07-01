@@ -11,7 +11,7 @@
 <head runat="server">
     <uc1:Scripts_Header runat="server" ID="Scripts_Header" />
     <link href="css/signin.css" rel="stylesheet" />
-    <title>Login</title>
+    <title>Recuperar senha</title>
 
 </head>
 <body>
@@ -19,7 +19,7 @@
 
         <form id="frmLogin" runat="server">
             
-            <img class="form-control" src="Images/_Logo.png" alt="" width="252" height="66" />
+            <img class="w-100 rounded" src="Images/LOGO.png" />
             <div class="form-floating">
                 <input runat="server" id="txtEmail"  type="email" class="form-control" placeholder="name@example.com" required="required" />
                 <label for="txtEmail">Email address</label>
@@ -29,7 +29,8 @@
                 <a href="Login.aspx">login</a>
             </div>
 
-            <button runat="server" id="cmdRecover" class="w-100 btn btn-lg btn-primary" type="submit" causesvalidation="true">Recover Password</button>
+            <button runat="server" id="cmdRecover" class="w-100 btn btn-lg btn-dark" type="submit" causesvalidation="true">Recuperar Senha
+            </button>
             <p class="mt-5 mb-3 text-muted">&copy; <%:ConfigurationManager.AppSettings("App.Owner") %></p>
              
             <uc1:Scripts_Footer runat="server" ID="Scripts_Footer" />

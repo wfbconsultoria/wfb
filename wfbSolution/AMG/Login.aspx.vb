@@ -9,6 +9,8 @@ Partial Class Login
         Session("ID_LOGIN") = ""
         Session("APELIDO") = ""
         Session("PERFIL_LOGIN") = ""
+        Session("EMAIL_LOGIN") = ""
+        Session("CELULAR_LOGIN") = ""
         Session("ID_PERFIL_LOGIN") = ""
         Session("IP_LOGIN") = ""
     End Sub
@@ -71,6 +73,8 @@ Partial Class Login
             Session("APELIDO_LOGIN") = DTR("APELIDO")
             Session("PERFIL_LOGIN") = DTR("PERFIL")
             Session("ID_PERFIL_LOGIN") = DTR("ID_PERFIL")
+            Session("EMAIL_LOGIN") = DTR("EMAIL")
+            Session("CELULAR_LOGIN") = DTR("CELULAR")
             Session("IP_LOGIN") = Request.ServerVariables("REMOTE_ADDR").ToString
             M.ExecuteSQL("Insert Into TBL_USUARIOS_LOGINS (ID_USUARIO) Values ('" & Session("ID_LOGIN") & "')")
         Else
