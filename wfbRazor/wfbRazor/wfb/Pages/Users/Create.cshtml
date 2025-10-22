@@ -1,0 +1,49 @@
+﻿@page
+@model wfb.Pages.Users.CreateModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>ClsUsers</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="ClsUsers.Email" class="control-label"></label>
+                <input asp-for="ClsUsers.Email" class="form-control" />
+                <span asp-validation-for="ClsUsers.Email" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ClsUsers.Name" class="control-label"></label>
+                <input asp-for="ClsUsers.Name" class="form-control" />
+                <span asp-validation-for="ClsUsers.Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ClsUsers.Password" class="control-label"></label>
+                <input asp-for="ClsUsers.Password" class="form-control" />
+                <span asp-validation-for="ClsUsers.Password" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ClsUsers.Phone" class="control-label"></label>
+                <input asp-for="ClsUsers.Phone" class="form-control" />
+                <span asp-validation-for="ClsUsers.Phone" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

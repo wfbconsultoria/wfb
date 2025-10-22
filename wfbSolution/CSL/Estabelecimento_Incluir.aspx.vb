@@ -36,7 +36,7 @@ Partial Class Estabelecimento_Incluir
         If dtr.HasRows Then
             dtr.Read()
             Dim ID_ESTABELECIMENTO As String = dtr("ID").ToString
-            m.Alert(Me, "CNPJ JÁ ESTÁ CADASTRADO", True, "Estabelecimento.aspx?idEstabelecimento=" & ID_ESTABELECIMENTO)
+            m.Alert(Me, "CNPJ JÁ ESTÁ CADASTRADO", True, "Estabelecimento_Editar.aspx?idEstabelecimento=" & ID_ESTABELECIMENTO)
         End If
 
         Dim Retorno = s.consultarCNPJ(strCNPJ)

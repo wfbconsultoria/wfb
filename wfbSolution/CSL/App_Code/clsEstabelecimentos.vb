@@ -6,7 +6,7 @@ Public Class clsEstabelecimentos
     Public Function sql_Estabelecimentos(tipo As String, Optional id As String = "") As String
         Dim sql As String = ""
         sql = ""
-        sql &= " SELECT * FROM APP_ESTABELECIMENTOS "
+        sql &= " SELECT * FROM VIEW_ESTABELECIMENTOS "
         If tipo = "lista" Then
             Select Case HttpContext.Current.Session("NIVEL_LOGIN")
                 Case = 0

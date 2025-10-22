@@ -239,6 +239,27 @@ Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "CSL", "CSL\", "{9835478E-79
 		SlnRelativePath = "CSL\"
 	EndProjectSection
 EndProject
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "AMG_ANGELS", "AMG_ANGELS\", "{8085E836-3761-D56C-0DD8-AE2564C3DD98}"
+	ProjectSection(WebsiteProperties) = preProject
+		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.8.1"
+		Debug.AspNetCompiler.VirtualPath = "/localhost_52662"
+		Debug.AspNetCompiler.PhysicalPath = "AMG_ANGELS\"
+		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_52662\"
+		Debug.AspNetCompiler.Updateable = "true"
+		Debug.AspNetCompiler.ForceOverwrite = "true"
+		Debug.AspNetCompiler.FixedNames = "false"
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.VirtualPath = "/localhost_52662"
+		Release.AspNetCompiler.PhysicalPath = "AMG_ANGELS\"
+		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_52662\"
+		Release.AspNetCompiler.Updateable = "true"
+		Release.AspNetCompiler.ForceOverwrite = "true"
+		Release.AspNetCompiler.FixedNames = "false"
+		Release.AspNetCompiler.Debug = "False"
+		VWDPort = "52662"
+		SlnRelativePath = "AMG_ANGELS\"
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -325,6 +346,10 @@ Global
 		{9835478E-7927-662C-6226-B8DB82297F5B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9835478E-7927-662C-6226-B8DB82297F5B}.Release|Any CPU.ActiveCfg = Debug|Any CPU
 		{9835478E-7927-662C-6226-B8DB82297F5B}.Release|Any CPU.Build.0 = Debug|Any CPU
+		{8085E836-3761-D56C-0DD8-AE2564C3DD98}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8085E836-3761-D56C-0DD8-AE2564C3DD98}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8085E836-3761-D56C-0DD8-AE2564C3DD98}.Release|Any CPU.ActiveCfg = Debug|Any CPU
+		{8085E836-3761-D56C-0DD8-AE2564C3DD98}.Release|Any CPU.Build.0 = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

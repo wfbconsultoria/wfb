@@ -234,6 +234,7 @@
             <div class="col-12">
                 <input id="cmd_Save" type="submit" value="Gravar" class="btn btn-primary" />
                 <a class="btn btn-info" href="Estabelecimentos.aspx">Lista</a>
+                <a class="btn btn-primary" href="Estabelecimento_Incluir.aspx?Id=NOVO&acao=InsertRecord">Novo</a>
             </div>
         </div>
          <a class="text-danger" data-bs-toggle="modal" href="#modalEXCLUIR">Excluir</a>

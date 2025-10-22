@@ -68,7 +68,7 @@ Partial Class Estabelecimento_Editar
 
         'SETORIZACAO
         sql = ""
-        sql &= " Select SETOR_ID, REP + ' ' + REP_FUNCAO  + ' (' + SETOR + ' ' + SETORIZACAO_TIPO + ')' AS SETOR From VIEW_ESTABELECIMENTOS_SETORIZADOS "
+        sql &= " Select SETOR_ID, REP + ' ' + REP_FUNCAO  + ' (' + SETOR + ')' AS SETOR From VIEW_ESTABELECIMENTOS_SETORIZADOS "
         sql &= "  Where ESTABELECIMENTO_ID = '" & Id_Estabelecimento & "'"
         sql &= " Order By REP"
         dts_SETORIZACAO.SelectCommand = sql
