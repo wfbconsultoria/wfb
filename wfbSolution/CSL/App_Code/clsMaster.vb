@@ -282,30 +282,52 @@ Err_SendMail:
         SendMail = False
     End Function
 
+    '    Public Function Alert(MyPage As Page, Mensagem As String, Optional Redirecionar As Boolean = False, Optional ParaPagina As String = "") As Boolean
+    '        On Error GoTo Err_Alert
+
+    '        Alert = False
+    '        Dim jscript As String
+    '        'CAIXA DE MENSAGEM
+    '        If Redirecionar = True Then
+    '            jscript = ""
+    '            jscript += "<script language='JavaScript'>"
+    '            jscript += ";alert('" & Mensagem & "'); document.location.href='" & ParaPagina & "'"
+    '            jscript += "</script>"
+    '        Else
+    '            jscript = ""
+    '            jscript += "<script language='JavaScript'>"
+    '            jscript += ";alert('" & Mensagem & "');"
+    '            jscript += "</script>"
+    '        End If
+    '        MyPage.ClientScript.RegisterClientScriptBlock(Me.GetType(), "Mensagem", jscript)
+
+    '        Alert = True
+    '        Exit Function
+    'Err_Alert:
+    '        Alert = False
+    '    End Function
+
     Public Function Alert(MyPage As Page, Mensagem As String, Optional Redirecionar As Boolean = False, Optional ParaPagina As String = "") As Boolean
-        On Error GoTo Err_Alert
+        Try
+            Dim jscript As New StringBuilder()
 
-        Alert = False
-        Dim jscript As String
-        'CAIXA DE MENSAGEM
-        If Redirecionar = True Then
-            jscript = ""
-            jscript += "<script language='JavaScript'>"
-            jscript += ";alert('" & Mensagem & "'); document.location.href='" & ParaPagina & "'"
-            jscript += "</script>"
-        Else
-            jscript = ""
-            jscript += "<script language='JavaScript'>"
-            jscript += ";alert('" & Mensagem & "');"
-            jscript += "</script>"
-        End If
-        MyPage.ClientScript.RegisterClientScriptBlock(Me.GetType(), "Mensagem", jscript)
+            jscript.Append("<script type='text/javascript'>")
+            jscript.Append("alert('" & Mensagem.Replace("'", "\'") & "');")
+            If Redirecionar Then
+                jscript.Append("window.location.href='" & ParaPagina & "';")
+            End If
+            jscript.Append("</script>")
 
-        Alert = True
-        Exit Function
-Err_Alert:
-        Alert = False
+            MyPage.ClientScript.RegisterStartupScript(Me.GetType(), "Alerta", jscript.ToString())
+            Return True
+
+        Catch ex As Exception
+            Return False
+        End Try
     End Function
+
+
+
 
     Public Function GenerateKey(Optional Sigla As String = "") As String
 

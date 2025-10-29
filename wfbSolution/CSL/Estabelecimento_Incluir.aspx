@@ -15,6 +15,7 @@
     <%-- LINKS --%>
     <br />
     <div class="row g-3">
+
         <%-- CNPJ/NOME_FANTASIA--%>
         <div class="row g-2">
             <%-- CNPJ --%>
@@ -22,7 +23,6 @@
                 <div class="form-floating">
                     <input runat="server" id="CNPJ" type="text" class="form-control" value="" disabled="disabled" />
                     <label for="CNPJ">CNPJ</label>
-
                 </div>
             </div>
             <%-- NOME_FANTASIA --%>
@@ -55,7 +55,6 @@
                     <label for="txt_ENDERECO">Endereço</label>
                 </div>
             </div>
-
             <%-- NUMERO --%>
             <div class="col-md-2">
                 <div class="form-floating">
@@ -63,9 +62,8 @@
                     <label for="txt_NUMERO">Numero</label>
                 </div>
             </div>
-
             <%-- COMPLEMENTO --%>
-            <div class="col-md-4">
+            <div class="col-md-2">
                 <div class="form-floating">
                     <input runat="server" id="txt_COMPLEMENTO" type="text" class="form-control" disabled="disabled" />
                     <label for="txt_COMPLEMENTO">Complemento</label>
@@ -114,6 +112,33 @@
         </div>
         <%-- CEP/BAIRRO/COD_IBGE_7/CIDADE/UF--%>
 
+
+        <%-- LATITUDE/LONGITUDE/PLUSCODE --%>
+        <div class="row g-2">
+            <%-- LATITUDE --%>
+            <div class="col-md-4">
+                <div class="form-floating">
+                    <input runat="server" id="txt_LATITUDE" type="text" class="form-control" value="" disabled="disabled" />
+                    <label for="txt_LATITUDE">Geo Latitude</label>
+                </div>
+            </div>
+            <%-- LONGITUDE --%>
+            <div class="col-md-4">
+                <div class="form-floating">
+                    <input runat="server" id="txt_LONGITUDE" type="text" class="form-control" value="" disabled="disabled" />
+                    <label for="txt_LONGITUDE">Geo Longitude</label>
+                </div>
+            </div>
+            <%-- PLUS_CODE --%>
+            <div class="col-md-4">
+                <div class="form-floating">
+                    <input runat="server" id="txt_PLUSCODE" type="text" class="form-control" value="" disabled="disabled" />
+                    <label for="txt_PLUSCODE">Geo Plus Code</label>
+                </div>
+            </div>
+        </div>
+        <%-- LATITUDE/LONGITUDE/PLUSCODE --%>
+
         <%-- COD_NATUREZA_JURIDICA/NATUREZA_JURIDICA_DESCRICAO/CNAE/CNAE_DESCRICAO --%>
         <div class="row g-2">
             <%-- COD_NATUREZA_JURIDICA --%>
@@ -130,7 +155,6 @@
                     <label for="txt_NATUREZA_JURIDICA_DESCRICAO">Natureza Jurídica</label>
                 </div>
             </div>
-
             <%-- CNAE --%>
             <div class="col-md-2">
                 <div class="form-floating">
@@ -145,10 +169,41 @@
                     <label for="txt_CNAE_DESCRICAO">CNAE Descrição</label>
                 </div>
             </div>
-
-
         </div>
         <%-- COD_NATUREZA_JURIDICA/NATUREZA_JURIDICA_DESCRICAO --%>
+
+        <%-- ATIVIDADE_ECONOMICA_ID/ATIVIDADE_ECONOMICA_DESCRICAO/DATA_FUNDACAO/SITUACAO --%>
+        <div class="row g-2">
+            <%-- COD_ATIVIDADE_ECONOMICA --%>
+            <div class="col-md-2">
+                <div class="form-floating">
+                    <input runat="server" id="txt_COD_ATIVIDADE_ECONOMICA" type="text" class="form-control" value="" disabled="disabled" />
+                    <label for="txt_COD_ATIVIDADE_ECONOMICA">Cod Atividade</label>
+                </div>
+            </div>
+            <%-- ATIVIDADE_ECONOMICA --%>
+            <div class="col-md-6">
+                <div class="form-floating">
+                    <input runat="server" id="txt_ATIVIDADE_ECONOMICA" type="text" class="form-control" value="" disabled="disabled" />
+                    <label for="txt_ATIVIDADE_ECONOMICA">Atividade</label>
+                </div>
+            </div>
+            <%-- DATA_FUNDACAO --%>
+            <div class="col-md-2">
+                <div class="form-floating">
+                    <input runat="server" id="txt_DATA_FUNDACAO" type="text" class="form-control" value="" disabled="disabled" />
+                    <label for="txt_ DATA_FUNDACAO">Fundacao</label>
+                </div>
+            </div>
+            <%-- SITUACAO_RFB --%>
+            <div class="col-md-2">
+                <div class="form-floating">
+                    <input runat="server" id="txt_SITUACAO_RFB" type="text" class="form-control" value="" disabled="disabled" />
+                    <label for="txt_SITUACAO_RFB">Situacao</label>
+                </div>
+            </div>
+        </div>
+        <%-- ATIVIDADE_ECONOMICA_ID/ATIVIDADE_ECONOMICA_DESCRICAO/DATA_FUNDACAO/SITUACAO --%>
 
         <%-- BOTÕES --%>
         <div class="row g-2">

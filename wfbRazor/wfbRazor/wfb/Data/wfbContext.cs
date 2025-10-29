@@ -15,5 +15,6 @@ namespace wfb.Data
         }
 
         public DbSet<wfb.Models.ClsUsers> ClsUsers { get; set; } = default!;
+        public DbSet<wfb.Models.Users> Users { get; set; } = default!;
     }
 }

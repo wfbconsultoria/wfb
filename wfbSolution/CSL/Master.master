@@ -30,20 +30,20 @@
                     <div class="navbar-nav">
                         <a class="nav-link" href="Default.aspx">Início</a>
                         <a class="nav-link" href="Estabelecimentos.aspx">Estabelecimentos</a>
-                        <a class="nav-link" href="Estabelecimento_Incluir.aspx?Id=NOVO&acao=InsertRecord">Novo Estabelecimento</a>
-                        <a class="nav-link" href="Visitas.aspx">Visitas</a>
+                        <%--<a class="nav-link" href="Estabelecimento_Incluir.aspx?Id=NOVO&acao=InsertRecord">Novo Estabelecimento</a>
+                        <a class="nav-link" href="Visitas.aspx">Visitas</a>--%>
 
                         <!-- MENU RELATORIOS -->
-                        <div class="dropdown">
+                        <%--<div class="dropdown">
                             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Relatórios</a>
                             <ul class="dropdown-menu">
                                 
                                 <li><a class="dropdown-item text-danger" href="#">Os relatórios são atualizados sempre as 00:00</a></li>
                             </ul>
-                        </div>
+                        </div>--%>
 
                         <!-- MENU ACOES -->
-                        <div class="dropdown">
+                        <%--<div class="dropdown">
                             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Cadastros</a>
                             <ul class="dropdown-menu">
                                 <li><a class="dropdown-item" href="Estabelecimentos_Grupos_Lista.aspx">Grupos de Estabelecimentos</a></li>
@@ -52,7 +52,7 @@
                                 <li><a class="dropdown-item" href="Setorizacao_Representantes_Lista.aspx">Setores</a></li>
                                 <li><a class="dropdown-item" href="Usuarios_Lista.aspx">Usuários</a></li>
                             </ul>
-                        </div>
+                        </div>--%>
                         <!-- USUARIO LOGADO/SAIR -->
                         <a class="nav-link text-primary" href="#"><%:Session("NOME_LOGIN")%></a>
                         <a class="nav-link text-danger" href="Login.aspx">Sair</a>
