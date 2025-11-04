@@ -10,20 +10,17 @@ Partial Class _Default
             Response.Redirect("Login.aspx")
         End If
 
-        'pbiReport.Src = ""
-
-        'Dim pbiLink As String
-        'pbiLink = ""
-        'Dim dtr As SqlClient.SqlDataReader
-        'Dim sql As String = ""
-        'sql &= " SELECT LINK_RELATORIO FROM TBL_USUARIOS "
-        'sql &= " WHERE EMAIL = '" & Session("EMAIL_LOGIN").ToString & "'"
-        'dtr = m.ExecuteSelect(sql)
-        'If dtr.HasRows Then
-        '    dtr.Read()
-        '    pbiLink = dtr("LINK_RELATORIO").ToString
-        '    pbiReport.Src = pbiLink
-        'End If
+        Dim reportLink As String = ""
+        Dim dtr As SqlClient.SqlDataReader
+        Dim sql As String = ""
+        sql &= " SELECT LINK_PBI FROM TBL_USUARIOS_LINKS "
+        sql &= " WHERE EMAIL = '" & Session("EMAIL_LOGIN").ToString & "'"
+        dtr = M.ExecuteSelect(sql)
+        If dtr.HasRows Then
+            dtr.Read()
+            reportLink = dtr("LINK_PBI").ToString
+            frameReport.Attributes("src") = reportLink
+        End If
 
     End Sub
 End Class

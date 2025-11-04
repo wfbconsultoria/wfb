@@ -11,9 +11,8 @@ Public Class clsEstabelecimentos
     ReadOnly m As New clsMaster
     ReadOnly c As New clsCEP
     Public Function sql_Estabelecimentos(tipo As String, Optional id As String = "") As String
-        Dim sql As String = ""
-        sql = ""
-        sql &= " SELECT * FROM VIEW_ESTABELECIMENTOS "
+
+        Dim sql As String = " SELECT * FROM VIEW_ESTABELECIMENTOS "
         If tipo = "lista" Then
             Select Case HttpContext.Current.Session("NIVEL_LOGIN")
                 Case = 0
@@ -33,7 +32,6 @@ Public Class clsEstabelecimentos
 
     Public Function sql_classes_estabelecimentos() As String
         Dim sql As String = ""
-        sql = ""
         'sql &= " SELECT '' AS COD_CLASSE_ESTABELECIMENTO, '( Selecione )' AS CLASSE_ESTABELECIMENTO UNION ALL "
         sql &= " SELECT "
         sql &= " CONVERT (VARCHAR, COD_CLASSE_ESTABELECIMENTO) AS COD_CLASSE_ESTABELECIMENTO "
@@ -80,8 +78,8 @@ Public Class clsEstabelecimentos
     End Function
 
     Public Function Formata_CNPJ(strCNPJ As String) As String
-        'LIMPA STRING QE VAO SER USADS COMO VALOR
-        Formata_CNPJ = ""
+        'LIMPA STRING QE VAO SER USADA COMO VALOR
+
         If IsDBNull(strCNPJ) Then strCNPJ = ""
         If strCNPJ = "" Then strCNPJ = ""
         strCNPJ = Replace(strCNPJ, ".", "")
@@ -213,8 +211,8 @@ Public Class clsEstabelecimentos
                 CNAECompleto = ""
             End If
 
-                'consultarCNPJ = JsonConvert.DeserializeObject(Of retornoCNPJ)(responseBody)
-                cnpjStatus = True
+            'consultarCNPJ = JsonConvert.DeserializeObject(Of retornoCNPJ)(responseBody)
+            cnpjStatus = True
         Else
             cnpjStatus = False
         End If

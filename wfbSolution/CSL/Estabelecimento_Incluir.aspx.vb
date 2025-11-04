@@ -10,28 +10,24 @@ Partial Class Estabelecimento_Incluir
         Valida_CNPJ()
     End Sub
 
-    Private Function Valida_CNPJ() As Boolean
-        Valida_CNPJ = False
+    Private Sub Valida_CNPJ()
 
         'verfica se campo está preenchido
         If Len(CNPJ_CONSULTAR.Value) = 0 Then
             m.Alert(Me, "DIGITE O NUMERO DO DOCUMENTO", False, "")
-            Valida_CNPJ = False
-            Exit Function
+            Exit Sub
         End If
 
         'permite somente números
         If Not IsNumeric(CNPJ_CONSULTAR.Value) Then
             m.Alert(Me, "DIGITE SOMENTE NÚMEROS", False, "")
-            Valida_CNPJ = False
-            Exit Function
+            Exit Sub
         End If
 
         'verifica tamnho do CNPJ
         If Len(CNPJ_CONSULTAR.Value) < 7 Or Len(CNPJ.Value) > 14 Then
             m.Alert(Me, "CNPJ DEVE CONTER  ENTRE 7 E 14 NÚMEROS ", False, "")
-            Valida_CNPJ = False
-            Exit Function
+            Exit Sub
         End If
 
         'Verifica se o estabelecimento já existe
@@ -41,13 +37,11 @@ Partial Class Estabelecimento_Incluir
             Dim ID_ESTABELECIMENTO As String = dtr("ID").ToString
             m.Alert(Me, "CNPJ JÁ ESTÁ CADASTRADO", False, "")
             'Response.Redirect("Estabelecimento_Editar.aspx?IdEstabelecimento=" & ID_ESTABELECIMENTO.ToString)
-            Valida_CNPJ = False
-            Exit Function
+            Exit Sub
         End If
 
-        Valida_CNPJ = True
         Consulta_RF(CNPJ_CONSULTAR.Value)
-    End Function
+    End Sub
     Public Sub Consulta_RF(sCNPJ As String)
         On Error GoTo Err_Consulta_RF
         s.ConsultarCNPJ(sCNPJ)

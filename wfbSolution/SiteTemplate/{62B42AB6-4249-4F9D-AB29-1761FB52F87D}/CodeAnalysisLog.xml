@@ -2,7 +2,7 @@
 <?xml-stylesheet type="text/xsl" href="c:\program files\microsoft visual studio\2022\community\team tools\static analysis tools\fxcop\Xml\CodeAnalysisReport.xsl"?>
 <FxCopReport Version="17.0">
  <Targets>
-  <Target Name="C:\Users\User\AppData\Local\Temp\tmp84B0.tmp.cadir\bin\App_Code.dll">
+  <Target Name="C:\Users\User\AppData\Local\Temp\tmpEE39.tmp.cadir\bin\App_Code.dll">
    <Modules>
     <Module Name="app_code.dll">
      <Namespaces>
@@ -10,22 +10,22 @@
        <Types>
         <Type Name="clsMaster" Kind="Class" Accessibility="Public" ExternallyVisible="True">
          <Messages>
-          <Message TypeName="TypesThatOwnDisposableFieldsShouldBeDisposable" Category="Microsoft.Design" CheckId="CA1001" Status="Active" Created="2025-10-29 17:55:11Z" FixCategory="DependsOnFix">
+          <Message TypeName="TypesThatOwnDisposableFieldsShouldBeDisposable" Category="Microsoft.Design" CheckId="CA1001" Status="Active" Created="2025-10-29 17:55:37Z" FixCategory="DependsOnFix">
            <Issue Name="DependsOnFix" Certainty="95" Level="CriticalError">Implemente IDisposable em 'clsMaster' porque cria membros dos seguintes tipos IDisposable: 'SqlConnection'. Se 'clsMaster' tiver enviado anteriormente, adicionar novos membros que implementem IDisposable a esse tipo é considerado uma alteração interruptiva para os consumidores existentes.</Issue>
           </Message>
          </Messages>
          <Members>
           <Member Name="#ExecuteSelect(System.String)" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
            <Messages>
-            <Message TypeName="Revisar as consultas SQL em busca de vulnerabilidades de segurança" Category="Microsoft.Security" CheckId="CA2100" Status="Active" Created="2025-10-29 17:55:11Z" FixCategory="DependsOnFix">
-             <Issue Name="WithNonLiterals" Certainty="75" Level="Warning" Path="F:\GitHub\wfb\wfbSolution\ICU\App_Code" File="clsMaster.vb" Line="54">A cadeia de caracteres de consulta passada para 'SqlCommand.CommandText.Set(String)' em 'clsMaster.ExecuteSelect(String)' pode conter as seguintes variáveis 'SQL'. Se qualquer uma destas variáveis for proveniente da entrada do usuário, considere usar um procedimento armazenado ou uma consulta SQL parametrizada antes de compilar a consulta com concatenações de cadeias de caracteres.</Issue>
+            <Message TypeName="Revisar as consultas SQL em busca de vulnerabilidades de segurança" Category="Microsoft.Security" CheckId="CA2100" Status="Active" Created="2025-10-29 17:55:37Z" FixCategory="DependsOnFix">
+             <Issue Name="WithNonLiterals" Certainty="75" Level="Warning" Path="F:\GitHub\wfb\wfbSolution\SiteTemplate\App_Code" File="clsMaster.vb" Line="54">A cadeia de caracteres de consulta passada para 'SqlCommand.CommandText.Set(String)' em 'clsMaster.ExecuteSelect(String)' pode conter as seguintes variáveis 'SQL'. Se qualquer uma destas variáveis for proveniente da entrada do usuário, considere usar um procedimento armazenado ou uma consulta SQL parametrizada antes de compilar a consulta com concatenações de cadeias de caracteres.</Issue>
             </Message>
            </Messages>
           </Member>
           <Member Name="#ExecuteSQL(System.String)" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
            <Messages>
-            <Message TypeName="Revisar as consultas SQL em busca de vulnerabilidades de segurança" Category="Microsoft.Security" CheckId="CA2100" Status="Active" Created="2025-10-29 17:55:11Z" FixCategory="DependsOnFix">
-             <Issue Name="WithNonLiterals" Certainty="75" Level="Warning" Path="F:\GitHub\wfb\wfbSolution\ICU\App_Code" File="clsMaster.vb" Line="33">A cadeia de caracteres de consulta passada para 'SqlCommand.CommandText.Set(String)' em 'clsMaster.ExecuteSQL(String)' pode conter as seguintes variáveis 'SQL'. Se qualquer uma destas variáveis for proveniente da entrada do usuário, considere usar um procedimento armazenado ou uma consulta SQL parametrizada antes de compilar a consulta com concatenações de cadeias de caracteres.</Issue>
+            <Message TypeName="Revisar as consultas SQL em busca de vulnerabilidades de segurança" Category="Microsoft.Security" CheckId="CA2100" Status="Active" Created="2025-10-29 17:55:37Z" FixCategory="DependsOnFix">
+             <Issue Name="WithNonLiterals" Certainty="75" Level="Warning" Path="F:\GitHub\wfb\wfbSolution\SiteTemplate\App_Code" File="clsMaster.vb" Line="33">A cadeia de caracteres de consulta passada para 'SqlCommand.CommandText.Set(String)' em 'clsMaster.ExecuteSQL(String)' pode conter as seguintes variáveis 'SQL'. Se qualquer uma destas variáveis for proveniente da entrada do usuário, considere usar um procedimento armazenado ou uma consulta SQL parametrizada antes de compilar a consulta com concatenações de cadeias de caracteres.</Issue>
             </Message>
            </Messages>
           </Member>
